@@ -5,20 +5,20 @@ var priorityA,
   priorityE,
 
   metatype,
-  attribute=0,
-  specAttribute=0,
+  attribute = 0,
+  specAttribute = 0,
   magres,//what kind of emergence or awakening a character is
-  skills=0,//skill points
-  knowledgepoints=0,//knowledge skill points
-  skillgroups=0,//skill group points
-  skillgroupmax=6,//this is the max rating for a skill group
-  spells=0,//number of spells one can learn
-  powerPoints=0.0,//adept power points
-  forms=0,//number of complex forms
-  nuyen=0,//money
-  ess=6.0,
-  reachmod=0,//reachmod for trolls
-  karma=25,
+  skills = 0,//skill points
+  knowledgepoints = 0,//knowledge skill points
+  skillgroups = 0,//skill group points
+  skillgroupmax = 6,//this is the max rating for a skill group
+  spells = 0,//number of spells one can learn
+  powerPoints = 0.0,//adept power points
+  forms = 0,//number of complex forms
+  nuyen = 0,//money
+  ess = 6.0,
+  reachmod = 0,//reachmod for trolls
+  karma = 25,
 
   attributes = {
     current: {
@@ -96,13 +96,13 @@ var priorityA,
 
 //var iniphy=attributes.current.int+attributes.current.rea;
 
-  dataP=0,//data processing, for TM's
+  dataP = 0,//data processing, for TM's
 
   knowledgeType,//This holds which knowledge type is selected when submitting a new knowledge skill
 
-  focinumber=0,//number of foci that are bonded
-  fociRating=0,//the total rating of the foci
-  fociMaxRating=attributes.current.mag*2,//max rating or total foci
+  focinumber = 0,//number of foci that are bonded
+  fociRating = 0,//the total rating of the foci
+  fociMaxRating = attributes.current.mag * 2,//max rating or total foci
 
   maxAvail = 12; //the max availibility at chargen
 
@@ -203,8 +203,7 @@ var groupSkills = {
   tasking: {name:"Tasking", rating:0, skillsingroup: {1:"compiling", 2:"decompiling", 3:"registering"}}
 };
 
-var knowledgeSkills = [
-];
+var knowledgeSkills = [];
 
 var p ="Physical";//type of spell
 var m ="Mana";//type of spell
@@ -319,7 +318,6 @@ var adeptPowers = {
 };
 
 var spellforms = {//list of all the spells
-
   //combat spells
   acidstream: {name: "Acid Stream", category: "combat", spell: false, preparation: false, direct: false, element: "Acid", type: "Physical", range: "LOS", damage: "Physical", duration: "Instant", drain: "F-3"},
   toxicwave: {name: "Toxic Wave", category: "combat", spell: false, preparation: false, direct: false, element: "Acid", type: p, range: "LOS(A)", damage: "Physical", duration: "Instant", drain: "F-1"},
@@ -548,7 +546,7 @@ var weapons = {
 
 var weaponmods = {
   airburstlink: {name:"Airburst Link", weaptype:["grenadelauncher", "rocketlauncher"], },
-}
+};
 
 var ammunition = {
   //taser
@@ -815,13 +813,14 @@ var electronics = {//This has more then just electronics in it now
   reagents: {name:"Reagents", type:"reagents", avail:0, restrict:"", peritem:1, cost:20}
 
 };
+
 var spellType = [
   "Combat",
   "Detection",
   "Health",
   "Illusion",
   "Manipulation"
-]
+];
 
 var spiritType = [
   "Air",
@@ -842,7 +841,7 @@ var spiritType = [
   "Shedim",
   "Task",
   "Water"
-]
+];
 
 var ritualKeywords = [
   "Anchored",
@@ -855,21 +854,21 @@ var ritualKeywords = [
   "Organic Link",
   "Spell",
   "Spotter"
-]
+];
 
 var software = {
   datasoft: {},
   mapsoft: {},
   shopsoft: {},
   tutorsoft: {}
-}
+};
 
 var maglockMod = {
   keypad: {name:"Keypad", avail:0, restrict:"", cost:50},
   cardreader: {name:"Card reader", avail:0, restrict:"", cost:50},
   antitampercircuits: {name:"Anti-tamper circuits", rating:1, ratingmax:4, avail:1, availx:1, restrict:"", costx:250, cost:250},
   biometricreader: {name:"Biometric Reader", avail:4, restrict:"", cost:200}
-}
+};
 
 var programs = {
   //common
@@ -913,7 +912,7 @@ var visionenhancements = {
   visionenhancement2: {name:"Vision Enhancement 2", rating:2, cap:2, avail:4, restricted: "", cost:1000},
   visionenhancement3: {name:"Vision Enhancement 3", rating:3, cap:3, avail:6, restricted: "", cost:1500},
   visionmagnification: {name:"Vision Magnification", cap:1, avail:2, restricted: "", cost:250},
-}
+};
 
 var audioenhancements = {
   empty : {name:"Empty", avail:0, cost:0},
@@ -924,7 +923,7 @@ var audioenhancements = {
   selectsoundfilter2: {name:"Select Sound Filter 2", rating:2, cap:2, avail:6, restricted: "", cost:500},
   selectsoundfilter3: {name:"Select Sound Filter 3", rating:3, cap:3, avail:9, restricted: "", cost:750},
   spatialrecognizer: {name:"Spatial Recognizer", rating:1, cap:2, avail:4, restricted: "", cost:1000},
-}
+};
 
 characteraugmentation = {
   limbs: {
@@ -935,7 +934,7 @@ characteraugmentation = {
     rightarm: {},
     rightleg: {}
   }
-}
+};
 
 var augmentations = {
   grade: {
@@ -983,4 +982,4 @@ var augmentations = {
       stats: {skill: "pistols", accuracy: 4, accmod: 2, damage: 6, stat: 0, dvmod: 0, damtype: "P", element: "", mode: {SA:"SA"}, rc: 0, rcmod: 0, ammo: {mag:2, clip:6}, clip: {mag:"m", clip:"c"}, ap: 0}
     }
   }
-}
+};
