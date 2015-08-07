@@ -42,8 +42,8 @@ function selectPriority() { //Priority table controls
     case 'magres '+ classPrior +' selected':
       priorityL="magres";
       break;
-    case 'skillz '+ classPrior +' selected':
-      priorityL="skillz";
+    case 'skills '+ classPrior +' selected':
+      priorityL="skills";
       break;
     case 'resource '+ classPrior +' selected':
       priorityL="resource";
@@ -90,7 +90,7 @@ function selectPriority() { //Priority table controls
       activateMT(".troll");
       break;
     case "attribute":
-      attribute=24;
+      attribute = 24;
       pointUpdater (".pnt", attribute);
       break;
     case "magres":
@@ -100,14 +100,15 @@ function selectPriority() { //Priority table controls
       deactivateMT(".adept");
       deactivateMT(".aspect");
       break;
-    case "skillz":
-      skillgroups=10;
-      skills=46;
+    case "skills":
+      skillgroups = 10;
+      skills = 46;
       break;
     case "resource":
-      nuyen=450000;
+      nuyen = 450000;
       break;
   }
+
   switch(priorityB){
     case "metatype":
       activateMT(".human");
@@ -127,14 +128,15 @@ function selectPriority() { //Priority table controls
       activateMT(".adept");
       activateMT(".aspect");
       break;
-    case "skillz":
-      skillgroups=5;
-      skills=36;
+    case "skills":
+      skillgroups = 5;
+      skills = 36;
       break;
     case "resource":
-      nuyen=275000;
+      nuyen = 275000;
       break;
   }
+
   switch(priorityC){
     case "metatype":
       activateMT(".human");
@@ -144,7 +146,7 @@ function selectPriority() { //Priority table controls
       deactivateMT(".troll");
       break;
     case "attribute":
-      attribute=16;
+      attribute = 16;
       pointUpdater (".pnt", attribute);
       break;
     case "magres":
@@ -154,14 +156,15 @@ function selectPriority() { //Priority table controls
       activateMT(".adept");
       activateMT(".aspect");
       break;
-    case "skillz":
-      skillgroups=2;
-      skills=28;
+    case "skills":
+      skillgroups = 2;
+      skills = 28;
       break;
     case "resource":
-      nuyen=140000;
+      nuyen = 140000;
       break;
   }
+
   switch(priorityD){
     case "metatype":
       activateMT(".human");
@@ -181,14 +184,15 @@ function selectPriority() { //Priority table controls
       activateMT(".adept");
       activateMT(".aspect");
       break;
-    case "skillz":
-      skillgroups=0;
-      skills=22;
+    case "skills":
+      skillgroups = 0;
+      skills = 22;
       break;
     case "resource":
-      nuyen=50000;
+      nuyen = 50000;
       break;
   }
+
   switch(priorityE){
     case "metatype":
       activateMT(".human");
@@ -208,9 +212,9 @@ function selectPriority() { //Priority table controls
       deactivateMT(".adept");
       deactivateMT(".aspect");
       break;
-    case "skillz":
-      skillgroups=0;
-      skills=18;
+    case "skills":
+      skillgroups = 0;
+      skills = 18;
       break;
     case "resource":
       nuyen=6000;
@@ -226,16 +230,19 @@ function selectPriority() { //Priority table controls
   disUpdater();
 }
 
-function fnselect (x) {//fucntion for highlighting what has been selected
+//function for highlighting what has been selected
+function fnselect (x) {
   x.siblings().removeClass("selected");
   x.addClass('selected');
 }
 
-$(".human, .elf, .dwarf, .ork, .troll").click(//this part will call the metatype select fuction when a metatype button is clicked
+//this part will call the metatype select fuction when a metatype button is clicked
+$(".human, .elf, .dwarf, .ork, .troll").click(
   selectMetatype
 );
 
-function selectMetatype() { //Metatype controls
+//Metatype controls
+function selectMetatype() {
   if ($(this).hasClass('deact')) {//this will make it so that if the button is deactivated that it won't do anything
     return;
   }
@@ -244,10 +251,10 @@ function selectMetatype() { //Metatype controls
 
     if ( $(this).hasClass('human') ) {//this stuff sets the metatype attrabutes and stuff
       resetAtt ();
-      metatype="human";
-      attributes.current.edg=2;
-      attributes.maximum.edgmax=7;
-      attributes.minimum.edgmin=2;
+      metatype = "human";
+      attributes.current.edg = 2;
+      attributes.maximum.edgmax = 7;
+      attributes.minimum.edgmin = 2;
       disUpdater();
       $("#racial").empty().append($("<p>None<br>Boring</p>"));
       switch ("metatype") {
@@ -270,13 +277,13 @@ function selectMetatype() { //Metatype controls
     }
     if ( $(this).hasClass('elf') ) {
       resetAtt ();
-      metatype="elf";
-      attributes.current.agi=2;
-      attributes.current.cha=3;
-      attributes.maximum.agimax=7;
-      attributes.minimum.agimin=2;
-      attributes.maximum.chamax=8;
-      attributes.minimum.chamin=3;
+      metatype = "elf";
+      attributes.current.agi = 2;
+      attributes.current.cha = 3;
+      attributes.maximum.agimax = 7;
+      attributes.minimum.agimin = 2;
+      attributes.maximum.chamax = 8;
+      attributes.minimum.chamin = 3;
       disUpdater();
       $("#racial").empty().append($("<p>Low-Light Vision</p>"));
       switch ("metatype") {
@@ -296,17 +303,17 @@ function selectMetatype() { //Metatype controls
     }
     if ( $(this).hasClass('dwarf') ) {
       resetAtt ();
-      metatype="dwarf";
-      attributes.current.bod=3;
-      attributes.current.str=3;
-      attributes.current.wil=2;
-      attributes.maximum.bodmax=8;
-      attributes.maximum.reamax=5;
-      attributes.maximum.strmax=8;
-      attributes.maximum.wilmax=7;
-      attributes.minimum.bodmin=3;
-      attributes.minimum.strmin=3;
-      attributes.minimum.wilmin=2;
+      metatype = "dwarf";
+      attributes.current.bod = 3;
+      attributes.current.str = 3;
+      attributes.current.wil = 2;
+      attributes.maximum.bodmax = 8;
+      attributes.maximum.reamax = 5;
+      attributes.maximum.strmax = 8;
+      attributes.maximum.wilmax = 7;
+      attributes.minimum.bodmin = 3;
+      attributes.minimum.strmin = 3;
+      attributes.minimum.wilmin = 2;
       disUpdater();
       $("#racial").empty().append($("<p>Thermographic Vision<br>+2 Pathogen/Toxic Resist<br>20% Lifestyle increase</p>"));
       switch ("metatype") {
@@ -324,15 +331,15 @@ function selectMetatype() { //Metatype controls
     }
     if ( $(this).hasClass('ork') ) {
       resetAtt ();
-      metatype="ork";
-      attributes.current.bod=4;
-      attributes.current.str=3;
-      attributes.maximum.bodmax=9;
-      attributes.maximum.strmax=8;
-      attributes.maximum.logmax=5;
-      attributes.maximum.chamax=5;
-      attributes.minimum.bodmin=4;
-      attributes.minimum.strmin=3;
+      metatype = "ork";
+      attributes.current.bod = 4;
+      attributes.current.str = 3;
+      attributes.maximum.bodmax = 9;
+      attributes.maximum.strmax = 8;
+      attributes.maximum.logmax = 5;
+      attributes.maximum.chamax = 5;
+      attributes.minimum.bodmin = 4;
+      attributes.minimum.strmin = 3;
       disUpdater();
       $("#racial").empty().append($("<p>Low-Light Vision</p>"));
       switch ("metatype") {
@@ -350,18 +357,18 @@ function selectMetatype() { //Metatype controls
     }
     if ( $(this).hasClass('troll') ) {
       resetAtt ();
-      metatype="troll";
-      attributes.current.bod=5;
-      attributes.current.str=5;
-      attributes.maximum.bodmax=10;
-      attributes.maximum.strmax=10;
-      attributes.maximum.agimax=5;
-      attributes.maximum.logmax=5;
-      attributes.maximum.intmax=5;
-      attributes.maximum.chamax=4;
-      attributes.minimum.bodmin=5;
-      attributes.minimum.strmin=5;
-      reachmod=1;
+      metatype = "troll";
+      attributes.current.bod = 5;
+      attributes.current.str = 5;
+      attributes.maximum.bodmax = 10;
+      attributes.maximum.strmax = 10;
+      attributes.maximum.agimax = 5;
+      attributes.maximum.logmax = 5;
+      attributes.maximum.intmax = 5;
+      attributes.maximum.chamax = 4;
+      attributes.minimum.bodmin = 5;
+      attributes.minimum.strmin = 5;
+      reachmod = 1;
       disUpdater();
       $("#racial").empty().append($("<p>Thermographic Vision<br>+1 Reach<br>+1 Dermal Armor<br>100% Lifestyle increase</p>"));
       switch ("metatype") {
@@ -378,7 +385,8 @@ function selectMetatype() { //Metatype controls
   }
 }
 
-function resetAtt () {//reset attrabute to default
+//reset attributes to default
+function resetAtt () {
   attributes.current.bod=1;
   attributes.current.agi=1;
   attributes.current.rea=1;
@@ -406,11 +414,11 @@ function resetAtt () {//reset attrabute to default
   attributes.maximum.intmax=6;
   attributes.maximum.chamax=6;
   attributes.maximum.edgmax=6;
-  reachmod=0;
+  reachmod = 0;
 }
-//there are 10 types of people in this world. Those who understand binary, and those who don't
 
-var updaters = {//experimenting on removing functions from the global name space
+//experimenting on removing functions from the global name space
+var updaters = {
   nuyenUpdater: function () {
     $("#nuyen").empty().append($("<strong>"+nuyen+"&#65509</strong>"));
   },
@@ -425,7 +433,7 @@ var updaters = {//experimenting on removing functions from the global name space
   }
 }
 
-disUpdater();//runs the attrabute display funcation on start up
+disUpdater();//runs the attribute display function on start up
 
 function disUpdater () {//adds the attrabutes to the attribute table
   renderAttStat (attributes.augment.bod, "bod", attributes.current.bod, attributes.maximum.bodmax);
@@ -734,88 +742,94 @@ function changeAtt () {//this function changes the attrabutes
 
   for (var item in inventory) {//this will be used to increase and decrease the weapon foci rating and license rating, and now clips too
     var itemhold = inventory[item]
-    if ($(this).parents("#"+item).attr("id")==item) {
-      if ($(this).attr("class")==item+" incAtt weaponfoci"&&fociRating<fociMaxRating&&focinumber<attributes.current.mag&&itemhold["weaponfoci"]<3&&nuyen-7000>0&&karma-3>0) {
-        if (itemhold["weaponfoci"]==0) {
+    if ($(this).parents("#"+item).attr("id") == item) {
+      if ($(this).attr("class") == item + " incAtt weaponfoci" && fociRating < fociMaxRating && focinumber < attributes.current.mag && itemhold["weaponfoci"] < 3 && nuyen - 7000 > 0 && karma - 3 > 0) {
+        if (itemhold["weaponfoci"] == 0) {
           focinumber++;
         }
+
         itemhold["weaponfoci"]++;
         inventoryStatUpdater (item, ".focirating.weaponfoci", itemhold["weaponfoci"]);
         fociRating++;
-        nuyen-=7000;
-        inventory[item]["cost"]+=7000;
-        karma-=3;
+        nuyen -= 7000;
+        inventory[item]["cost"] += 7000;
+        karma -= 3;
       } else if ($(this).attr("class")==item+" decAtt weaponfoci"&&itemhold["weaponfoci"]>0) {
         itemhold["weaponfoci"]--;
-        if (itemhold["weaponfoci"]==0) {
+        if (itemhold["weaponfoci"] == 0) {
           focinumber--;
         }
         inventoryStatUpdater (item, ".focirating.weaponfoci", itemhold["weaponfoci"]);
         fociRating--;
-        nuyen+=7000;
-        itemhold["cost"]-=7000;
-        karma+=3;
+        nuyen += 7000;
+        itemhold["cost"] -= 7000;
+        karma += 3;
       }
-      if ($(this).attr("class")==item+" incAtt license"&&itemhold["license"]<4&&nuyen-200>0) {
+      if ($(this).attr("class") == item + " incAtt license" && itemhold["license"] < 4 && nuyen - 200 > 0) {
         itemhold["license"]++;
         inventoryStatUpdater (item, ".licenserating.license", itemhold["license"]);
-        nuyen-=200;
-        itemhold["cost"]+=200;
-      } else if ($(this).attr("class")==item+" decAtt license"&&itemhold["license"]>0) {
+        nuyen -= 200;
+        itemhold["cost"] += 200;
+      } else if ($(this).attr("class") == item + " decAtt license" && itemhold["license"] > 0) {
         itemhold["license"]--;
         inventoryStatUpdater (item, ".licenserating.license", itemhold["license"]);
-        nuyen+=200;
-        itemhold["cost"]-=200;
+        nuyen += 200;
+        itemhold["cost"] -= 200;
       }
-      if (itemhold["rating"]>0) {//if rating 0 its a crossbow.
-        var arrowPrice=itemhold["rating"]*2;
-        var injectPrice=itemhold["rating"]*20;
+
+      if (itemhold["rating"] > 0) {//if rating 0 its a crossbow.
+        var arrowPrice = itemhold["rating"] * 2;
+        var injectPrice = itemhold["rating"] * 20;
       } else {
-        var arrowPrice=5;
-        var injectPrice=50;
+        var arrowPrice = 5;
+        var injectPrice = 50;
       }
-      if (itemhold.name=="shuriken") {
-        var arrowPrice=25;
+
+      if (itemhold.name == "shuriken") {
+        var arrowPrice = 25;
       }
-      if ($(this).attr("class")==item+" incAtt arrow"&&nuyen-arrowPrice>0) {
+
+      if ($(this).attr("class") == item + " incAtt arrow" && nuyen-arrowPrice > 0) {
         itemhold["arrow"]++;
         inventoryStatUpdater (item, ".arrowNum.arrow", itemhold["arrow"]);
-        nuyen-=arrowPrice;
-        itemhold["cost"]+=arrowPrice;
-      } else if ($(this).attr("class")==item+" decAtt arrow"&&itemhold["arrow"]>0) {
+        nuyen -= arrowPrice;
+        itemhold["cost"] += arrowPrice;
+      } else if ($(this).attr("class") == item + " decAtt arrow" && itemhold["arrow"] > 0) {
         itemhold["arrow"]--;
         inventoryStatUpdater (item, ".arrowNum.arrow", itemhold["arrow"]);
-        nuyen+=arrowPrice;
-        itemhold["cost"]-=arrowPrice;
+        nuyen += arrowPrice;
+        itemhold["cost"] -= arrowPrice;
       }
-      if ($(this).attr("class")==item+" incAtt injarrow"&&nuyen-injectPrice>0) {
+
+      if ($(this).attr("class") == item + " incAtt injarrow" && nuyen - injectPrice > 0) {
         itemhold["inject"]++;
         inventoryStatUpdater (item, ".arrowNum.injarrow", itemhold["inject"]);
-        nuyen-=injectPrice;
-        itemhold["cost"]+=injectPrice;
-      } else if ($(this).attr("class")==item+" decAtt injarrow"&&itemhold["inject"]>0) {
+        nuyen -= injectPrice;
+        itemhold["cost"] += injectPrice;
+      } else if ($(this).attr("class") == item + " decAtt injarrow" && itemhold["inject"] > 0) {
         itemhold["inject"]--;
         inventoryStatUpdater (item, ".arrowNum.injarrow", itemhold["inject"]);
-        nuyen+=injectPrice;
-        itemhold["cost"]-=injectPrice;
+        nuyen += injectPrice;
+        itemhold["cost"] -= injectPrice;
       }
 
 
-      if (itemhold.clip=="Clip") {
-        var clipPrice=5;
+      if (itemhold.clip == "Clip") {
+        var clipPrice = 5;
       } else {
-        var clipPrice=25;
+        var clipPrice = 25;
       }
-      if ($(this).attr("class")==item+" incAtt extraclips"&&nuyen-clipPrice>0) {
+
+      if ($(this).attr("class") == item + " incAtt extraclips" && nuyen - clipPrice > 0) {
         itemhold["extraclips"]++;
         inventoryStatUpdater (item, ".numofclips.extraclips", itemhold["extraclips"]);
-        nuyen-=clipPrice;
-        itemhold["cost"]+=clipPrice;
-      } else if ($(this).attr("class")==item+" decAtt extraclips"&&itemhold["extraclips"]>0) {
+        nuyen -= clipPrice;
+        itemhold["cost"] += clipPrice;
+      } else if ($(this).attr("class") == item + " decAtt extraclips" && itemhold["extraclips"] > 0) {
         itemhold["extraclips"]--;
         inventoryStatUpdater (item, ".numofclips.extraclips", itemhold["extraclips"]);
-        nuyen+=clipPrice;
-        itemhold["cost"]-=clipPrice;
+        nuyen += clipPrice;
+        itemhold["cost"] -= clipPrice;
       }
 
     }
@@ -838,6 +852,7 @@ function changeAtt () {//this function changes the attrabutes
     }
     return x;
   }
+
   function increaseMen(x, y) {//this shit increases an attrabute while decreating the points you can spend
     if (phyAttMax==true) {
       y--;
@@ -860,6 +875,7 @@ function changeAtt () {//this function changes the attrabutes
       attribute++;}
     return x;
   }
+
   function decreaseMen(x, y, z) {//this shit decreases and attrabute while increating the points you can spend
     if (x==z) {
       phyAttMax=false;
@@ -876,187 +892,192 @@ function changeAtt () {//this function changes the attrabutes
     }
     return x;
   }
+
   function decreaseSpec(x, y) {//for when special people make a mistake
     if (x>y) {x--;
       specAttribute++;}
     return x;
   }
-  disUpdater ();//this was ment to orignally update the attrabutes, but is now used for EVERYTHING
+
+  disUpdater();//this was ment to orignally update the attributes, but is now used for EVERYTHING
 }
 
 function addAugmentAtt(x) {
-  if (x<4) {
+  if (x < 4) {
     x++;
   }
   return x;
 }
 
 function minusAugmentAtt(x) {
-  if (x>0) {
+  if (x > 0) {
     x--;
   }
   return x;
 }
+
+//@TODO - move this out of the middle of these functions to somewhere that makes sense
 $(".mage, .techno, .mystic, .adept, .aspect").click(//this part will call the attributes.current.mag/attributes.current.res function
-  selectmagres
+  selectMagRes
 );
 
-function selectmagres() { //Magic/Resonance controls
+function selectMagRes() {
   if ($(this).hasClass('deact')||$(this).hasClass('selected')) {//this will make it so that if the button is deactivated that it won't do anything
     return;
   }
   else {
     fnselect ($(this));//highlights what's been clicked on
 
-    if ( $(this).hasClass('mage') ) {//attributes.current.mag man doing attributes.current.mag stuff
-      magres="mage";
-      awaken ("Mag","Res");
-      magemysticsetting ();
+    if ( $(this).hasClass('mage') ) {
+      magres = "mage";
+      awaken("Mag","Res");
+      magemysticsetting();
     }
-    if ( $(this).hasClass('mystic') ) {//mystic adept stuff
-      magres="mystic";
-      awaken ("Mag","Res");
-      magemysticsetting ();
+    if ( $(this).hasClass('mystic') ) {
+      magres = "mystic";
+      awaken("Mag","Res");
+      magemysticsetting();
     }
-    if ( $(this).hasClass('techno') ) {//technomancer stuff
-      magres="technomancer";
+    if ( $(this).hasClass('techno') ) {
+      magres = "technomancer";
       awaken ("Res","Mag");
       switch ("magres"){
         case priorityA:
-          attributes.current.mag=0;
-          powerPoints=0;
-          attributes.current.res=6;
-          attributes.minimum.resmin=6;
-          skills=skills+10;
-          forms=5;
-          spells=0;
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 6;
+          attributes.minimum.resmin = 6;
+          skills += 10;
+          forms = 5;
+          spells = 0;
           break;
         case priorityB:
-          attributes.current.mag=0;
-          powerPoints=0;
-          attributes.current.res=4;
-          attributes.minimum.resmin=4;
-          skills=skills+8;
-          forms=2;
-          spells=0;
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 4;
+          attributes.minimum.resmin = 4;
+          skills += 8;
+          forms = 2;
+          spells = 0;
           break;
         case priorityC:
-          attributes.current.mag=0;
-          powerPoints=0;
-          attributes.current.res=3;
-          attributes.minimum.resmin=3;
-          forms=1;
-          spells=0;
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 3;
+          attributes.minimum.resmin = 3;
+          forms = 1;
+          spells = 0;
           break;
       }
     }
-    if ( $(this).hasClass('adept') ) {//adept kung fu stuff
-      magres="adept";
+    if ( $(this).hasClass('adept') ) {
+      magres = "adept";
       awaken ("Mag","Res");
       switch ("magres"){
         case priorityB:
-          attributes.current.mag=6;
-          powerPoints=6.0;
-          attributes.minimum.magmin=6;
-          attributes.current.res=0;
-          skills=skills+4;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 6;
+          powerPoints = 6.0;
+          attributes.minimum.magmin = 6;
+          attributes.current.res = 0;
+          skills += 4;
+          spells = 0;
+          forms = 0;
           break;
         case priorityC:
-          attributes.current.mag=4;
-          powerPoints=4.0;
-          attributes.minimum.magmin=4;
-          attributes.current.res=0;
-          skills=skills+2;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 4;
+          powerPoints = 4.0;
+          attributes.minimum.magmin = 4;
+          attributes.current.res = 0;
+          skills += 2;
+          spells = 0;
+          forms = 0;
           break;
         case priorityD:
-          attributes.current.mag=2;
-          powerPoints=2.0;
-          attributes.minimum.magmin=2;
-          attributes.current.res=0;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 2;
+          powerPoints = 2.0;
+          attributes.minimum.magmin = 2;
+          attributes.current.res = 0;
+          spells = 0;
+          forms = 0;
           break;
       }
     }
-    if ( $(this).hasClass('aspect') ) {//aspect mage stuff
+    if ( $(this).hasClass('aspect') ) {
       magres="aspect";
       awaken ("Mag","Res");
       switch ("magres"){
         case priorityB:
-          attributes.current.mag=5;
-          powerPoints=0;
-          attributes.minimum.magmin=5;
-          attributes.current.res=0;
-          skillgroups=skillgroups+4;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 5;
+          powerPoints = 0;
+          attributes.minimum.magmin = 5;
+          attributes.current.res = 0;
+          skillgroups += 4;
+          spells = 0;
+          forms = 0;
           break;
         case priorityC:
-          attributes.current.mag=3;
-          powerPoints=0;
-          attributes.minimum.magmin=3;
-          attributes.current.res=0;
-          skillgroups=skillgroups+2;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 3;
+          powerPoints = 0;
+          attributes.minimum.magmin = 3;
+          attributes.current.res = 0;
+          skillgroups += 2;
+          spells = 0;
+          forms = 0;
           break;
         case priorityD:
-          attributes.current.mag=2;
-          powerPoints=0;
-          attributes.minimum.magmin=2;
-          attributes.current.res=0;
-          spells=0;
-          forms=0;
+          attributes.current.mag = 2;
+          powerPoints = 0;
+          attributes.minimum.magmin = 2;
+          attributes.current.res = 0;
+          spells = 0;
+          forms = 0;
           break;
       }
     }
 
-    fociMaxRating=attributes.current.mag*2;
+    fociMaxRating = attributes.current.mag * 2;
 
   }
   disUpdater ();
 }
-function magemysticsetting () {//since mystics and mages have the same stuff, they get a funcation
+
+function magemysticsetting () {//since mystics and mages have the same stuff, they get a function
   switch ("magres"){
     case priorityA:
-      attributes.current.mag=6;
-      powerPoints=0;
-      attributes.minimum.magmin=6;
-      attributes.current.res=0;
-      skills=skills+10;
-      spells=10;
-      forms=0;
+      attributes.current.mag = 6;
+      powerPoints = 0;
+      attributes.minimum.magmin = 6;
+      attributes.current.res = 0;
+      skills += 10;
+      spells = 10;
+      forms = 0;
       break;
     case priorityB:
-      attributes.current.mag=4;
-      powerPoints=0;
-      attributes.minimum.magmin=4;
-      attributes.current.res=0;
-      skills=skills+8;
-      spells=7;
-      forms=0;
+      attributes.current.mag = 4;
+      powerPoints = 0;
+      attributes.minimum.magmin = 4;
+      attributes.current.res = 0;
+      skills += 8;
+      spells = 7;
+      forms = 0;
       break;
     case priorityC:
-      attributes.current.mag=3;
-      powerPoints=0;
-      attributes.minimum.magmin=3;
-      attributes.current.res=0;
-      spells=5;
-      forms=0;
+      attributes.current.mag = 3;
+      powerPoints = 0;
+      attributes.minimum.magmin = 3;
+      attributes.current.res = 0;
+      spells = 5;
+      forms = 0;
       break;
   }
 }
+
 function awaken(x,y) {//this is suppose to unhide attributes.current.mag or resonance and then hide the other stat
   $("."+x).removeClass("hide");
   $("."+y).addClass("hide");
 }
-//Skills to pay the bills
 
-
+//@TODO - rename
 function setUpSkills () {//Well, this is used for more then just skills now. It should only run once at start up
   theLabeler (".skilllabel",".skills");//I messed up when I made the render loop for the skills. I didn't label them. This fixes that.
   theLabeler ("#adeptlabel","#powerlist");
@@ -1075,6 +1096,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     $(x).appendTo(y);
   }
 
+  //@TODO - name this correctly
   $(".knowledgename").appendTo(".namingStuffIsHard");
 
   for (var x in weapons) {//addes exotic melee weapons to the skill list
@@ -1085,13 +1107,15 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     }
   }
 
-  function makeExoticSkill (w,x,y,z) {//w=attibute variable,x=weapon[name of exotic weapon], y=type of exotic skill, z=attibute
-    activeSkills[x.skill]={name:y+x.skillName+")", catalog: z, stat:w, rating:0, mod:0, max:6, defaultable:false};
+  function makeExoticSkill (attributeVariable, weapon, skillType, attribute) {
+    activeSkills[weapon.skill] = {name:skillType + weapon.skillName + ")", catalog: attribute, stat:attributeVariable, rating:0, mod:0, max:6, defaultable:false};
   }
 
   upNAtEm (activeSkills);
   upNAtEm (knowledgeSkills);
 
+  //@TODO - rename function
+  //@TODO - rename parameter
   function upNAtEm (x) {//function to set up the active and knowledge skills, "Up and at 'em, Atom Ant!"
     for (var skill in x) {
       skillsum = funSkillSum (x[skill]["defaultable"], x[skill]["rating"], x[skill]["mod"], attributes.current[x[skill]["stat"]]);
@@ -1101,6 +1125,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     }
   }
 
+  //@TODO - move this logic outside of these function declarations
   for (var skill in groupSkills) {//this for loop sets up the skill groups
     $("#skillgrouplist").find("tbody").append($("<tr class='"+[skill]+"'><td class='incAtt "+[skill]+"'>+</td><td class='"+[skill]+" rating'>"+groupSkills[skill]["rating"]+"</td><td class='decAtt "+[skill]+"'>-</td><td class='skillgroupname'>"+groupSkills[skill]["name"]+"</td><td class='skillsin "+[skill]+"'></td></tr>"));
     for (var key in groupSkills[skill]["skillsingroup"]) {
@@ -1154,6 +1179,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
       $(".spells.manipulation").append($("<tr id='"+spell+"' class='"+spellhold["category"]+"'><td class='spellact "+spell+" button'><strong>-</strong></td><td class='prepact "+spell+" button'><strong>-</strong></td><td class='spellname "+spell+"'>"+spellhold["name"]+"</td><td class='effect "+spell+"'>"+spellhold["effect"]+"</td><td class='damage "+spell+"'>"+spellhold["damage"]+"</td><td class='spelltype "+spell+"'>"+spellhold["type"]+"</td><td class='spellrange "+spell+"'>"+spellhold["range"]+"</td><td class='spelldur "+spell+"'>"+spellhold["duration"]+"</td><td class='drain "+spell+"'>"+spellhold["drain"].toString()+"</td></tr>"));
     }
   }
+
   spellinput (" ","detectlifeform", "Life Form");
   spellinput (" Extended","detectlifeformextended", "Life Form");
   spellinput (" ","detectobject", "Object");
@@ -1162,10 +1188,13 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     $(".spellname."+y).empty().append($("<span>Detect "+ "<input type='text' class='"+y+"' placeholder='"+z+"'>"+x+"</span>"));
   }
 
+  //@TODO - organize functions and logic
   spellattselect ("decreaseattribute", "Decrease ");
   spellattselect ("increaseattribute", "Increase ");
 
-  function spellattselect (x, y) {//so people can select which attabute is used for the increase/decrease spells
+  //@TODO - camelcase properly
+  //@TODO - name parameters properly
+  function spellattselect (x, y) {//so people can select which attribute is used for the increase/decrease spells
     $(".spellname."+x).empty().append($("<span>"+y+"<select class="+x+"><option value=''>[Attribute]</option><option value='Body'>Body</option><option value='Agility'>Agility</option><option value='Reaction'>Reaction</option><option value='Strength'>Strength</option><option value='Will'>Will</option><option value='Logic'>Logic</option><option value='Intuition'>Intuition</option><option value='Charisma'>Charisma</option></select>"+"</span>"))
   }
 
@@ -1246,7 +1275,6 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
   $("#cyberlimbs .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
 
   //adding ammo details below
-
   $(".ammo.label").appendTo(".ammunition");//adds ammo label
 
   for (var ammo in ammunition) {
@@ -1265,7 +1293,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
         explosivesammo("rocketammo",ammo,ammotype);
         break;
       case "none":
-        $(".standard.ammunition").append("<tr class='"+ammo+"'><td class='buyammo button'><strong>+</strong></td><td class='ammountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+ammotype["name"]+"</td><td class='dammod'>"+ammotype["dammod"]+" "+ammotype["typemod"]+" "+ammotype["elemod"]+"</td><td class='apmod'>"+ammotype["apmod"]+"</td><td class='avail'>"+ammotype["avail"]+" "+ammotype["restrict"]+"</td><td class='cost'>"+ammotype["cost"]+"&#65509</td></tr>");
+        $(".standard.ammunition").append("<tr class='"+ammo+"'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+ammotype["name"]+"</td><td class='dammod'>"+ammotype["dammod"]+" "+ammotype["typemod"]+" "+ammotype["elemod"]+"</td><td class='apmod'>"+ammotype["apmod"]+"</td><td class='avail'>"+ammotype["avail"]+" "+ammotype["restrict"]+"</td><td class='cost'>"+ammotype["cost"]+"&#65509</td></tr>");
         break;
     }
 
@@ -1276,11 +1304,11 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
   }
 
   function explosivesammo(x,y,z) {
-    $("."+x).append("<tr class='"+y+"'><td class='buygrenades button'><strong>+</strong></td><td class='ammountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
+    $("."+x).append("<tr class='"+y+"'><td class='buygrenades button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
   }
 
   function abnormalAmmo(x,y) {
-    $("."+x["class"]).append("<tr class='"+y+"'><td class='buyammo button'><strong>+</strong></td><td class='ammountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+x["name"]+"</td><td class='dammod'>"+x["dammod"]+x["typemod"]+" "+x["elemod"]+"</td><td class='apmod'>"+x["apmod"]+"</td><td class='avail'>"+x["avail"]+" "+x["restrict"]+"</td><td class='cost'>"+x["cost"]+"&#65509</td></tr>");
+    $("."+x["class"]).append("<tr class='"+y+"'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+x["name"]+"</td><td class='dammod'>"+x["dammod"]+x["typemod"]+" "+x["elemod"]+"</td><td class='apmod'>"+x["apmod"]+"</td><td class='avail'>"+x["avail"]+" "+x["restrict"]+"</td><td class='cost'>"+x["cost"]+"&#65509</td></tr>");
   }
 
   $(".gas .grenadesname").empty().append("<select class='toxicgas'></select>");
@@ -1421,18 +1449,23 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
 
 }
 
+//@TODO - rename function
+//@TODO - rename parameters
 function funSkillSum (w, x, y, z) {//used to calculate the dice pool of a skill
   var sum;
-  if (w==true && x==0) {
-    sum = y+z+x-1;
-  } else if (w==false && x==0) {
-    sum="n/a";
+
+  if (w == true && x == 0) {
+    sum = y + z + x - 1;
+  } else if (w == false && x == 0) {
+    sum = "n/a";
   } else {
-    sum = y+z+x;
+    sum = y + z + x;
   }
+
   return sum;
 }
 
+//@TODO - rename function
 function renderSkills () {//this has become for rendering/updating anything that can be accessed with a for loop; it seems.
   for (var prop in activeSkills) {
     attUpdater ("stat", prop, activeSkills);
@@ -1445,12 +1478,12 @@ function renderSkills () {//this has become for rendering/updating anything that
     switch (knowledgeSkills[prop]["catalog"]) {//knowledge skill shit is here
       case "academic":
       case "professional":
-        knowledgeSkills[prop]["stat"]="log";
+        knowledgeSkills[prop]["stat"] = "log";
         break;
       case "interests":
       case "street":
       case "language":
-        knowledgeSkills[prop]["stat"]="int";
+        knowledgeSkills[prop]["stat"] = "int";
         break;
     }
 
@@ -1550,11 +1583,12 @@ function renderSkills () {//this has become for rendering/updating anything that
   }
 };
 
+//@TODO - document ready shouldn't be way down here, move
 $(document).ready(function () {//this is makes it so that that skill points becomes fixed to the window
   var top = $("#characterPoints").offset().top - parseFloat($('#characterPoints').css('margin-top'));//this stupid variable doesn't get set right unless I put it in the document ready funcation
   $(window).scroll(function(){
     var y = $(window).scrollTop();
-    if (y>=top){
+    if (y >= top){
       $("#characterPoints").addClass("fixed");
     } else {
       $("#characterPoints").removeClass("fixed");
@@ -1591,7 +1625,7 @@ $(".add").click(
 )
 
 function addPowerPoint () {//this activates adept powers
-  var power=adeptPowers[$(this).attr("id")];//this is just short hand to say adeptPowers["power name"]
+  var power = adeptPowers[$(this).attr("id")];//this is just short hand to say adeptPowers["power name"]
 
   if($(this).hasClass("active")){//if the power is already on, then
     deactivate($(this));//remove the class that says its on
@@ -1600,6 +1634,7 @@ function addPowerPoint () {//this activates adept powers
     for (var skill in power["skillmod"]) {
       resetMod(power["skillmod"][skill],power["level"]);
     }
+
     for (var key in power["attmod"]) {//this rests the augmented attibute...for the most part.
       switch (power["attmod"][key]) {
         case "body":
@@ -1616,29 +1651,30 @@ function addPowerPoint () {//this activates adept powers
           break;
       }
     }
-    if ($(this).attr("id")=="improvedreflexes") {//god damn improvereflexes has to be a special snowflake and follow different rules
-      power["cost"]=1.5;
+
+    if ($(this).attr("id")=="improvedreflexes") {//god damn improvedreflexes has to be a special snowflake and follow different rules
+      power["cost"] = 1.5;
       attributes.initiative.iniphyDice=1;
       switch (power["level"]) {
         case 1:
-          powerPoints+=1.5;
-          attributes.augment.rea-=1;
+          powerPoints += 1.5;
+          attributes.augment.rea -= 1;
           break;
         case 2:
-          powerPoints+=2.5;
-          attributes.augment.rea-=2;
+          powerPoints += 2.5;
+          attributes.augment.rea -= 2;
           break;
         case 3:
-          powerPoints+=3.5;
-          attributes.augment.rea-=3;
+          powerPoints += 3.5;
+          attributes.augment.rea -= 3;
           break;
       }
     }else if (power["level"] != "n/a") {//this is for every power that is not improve reflexes
-
-      powerPoints=powerPoints+(power["cost"]*power["level"]);//basically, it recovers the ammount of power points that was spend on the power of turned off
+      powerPoints += power["cost"] * power["level"];//basically, it recovers the amount of power points that was spend on the power of turned off
     } else {
-      powerPoints+=power["cost"];
+      powerPoints += power["cost"];
     }
+
     if (power["level"] != "n/a") {//if the power level is NOT n/a then do this stuff here
       power["level"]=0;
       $(".incAtt"+"."+$(this).attr("id")).addClass("deact");
@@ -1646,9 +1682,10 @@ function addPowerPoint () {//this activates adept powers
     }
     minusLimitMod (power["limitmod"]);//for the 3 powers that increase limits, this will reduce the limits they effect
   } else {//This is for when the power is already off, it turns it on, amoung other things
-    if (powerPoints-power["cost"]>=0) {//if the cost of the power takes the powerpoints below 0, then do nothing
+    if (powerPoints - power["cost"] >= 0) {//if the cost of the power takes the powerpoints below 0, then do nothing
       activate($(this));
-      power["active"]=true;//turn on
+      power["active"] = true;//turn on
+
       if (power["level"] != "n/a") {//if the power is turned on, then add a level and remove the decative class on the + and - buttons
         power["level"]++;
         $(".incAtt"+"."+$(this).attr("id")).removeClass("deact");
@@ -1663,14 +1700,16 @@ function addPowerPoint () {//this activates adept powers
           attributes.initiative.iniphyDice++;
         }
       }
+
       addLimitMod (power["limitmod"]);//this will increase limits
-      powerPoints=powerPoints-power["cost"]
+      powerPoints -= power["cost"];
     }
   }
 
   disUpdater();
 }
 
+//@TODO - rename parameter
 function addLimitMod(x) {
   for (var key in x) {
     switch (x[key]) {
@@ -1687,6 +1726,8 @@ function addLimitMod(x) {
     }
   }
 }
+
+//@TODO - rename parameter
 function minusLimitMod(x) {
   for (var key in x) {
     switch (x[key]) {
@@ -1704,42 +1745,45 @@ function minusLimitMod(x) {
   }
 }
 
+//@TODO - rename parameter
 function addAttMod(x) {//this will increase the augmented attribute
   for (var key in x) {
     switch (x[key]) {
       case "body":
-        attributes.augment.bod=addAugmentAtt(attributes.augment.bod);
+        attributes.augment.bod = addAugmentAtt(attributes.augment.bod);
         break;
       case "reaction":
-        attributes.augment.rea=addAugmentAtt(attributes.augment.rea);
+        attributes.augment.rea = addAugmentAtt(attributes.augment.rea);
         break;
       case "agility":
-        attributes.augment.agi=addAugmentAtt(attributes.augment.agi);
+        attributes.augment.agi = addAugmentAtt(attributes.augment.agi);
         break;
       case "strength":
-        attributes.augment.str=addAugmentAtt(attributes.augment.str);
+        attributes.augment.str = addAugmentAtt(attributes.augment.str);
         break;
     }
   };
 }
 
-
-function addMod(x, y) {//x=skill name y=adept power level
-  if (y<=attributes.current.mag) {
-    activeSkills[x]["mod"]++;
+function addMod(skill, powerLelve) {
+  if (powerLevel <= attributes.current.mag) {
+    activeSkills[skill]["mod"]++;
   }
 }
 
+//@TODO rename parameters
 function minusMod(x, y) {
-  if (y>=0) {
+  if (y >= 0) {
     activeSkills[x]["mod"]--;
   }
 }
 
+//@TODO rename parameters
 function resetMod(x,y) {
-  activeSkills[x]["mod"]-=y
+  activeSkills[x]["mod"] -= y;
 }
 
+//@TODO - this probably should be more specific and not on EVERY click
 $().click(//this will make a spell as either being a spell or a alchemy preparation
   spellActivate
 )
@@ -1749,7 +1793,7 @@ $("#spelllist").on("click",".spellact, .prepact",//When ever #spelllist is updat
 );
 
 function spellActivate() {//this is used to turn of add spells and alchemical preparations
-  var spell=spellforms[$(this).parent().attr("id")];
+  var spell = spellforms[$(this).parent().attr("id")];
 
   switch (spell["name"]) {//switch to find the 3 custom detection spells
     case "Detect [Life Form]":
@@ -1771,26 +1815,28 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
       if($(this).hasClass("active")){//if the spell has already been activated, then do this
         deactivate($(this));//remove the active class, and change the + to a -
         if ($(this).hasClass("spellact")) {//is this a spell? then turn it off
-          spell["spell"]=false;
+          spell["spell"] = false;
         } else {//Well, if its not a spell, then its a preporation, and then turn that off
-          spell["preporation"]=false;
+          spell["preporation"] = false;
         }
         spells++;//return spell points to buy more spells
       } else {//If the spell isn't on, then its off, so do this stuff
-        if (spells>0) {//do you have spell points to buy more spells?
+        if (spells > 0) {//do you have spell points to buy more spells?
           activate($(this));//Then add the active class and replace the - with a +
           if ($(this).hasClass("spellact")) {//was it the spell you clicked? then turn it on
-            spell["spell"]=true;
+            spell["spell"] = true;
           } else {//if its not a spell, then its a preporation
-            spell["preporation"]=true;
+            spell["preporation"] = true;
           }
-          spells--;//reduce spell points
+          spells--;
         }
       }
       break;
   };
   disUpdater();//update the renderer, which will update the spell points to the new total
 
+  //@TODO - move outside of parent function
+  //@TODO - rename parameters
   function customDetectSpell(x,y,z) {//this function is for custom detection spells, in case the name wasn't a dead give away
     if (x==""||typeof spellforms["detect"+x+y]!='undefined') {//Did the user forget to input data or already enter this data? Then do NOTHING!
       console.log("Stop clicking that!");
@@ -1802,14 +1848,17 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
     $("#"+z).after($("<tr id='"+spell+"' class='"+spellhold["category"]+"'><td class='spellact "+spell+" button'><strong>-</strong></td><td class='prepact "+spell+" button'><strong>-</strong></td><td class='spellname "+spell+"'>"+spellhold["name"]+"</td><td class='illact "+spell+"'>"+spellhold["active"]+"</td><td class='direction "+spell+"'>"+spellhold["direction"]+"</td><td class='spelltype "+spell+"'>"+spellhold["type"]+"</td><td class='spellrange "+spell+"'>"+spellhold["range"]+"</td><td class='spelldur "+spell+"'>"+spellhold["duration"]+"</td><td class='drain "+spell+"'>"+spellhold["drain"].toString()+"</td></tr>"));//Add the spell to the list on the DOM after where it was entered
   }
 
+  //@TODO - move outside of parent function
+  //@TODO - rename parameters
   function customAttributeSpell(x,y,z) {
-    if (x==""||typeof spellforms[z+x]!='undefined') {//Did the user forget to input data or already enter this data? Then do NOTHING!
+    if (x == "" || typeof spellforms[z + x] != 'undefined') {//Did the user forget to input data or already enter this data? Then do NOTHING!
       console.log("You can't "+z+"that!");
       return;
     }
-    spellforms[z+x] = { name:z+" "+x, category: "health", spell: false, preparation: false, essence: "Essence", type: spellforms[y]["type"], range: "T", duration: "Sustain", drain: spellforms[y]["drain"] };//sets all the values for the new spellform object
+
+    spellforms[z + x] = { name:z+" "+x, category: "health", spell: false, preparation: false, essence: "Essence", type: spellforms[y]["type"], range: "T", duration: "Sustain", drain: spellforms[y]["drain"] };//sets all the values for the new spellform object
     spellhold = spellforms[z+x]//short hand, because typing all that junk was annoying
-    var spell=y;
+    var spell = y;
     $("#"+y).after($("<tr id='"+z+x+"' class='"+spellhold["category"]+"'><td class='spellact "+spell+" button'><strong>-</strong></td><td class='prepact "+spell+" button'><strong>-</strong></td><td class='spellname "+spell+"'>"+spellhold["name"]+"</td><td class='heaEss "+spell+"'>"+spellhold["essence"]+"</td><td class='spelltype "+spell+"'>"+spellhold["type"]+"</td><td class='spellrange "+spell+"'>"+spellhold["range"]+"</td><td class='spelldur "+spell+"'>"+spellhold["duration"]+"</td><td class='drain "+spell+"'>"+spellhold["drain"].toString()+"</td></tr>"));//Add the spell to the list on the DOM after where it was entered
 
   }
@@ -1818,42 +1867,47 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
 $(".formact").click(complexFormActivate);
 
 function complexFormActivate() {
-  var form=complexforms[$(this).parent().attr("id")];
+  var form = complexforms[$(this).parent().attr("id")];
 
   if($(this).hasClass("active")){//if the complex form has already been activated, then do this stuff
     deactivate($(this));//remove the active class, and change the + to a -
-    form["formact"]=false;//the form is turned off
+    form["formact"] = false;//the form is turned off
     forms++;//return complex form points to buy more forms
   } else {//If the form isn't on, then its off, so do this stuff
-    if (forms>0) {//do you have complex form points to buy more forms?
+    if (forms > 0) {//do you have complex form points to buy more forms?
       activate($(this));//Then add the active class and replace the - with a +
-      form["formact"]=true;//turn off complex form
+      form["formact"] = true;//turn off complex form
       forms--;//reduce form points
     }
   }
   disUpdater();
 }
+
+//@TODO - rename parameter
 function activate(x) {//this will highlight and add a + to show that the thing is active
   x.addClass("active").empty().append("<strong>+</strong>");
 }
 
+//@TODO - rename parameter
 function deactivate(x) {//this will turn off the highlight and change the + to a - to show its inactive
   x.removeClass("active").empty().append("<strong>-</strong>");
 }
 
 $(".weapact").click(buyWeapon);
-var invNum=1;//inventory number for naming two items of the same kind
+var invNum = 1;//inventory number for naming two items of the same kind
 function buyWeapon() {
   if ($(this).hasClass("deact")) {
     return;
   }
-  var itemhold=weapons[$(this).parent().attr("id")];
-  var item=$(this).parent().attr("id");
-  var itemNum = item+invNum;
-  var gotMoney = nuyen-itemhold["cost"]>0;
-  inventory[itemNum]={};//this creates a blank object for the weapon's stats to be added too
+
+  var itemhold = weapons[$(this).parent().attr("id")];
+  var item = $(this).parent().attr("id");
+  var itemNum = item + invNum;
+  var gotMoney = nuyen-itemhold["cost"] > 0;
+  inventory[itemNum] = {};//this creates a blank object for the weapon's stats to be added too
+
   for (var key in itemhold) {
-    if (key=="mods") {//when we get to the key called mods in the weapon, do this
+    if (key == "mods") {//when we get to the key called mods in the weapon, do this
       inventory[itemNum][key] = {};//make a blank key for the mod
       for (var subkey in itemhold[key]) {//this creates a section for the mods for each instance of a gun, so gun instances don't end up sharing all the same mods
         inventory[itemNum][key][subkey] = itemhold[key][subkey];
@@ -1862,44 +1916,50 @@ function buyWeapon() {
       inventory[itemNum][key] = itemhold[key];
     }
   }
-  inventory[itemNum]["active"]=true;
-  if ($(this).closest(".meleeweapon").hasClass("meleeweapon")&&gotMoney) {//this you buy a melee weapon do this stuff
-    $("#"+item).after("<tr id='"+itemNum+"'><td class='sell button'><em>-</em></td><td>"+itemhold["name"]+"</td><td class='inventory "+item+itemNum+"' colspan=5></td><td class='custWeapPrice'>"+itemhold["cost"]+"&#65509</td></tr>");
-    if (attributes.current.mag>0) {
-      inventory[itemNum]["weaponfoci"]=0;
+
+  inventory[itemNum]["active"] = true;
+
+  if ($(this).closest(".meleeweapon").hasClass("meleeweapon") && gotMoney) {//this you buy a melee weapon do this stuff
+    $("#" + item).after("<tr id='"+itemNum+"'><td class='sell button'><em>-</em></td><td>"+itemhold["name"]+"</td><td class='inventory "+item+itemNum+"' colspan=5></td><td class='custWeapPrice'>"+itemhold["cost"]+"&#65509</td></tr>");
+    if (attributes.current.mag > 0) {
+      inventory[itemNum]["weaponfoci"] = 0;
       $("<td class='label'>Weapon Focus</td><td class='"+itemNum+" incAtt weaponfoci'>+</td><td class='focirating weaponfoci'>0</td><td class='"+itemNum+" decAtt weaponfoci'>-</td>").appendTo($(".inventory."+item+itemNum));
     }
 
     buyingItem(itemhold);
   }
+
   if ($(this).hasClass("bow")&&gotMoney) {//buying bows
-    addingArrows(7,"#bow",item,itemNum,"Arrows");
+    addingArrows(7, "#bow", item, itemNum, "Arrows");
     buyingItem(itemhold);
   }
-  if ($(this).closest(".crossbow").hasClass("crossbow")&&gotMoney) {//buying crossbows
-    addingArrows(4,"#"+item,item,itemNum,"Bolts");
+
+  if ($(this).closest(".crossbow").hasClass("crossbow") && gotMoney) {//buying crossbows
+    addingArrows(4, "#" + item, item, itemNum, "Bolts");
     buyingItem(itemhold);
   }
-  if ($(this).hasClass("shuriken")&&gotMoney) {//buying throwing weapons
-    inventory[itemNum]["arrow"]=1;
+
+  if ($(this).hasClass("shuriken") && gotMoney) {//buying throwing weapons
+    inventory[itemNum]["arrow"] = 1;
     $("#shuriken").after("<tr id='"+itemNum+"'><td class='sell button'><em>-</em></td><td class='inventory "+item+itemNum+"' colspan=4></td><td class='custWeapPrice'></td></tr>");
-    $(".inventory."+item+itemNum).append("<td class='label'>Shuriken/Throwing Knives</td><td class='"+itemNum+" incAtt arrow'>+</td><td class='arrowNum arrow'>1</td><td class='"+itemNum+" decAtt arrow'>-</td>");
+    $(".inventory." + item + itemNum).append("<td class='label'>Shuriken/Throwing Knives</td><td class='"+itemNum+" incAtt arrow'>+</td><td class='arrowNum arrow'>1</td><td class='"+itemNum+" decAtt arrow'>-</td>");
     buyingItem(itemhold);
   }
+
   licenseDP(itemNum,item,itemhold,"");//adds license and dice pool
 
-  if ($(this).closest(".firearms").hasClass("firearms")&&gotMoney) {//this adds firearms
+  if ($(this).closest(".firearms").hasClass("firearms") && gotMoney) {//this adds firearms
     $("#"+item).after("<tr id='"+itemNum+"' class='invName'><td class='sell button'><em>-</em></td><td class='inventory "+item+itemNum+"' colspan=8></td><td class='custWeapPrice'></td></tr>");
     buyingItem(itemhold);//this takes money out of the nuyen, so buys the item
 
-    $(".inventory."+item+itemNum).append("<tr class='mounts'></tr>");//this adds the area for the gun mounts
+    $(".inventory." + item + itemNum).append("<tr class='mounts'></tr>");//this adds the area for the gun mounts
     var acctarget=".inventory."+item+itemNum+" .mounts";
     $(acctarget).append("<tr><td class='label'>Top</td><td class='label'>Barrel</td><td class='label'>Under</td></tr>");
     $(acctarget).append("<tr><td class='topmount "+itemNum+"'>n/a</td><td class='barrelmount "+itemNum+"'>n/a</td><td class='underbarrel "+itemNum+"'>n/a</td></tr>");
-    topMount(item,itemNum);//if it allows top mounts, it will add them
-    barrelMount(item,itemNum);//if the gun allows barrel mounts it'll add the options
-    bottomMount(item,itemNum);//this adds under barrel mounts
-    holsterAddOn(itemhold,itemNum,item);//adds holster if a gun supports it
+    topMount(item, itemNum);//if it allows top mounts, it will add them
+    barrelMount(item, itemNum);//if the gun allows barrel mounts it'll add the options
+    bottomMount(item, itemNum);//this adds under barrel mounts
+    holsterAddOn(itemhold, itemNum,item);//adds holster if a gun supports it
     $(".inventory."+item+itemNum).append("<tr class='accessories'></tr>");//this is where nonmount accessories go
     acctarget=".inventory."+item+itemNum+" .accessories";//makes targetting accessories eaiser
     $(acctarget).append("<tr class='nonmounts "+itemNum+"'></tr>");//puting a row in a row breaks the normal table
@@ -1932,28 +1992,31 @@ function buyWeapon() {
     $(".inventory."+item+itemNum+" .options").append("<td class='label'>Avail</td><td class='avail "+itemNum+"'>"+itemhold.avail+" "+itemhold.restrict+"</td>");
   }
 
+  //@TODO - rename parameters
   function moreclips(x,y,z) {
     inventory[itemNum]["extraclips"]=0;
     $("<td class='label'>"+z+"</td><td class='"+x+" incAtt extraclips'>+</td><td class='numofclips extraclips'>0</td><td class='"+x+" decAtt extraclips'>-</td>").appendTo($(".inventory."+y+x+" .options"));
   }
 
-  function holsterAddOn(x,y,z) {//x=itemhold, y=itemNum,z=item
-    var check=x["category"];
-    if (check=="lightpistols"||check=="tasers"||check=="holdouts") {//checks to see if small arms to use arm silder
-      makeholster(y,z);
-      $(".holster."+y).append("<td class='concealableholster "+y+" button'>Concealable Holster</td><td class='hiddenarmslide "+y+" button'>Hidden Arm Slide</td><td class='quickdrawholster "+y+" button'>Quick-draw Holster</td>");
+  function holsterAddOn(itemHold, itemNum, item) {//x=itemhold, y=itemNum,z=item
+    var check = itemHold["category"];
+    if (check == "lightpistols" || check == "tasers" || check == "holdouts") {//checks to see if small arms to use arm sldder
+      makeholster(itemNum, item);
+      $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='hiddenarmslide " + itemNum + " button'>Hidden Arm Slide</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
     };
-    if (check=="heavypistols"||check=="machinepistols") {//checks to see if larger small arms that can usholsters that are not arm slider
-      makeholster(y,z);
-      $(".holster."+y).append("<td class='concealableholster "+y+" button'>Concealable Holster</td><td class='quickdrawholster "+y+" button'>Quick-draw Holster</td>");
+    if (check == "heavypistols" || check == "machinepistols") {//checks to see if larger small arms that can use holsters that are not arm slider
+      makeholster(itemNum, item);
+      $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
     }
   }
 
+  //@TODO - rename parameters
   function makeholster(y,z) {//adds the stuff to make the holsters
     $(".inventory."+z+y).append("<tr class='holsters "+y+"'></tr>");
     $(".holsters."+y).append("<tr class='holster "+y+"'><td class='label'>Holster</td></tr>");
   }
 
+  //@TODO - rename parameters
   function licenseDP(x,y,z,l) {
     if (z["restrict"]=="Restricted") {//if restricted add the ability to buy a fake license
       inventory[x]["license"]=0;
@@ -1963,25 +2026,31 @@ function buyWeapon() {
 
   }
 
+  //@TODO - rename parameters
   function topMount(x,y) {
     if (weapons[x]["mods"]["top"]=="empty") {
       $(".topmount."+y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Imaging Scope'>Imaging Scope</option><option value='Periscope'>Periscope</option><option value='Smartgun'>Smartgun</option></select>");
     };
   }
+
+  //@TODO - rename parameters
   function barrelMount(x,y) {
-    if (weapons[x]["mods"]["barrel"]=="empty") {
+    if (weapons[x]["mods"]["barrel"] == "empty") {
       $(".barrelmount."+y).empty().append("<select><option value='empty'>Empty</option><option value='Gas Vent 1'>Gas Vent System 1</option><option value='Gas Vent 2'>Gas Vent System 2</option><option value='Gas Vent 3'>Gas Vent System 3</option><option value='Silencer'>Silencer</option></select>");
     };
   }
+
+  //@TODO - rename parameters
   function bottomMount(x,y) {
-    if (weapons[x]["mods"]["under"]=="empty") {
-      $(".underbarrel."+y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Bipod'>Bipod</option><option value='Smart Firing Platform'>Smart Firing Platform</option><option value='Smartgun'>Smartgun</option><option value='Tripod'>Tripod</option></select>");
-      if (weapons[x]["skill"]=="heavyweapons"||weapons[x]["category"]=="assaultrifles") {
-        $(".underbarrel."+y+" select").append("<option value='Gyro Mount'>Gyro Mount</option>");
+    if (weapons[x]["mods"]["under"] == "empty") {
+      $(".underbarrel." + y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Bipod'>Bipod</option><option value='Smart Firing Platform'>Smart Firing Platform</option><option value='Smartgun'>Smartgun</option><option value='Tripod'>Tripod</option></select>");
+      if (weapons[x]["skill"] == "heavyweapons" || weapons[x]["category"] == "assaultrifles") {
+        $(".underbarrel." + y + " select").append("<option value='Gyro Mount'>Gyro Mount</option>");
       }
     };
   }
 
+  //@TODO - rename parameters
   function addingArrows(v,w,x,y,z) {//v=number of columns, w=if to target to set item after, x=the weapon, y=weapon+number from inventory, z=name of projectile
     inventory[y]["arrow"]=0;
     inventory[y]["inject"]=0;
@@ -1990,7 +2059,7 @@ function buyWeapon() {
   }
 
   function buyingItem(itemhold) {//reduces money based on the cost of the item
-    nuyen-=itemhold["cost"];
+    nuyen -= itemhold["cost"];
   }
   invNum++;
   disUpdater();
@@ -2000,183 +2069,204 @@ $("#gearResource").on("click",".sell", sellWeapon);
 
 function sellWeapon() {
   var item = $(this).parent().attr("id")
-  nuyen+=inventory[item]["cost"];
-  inventory[item]["active"]=false;
+  nuyen += inventory[item]["cost"];
+  inventory[item]["active"] = false;
   fociRating-=inventory[item]["weaponfoci"];
-  if (inventory[item]["weaponfoci"]>0) {
-    karma+=inventory[item]["weaponfoci"]*3;
+  if (inventory[item]["weaponfoci"] > 0) {
+    karma += inventory[item]["weaponfoci"] * 3;
     focinumber--;
-    fociRating-=inventory[item]["weaponfoci"];
-    pointUpdater("#karmapnt",karma);
+    fociRating -= inventory[item]["weaponfoci"];
+    pointUpdater("#karmapnt", karma);
   };
   $(this).parent().remove();
   delete inventory[item];
   updaters.nuyenUpdater();
 }
 
-$( "#firearms" ).on( "change", "select", settingWeapon );
+$("#firearms").on( "change", "select", settingWeapon );
 
 function settingWeapon() {//this will change the weapon mounts and the nuyen
   var item = $(this).closest(".invName").attr("id");
-  var itemmod=inventory[item]["mods"]
-  var itemhold=inventory[item];
+  var itemmod = inventory[item]["mods"]
+  var itemhold = inventory[item];
 
-  itemmod.top=mountCheck($(".topmount."+item+" select").val(),itemmod.top,itemmod.under);
-  itemmod.barrel=mountCheck($(".barrelmount."+item+" select").val(),itemmod.barrel);
-  itemmod.under=mountCheck($(".underbarrel."+item+" select").val(),itemmod.under,itemmod.top);
+  itemmod.top=mountCheck($(".topmount." + item + " select").val(), itemmod.top, itemmod.under);
+  itemmod.barrel=mountCheck($(".barrelmount." + item + " select").val(), itemmod.barrel);
+  itemmod.under=mountCheck($(".underbarrel." + item + " select").val(), itemmod.under, itemmod.top);
 
-
+  //@TODO - rename parameters
+  //@TODO - move outside of parent function
   function mountCheck(x,y,z) {
-    if (x!=y) {//reset stats below
-      price=thePriceisRight(y);//the price of the old mod
-      nuyen+=price;//returns money of the old mod
-      inventory[item]["cost"]-=price;//takes out of the price of the old mod
-      itemhold["rc"]-=addingRecoil(y);//takes away the recoil of the old mod
-      itemhold["rcmod"]-=moddingRecoil(y);//takes away the recoil mod of the old mod
-      itemhold["accmod"]-=addingAccurecy(y,z);
+    if (x != y) {//reset stats below
+      price = thePriceisRight(y);//the price of the old mod
+      nuyen += price;//returns money of the old mod
+      inventory[item]["cost"] -= price;//takes out of the price of the old mod
+      itemhold["rc"] -= addingRecoil(y);//takes away the recoil of the old mod
+      itemhold["rcmod"] -= moddingRecoil(y);//takes away the recoil mod of the old mod
+      itemhold["accmod"] -= addingAccurecy(y,z);
 
       //set new stats below
-      price=thePriceisRight(x);//sets the new price
-      nuyen-=price;//reduces the nuyen by the price of the new mod
-      inventory[item]["cost"]+=price;//adds the price of the new mod to the gun's price
-      itemhold["rc"]+=addingRecoil(x);//sets the new recoil
-      itemhold["rcmod"]+=moddingRecoil(x);//sets the new recoil mod
-      itemhold["accmod"]+=addingAccurecy(x,z);
-    };
+      price = thePriceisRight(x);//sets the new price
+      nuyen -= price;//reduces the nuyen by the price of the new mod
+      inventory[item]["cost"] += price;//adds the price of the new mod to the gun's price
+      itemhold["rc"] += addingRecoil(x);//sets the new recoil
+      itemhold["rcmod"] += moddingRecoil(x);//sets the new recoil mod
+      itemhold["accmod"] += addingAccurecy(x,z);
+    }
+
     return x;
   }
 
+  //@TODO - move outside of function
+  //@TODO - rename parameters
   function addingAccurecy(x,z) {
-    if (x=="Smartgun"||z=="Smartgun"||itemmod["internalsmart"]=="Smartgun") {//this figures out of accurecy bonus
-      y=2;
-    } else if (x=="Laser Sight"||z=="Laser Sight"||itemmod["integral"].indexOf("Laser Sight") !== -1) {
-      y=1;
+    if (x == "Smartgun" || z == "Smartgun" || itemmod["internalsmart"] == "Smartgun") {//this figures out of accuracy bonus
+      y = 2;
+    } else if (x == "Laser Sight" || z == "Laser Sight" || itemmod["integral"].indexOf("Laser Sight") !== -1) {
+      y = 1;
     } else {
-      y=0;
+      y = 0;
     };
     return y;
   }
 
+  //@TODO - move outside of function
+  //@TODO - rename parameters
   function moddingRecoil(x) {
-    if (x=="Tripod"||x=="Gyro Mount") {
-      y=6;
-    } else if (x=="Bipod") {
-      y=2;
+    if (x == "Tripod" || x == "Gyro Mount") {
+      y = 6;
+    } else if (x == "Bipod") {
+      y = 2;
     } else {
-      y=0;
+      y = 0;
     };
     return y;
   }
 
+  //@TODO - move outside of function
+  //@TODO - rename parameters
   function addingRecoil(x) {
-    if (x=="Gas Vent 3"||itemmod["integral"].indexOf("Gas Vent 3") !== -1) {//gas vents apparently determine the natural recoil
-      y=3;
-    } else if (x=="Gas Vent 2"||itemmod["integral"].indexOf("Gas Vent 2") !== -1) {
-      y=2;
-    } else if (x=="Gas Vent 1"||itemmod["integral"].indexOf("Gas Vent 1") !== -1) {
-      y=1;
+    if (x == "Gas Vent 3" || itemmod["integral"].indexOf("Gas Vent 3") !== -1) {//gas vents apparently determine the natural recoil
+      y = 3;
+    } else if (x == "Gas Vent 2" || itemmod["integral"].indexOf("Gas Vent 2") !== -1) {
+      y = 2;
+    } else if (x == "Gas Vent 1" || itemmod["integral"].indexOf("Gas Vent 1") !== -1) {
+      y = 1;
     } else {
-      y=0
-    };
-    return y
+      y = 0;
+    }
+    
+    return y;
   }
 
-  function thePriceisRight(x) {//this is the price of all the mods
-    switch (x) {
+  //@TODO - move outside of function
+  //@TODO - rename function
+  function thePriceisRight(mod) {//this is the price of all the mods
+    var price;
+
+    switch (mod) {
       default:
-        y=0;
+        price = 0;
         break;
       case "Laser Sight":
-        y=125;
+        price = 125;
         break;
       case "Imaging Scope":
-        y=300;
+        price = 300;
         break;
       case "Periscope":
-        y=70;
+        price = 70;
         break;
       case "Smartgun":
-        y=200;
+        price = 200;
         break;
       case "Gas Vent 1":
-        y=200;
+        price = 200;
         break;
       case "Gas Vent 2":
-        y=400;
+        price = 400;
         break;
       case "Gas Vent 3":
-        y=600;
+        price = 600;
         break;
       case "Silencer":
-        y=500;
+        price = 500;
         break;
       case "Bipod":
-        y=200;
+        price = 200;
         break;
       case "Gyro Mount":
-        y=1400;
+        price = 1400;
         break;
       case "Smart Firing Platform":
-        y=2500;
+        price = 2500;
         break;
       case "Tripod":
-        y=500;
+        price = 500;
         break;
     }
-    return y;
+    
+    return price;
   }
 
   disUpdater();
 }
 
-$("#firearms").on("click",".smartgun.button",thinkingsmart)
+$("#firearms").on("click", ".smartgun.button", thinkingsmart)
 
+//@TODO - rename function
 function thinkingsmart() {//the interal smartgun button
   if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
     return;
   }
 
   var item = $(this).closest(".invName").attr("id");
-  var itemmod=inventory[item]["mods"];
-  var itemhold=inventory[item];
+  var itemmod = inventory[item]["mods"];
+  var itemhold = inventory[item];
 
   if ($(this).hasClass("active")) {
     $(this).removeClass("active");
-    itemmod["internalsmart"]="empty"
-    if (itemmod.top=="Smartgun"||itemmod.under=="Smartgun") {//this figures out of accurecy bonus
-      itemhold["accmod"]-=0;
-    } else if (itemmod.top=="Laser Sight"||itemmod.under=="Laser Sight"||itemmod["integral"].indexOf("Laser Sight") !== -1) {
-      itemhold["accmod"]-=1;
+    itemmod["internalsmart"] = "empty";
+
+    if (itemmod.top == "Smartgun" || itemmod.under == "Smartgun") {//this figures out of accuracy bonus
+      itemhold["accmod"] -= 0;
+    } else if (itemmod.top == "Laser Sight" || itemmod.under == "Laser Sight" || itemmod["integral"].indexOf("Laser Sight") !== -1) {
+      itemhold["accmod"] -= 1;
     } else {
-      itemhold["accmod"]-=2;
-    };
+      itemhold["accmod"] -= 2;
+    }
+
     for (var key in weapons) {
-      if (weapons[key]["name"]==itemhold["name"]) {
-        nuyen+=weapons[key]["cost"];
-        itemhold["cost"]-=weapons[key]["cost"];
-        itemhold["avail"]-=2;
-        if (weapons[key]["restrict"]==" ") {
-          itemhold["restrict"]=" "
+      if (weapons[key]["name"] == itemhold["name"]) {
+        nuyen += weapons[key]["cost"];
+        itemhold["cost"] -= weapons[key]["cost"];
+        itemhold["avail"] -= 2;
+
+        if (weapons[key]["restrict"] == " ") {
+          itemhold["restrict"] = " ";
         }
       }
     }
+
   } else {
     $(this).addClass("active");
-    itemmod["internalsmart"]="Smartgun"
-    if (itemmod.top=="Smartgun"||itemmod.under=="Smartgun") {//this figures out of accurecy bonus
-      itemhold["accmod"]+=0;
-    } else if (itemmod.top=="Laser Sight"||itemmod.under=="Laser Sight"||itemmod["integral"].indexOf("Laser Sight") !== -1) {
-      itemhold["accmod"]+=1;
+    itemmod["internalsmart"]="Smartgun";
+
+    if (itemmod.top == "Smartgun" || itemmod.under == "Smartgun") {//this figures out of accuracy bonus
+      itemhold["accmod"] += 0;
+    } else if (itemmod.top == "Laser Sight" || itemmod.under == "Laser Sight" || itemmod["integral"].indexOf("Laser Sight") !== -1) {
+      itemhold["accmod"] += 1;
     } else {
-      itemhold["accmod"]+=2;
-    };
+      itemhold["accmod"] += 2;
+    }
+
     for (var key in weapons) {
-      if (weapons[key]["name"]==itemhold["name"]) {
-        nuyen-=weapons[key]["cost"];
-        itemhold["cost"]+=weapons[key]["cost"];
-        itemhold["avail"]+=2;
-        if (itemhold["restrict"]==" ") {
-          itemhold["restrict"]="Restricted"
+      if (weapons[key]["name"] == itemhold["name"]) {
+        nuyen -= weapons[key]["cost"];
+        itemhold["cost"] += weapons[key]["cost"];
+        itemhold["avail"] += 2;
+        if (itemhold["restrict"] == " ") {
+          itemhold["restrict"] = "Restricted";
         }
       }
     }
@@ -2184,7 +2274,7 @@ function thinkingsmart() {//the interal smartgun button
   disUpdater();
 }
 
-$("#firearms").on("click",".shockpad.button",shockpadding)
+$("#firearms").on("click", ".shockpad.button", shockpadding);
 
 function shockpadding() {
   if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
@@ -2192,86 +2282,88 @@ function shockpadding() {
   }
 
   var item = $(this).closest(".invName").attr("id");
-  var itemmod=inventory[item]["mods"];
-  var itemhold=inventory[item];
+  var itemmod = inventory[item]["mods"];
+  var itemhold = inventory[item];
 
   if ($(this).hasClass("active")) {
     $(this).removeClass("active");
-    itemmod["shockpad"]="empty"
+    itemmod["shockpad"]="empty";
     itemhold["rc"]--;
-    nuyen+=50;
-    itemhold["cost"]-=50;
+    nuyen += 50;
+    itemhold["cost"] -= 50;
   } else {
     $(this).addClass("active");
-    itemmod["shockpad"]="Shock Pad"
+    itemmod["shockpad"] = "Shock Pad";
     itemhold["rc"]++;
-    nuyen-=50;
-    itemhold["cost"]+=50;
+    nuyen -= 50;
+    itemhold["cost"] += 50;
   }
   disUpdater();
 }
 
-$("#firearms").on("click",".airburstlink.button",airJordan)
+$("#firearms").on("click", ".airburstlink.button", airJordan);
 
+//@TODO - rename function
 function airJordan() {//this is for airbustlink for explosive weapons
   if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
     return;
   }
 
   var item = $(this).closest(".invName").attr("id");
-  var itemmod=inventory[item]["mods"];
-  var itemhold=inventory[item];
+  var itemmod = inventory[item]["mods"];
+  var itemhold = inventory[item];
 
   if ($(this).hasClass("active")) {
     $(this).removeClass("active");
-    itemmod["airburstlink"]=false;
-    nuyen+=600;
-    itemhold["cost"]-=600;
+    itemmod["airburstlink"] = false;
+    nuyen += 600;
+    itemhold["cost"] -= 600;
   } else {
     $(this).addClass("active");
-    itemmod["airburstlink"]=true;
-    nuyen-=600;
-    itemhold["cost"]+=600;
+    itemmod["airburstlink"] = true;
+    nuyen -= 600;
+    itemhold["cost"] += 600;
   }
   disUpdater();
 }
 
-$("#firearms").on("click",".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button",holSTAR)
+$("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holSTAR)
 
+//@TODO - rename function
 function holSTAR () {//this creates and manages the background stuff for the holsters of a gun
   var item = $(this).closest(".invName").attr("id");
-  var itemmod=inventory[item]["mods"];
-  var itemhold=inventory[item];
+  var itemmod = inventory[item]["mods"];
+  var itemhold = inventory[item];
 
   if ($(this).hasClass("active")) {
     $(this).removeClass("active");
     if ($(this).hasClass("concealableholster")) {
-      itemmod["concealableholster"]=false;
-      nuyen+=150;
-      itemhold["cost"]-=150;
+      itemmod["concealableholster"] = false;
+      nuyen += 150;
+      itemhold["cost"] -= 150;
     }else if ($(this).hasClass("hiddenarmslide")) {
-      itemmod["hiddenarmslide"]=false;
-      nuyen+=350;
-      itemhold["cost"]-=350;
+      itemmod["hiddenarmslide"] = false;
+      nuyen += 350;
+      itemhold["cost"] -= 350;
     } else if ($(this).hasClass("quickdrawholster")) {
-      itemmod["quickdrawholster"]=false;
-      nuyen+=175;
-      itemhold["cost"]-=175;
+      itemmod["quickdrawholster"] = false;
+      nuyen += 175;
+      itemhold["cost"] -= 175;
     }
   } else {
     $(this).addClass("active");
     if ($(this).hasClass("concealableholster")) {
-      itemmod["concealableholster"]=true;
-      nuyen-=150;
-      itemhold["cost"]+=150;
+      itemmod["concealableholster"] = true;
+      nuyen -= 150;
+      itemhold["cost"] += 150;
     } else if ($(this).hasClass("hiddenarmslide")) {
-      itemmod["hiddenarmslide"]=true;
-      nuyen-=350;
-      itemhold["cost"]+=350;
+      itemmod["hiddenarmslide"] = true;
+      nuyen -= 350;
+      itemhold["cost"] += 350;
     } else if ($(this).hasClass("quickdrawholster")) {
-      itemmod["quickdrawholster"]=true;
-      nuyen-=175;
-      itemhold["cost"]+=175;
+      itemmod["quickdrawholster"] = true;
+      nuyen -= 175;
+      itemhold["cost"] += 175;
     }
   }
   disUpdater();
@@ -2279,58 +2371,63 @@ function holSTAR () {//this creates and manages the background stuff for the hol
 
 $("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingammo);
 
+//@TODO - camelCase function properly
 function buyingammo() {
-  var ammo=$(this).parent().attr("class");
-  var gunclass=$(this).closest(".ammunition").attr("id");
+  var ammo = $(this).parent().attr("class");
+  var gunclass = $(this).closest(".ammunition").attr("id");
   if ($(this).parent().hasClass("gas")) {
-    gasname=$("select.toxicgas").val();
-    gas=toxin[gasname];
-    if (typeof ammunition[gasname]==='undefined') {
-      ammunition[gasname]= {name:gas["name"], ammo:0, class:"grenades", dammod:gas["power"], typemod:gas["effect"], elemod: "", apmod:0, blast: "10m Radius", avail:gas["avail"]+2, restrict: gas["restrict"], cost:gas["cost"]+40}
+    gasname = $("select.toxicgas").val();
+    gas = toxin[gasname];
+    if (typeof ammunition[gasname] === 'undefined') {
+      ammunition[gasname] = {name:gas["name"], ammo:0, class:"grenades", dammod:gas["power"], typemod:gas["effect"], elemod: "", apmod:0, blast: "10m Radius", avail:gas["avail"]+2, restrict: gas["restrict"], cost:gas["cost"]+40}
 
-      z=ammunition[gasname]
-      $(".gas").after("<tr class='"+gasname+"'><td class='buygrenades button'>+</td><td class='ammountofammo'>0</td><td class='sellgrenades button'>-</td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
+      z = ammunition[gasname]
+      $(".gas").after("<tr class='" + gasname + "'><td class='buygrenades button'>+</td><td class='amountofammo'>0</td><td class='sellgrenades button'>-</td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
     }
     return;
   }
-  if (typeof inventory[gunclass+ammo]==='undefined') {
-    inventory[gunclass+ammo]={};
+  if (typeof inventory[gunclass + ammo] === 'undefined') {
+    inventory[gunclass + ammo] = {};
 
     for (var key in ammunition[ammo]) {
-      inventory[gunclass+ammo][key]=ammunition[ammo][key];
+      inventory[gunclass + ammo][key] = ammunition[ammo][key];
     }
   }
 
-  var invammo=inventory[gunclass+ammo];
-  inventory[gunclass+ammo]["class"]=gunclass;
-  if (nuyen-inventory[gunclass+ammo]["cost"]>0 && $(this).hasClass("buyammo")) {
-    addAmmo($(this),gunclass+ammo,10,invammo);
-  } else if (inventory[gunclass+ammo]["ammo"]>0&&$(this).hasClass("sellammo")) {
-    subAmmo($(this),gunclass+ammo,10,invammo);
-  } else if (nuyen-inventory[gunclass+ammo]["cost"]>0 && $(this).hasClass("buygrenades")) {
-    addAmmo($(this),gunclass+ammo,1,invammo);
-  } else if (inventory[gunclass+ammo]["ammo"]>0&&$(this).hasClass("sellgrenades")) {
-    subAmmo($(this),gunclass+ammo,1,invammo);
+  var invammo = inventory[gunclass + ammo];
+  inventory[gunclass + ammo]["class"] = gunclass;
+
+  if (nuyen - inventory[gunclass + ammo]["cost"] > 0 && $(this).hasClass("buyammo")) {
+    addAmmo($(this), gunclass + ammo, 10, invammo);
+  } else if (inventory[gunclass + ammo]["ammo"] > 0 && $(this).hasClass("sellammo")) {
+    subAmmo($(this), gunclass + ammo, 10, invammo);
+  } else if (nuyen-inventory[gunclass + ammo]["cost"] > 0 && $(this).hasClass("buygrenades")) {
+    addAmmo($(this), gunclass + ammo, 1, invammo);
+  } else if (inventory[gunclass + ammo]["ammo"] > 0 && $(this).hasClass("sellgrenades")) {
+    subAmmo($(this), gunclass + ammo, 1, invammo);
   }
+
   updaters.nuyenUpdater();
 }
 
-function addAmmo(w,x,y) {//w=this, x=name of ammo in inventory, y=ammount of ammo bought at a time
-  inventory[x]["ammo"]+=y;
-  nuyen-=inventory[x]["cost"];
-  $(w.next(".ammountofammo")).empty().append(inventory[x]["ammo"]);
-}
-function subAmmo(w,x,y) {//w=this, x=name of ammo in inventory, y=ammount of ammo bought at a time
-  inventory[x]["ammo"]-=y;
-  nuyen+=inventory[x]["cost"];
-  $(w.prev(".ammountofammo")).empty().append(inventory[x]["ammo"]);
+//@TODO - rename parameters
+function addAmmo(w, x, y) {//w=this, x=name of ammo in inventory, y=amount of ammo bought at a time
+  inventory[x]["ammo"] += y;
+  nuyen -= inventory[x]["cost"];
+  $(w.next(".amountofammo")).empty().append(inventory[x]["ammo"]);
 }
 
-//expolsives ammo after this
+//@TODO - rename parameters
+function subAmmo(w, x, y) {//w=this, x=name of ammo in inventory, y=amount of ammo bought at a time
+  inventory[x]["ammo"] -=y;
+  nuyen += inventory[x]["cost"];
+  $(w.prev(".amountofammo")).empty().append(inventory[x]["ammo"]);
+}
 
+//explosive ammo after this
 $("#grenadeammo .blastafter, #rocketammo .blastafter").after("<td>Blast</td>");
 
-$( ".grenadesname" ).on( "change", "select.toxicgas", toxicgas );
+$( ".grenadesname" ).on("change", "select.toxicgas", toxicgas);
 
 gasgrenade("teargas");//sets grenade at start
 $(".gas .sellgrenades").addClass("deact");
@@ -2339,53 +2436,59 @@ function toxicgas() {
   gasgrenade($(this).val());
 }
 
+//@TODO - rename parameter
 function gasgrenade(x) {
-  $(".gas .grenadesdammod").empty().append(toxin[x]["power"]+" "+toxin[x]["effect"]);
-  $(".gas .avail").empty().append((toxin[x]["avail"]+2)+" "+toxin[x]["restrict"]);
-  $(".gas .cost").empty().append((toxin[x]["cost"]+40)+"&#65509;");
+  $(".gas .grenadesdammod").empty().append(toxin[x]["power"] + " " + toxin[x]["effect"]);
+  $(".gas .avail").empty().append((toxin[x]["avail"] + 2) + " " + toxin[x]["restrict"]);
+  $(".gas .cost").empty().append((toxin[x]["cost"] + 40) + "&#65509;");
 }
 
 $("#explosive").on("click", ".bombup, .bombdown", kaboom);//increases an explosive's rating
 
+//@TODO - rename function
 function kaboom() {
   if ($(this).hasClass("deact")) {
     return;
   }
-  var bomb=$(this).parent().attr("class");
-  if ($(this).hasClass("bombup")&&explosives[bomb]["rating"]<25) {
+
+  var bomb = $(this).parent().attr("class");
+  if ($(this).hasClass("bombup") && explosives[bomb]["rating"] < 25) {
     explosives[bomb]["rating"]++;
     bombupdate(bomb);
-  } else if ($(this).hasClass("bombdown")&&explosives[bomb]["rating"]>6) {
+  } else if ($(this).hasClass("bombdown") && explosives[bomb]["rating"] > 6) {
     explosives[bomb]["rating"]--;
     bombupdate(bomb);
   }
 
+  //@TODO - move function outside of function
+  //@TODO - rename parameter
   function bombupdate(x) {
-    $("."+x+" .explosiverating").empty().append(explosives[x]["rating"]);
-    explosives[x]["cost"]=explosives[x]["rating"]*100;
-    $("."+x+" .bombbond").empty().append(explosives[x]["cost"]+"&#65509;");
+    $("." + x + " .explosiverating").empty().append(explosives[x]["rating"]);
+    explosives[x]["cost"] = explosives[x]["rating"]*100;
+    $("." + x + " .bombbond").empty().append(explosives[x]["cost"] + "&#65509;");
   }
 }
 
 $("#explosive").on("click", ".buybomb,.sellbomb", bombsaway);//buy and sell explosives
 
+//@TODO - rename function
 function bombsaway() {
-  var bomb=$(this).parent().attr("class");
-  if ($(this).hasClass("buybomb")&&nuyen-explosives[bomb]["cost"]>0) {
-    inventory[bomb+invNum]={};
-    bombname=bomb+invNum;
+  var bomb = $(this).parent().attr("class");
+  if ($(this).hasClass("buybomb") && nuyen - explosives[bomb]["cost"] > 0) {
+    inventory[bomb + invNum] = {};
+    bombname = bomb + invNum;
     for (var key in explosives[bomb]) {
-      inventory[bombname][key]=explosives[bomb][key];
+      inventory[bombname][key] = explosives[bomb][key];
     }
-    inventory[bombname]["kg"]=1;
-    $("."+bomb+".explosives").append("<tr class='"+bombname+"'><td class='sellbomb button'><em>-<em></td><td class='inventory' colspan=4></td><td class='bombprice'>"+inventory[bombname]["cost"]+"&#65509;</td></tr>");
-    $("."+bombname+" .inventory").append("<td class='label'>Rating</td><td>"+inventory[bombname]["rating"]+"</td><td class='label'>Kilograms</td><td class='kgup button'>+</td><td class='kg'>"+inventory[bombname]["kg"]+"</td><td class='kgdown button'>-</td>");
+    inventory[bombname]["kg"] = 1;
+    $("." + bomb + ".explosives").append("<tr class='" + bombname + "'><td class='sellbomb button'><em>-<em></td><td class='inventory' colspan=4></td><td class='bombprice'>"+inventory[bombname]["cost"]+"&#65509;</td></tr>");
+    $("." + bombname + " .inventory").append("<td class='label'>Rating</td><td>" + inventory[bombname]["rating"] + "</td><td class='label'>Kilograms</td><td class='kgup button'>+</td><td class='kg'>"+inventory[bombname]["kg"]+"</td><td class='kgdown button'>-</td>");
 
-    invNum++
-    nuyen-=inventory[bombname]["cost"];
+    invNum++;
+    nuyen -= inventory[bombname]["cost"];
   } else if ($(this).hasClass("sellbomb")) {
-    $("."+bomb).remove();
-    nuyen+=inventory[bomb]["cost"];
+    $("." + bomb).remove();
+    nuyen += inventory[bomb]["cost"];
     delete inventory[bomb];
   }
 
@@ -2394,35 +2497,38 @@ function bombsaway() {
 
 $("#explosive").on("click", ".kgup, .kgdown", fatboy);
 
+//@TODO - rename function
 function fatboy() {
-  var bomb=$(this).parent().parent().attr("class");
-  if ($(this).hasClass("kgup")&&nuyen-inventory[bomb]["rating"]*100>=0) {
+  var bomb = $(this).parent().parent().attr("class");
+  if ($(this).hasClass("kgup") && nuyen-inventory[bomb]["rating"] * 100 >= 0) {
     inventory[bomb]["kg"]++;
     bombupdate(bomb);
-    if (inventory[bomb]["name"]=="Commercial") {
-      nuyen-=100
+    if (inventory[bomb]["name"] == "Commercial") {
+      nuyen -= 100;
     } else {
-      nuyen-=inventory[bomb]["rating"]*100;
+      nuyen -= inventory[bomb]["rating"] * 100;
     }
-  } else if ($(this).hasClass("kgdown")&&inventory[bomb]["kg"]>0) {
+  } else if ($(this).hasClass("kgdown") && inventory[bomb]["kg"] > 0) {
     inventory[bomb]["kg"]--;
     bombupdate(bomb);
-    if (inventory[bomb]["name"]=="Commercial") {
-      nuyen+=100
+    if (inventory[bomb]["name"] == "Commercial") {
+      nuyen += 100
     } else {
-      nuyen+=inventory[bomb]["rating"]*100;
+      nuyen += inventory[bomb]["rating"] * 100;
     }
   }
   updaters.nuyenUpdater();
 
+  //@TODO - move outside of function
+  //@TODO - rename parameter
   function bombupdate(x) {
-    $("."+x+" .kg").empty().append(inventory[x]["kg"]);
-    if (inventory[x]["name"]=="Commercial") {
-      inventory[x]["cost"]=inventory[x]["kg"]*100;
+    $("." + x + " .kg").empty().append(inventory[x]["kg"]);
+    if (inventory[x]["name"] == "Commercial") {
+      inventory[x]["cost"] = inventory[x]["kg"] * 100;
     } else {
-      inventory[x]["cost"]=inventory[x]["kg"]*(inventory[x]["rating"]*100);
+      inventory[x]["cost"] = inventory[x]["kg"] * (inventory[x]["rating"] * 100);
     }
-    $("."+x+" .bombprice").empty().append(inventory[x]["cost"]+"&#65509;");
+    $("." + x + " .bombprice").empty().append(inventory[x]["cost"] + "&#65509;");
   }
 }
 
@@ -2431,102 +2537,111 @@ $(".detonator").append("<tr class='label'><td>Buy</td><td>Ammount</td><td>Sell</
 $("#explosive").on("click", ".buyDet, .sellDet", buyDetonator);
 
 function buyDetonator() {
-  if (typeof inventory["detonator"]==='undefined') {
-    inventory["detonator"]={}
+  if (typeof inventory["detonator"] === 'undefined') {
+    inventory["detonator"] = {};
     for (var key in detonator) {
       inventory["detonator"][key]=detonator[key];
     }
   }
-  if ($(this).hasClass("buyDet")&&nuyen-inventory["detonator"]["cost"]>0) {
-    inventory["detonator"]["ammount"]++;
-    nuyen-=inventory["detonator"]["cost"];
-  } else if ($(this).hasClass("sellDet")&&inventory["detonator"]["ammount"]>0) {
-    inventory["detonator"]["ammount"]--;
-    nuyen+=inventory["detonator"]["cost"];
-  }
-  $(".caps").empty().append(inventory["detonator"]["ammount"]);
-  updaters.nuyenUpdater();
 
+  if ($(this).hasClass("buyDet") && nuyen - inventory["detonator"]["cost"] > 0) {
+    inventory["detonator"]["amount"]++;
+    nuyen -= inventory["detonator"]["cost"];
+  } else if ($(this).hasClass("sellDet") && inventory["detonator"]["amount"] > 0) {
+    inventory["detonator"]["amount"]--;
+    nuyen += inventory["detonator"]["cost"];
+  }
+
+  $(".caps").empty().append(inventory["detonator"]["amount"]);
+  updaters.nuyenUpdater();
 }
 
 $("#clotharmor").on("click", ".buyarmor", sponge);
 
+//@TODO - rename function
 function sponge() {
   var armtype = $(this).parent().attr("class");
-  if (nuyen-armor[armtype]["cost"]<0||$(this).hasClass("deact")) {
+  if (nuyen - armor[armtype]["cost"] < 0 || $(this).hasClass("deact")) {
     return;
   }
-  inventory[armtype+invNum]={}
+
+  inventory[armtype + invNum] = {};
   for (var key in armor[armtype]) {
-    inventory[armtype+invNum][key]=armor[armtype][key];
+    inventory[armtype + invNum][key] = armor[armtype][key];
   }
-  $("."+armtype).after("<tr class='"+armtype+invNum+"'><td class='sellarmor button'><em>-</em></td><td class='armormods' colspan=3></td><td class='armorcost'>"+inventory[armtype+invNum]["cost"]+"&#65509;</td></tr>");
-  inventory[armtype+invNum]["mods"]={};//create emtpy mods section for intentory armor
+
+  $("." + armtype).after("<tr class='" + armtype + invNum + "'><td class='sellarmor button'><em>-</em></td><td class='armormods' colspan=3></td><td class='armorcost'>"+inventory[armtype+invNum]["cost"]+"&#65509;</td></tr>");
+  inventory[armtype + invNum]["mods"] = {};//create emtpy mods section for intentory armor
   for (var mods in armormods) {//this will add the mods
-    inventory[armtype+invNum]["mods"][mods]={};//this will add the name of the mods
+    inventory[armtype+invNum]["mods"][mods] = {};//this will add the name of the mods
     for (var modstats in armormods[mods]) {
-      inventory[armtype+invNum]["mods"][mods][modstats]=armormods[mods][modstats]//this adds all the stats for each mod
+      inventory[armtype + invNum]["mods"][mods][modstats] = armormods[mods][modstats]; //this adds all the stats for each mod
     }
     if (typeof armormods[mods]["rating"]!=="undefined") {//this is for mods that don't have ratings
-      $("."+armtype+invNum+" .armormods").append("<tr class='"+mods+"'><td class='label'>"+inventory[armtype+invNum]["mods"][mods]["name"]+"</td><td class='armmodup button'>+</td><td class='armmodrating'>0</td><td class='armmoddown button'>-</td><td class='label'>Capacity</td><td class='armorcap'>"+inventory[armtype+invNum]["mods"][mods]["capacity"]+"</td></tr>");
-    } else if (typeof armor[armtype]["helm"]==="undefined"&&mods=="chemicalseal") {//this checks to see if the armor has a helm
+      $("." + armtype + invNum + " .armormods").append("<tr class='" + mods + "'><td class='label'>"+inventory[armtype+invNum]["mods"][mods]["name"]+"</td><td class='armmodup button'>+</td><td class='armmodrating'>0</td><td class='armmoddown button'>-</td><td class='label'>Capacity</td><td class='armorcap'>"+inventory[armtype+invNum]["mods"][mods]["capacity"]+"</td></tr>");
+    } else if (typeof armor[armtype]["helm"] === "undefined" && mods == "chemicalseal") {//this checks to see if the armor has a helm
       //do nothing
     } else {//this adds all other mods
-      modnorating(armtype+invNum,mods)
+      modnorating(armtype + invNum, mods)
     }
   }
   if (inventory[armtype+invNum]["helm"]==false) {//if the armor supports a helm, add it to the mods
     $("."+armtype+invNum+" .armormods").append("<tr class='helm'><td class='label'>Helmet</td><td class='buyhelmmod button' colspan=3><strong>+</strong></td></tr>");
   }
-  nuyen-=armor[armtype]["cost"];
+  nuyen -= armor[armtype]["cost"];
   invNum++;
   updaters.nuyenUpdater();
 
+  //@TODO - move function
+  //@TODO - rename parameters
   function modnorating(x,y) {
-    $("."+x+" .armormods").append("<tr class='"+y+"'><td class='label'>"+inventory[armtype+invNum]["mods"][y]["name"]+"</td><td class='buyarmmod button' colspan=3><strong>+</strong></td><td class='label'>Capacity</td><td>"+inventory[armtype+invNum]["mods"][y]["capacity"]+"</td></tr>");
+    $("." + x + " .armormods").append("<tr class='" + y + "'><td class='label'>" + inventory[armtype + invNum]["mods"][y]["name"] + "</td><td class='buyarmmod button' colspan=3><strong>+</strong></td><td class='label'>Capacity</td><td>"+inventory[armtype+invNum]["mods"][y]["capacity"]+"</td></tr>");
   }
 }
+
 $("#clotharmor").on("click", ".sellarmor", naked);
 
+//@TODO - rename function
 function naked() {//this sells armor
   var armtype = $(this).parent().attr("class");
-  nuyen+=inventory[armtype]["cost"];
-  $("."+armtype).remove();
+  nuyen += inventory[armtype]["cost"];
+  $("." + armtype).remove();
   delete inventory[armtype];
   updaters.nuyenUpdater();
 }
 
 $("#clotharmor").on("click", ".armmodup, .armmoddown, .buyarmmod", armormodding);
 
+//@TODO - camelCase function
 function armormodding() {
   mod = $(this).parent().attr("class");
   item = $(this).parent().parent().parent().attr("class");
   invmod = inventory[item]["mods"][mod];
-  var legit=nuyen-invmod["cost"]>0
-  if ($(this).hasClass("armmodup")&&invmod["rating"]<6&&inventory[item]["capacity"]<inventory[item]["armor"]&&legit) {
+  var legit = nuyen - invmod["cost"] > 0;
+  if ($(this).hasClass("armmodup") && invmod["rating"] < 6 && inventory[item]["capacity"] < inventory[item]["armor"] && legit) {
     invmod["rating"]++;
     inventory[item]["capacity"]++;
-    nuyen-=invmod["cost"];
-    inventory[item]["cost"]+=invmod["cost"];
+    nuyen -= invmod["cost"];
+    inventory[item]["cost"] += invmod["cost"];
     modUpdater (item,mod,invmod);
-  } else if ($(this).hasClass("armmoddown")&&invmod["rating"]>0) {
+  } else if ($(this).hasClass("armmoddown") && invmod["rating"] > 0) {
     invmod["rating"]--;
     inventory[item]["capacity"]--;
-    nuyen+=invmod["cost"];
-    inventory[item]["cost"]-=invmod["cost"];
+    nuyen += invmod["cost"];
+    inventory[item]["cost"] -= invmod["cost"];
     modUpdater (item,mod,invmod);
-  } else if ($(this).hasClass("buyarmmod")&&invmod["active"]==false&&invmod["capacity"]+inventory[item]["capacity"]<=inventory[item]["armor"]&&legit) {
-    inventory[item]["capacity"]+=invmod["capacity"];
-    nuyen-=invmod["cost"];
-    inventory[item]["cost"]+=invmod["cost"];
-    invmod["active"]=true;
+  } else if ($(this).hasClass("buyarmmod") && invmod["active"] == false && invmod["capacity"] + inventory[item]["capacity"] <= inventory[item]["armor"] && legit) {
+    inventory[item]["capacity"] += invmod["capacity"];
+    nuyen -= invmod["cost"];
+    inventory[item]["cost"] += invmod["cost"];
+    invmod["active"] = true;
     sellsign ($(this));
     costUpdater (item);
-    if (mod=="chemicalseal"&&inventory[item]["helm"]==false) {
-      turnonhelm (item,$("."+item+" .buyhelmmod"))
+    if (mod == "chemicalseal" && inventory[item]["helm"] == false) {
+      turnonhelm (item, $("." + item + " .buyhelmmod"));
     }
-  } else if ($(this).hasClass("buyarmmod")&&invmod["active"]==true) {
-    inventory[item]["capacity"]-=invmod["capacity"];
+  } else if ($(this).hasClass("buyarmmod") && invmod["active"] == true) {
+    inventory[item]["capacity"] -= invmod["capacity"];
     nuyen+=invmod["cost"];
     inventory[item]["cost"]-=invmod["cost"];
     invmod["active"]=false;
