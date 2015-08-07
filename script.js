@@ -2,7 +2,6 @@ inventory = {};
 
 setUpSkills ();
 
-
 $(".a, .b, .c, .d, .e").click( //This controls the Priority table
   selectPriority
 );
@@ -15,44 +14,44 @@ function selectPriority() { //Priority table controls
 
   switch (true) {
     case $(this).hasClass('a'):
-      classPrior="a";
+      classPrior = "a";
       break;
     case $(this).hasClass('b'):
-      classPrior="b";
+      classPrior = "b";
       break;
     case $(this).hasClass('c'):
-      classPrior="c";
+      classPrior = "c";
       break;
     case $(this).hasClass('d'):
-      classPrior="d";
+      classPrior = "d";
       break;
     case $(this).hasClass('e'):
-      classPrior="e";
+      classPrior = "e";
       break;
   }
 
   var className = $(this).attr("class");
   switch(className){
-    case 'metatype '+ classPrior +' selected':
-      priorityL="metatype";
+    case 'metatype ' + classPrior + ' selected':
+      priorityL = "metatype";
       break;
-    case 'attribute '+ classPrior +' selected':
-      priorityL="attribute";
+    case 'attribute ' + classPrior + ' selected':
+      priorityL = "attribute";
       break;
-    case 'magres '+ classPrior +' selected':
-      priorityL="magres";
+    case 'magres ' + classPrior + ' selected':
+      priorityL = "magres";
       break;
-    case 'skills '+ classPrior +' selected':
-      priorityL="skills";
+    case 'skills ' + classPrior + ' selected':
+      priorityL = "skills";
       break;
-    case 'resource '+ classPrior +' selected':
-      priorityL="resource";
+    case 'resource ' + classPrior + ' selected':
+      priorityL = "resource";
       break;
-    case 'prilevel '+ classPrior +' selected':
-      priorityL="prilevel";
+    case 'prilevel ' + classPrior + ' selected':
+      priorityL = "prilevel";
       break;
     default:
-      priorityL="prilevel";
+      priorityL = "prilevel";
       break;
   }
 
@@ -76,8 +75,10 @@ function selectPriority() { //Priority table controls
 
   deactivate(priorityL, $(this));
 
-  function deactivate(x,y) {
-    $("."+ x).addClass("deact");
+  //@TODO - move function
+  //@TODO - rename parameters
+  function deactivate(x, y) {
+    $("." + x).addClass("deact");
     y.removeClass("deact");
   }
 
@@ -118,7 +119,7 @@ function selectPriority() { //Priority table controls
       activateMT(".troll");
       break;
     case "attribute":
-      attribute=20;
+      attribute = 20;
       pointUpdater (".pnt", attribute);
       break;
     case "magres":
@@ -174,7 +175,7 @@ function selectPriority() { //Priority table controls
       deactivateMT(".troll");
       break;
     case "attribute":
-      attribute=14;
+      attribute = 14;
       pointUpdater (".pnt", attribute);
       break;
     case "magres":
@@ -202,7 +203,7 @@ function selectPriority() { //Priority table controls
       deactivateMT(".troll");
       break;
     case "attribute":
-      attribute=12;
+      attribute = 12;
       pointUpdater (".pnt", attribute);
       break;
     case "magres":
@@ -217,45 +218,50 @@ function selectPriority() { //Priority table controls
       skills = 18;
       break;
     case "resource":
-      nuyen=6000;
+      nuyen = 6000;
       break;
   }
 
+  //@TODO - move function
+  //@TODO - rename parameters
   function activateMT(x) {
     $(x).removeClass("deact");
   }
+
+  //@TODO - move function
+  //@TODO - rename parameters
   function deactivateMT(x) {
     $(x).addClass("deact");
   }
-  disUpdater();
+
+  displayUpdater();
 }
 
+//@TODO - rename function
+//@TODO - rename parameter
 //function for highlighting what has been selected
 function fnselect (x) {
   x.siblings().removeClass("selected");
   x.addClass('selected');
 }
 
-//this part will call the metatype select fuction when a metatype button is clicked
+//this part will call the metatype select function when a metatype button is clicked
 $(".human, .elf, .dwarf, .ork, .troll").click(
   selectMetatype
 );
 
 //Metatype controls
 function selectMetatype() {
-  if ($(this).hasClass('deact')) {//this will make it so that if the button is deactivated that it won't do anything
-    return;
-  }
-  else {
+  if (!$(this).hasClass('deact')) {
     fnselect ($(this));//highlights what's been clicked on
 
-    if ( $(this).hasClass('human') ) {//this stuff sets the metatype attrabutes and stuff
+    if ( $(this).hasClass('human') ) {//this stuff sets the metatype attributes and stuff
       resetAtt ();
       metatype = "human";
       attributes.current.edg = 2;
       attributes.maximum.edgmax = 7;
       attributes.minimum.edgmin = 2;
-      disUpdater();
+      displayUpdater();
       $("#racial").empty().append($("<p>None<br>Boring</p>"));
       switch ("metatype") {
         case priorityA:
@@ -275,6 +281,7 @@ function selectMetatype() {
           break;
       }
     }
+
     if ( $(this).hasClass('elf') ) {
       resetAtt ();
       metatype = "elf";
@@ -284,7 +291,7 @@ function selectMetatype() {
       attributes.minimum.agimin = 2;
       attributes.maximum.chamax = 8;
       attributes.minimum.chamin = 3;
-      disUpdater();
+      displayUpdater();
       $("#racial").empty().append($("<p>Low-Light Vision</p>"));
       switch ("metatype") {
         case priorityA:
@@ -301,6 +308,7 @@ function selectMetatype() {
           break;
       }
     }
+
     if ( $(this).hasClass('dwarf') ) {
       resetAtt ();
       metatype = "dwarf";
@@ -314,7 +322,7 @@ function selectMetatype() {
       attributes.minimum.bodmin = 3;
       attributes.minimum.strmin = 3;
       attributes.minimum.wilmin = 2;
-      disUpdater();
+      displayUpdater();
       $("#racial").empty().append($("<p>Thermographic Vision<br>+2 Pathogen/Toxic Resist<br>20% Lifestyle increase</p>"));
       switch ("metatype") {
         case priorityA:
@@ -327,8 +335,8 @@ function selectMetatype() {
           specAttribute = 1;
           break;
       }
-
     }
+
     if ( $(this).hasClass('ork') ) {
       resetAtt ();
       metatype = "ork";
@@ -340,7 +348,7 @@ function selectMetatype() {
       attributes.maximum.chamax = 5;
       attributes.minimum.bodmin = 4;
       attributes.minimum.strmin = 3;
-      disUpdater();
+      displayUpdater();
       $("#racial").empty().append($("<p>Low-Light Vision</p>"));
       switch ("metatype") {
         case priorityA:
@@ -353,8 +361,8 @@ function selectMetatype() {
           specAttribute = 0;
           break;
       }
-
     }
+
     if ( $(this).hasClass('troll') ) {
       resetAtt ();
       metatype = "troll";
@@ -369,7 +377,7 @@ function selectMetatype() {
       attributes.minimum.bodmin = 5;
       attributes.minimum.strmin = 5;
       reachmod = 1;
-      disUpdater();
+      displayUpdater();
       $("#racial").empty().append($("<p>Thermographic Vision<br>+1 Reach<br>+1 Dermal Armor<br>100% Lifestyle increase</p>"));
       switch ("metatype") {
         case priorityA:
@@ -381,39 +389,38 @@ function selectMetatype() {
       }
     }
 
-    disUpdater();
+    displayUpdater();
   }
 }
 
-//reset attributes to default
 function resetAtt () {
-  attributes.current.bod=1;
-  attributes.current.agi=1;
-  attributes.current.rea=1;
-  attributes.current.str=1;
-  attributes.current.wil=1;
-  attributes.current.log=1;
-  attributes.current.int=1;
-  attributes.current.cha=1;
-  attributes.current.edg=1;
-  attributes.minimum.bodmin=1;
-  attributes.minimum.agimin=1;
-  attributes.minimum.reamin=1;
-  attributes.minimum.strmin=1;
-  attributes.minimum.wilmin=1;
-  attributes.minimum.logmin=1;
-  attributes.minimum.intmin=1;
-  attributes.minimum.chamin=1;
-  attributes.minimum.edgmin=1;
-  attributes.maximum.bodmax=6;
-  attributes.maximum.agimax=6;
-  attributes.maximum.reamax=6;
-  attributes.maximum.strmax=6;
-  attributes.maximum.wilmax=6;
-  attributes.maximum.logmax=6;
-  attributes.maximum.intmax=6;
-  attributes.maximum.chamax=6;
-  attributes.maximum.edgmax=6;
+  attributes.current.bod = 1;
+  attributes.current.agi = 1;
+  attributes.current.rea = 1;
+  attributes.current.str = 1;
+  attributes.current.wil = 1;
+  attributes.current.log = 1;
+  attributes.current.int = 1;
+  attributes.current.cha = 1;
+  attributes.current.edg = 1;
+  attributes.minimum.bodmin = 1;
+  attributes.minimum.agimin = 1;
+  attributes.minimum.reamin = 1;
+  attributes.minimum.strmin = 1;
+  attributes.minimum.wilmin = 1;
+  attributes.minimum.logmin = 1;
+  attributes.minimum.intmin = 1;
+  attributes.minimum.chamin = 1;
+  attributes.minimum.edgmin = 1;
+  attributes.maximum.bodmax = 6;
+  attributes.maximum.agimax = 6;
+  attributes.maximum.reamax = 6;
+  attributes.maximum.strmax = 6;
+  attributes.maximum.wilmax = 6;
+  attributes.maximum.logmax = 6;
+  attributes.maximum.intmax = 6;
+  attributes.maximum.chamax = 6;
+  attributes.maximum.edgmax = 6;
   reachmod = 0;
 }
 
@@ -433,9 +440,9 @@ var updaters = {
   }
 }
 
-disUpdater();//runs the attribute display function on start up
+displayUpdater();//runs the attribute display function on start up
 
-function disUpdater () {//adds the attrabutes to the attribute table
+function displayUpdater () {//adds the attributes to the attribute table
   renderAttStat (attributes.augment.bod, "bod", attributes.current.bod, attributes.maximum.bodmax);
   renderAttStat (attributes.augment.agi, "agi", attributes.current.agi, attributes.maximum.agimax);
   renderAttStat (attributes.augment.rea, "rea", attributes.current.rea, attributes.maximum.reamax);
@@ -444,55 +451,67 @@ function disUpdater () {//adds the attrabutes to the attribute table
   renderAttStat (attributes.augment.log, "log", attributes.current.log, attributes.maximum.logmax);
   renderAttStat (attributes.augment.int, "int", attributes.current.int, attributes.maximum.intmax);
   renderAttStat (attributes.augment.cha, "cha", attributes.current.cha, attributes.maximum.chamax);
+
   renderSpecStat ("edg", attributes.current.edg, attributes.maximum.edgmax);
+
   updaters.magUpdater();
   updaters.resUpdater();
+
   pointUpdater (".pnt", attribute);
   pointUpdater (".spePnt",specAttribute);
-  attributes.limits.phyLimit = renderLimit (attributes.limitMod.phyLimitMod,"phyLimit", attributes.current.str+attributes.augment.str, attributes.current.bod+attributes.augment.bod, attributes.current.rea+attributes.augment.rea);
+
+  attributes.limits.phyLimit = renderLimit (attributes.limitMod.phyLimitMod,"phyLimit", attributes.current.str + attributes.augment.str, attributes.current.bod+attributes.augment.bod, attributes.current.rea+attributes.augment.rea);
   attributes.limits.socLimit = renderLimit (attributes.limitMod.socLimitMod, "socLimit", attributes.current.cha, attributes.current.wil, ess);
   attributes.limits.menLimit = renderLimit (attributes.limitMod.menLimitMod, "menLimit", attributes.current.log, attributes.current.int, attributes.current.wil);
   attributes.initiative.iniphy = initiativeRenderMonkey (attributes.current.rea,"meatini", attributes.initiative.iniphyDice,attributes.augment.rea);
   attributes.initiative.iniast = initiativeRenderMonkey (attributes.current.int,"magicini", attributes.initiative.iniastDice, attributes.augment.int);
   attributes.initiative.inimat = initiativeRenderMonkey (dataP,"coldmatini", attributes.initiative.inimatcold, 0);
   attributes.initiative.inimat = initiativeRenderMonkey (dataP,"hotmatini", attributes.initiative.inimathot, 0);
+
   renderSkills ();//this updates everything that uses a for loop
+
   $("#skillpnt").empty().append($("<strong>"+skills+"/"+skillgroups+"</strong>"));
+
   pointUpdater("#knowpnt",knowledgepoints);
   pointUpdater("#powerpnt",powerPoints);
   pointUpdater("#spellpnt",spells);
   pointUpdater("#formpnt",forms);
   pointUpdater("#karmapnt",karma);
+
   updaters.essUpdater();
   updaters.nuyenUpdater();
 }
 
+//@TODO - rename parameters
 function pointUpdater(x,y) {
   $(x).empty().append($("<strong>"+y+"</strong>"));
 }
 
-function renderAttStat (w, x, y, z) {//this shows the current level of an attrabute and the attrabute max
-  var augment=y+w;
-  $("."+ x + " .stats").empty().append($("<span>"+y+"/"+z+"("+augment+")"+"</span>"));
+//@TODO - rename parameters
+function renderAttStat (w, x, y, z) {//this shows the current level of an attribute and the attribute max
+  var augment = y + w;
+  $("."+ x + " .stats").empty().append($("<span>" + y + "/" + z + "(" + augment + ")" + "</span>"));
 }
 
+//@TODO - rename parameters
 function renderSpecStat (x, y, z) {//this is for special stats like edge, attributes.current.mag, and attributes.current.res
-  $("."+ x + " .stats").empty().append($("<span>"+y+"/"+z+"</span>"));
+  $("." + x + " .stats").empty().append($("<span>" + y + "/" + z + "</span>"));
 }
 
-function initiativeRenderMonkey(x,y,z,w) {
-  if (magres=="technomancer") {
-    dataP=attributes.current.log;
+//@TODO - rename parameters
+function initiativeRenderMonkey(x, y, z, w) {
+  if (magres == "technomancer") {
+    dataP = attributes.current.log;
   }
   var ini = attributes.current.int+attributes.augment.int + x + w;
-  $("."+y).empty().append($("<strong>"+ini+"+"+z+"D6</strong>"));
+  $("." + y).empty().append($("<strong>" + ini + "+" + z + "D6</strong>"));
   return ini;
 }
 
-function renderLimit (v,w,x,y,z) {//function for showing and calculating limits
-  var limit = (x*2+y+z)/3;
-  limit=Math.ceil(limit);//this rounds up
-  $("."+ w).empty().append($("<strong>"+limit+"("+(limit+v)+")"+"</strong>"));
+function renderLimit (v, w, x, y, z) {//function for showing and calculating limits
+  var limit = (x * 2 + y + z) / 3;
+  limit = Math.ceil(limit);
+  $("." + w).empty().append($("<strong>" + limit + "(" + (limit + v) + ")" + "</strong>"));
   return limit;
 }
 
@@ -500,8 +519,8 @@ $("#container").on("click",".incAtt, .decAtt",
   changeAtt
 );
 
-var phyAttMax=false;
-var menAttMax=false;
+var phyAttMax = false;
+var menAttMax = false;
 
 function changeAtt () {//this function changes the attrabutes
 
@@ -835,73 +854,93 @@ function changeAtt () {//this function changes the attrabutes
     }
   };
 
+  //@TODO - rename parameters
   function inventoryStatUpdater(x,y,z) {//x=the name of the item, y=the classes to target the table to update the stat. z=the stat to show
     $("#"+x+" "+y).empty().append(z);
   }
 
-  function increasePhy(x, y) {//this shit increases an attrabute while decreating the points you can spend
-    if (phyAttMax==true) {
+  //@TODO - rename parameters
+  function increasePhy(x, y) {//this shit increases an attribute while decreasing the points you can spend
+    if (phyAttMax == true) {
       y--;
     }
-    if (attribute>0&&x<y) {
+    if (attribute > 0 && x < y) {
       x++;
       attribute--;
-      if (x==y) {
-        phyAttMax=true;
+      if (x == y) {
+        phyAttMax = true;
       }
     }
     return x;
   }
 
-  function increaseMen(x, y) {//this shit increases an attrabute while decreating the points you can spend
-    if (phyAttMax==true) {
+  //@TODO - rename parameters
+  function increaseMen(x, y) {//this shit increases an attribute while decreasing the points you can spend
+    if (menAttMax == true) {
       y--;
     }
-    if (attribute>0&&x<y) {
+    if (attribute > 0 && x < y) {
       x++;
       attribute--;
-      if (x==y) {
-        phyAttMax=true;//if i ever need to change this back to mental attrubuteing being difference the variable is menAttMax
+      if (x == y) {
+        menAttMax = true;
       }
     }
     return x;
   }
 
-  function decreasePhy(x, y, z) {//this shit decreases and attrabute while increating the points you can spend
-    if (x==z) {
-      phyAttMax=false;
+  //@TODO - rename parameters
+  function decreasePhy(x, y, z) {//this shit decreases and attribute while increasing the points you can spend
+    if (x == z) {
+      phyAttMax = false;
     }
-    if (x>y) {x--;
-      attribute++;}
+
+    if (x > y){
+      x--;
+      attribute++;
+    }
+
     return x;
   }
 
-  function decreaseMen(x, y, z) {//this shit decreases and attrabute while increating the points you can spend
-    if (x==z) {
-      phyAttMax=false;
+  //@TODO - rename parameters
+  function decreaseMen(x, y, z) {//this shit decreases and attribute while increasing the points you can spend
+    if (x == z) {
+      menAttMax = false;
     }
-    if (x>y) {x--;
-      attribute++;}
+
+    if (x > y) {
+      x--;
+      attribute++;
+    }
+
     return x;
   }
 
-  function increaseSpec (x,y) {//this is for special attrabutes, they get their own funcation because they're special
-    if (specAttribute>0) {
-      if (x<y) {x++;
-        specAttribute--;}
+  function increaseSpec (x, y) {//this is for special attributes, they get their own function because they're special
+    if (specAttribute > 0) {
+      if (x < y) {
+        x++;
+        specAttribute--;
+      }
     }
+
     return x;
   }
 
   function decreaseSpec(x, y) {//for when special people make a mistake
-    if (x>y) {x--;
-      specAttribute++;}
+    if (x > y) {
+      x--;
+      specAttribute++;
+    }
+
     return x;
   }
 
-  disUpdater();//this was ment to orignally update the attributes, but is now used for EVERYTHING
+  displayUpdater();
 }
 
+//@TODO - rename parameter
 function addAugmentAtt(x) {
   if (x < 4) {
     x++;
@@ -909,6 +948,7 @@ function addAugmentAtt(x) {
   return x;
 }
 
+//@TODO - rename parameter
 function minusAugmentAtt(x) {
   if (x > 0) {
     x--;
@@ -926,7 +966,7 @@ function selectMagRes() {
     return;
   }
   else {
-    fnselect ($(this));//highlights what's been clicked on
+    fnselect ($(this));
 
     if ( $(this).hasClass('mage') ) {
       magres = "mage";
@@ -1038,7 +1078,7 @@ function selectMagRes() {
     fociMaxRating = attributes.current.mag * 2;
 
   }
-  disUpdater ();
+  displayUpdater ();
 }
 
 function magemysticsetting () {//since mystics and mages have the same stuff, they get a function
@@ -1706,7 +1746,7 @@ function addPowerPoint () {//this activates adept powers
     }
   }
 
-  disUpdater();
+  displayUpdater();
 }
 
 //@TODO - rename parameter
@@ -1833,7 +1873,7 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
       }
       break;
   };
-  disUpdater();//update the renderer, which will update the spell points to the new total
+  displayUpdater();//update the renderer, which will update the spell points to the new total
 
   //@TODO - move outside of parent function
   //@TODO - rename parameters
@@ -1880,7 +1920,7 @@ function complexFormActivate() {
       forms--;//reduce form points
     }
   }
-  disUpdater();
+  displayUpdater();
 }
 
 //@TODO - rename parameter
@@ -2062,7 +2102,7 @@ function buyWeapon() {
     nuyen -= itemhold["cost"];
   }
   invNum++;
-  disUpdater();
+  displayUpdater();
 }
 
 $("#gearResource").on("click",".sell", sellWeapon);
@@ -2209,7 +2249,7 @@ function settingWeapon() {//this will change the weapon mounts and the nuyen
     return price;
   }
 
-  disUpdater();
+  displayUpdater();
 }
 
 $("#firearms").on("click", ".smartgun.button", thinkingsmart)
@@ -2271,7 +2311,7 @@ function thinkingsmart() {//the interal smartgun button
       }
     }
   }
-  disUpdater();
+  displayUpdater();
 }
 
 $("#firearms").on("click", ".shockpad.button", shockpadding);
@@ -2298,7 +2338,7 @@ function shockpadding() {
     nuyen -= 50;
     itemhold["cost"] += 50;
   }
-  disUpdater();
+  displayUpdater();
 }
 
 $("#firearms").on("click", ".airburstlink.button", airJordan);
@@ -2324,7 +2364,7 @@ function airJordan() {//this is for airbustlink for explosive weapons
     nuyen -= 600;
     itemhold["cost"] += 600;
   }
-  disUpdater();
+  displayUpdater();
 }
 
 $("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holSTAR)
@@ -2366,7 +2406,7 @@ function holSTAR () {//this creates and manages the background stuff for the hol
       itemhold["cost"] += 175;
     }
   }
-  disUpdater();
+  displayUpdater();
 }
 
 $("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingammo);
@@ -3442,7 +3482,7 @@ function customLimb() {
         attributes.current.res -= cyber.essence;
         attributes.maximum.resmax -= cyber.essence;
         nuyen -= cyber.cost;
-        disUpdater();
+        displayUpdater();
 
       } else {
         alert("You already have a wiz new " + side + " " + augmentations[limbType][limb]["slot"]);
@@ -3539,7 +3579,7 @@ function customLimb() {
 
       characteraugmentation.limbs[limb] = {};
       $(this).parent().remove();
-      disUpdater();
+      displayUpdater();
       break;
   }
 
