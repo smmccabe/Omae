@@ -2704,119 +2704,135 @@ function turnonhelm (item,x) {
 
 $( "#clothing" ).on( "change", "input", fashioncost );
 
-var clothingcost=20;//this is the cost of clothing
-var electrochromiccost=0;//this is the cost of clothing with electro chromatic
-var feedbackcost=0;//this is the cost of clothing with feedback
-var synthleathercost=0;//this is the cost of leather clothing
+var clothingcost = 20;//this is the cost of clothing
+var electrochromiccost = 0;//this is the cost of clothing with electro chromatic
+var feedbackcost = 0;//this is the cost of clothing with feedback
+var synthleathercost = 0;//this is the cost of leather clothing
 
-var clothingavail=0;//the avail of the clothing
-var clothingarmor=0;//the armor value of the clothing, only effected by leather
+var clothingavail = 0;//the avail of the clothing
+var clothingarmor = 0;//the armor value of the clothing, only effected by leather
 
-function fashioncost() {//this is to help calulate how much clothes cost
-  cost=$(this).val();
-  if (cost==""||cost<1) {//if clothes value is less then 1, then its cost = 20
-    clothingcost=20;
+function fashioncost() {//this is to help calculate how much clothes cost
+  cost = $(this).val();
+  if (cost == "" || cost < 1) {//if clothes value is less then 1, then its cost = 20
+    clothingcost = 20;
   } else {//else the cost is whatever the input says
-    clothingcost=cost;
+    clothingcost = cost;
   }
-  fashionprice();//this calulates and renders the cost with the mods that you can add to cloths
+
+  fashionprice();//this calculates and renders the cost with the mods that you can add to cloths
 }
 
 function fashionprice() {
   $("#clothing .armor").empty().append(clothingarmor);
   $("#clothing .avail").empty().append(clothingavail);
-  $("#clothing .cost").empty().append((parseInt(clothingcost)+electrochromiccost+feedbackcost+synthleathercost)+"&yen;");
+  $("#clothing .cost").empty().append((parseInt(clothingcost) + electrochromiccost + feedbackcost + synthleathercost) + "&yen;");
 }
 
 $( "#clothing" ).on( "click", ".button", fashionbutton );
 
+//@TODO - camelCase function
 function fashionbutton() {//this will change the value and avail of cloths based off of what buttons are pressed.
   switch ($(this).attr("class")) {
-    case ("electrochromic button"):
-      electrochromiccost=500;
-      fashionactivate ($(this),2);
+    case "electrochromic button":
+      electrochromiccost = 500;
+      fashionactivate ($(this), 2);
       break;
-    case ("electrochromic button active"):
-      electrochromiccost=0;
-      fashionDeactivate($(this),2);
+    case "electrochromic button active":
+      electrochromiccost = 0;
+      fashionDeactivate($(this), 2);
       break;
-    case ("feedback button"):
-      feedbackcost=500;
-      fashionactivate($(this),8);
+    case "feedback button":
+      feedbackcost = 500;
+      fashionactivate($(this), 8);
       break;
-    case ("feedback button active"):
-      feedbackcost=0;
-      fashionDeactivate($(this),8);
+    case "feedback button active":
+      feedbackcost = 0;
+      fashionDeactivate($(this), 8);
       break;
-    case ("leather button"):
-      synthleathercost=200;
-      fashionactivate($(this),0);
-      clothingarmor=4;
+    case "leather button":
+      synthleathercost = 200;
+      fashionactivate($(this), 0);
+      clothingarmor = 4;
       break;
-    case ("leather button active"):
-      synthleathercost=0;
-      fashionDeactivate($(this),0);
-      clothingarmor=0;
+    case "leather button active":
+      synthleathercost = 0;
+      fashionDeactivate($(this), 0);
+      clothingarmor = 0;
       break;
-    case ("buycloths button"):
-      if (nuyen-(parseInt(clothingcost)+electrochromiccost+feedbackcost+synthleathercost)<0) {
+    case "buycloths button":
+      if (nuyen - (parseInt(clothingcost) + electrochromiccost + feedbackcost + synthleathercost) < 0) {
         return;
       }
-      inventory["clothing"+invNum]={electrochromic: false, feedback: false, leather: false, armor: clothingarmor, avail: clothingavail, cost:parseInt(clothingcost)+electrochromiccost+feedbackcost+synthleathercost}
-      $("#clothing").after("<tr class='clothing"+invNum+"'><td class='sellarmor button'><em>-</em></td><td>"+clothingcost+"&yen;</td><td class='electrochromic'>Electrochromic</td><td class='feedback'>Feedback</td><td class='leather'>Synthleather</td><td>"+clothingarmor+"</td><td>"+clothingavail+"</td><td>"+inventory["clothing"+invNum]["cost"]+"&yen;</td></tr>");
-      if (synthleathercost==200) {
-        inventory["clothing"+invNum]["leather"]=true;
-        clothingmodactive(invNum+" .leather");
+
+      inventory["clothing" + invNum] = {electrochromic: false, feedback: false, leather: false, armor: clothingarmor, avail: clothingavail, cost:parseInt(clothingcost)+electrochromiccost+feedbackcost+synthleathercost}
+      $("#clothing").after("<tr class='clothing" + invNum + "'><td class='sellarmor button'><em>-</em></td><td>" + clothingcost + "&yen;</td><td class='electrochromic'>Electrochromic</td><td class='feedback'>Feedback</td><td class='leather'>Synthleather</td><td>"+clothingarmor+"</td><td>"+clothingavail+"</td><td>"+inventory["clothing"+invNum]["cost"]+"&yen;</td></tr>");
+
+      if (synthleathercost == 200) {
+        inventory["clothing" + invNum]["leather"] = true;
+        clothingmodactive(invNum + " .leather");
       }
-      if (feedbackcost==500) {
-        inventory["clothing"+invNum]["feedback"]=true;
-        clothingmodactive(invNum+" .feedback");
+
+      if (feedbackcost == 500) {
+        inventory["clothing"+invNum]["feedback"] = true;
+        clothingmodactive(invNum + " .feedback");
       }
-      if (electrochromiccost==500) {
-        inventory["clothing"+invNum]["electrochromic"]=true;
-        clothingmodactive(invNum+" .electrochromic");
+
+      if (electrochromiccost == 500) {
+        inventory["clothing" + invNum]["electrochromic"] = true;
+        clothingmodactive(invNum + " .electrochromic");
       }
-      nuyen-=inventory["clothing"+invNum]["cost"]
+
+      nuyen -= inventory["clothing" + invNum]["cost"]
       invNum++;
       updaters.nuyenUpdater();
       break;
   }
   fashionprice();
 
+  //@TODO - move function
+  //@TODO - rename parameters
   function clothingmodactive(x) {
     $(".clothing"+x).addClass("active");
   }
+
+  //@TODO - move function
+  //@TODO - rename parameters
   function fashionactivate(x,y) {
     x.addClass("active");
     clothingavail+=y;
   }
 
+  //@TODO - move function
+  //@TODO - rename parameters
   function fashionDeactivate(x,y) {
     x.removeClass("active");
     clothingavail-=y;
   }
 }
 
-
-
 $("#gearResource").on("click", ".buyUp, .sellDown", buyinbulk);
 
-function buyinbulk() {//used to buy rfid tags, or possible other items that can be baught like rfid tags
+function buyinbulk() {//used to buy rfid tags, or possible other items that can be bought like rfid tags
   var rfid = $(this).parent().attr("class");
-  if (typeof inventory[rfid]==="undefined") {
-    inventory[rfid]=electronics[rfid];
-    inventory[rfid]["tagNo"]=0;
+  if (typeof inventory[rfid] === "undefined") {
+    inventory[rfid] = electronics[rfid];
+    inventory[rfid]["tagNo"] = 0;
   }
-  if ($(this).hasClass("buyUp")&&nuyen-inventory[rfid]["cost"]>0) {
-    inventory[rfid]["tagNo"]+=inventory[rfid]["peritem"];
-    nuyen-=inventory[rfid]["cost"];
-  } else if ($(this).hasClass("sellDown")&&inventory[rfid]["tagNo"]>0) {
-    inventory[rfid]["tagNo"]-=inventory[rfid]["peritem"];
-    nuyen+=inventory[rfid]["cost"];
+
+  if ($(this).hasClass("buyUp") && nuyen - inventory[rfid]["cost"] > 0) {
+    inventory[rfid]["tagNo"] += inventory[rfid]["peritem"];
+    nuyen -= inventory[rfid]["cost"];
+  } else if ($(this).hasClass("sellDown") && inventory[rfid]["tagNo"] > 0) {
+    inventory[rfid]["tagNo"] -= inventory[rfid]["peritem"];
+    nuyen += inventory[rfid]["cost"];
   }
+
   tenUp(rfid);
   updaters.nuyenUpdater();
 
+  //@TODO - move function
+  //@TODO - rename parameters
   function tenUp(x) {
     $("."+x+" .numrfid").empty().append(inventory[x]["tagNo"]);
   }
@@ -2824,20 +2840,22 @@ function buyinbulk() {//used to buy rfid tags, or possible other items that can 
 
 $("#gearResource").on("click", ".buydevice", appleStore);
 
-function appleStore () {//this function handles buying electroic devices, and now it seems to also be used to buy everything...
-  var devicename=$(this).parent().attr("class");
+function appleStore() {//this function handles buying electronic devices, and now it seems to also be used to buy everything...
+  var devicename = $(this).parent().attr("class");
+
   if ($(this).hasClass("deact")||nuyen-electronics[devicename]["cost"]<0) {
     return;
   }
+
   toInventory (devicename);
   switch (electronics[devicename]["type"]) {
     case "commlink":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='linkmods' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      $("."+devicename+invNum+" .linkmods").append("<td class='label'>Sim Mod</td><td class='simmod button'>+</td><td class='label'>Hot Sim</td><td class='hotsim button'>+</td>");
+      $("." + devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='linkmods' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename + invNum + " .linkmods").append("<td class='label'>Sim Mod</td><td class='simmod button'>+</td><td class='label'>Hot Sim</td><td class='hotsim button'>+</td>");
       break;
     case "deck":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='programs' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      var localmod = $("."+devicename+invNum+" .programs");
+      $("." + devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='programs' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      var localmod = $("." + devicename + invNum + " .programs");
       localmod.append("<tr class='agent'><td class='label'>Agent</td><td class='agentup button'>+</td><td class='agentrating'>0</td><td class='agentdown button'>-</td></tr>");
       for (var program in programs) {
         localmod.append("<tr class='"+program+"'><td class='label'>"+programs[program]["name"]+"</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
@@ -2845,74 +2863,73 @@ function appleStore () {//this function handles buying electroic devices, and no
       break;
     case "rcc":
       $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='programs' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      var localmod = $("."+devicename+invNum+" .programs");
+      var localmod = $("." + devicename + invNum + " .programs");
       for (var program in programs) {
-        if (programs[program]["rcc"]==true) {
-          localmod.append("<tr class='"+program+"'><td class='label'>"+programs[program]["name"]+"</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
+        if (programs[program]["rcc"] == true) {
+          localmod.append("<tr class='" + program + "'><td class='label'>" + programs[program]["name"] + "</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
         }
       }
       break;
     case "accessory":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moddy' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moddy' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "communication":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>n/a</td><td colspan=2></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      if (typeof inventory[devicename+invNum]["rating"]!=="undefined") {
-        $("."+devicename+invNum+" .devicerating").empty().append(inventory[devicename+invNum]["rating"]);
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>n/a</td><td colspan=2></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      if (typeof inventory[devicename + invNum]["rating"] !== "undefined") {
+        $("." + devicename + invNum + " .devicerating").empty().append(inventory[devicename + invNum]["rating"]);
       }
       break;
-
     case "credsticks":
-      $("#credsticks "+"."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("#credsticks " + "." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "identification":
-      inventory[devicename+invNum]["id"]=$("."+devicename+" .fakename").val();
+      inventory[devicename + invNum]["id"] = $("." + devicename + " .fakename").val();
       $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>"+inventory[devicename+invNum]["rating"]+"</td><td>"+inventory[devicename+invNum]["id"]+"</td><td>"+inventory[devicename+invNum]["avail"]+" "+inventory[devicename+invNum]["restrict"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "tools":
-      inventory[devicename+invNum]["skill"]=$("."+devicename+" .toolname").val();
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=2>"+inventory[devicename+invNum]["skill"]+" "+inventory[devicename+invNum]["name"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      inventory[devicename + invNum]["skill"] = $("." + devicename + " .toolname").val();
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=2>"+inventory[devicename+invNum]["skill"]+" "+inventory[devicename+invNum]["name"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "optics":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='deviceavail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      enhancements(visionenhancements, inventory[devicename+invNum]["rating"], devicename+invNum, devicename);
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='deviceavail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      enhancements(visionenhancements, inventory[devicename+invNum]["rating"], devicename + invNum, devicename);
       break;
     case "audio":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='deviceavail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      enhancements(audioenhancements, inventory[devicename+invNum]["rating"], devicename+invNum, devicename);
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='deviceavail'>" + inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      enhancements(audioenhancements, inventory[devicename + invNum]["rating"], devicename + invNum, devicename);
       break;
     case "securitydevice":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>"+inventory[devicename+invNum]["name"]+" "+inventory[devicename+invNum]["rating"]+"</td><td class='mods'></td><td class='avail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
-      if (devicename=="maglock") {
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>"+inventory[devicename+invNum]["name"]+" "+inventory[devicename+invNum]["rating"]+"</td><td class='mods'></td><td class='avail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      if (devicename == "maglock") {
         for (var mod in maglockMod) {
-          $("."+devicename+invNum+" .mods").append("<tr class='"+mod+"'><td class='addmod button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>"+maglockMod[mod]["rating"]+"</td><td class='ratingDown button'>-</td><td>"+maglockMod[mod]["name"]+"</td></tr>");
+          $("." + devicename + invNum + " .mods").append("<tr class='" + mod + "'><td class='addmod button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>"+maglockMod[mod]["rating"]+"</td><td class='ratingDown button'>-</td><td>"+maglockMod[mod]["name"]+"</td></tr>");
           if (typeof maglockMod[mod]["rating"] == "undefined") {
-            $("."+devicename+invNum+" ."+mod+" .ratingUp, ."+devicename+invNum+" ."+mod+" .ratingDown").addClass("deact");
-            $("."+devicename+invNum+" ."+mod+" .commrating").empty().append("n/a");
+            $("." + devicename + invNum+" ." + mod + " .ratingUp, ." + devicename + invNum + " ." + mod + " .ratingDown").addClass("deact");
+            $("." + devicename + invNum+" ." + mod + " .commrating").empty().append("n/a");
           }
         }
       }
       break;
     case "bnegear":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>"+inventory[devicename+invNum]["name"]+" "+inventory[devicename+invNum]["rating"]+"</td><td class='mods'></td><td class='avail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='devicerating' colspan=3>"+inventory[devicename+invNum]["name"]+" "+inventory[devicename+invNum]["rating"]+"</td><td class='mods'></td><td class='avail'>"+inventory[devicename+invNum]["avail"]+"</td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "chemicals":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "survivalgear":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "grapplegungear":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=4></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "biotech":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "docwagon":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "slappatches":
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
       break;
     case "enchantingfoci":
     case "metamagicfoci":
@@ -2920,44 +2937,45 @@ function appleStore () {//this function handles buying electroic devices, and no
     case "qifoci":
     case "spellfoci":
     case "spiritfoci":
-      if (fociRating+inventory[devicename+invNum]["rating"]>fociMaxRating||focinumber+1>attributes.current.mag||karma-(inventory[devicename+invNum]["rating"]*inventory[devicename+invNum]["karmaCost"])<=0) {
+      if (fociRating + inventory[devicename + invNum]["rating"] > fociMaxRating || focinumber + 1 > attributes.current.mag || karma - (inventory[devicename + invNum]["rating"] * inventory[devicename + invNum]["karmaCost"]) <= 0) {
         alert("You're at the max foci rating you can bond");
         return;
       }
-      magicalGoods(devicename,devicename+invNum,inventory[devicename+invNum]);
+
+      magicalGoods(devicename, devicename + invNum, inventory[devicename + invNum]);
       focinumber++;
-      fociRating+=inventory[devicename+invNum]["rating"];
-      karma-=inventory[devicename+invNum]["rating"]*inventory[devicename+invNum]["karmaCost"];
-      pointUpdater("#karmapnt",karma);
+      fociRating += inventory[devicename + invNum]["rating"];
+      karma-=inventory[devicename + invNum]["rating"] * inventory[devicename + invNum]["karmaCost"];
+      pointUpdater("#karmapnt", karma);
       break;
     default:
-      $("."+devicename).after("<tr class='"+devicename+invNum+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
+      $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=5></td><td class='devicecost'>"+inventory[devicename+invNum]["cost"]+"&yen;</td></tr>");
   }
-  nuyen-=inventory[devicename+invNum]["cost"];
+  nuyen -= inventory[devicename + invNum]["cost"];
   invNum++;
   updaters.nuyenUpdater();
 
+  //@TODO - rename parameter
   function toInventory(x) {//this adds the device in to the inventory
-    inventory[x+invNum]={};
+    inventory[x + invNum] = {};
     for (var deviceAtt in electronics[x]) {
-      inventory[x+invNum][deviceAtt]=electronics[x][deviceAtt];
+      inventory[x + invNum][deviceAtt] = electronics[x][deviceAtt];
     }
 
-    var y=electronics[x]["type"]
-    if (y=="deck"||y=="rcc"||y=="commlink") {
-      inventory[x+invNum]["programlist"]={};
+    var y = electronics[x]["type"]
+    if (y == "deck" || y == "rcc" || y == "commlink") {
+      inventory[x + invNum]["programlist"] = {};
 
     }
-
   }
 
-  function magicalGoods(x,y,z) {//x=devicename, y=device's name in inventory, z=device in inventory
-    if (typeof z.magicType === "undefined") {
-      $("."+x).after("<tr class='"+y+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>"+z.rating+"</td><td>"+z.name+"</td><td>"+z.avail+" "+z.restrict+"</td><td class='devicecost'>"+z.cost+"&yen;</td></tr>");
-    } else if (x=="qifocus") {
-      $("."+x).after("<tr class='"+y+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>"+z.rating+"</td><td>"+z.name+"</td><td>"+adeptPowers[z.magicType]["name"]+"</td><td>"+z.avail+" "+z.restrict+"</td><td class='devicecost'>"+z.cost+"&yen;</td></tr>");
+  function magicalGoods(deviceName, deviceInventoryName, deviceInventory) {
+    if (typeof deviceInventory.magicType === "undefined") {
+      $("." + deviceName).after("<tr class='" + deviceInventoryName + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>" + deviceInventory.rating + "</td><td>" + deviceInventory.name + "</td><td>" + deviceInventory.avail + " " + deviceInventory.restrict + "</td><td class='devicecost'>" + deviceInventory.cost + "&yen;</td></tr>");
+    } else if (deviceName == "qifocus") {
+      $("." + deviceName).after("<tr class='" + deviceInventoryName + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>" + deviceInventory.rating + "</td><td>" + deviceInventory.name + "</td><td>" + adeptPowers[deviceInventory.magicType]["name"]+"</td><td>" + deviceInventory.avail + " " + deviceInventory.restrict + "</td><td class='devicecost'>" + deviceInventory.cost + "&yen;</td></tr>");
     } else {
-      $("."+x).after("<tr class='"+y+"'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>"+z.rating+"</td><td>"+z.name+"</td><td>"+z.magicType+"</td><td>"+z.avail+" "+z.restrict+"</td><td class='devicecost'>"+z.cost+"&yen;</td></tr>");
+      $("." + deviceName).after("<tr class='" + deviceInventoryName + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>" + deviceInventory.rating + "</td><td>" + deviceInventory.name + "</td><td>" + deviceInventory.magicType + "</td><td>" + deviceInventory.avail + " " + deviceInventory.restrict + "</td><td class='devicecost'>" + deviceInventory.cost + "&yen;</td></tr>");
     }
   }
 }
@@ -2972,51 +2990,57 @@ function addingMagMod () {
     $(this).removeClass("active");
     inventory[magic]["avail"] -= inventory[magic]["maglockMods"][mod]["avail"];
     inventory[magic]["cost"] -= inventory[magic]["maglockMods"][mod]["cost"];
-    nuyen+=inventory[magic]["maglockMods"][mod]["cost"];
+    nuyen += inventory[magic]["maglockMods"][mod]["cost"];
     delete inventory[magic]["maglockMods"][mod];
   } else {
     if (inventory[magic]["avail"] + maglockMod[mod]["avail"] > maxAvail) {
       return;
     }
+
     $(this).addClass("active");
     inventory[magic]["maglockMods"][mod] = {};
+
     for (var key in maglockMod[mod]) {
       inventory[magic]["maglockMods"][mod][key] = maglockMod[mod][key];
     }
+
     inventory[magic]["avail"] += maglockMod[mod]["avail"];
     inventory[magic]["cost"] += maglockMod[mod]["cost"];
-    nuyen-=maglockMod[mod]["cost"];
+    nuyen -= maglockMod[mod]["cost"];
   }
-  $("."+magic+" .avail").empty().append(inventory[magic]["avail"]);
-  $("."+magic+" .devicecost").empty().append(inventory[magic]["cost"]+"&yen;");
+
+  $("." + magic + " .avail").empty().append(inventory[magic]["avail"]);
+  $("." + magic + " .devicecost").empty().append(inventory[magic]["cost"] + "&yen;");
+
   updaters.nuyenUpdater();
 }
 
 //This function is for giving devices access to its mods
-function enhancements (w,x,y,z) { //w==enchancements, x=device capacity, y=device name + inventory number, z=the normal device
+function enhancements (enhancements, deviceCapacity, deviceName, normalDevice) { //w==enchancements, x=device capacity, y=device name + inventory number, z=the normal device
 
-  inventory[y]["mods"]=[];
+  inventory[deviceName]["mods"] = [];
   var defaultMods = electronics[z]["mods"];
   if (typeof defaultMods !== "undefined") {
-    inventory[y]["mods"] = defaultMods.slice(0);
+    inventory[deviceName]["mods"] = defaultMods.slice(0);
   }
 
-  var preinstalled = inventory[y]["mods"].length;
+  var preinstalled = inventory[deviceName]["mods"].length;
 
-  for (var mod in inventory[y]["mods"]) {
-    $("."+y+" .moody").append("<div class='modslot "+i+"'>"+inventory[y]["mods"][mod]+"</div>");
+  for (var mod in inventory[deviceName]["mods"]) {
+    $("." + deviceName + " .moody").append("<div class='modslot " + i + "'>" + inventory[deviceName]["mods"][mod] + "</div>");
   }
 
-  for (var i = 0+preinstalled; i < x+preinstalled; i++) {
-    $("."+y+" .moody").append("<div class='modslot "+i+"'>"+"<select class='"+inventory[y]["type"]+"'></select>"+"</div>");
-    inventory[y]["mods"][i]="";
+  for (var i = 0 + preinstalled; i < x + preinstalled; i++) {
+    $("." + deviceName + " .moody").append("<div class='modslot " + i + "'>" + "<select class='" + inventory[deviceName]["type"] + "'></select>" + "</div>");
+    inventory[deviceName]["mods"][i] = "";
   }
-  for (var mod in w) {
-    $("."+y+" .moody .modslot select").append("<option value='"+mod+"'>"+w[mod]["name"]+"</option>");
-    var modcap = w[mod]["cap"];
+
+  for (var mod in enhancements) {
+    $("." + deviceName + " .moody .modslot select").append("<option value='" + mod + "'>" + enhancements[mod]["name"] + "</option>");
+    var modcap = enhancements[mod]["cap"];
     if (modcap > 1) {
-      for (var i=modcap; i>1; i--) {
-        $("."+y+" .moody .modslot."+(inventory[y]["mods"].length-i+1)+" option[value='"+mod+"']").prop("disabled", "disabled");
+      for (var i = modcap; i > 1; i--) {
+        $("." + deviceName + " .moody .modslot." + (inventory[deviceName]["mods"].length - i + 1) + " option[value='" + mod + "']").prop("disabled", "disabled");
       }
     }
   }
@@ -3025,15 +3049,16 @@ function enhancements (w,x,y,z) { //w==enchancements, x=device capacity, y=devic
 
 $("#gearResource").on("click", ".selldevice", microsoftStore);
 
+//@TODO - Rename function
 function microsoftStore() {//this sells the device
-  var devicename=$(this).parent().attr("class");
-  $("."+devicename).remove();
-  nuyen+=inventory[devicename]["cost"];
+  var devicename = $(this).parent().attr("class");
+  $("." + devicename).remove();
+  nuyen += inventory[devicename]["cost"];
   if (typeof inventory[devicename]["karmaCost"] !== "undefined") {
     focinumber--;
-    fociRating-=inventory[devicename]["rating"];
-    karma+=inventory[devicename]["rating"]*inventory[devicename]["karmaCost"];
-    pointUpdater("#karmapnt",karma);
+    fociRating -= inventory[devicename]["rating"];
+    karma += inventory[devicename]["rating"]*inventory[devicename]["karmaCost"];
+    pointUpdater("#karmapnt", karma);
   }
   delete inventory[devicename];
   updaters.nuyenUpdater();
@@ -3042,158 +3067,166 @@ function microsoftStore() {//this sells the device
 $("#devices").on("click", ".programs .button", buyProgram);//this is for buying cyber programs for decks and RCCs
 
 function buyProgram() {
-  var device=$(this).parent().parent().parent().attr("class");
+  var device = $(this).parent().parent().parent().attr("class");
   var program = $(this).parent().attr("class");
-  if (typeof programs[program]!=="undefined") {
-    cost=programcost(program);
+
+  if (typeof programs[program] !== "undefined") {
+    cost = programcost(program);
   }
+
   if ($(this).hasClass("agentup")) {
-    if (typeof inventory[device]["programlist"]["agent"]==="undefined"&&nuyen-1000>0) {
-      inventory[device]["programlist"]["agent"]=1;
-      nuyen-=1000;
-      inventory[device]["cost"]+=1000;
-    } else if (inventory[device]["programlist"]["agent"]<4) {
-      if (inventory[device]["programlist"]["agent"]<3&&nuyen-1000>0) {
-        nuyen-=1000;
-        inventory[device]["cost"]+=1000;
-      } else if (inventory[device]["programlist"]["agent"]==3&&nuyen-5000>0) {
-        nuyen-=5000;
-        inventory[device]["cost"]+=5000;
-      } else if (inventory[device]["programlist"]["agent"]>=4&&nuyen-2000>0) {
-        nuyen-=2000;
-        inventory[device]["cost"]+=2000;
+    if (typeof inventory[device]["programlist"]["agent"] === "undefined" && nuyen - 1000 > 0) {
+      inventory[device]["programlist"]["agent"] = 1;
+      nuyen -= 1000;
+      inventory[device]["cost"] += 1000;
+    } else if (inventory[device]["programlist"]["agent"] < 4) {
+      if (inventory[device]["programlist"]["agent"] < 3 && nuyen - 1000 > 0) {
+        nuyen -= 1000;
+        inventory[device]["cost"] += 1000;
+      } else if (inventory[device]["programlist"]["agent"] == 3 && nuyen - 5000 > 0) {
+        nuyen -= 5000;
+        inventory[device]["cost"] += 5000;
+      } else if (inventory[device]["programlist"]["agent"] >= 4 && nuyen - 2000 > 0) {
+        nuyen -= 2000;
+        inventory[device]["cost"] += 2000;
       } else {
-        inventory[device]["programlist"]["agent"]=0;
+        inventory[device]["programlist"]["agent"] = 0;
       }
       inventory[device]["programlist"]["agent"]++;
       agentupdate(device);
     }
     $("."+device+" .agentrating").empty().append(inventory[device]["programlist"]["agent"])
   } else if ($(this).hasClass("agentdown")) {
-    if (inventory[device]["programlist"]["agent"]>0) {
+    if (inventory[device]["programlist"]["agent"] > 0) {
       inventory[device]["programlist"]["agent"]--;
-      if (inventory[device]["programlist"]["agent"]<3) {
-        nuyen+=1000;
-        inventory[device]["cost"]-=1000;
-      } else if (inventory[device]["programlist"]["agent"]==3) {
-        nuyen+=5000;
-        inventory[device]["cost"]-=5000;
-      } else if (inventory[device]["programlist"]["agent"]>3) {
-        nuyen+=2000;
-        inventory[device]["cost"]-=2000;
+      if (inventory[device]["programlist"]["agent"] < 3) {
+        nuyen += 1000;
+        inventory[device]["cost"] -= 1000;
+      } else if (inventory[device]["programlist"]["agent"] == 3) {
+        nuyen += 5000;
+        inventory[device]["cost"] -= 5000;
+      } else if (inventory[device]["programlist"]["agent"] > 3) {
+        nuyen += 2000;
+        inventory[device]["cost"] -= 2000;
       }
     }
     agentupdate(device);
   } else if ($(this).hasClass("active")) {
     $(this).removeClass("active");
     delete inventory[device]["programlist"][program];
-    nuyen+=cost;
-    inventory[device]["cost"]-=cost;
-  } else if (nuyen-cost>0) {
+    nuyen += cost;
+    inventory[device]["cost"] -= cost;
+  } else if (nuyen - cost > 0) {
     $(this).addClass("active");
-    inventory[device]["programlist"][program]=programs[program];
-    nuyen-=cost;
-    inventory[device]["cost"]+=cost;
+    inventory[device]["programlist"][program] = programs[program];
+    nuyen -= cost;
+    inventory[device]["cost"] += cost;
   }
-  $("."+device+" .devicecost").empty().append(inventory[device]["cost"]+"&yen;");
+  $("." + device + " .devicecost").empty().append(inventory[device]["cost"] + "&yen;");
   updaters.nuyenUpdater();
 
+  //@TODO - camelCase function
+  //@TODO - rename parameter
   function programcost(x) {
-    cost=0;
-    if (programs[x]["category"]=="common") {
-      cost=80;
+    cost = 0;
+    if (programs[x]["category"] == "common") {
+      cost = 80;
     } else {
-      cost=250;
+      cost = 250;
     }
-    return (cost);
+    return cost;
   }
+
+  //@TODO - camelCase function
+  //@TODO - rename parameter
   function agentupdate(x) {
-    $("."+x+" .agentrating").empty().append(inventory[x]["programlist"]["agent"])
+    $("." + x + " .agentrating").empty().append(inventory[x]["programlist"]["agent"])
   }
 }
 
-
 $("#devices").on("click", ".linkmods .button", buylinkmod);//commlink mods
 
+//@TODO - camelCase function
 function buylinkmod() {
-  var device=$(this).parent().parent().attr("class");
+  var device = $(this).parent().parent().attr("class");
   if ($(this).hasClass("simmod")) {
     if ($(this).hasClass("active")) {
       $(this).removeClass("active");
-      inventory[device]["programlist"]["simmod"]=false;
-      nuyen+=100;
-      inventory[device]["cost"]-=100;
-      if (inventory[device]["programlist"]["hotsim"]==true) {
-        $("."+device+" .hotsim").removeClass("active");
-        inventory[device]["programlist"]["hotsim"]=false;
-        nuyen+=250;
-        inventory[device]["cost"]-=250;
+      inventory[device]["programlist"]["simmod"] = false;
+      nuyen += 100;
+      inventory[device]["cost"] -= 100;
+      if (inventory[device]["programlist"]["hotsim"] == true) {
+        $("." + device + " .hotsim").removeClass("active");
+        inventory[device]["programlist"]["hotsim"] = false;
+        nuyen += 250;
+        inventory[device]["cost"] -= 250;
       }
     } else {
       $(this).addClass("active");
-      inventory[device]["programlist"]["simmod"]=true;
-      nuyen-=100;
-      inventory[device]["cost"]+=100;
+      inventory[device]["programlist"]["simmod"] = true;
+      nuyen -= 100;
+      inventory[device]["cost"] += 100;
     }
   } else if ($(this).hasClass("hotsim")) {
     if ($(this).hasClass("active")) {
       $(this).removeClass("active");
-      inventory[device]["programlist"]["hotsim"]=false;
-      nuyen+=250;
-      inventory[device]["cost"]-=250;
+      inventory[device]["programlist"]["hotsim"] = false;
+      nuyen += 250;
+      inventory[device]["cost"] -= 250;
     } else {
       $(this).addClass("active");
-      inventory[device]["programlist"]["hotsim"]=true;
-      nuyen-=250;
-      inventory[device]["cost"]+=250;
-      if (inventory[device]["programlist"]["simmod"]==false||typeof inventory[device]["programlist"]["simmod"]==="undefined") {
-        $("."+device+" .simmod").addClass("active");
-        inventory[device]["programlist"]["simmod"]=true;
-        nuyen-=100;
-        inventory[device]["cost"]+=100;
+      inventory[device]["programlist"]["hotsim"] = true;
+      nuyen -= 250;
+      inventory[device]["cost"] += 250;
+      if (inventory[device]["programlist"]["simmod"] == false || typeof inventory[device]["programlist"]["simmod"] === "undefined") {
+        $("." + device + " .simmod").addClass("active");
+        inventory[device]["programlist"]["simmod"] = true;
+        nuyen -= 100;
+        inventory[device]["cost"] += 100;
       }
     }
   }
-  $("."+device+" .devicecost").empty().append(inventory[device]["cost"]+"&yen;");
+  $("." + device + " .devicecost").empty().append(inventory[device]["cost"] + "&yen;");
   updaters.nuyenUpdater();
 }
 
-$("#gearResource").on("click", ".ratingUp, .ratingDown", commRating);//this is for raising and slowing communcation devices ratings
+$("#gearResource").on("click", ".ratingUp, .ratingDown", commRating);//this is for raising and slowing communication devices ratings
 
 function commRating() {
   if ($(this).hasClass("deact")) {
     return;
   }
-  var device=$(this).parent().attr("class");
-  if (typeof electronics[device]!=="undefined") {
-    var ed=electronics[device];//ed=electronic device
-  } else if (typeof maglockMod!=="undefined") {
-    var ed=maglockMod[device];
+
+  var device = $(this).parent().attr("class");
+
+  //@TODO - figure out and rename ed
+  if (typeof electronics[device] !== "undefined") {
+    var ed = electronics[device];//ed=electronic device
+  } else if (typeof maglockMod !== "undefined") {
+    var ed = maglockMod[device];
   }
 
-
-  if (typeof ed.ratingmax==="undefined") {//if ratingmax isn't defined, then the max is 6, else its the ratingmax
+  if (typeof ed.ratingmax === "undefined") {//if ratingmax isn't defined, then the max is 6, else its the ratingmax
     var ratingmax = 6;
   } else {
     var ratingmax = ed.ratingmax;
   }
 
-
-  if ($(this).hasClass("ratingUp")&&ed["avail"]<maxAvail&&ed["rating"]<ratingmax) {//if this is the rating up button, up the rating of the device
+  if ($(this).hasClass("ratingUp") && ed["avail"] < maxAvail && ed["rating"] < ratingmax) {//if this is the rating up button, up the rating of the device
     ed["rating"]++;
-    ed["avail"]+=ed["availx"];
-    ed.cost+=ed.costx;
-  } else if ($(this).hasClass("ratingDown")&&ed["rating"]>1) {//else if this is the rating down device, lower the rating
+    ed["avail"] += ed["availx"];
+    ed.cost += ed.costx;
+  } else if ($(this).hasClass("ratingDown") && ed["rating"] > 1) {//else if this is the rating down device, lower the rating
     ed["rating"]--;
-    ed["avail"]-=ed["availx"];
-    ed.cost-=ed.costx;
+    ed["avail"] -= ed["availx"];
+    ed.cost -= ed.costx;
   }
-  $("."+device+" .commrating").empty().append(ed["rating"]);
-  $("."+device+" .avail").empty().append(ed["avail"]+" "+ed["restrict"]);
-  $("."+device+" .price").empty().append(ed["cost"]+"&yen;");
+  $("." + device + " .commrating").empty().append(ed["rating"]);
+  $("." + device + " .avail").empty().append(ed["avail"] + " " + ed["restrict"]);
+  $("." + device + " .price").empty().append(ed["cost"] + "&yen;");
 }
 
-$("#e-accessories").on("change", ".modslot select", modChange)
+$("#e-accessories").on("change", ".modslot select", modChange);
 
 function modChange() {
   var device = $(this).parents("tr").attr("class");
@@ -3201,8 +3234,8 @@ function modChange() {
   var mod = $(this).val();
   var oldMod = inventory[device]["mods"][slotNum];
   console.log(oldMod);
-  if (oldMod==="") {
-    oldMod="empty";
+  if (oldMod === "") {
+    oldMod = "empty";
   }
   switch ($(this).attr("class")) {
     case "audio":
@@ -3213,47 +3246,45 @@ function modChange() {
       break;
   }
 
-  if (nuyen-enhanceMods[mod]["cost"]+enhanceMods[oldMod]["cost"]<0 || inventory[device]["avail"]+enhanceMods[mod]["avail"]-enhanceMods[oldMod]["avail"]>maxAvail) {//if the mod costs too much or changes the avail too high then change to empty and return
+  if (nuyen - enhanceMods[mod]["cost"] + enhanceMods[oldMod]["cost"] < 0 || inventory[device]["avail"] + enhanceMods[mod]["avail"] - enhanceMods[oldMod]["avail"] > maxAvail) {//if the mod costs too much or changes the avail too high then change to empty and return
     $(this).val(oldMod);
     return;
   }
 
-  if (oldMod!="") {
-    nuyen+=enhanceMods[oldMod]["cost"];
-    inventory[device]["avail"]-=enhanceMods[oldMod]["avail"];
-    inventory[device]["cost"]-=enhanceMods[oldMod]["cost"];
+  if (oldMod != "") {
+    nuyen += enhanceMods[oldMod]["cost"];
+    inventory[device]["avail"] -= enhanceMods[oldMod]["avail"];
+    inventory[device]["cost"] -= enhanceMods[oldMod]["cost"];
     multipleCapacity (oldMod, false);
   }
   multipleCapacity (mod,'disabled');
 
-
-
-  inventory[device]["avail"]+=enhanceMods[mod]["avail"];
-  inventory[device]["cost"]+=enhanceMods[mod]["cost"];
-  nuyen-=enhanceMods[mod]["cost"];
+  inventory[device]["avail"] += enhanceMods[mod]["avail"];
+  inventory[device]["cost"] += enhanceMods[mod]["cost"];
+  nuyen -= enhanceMods[mod]["cost"];
   inventory[device]["mods"][slotNum] = mod;
 
   //updates the avail and cost
-  $("."+device+" .deviceavail").empty().append(inventory[device]["avail"] + inventory[device]["restrict"]);
-  $("."+device+" .devicecost").empty().append(inventory[device]["cost"]+"&yen;");
+  $("." + device + " .deviceavail").empty().append(inventory[device]["avail"] + inventory[device]["restrict"]);
+  $("." + device + " .devicecost").empty().append(inventory[device]["cost"] + "&yen;");
 
   updaters.nuyenUpdater();
 
-
-  function multipleCapacity(x, y) {//x= mod, y=disable or false
-    var cap = enhanceMods[x]["cap"];
-    if (cap>1) {
+  //@TODO - move function
+  function multipleCapacity(mod, disable) {
+    var cap = enhanceMods[mod]["cap"];
+    if (cap > 1) {
       for (var i = 1; i < cap; i++) {
-        var nextslot = ("."+device+" .modslot."+(slotNum+i)+" select");
+        var nextslot = ("." + device + " .modslot." + (slotNum + i) + " select");
         if ($(nextslot).val() != "empty") {
           console.log(enhanceMods[$(nextslot).val()]["cost"]);
-          nuyen+=enhanceMods[$(nextslot).val()]["cost"];
-          inventory[device]["cost"]-=enhanceMods[$(nextslot).val()]["cost"];
-          inventory[device]["mods"][slotNum+i]="empty";
+          nuyen += enhanceMods[$(nextslot).val()]["cost"];
+          inventory[device]["cost"] -= enhanceMods[$(nextslot).val()]["cost"];
+          inventory[device]["mods"][slotNum + i] = "empty";
           $(nextslot).val("empty");
         }
 
-        $(nextslot).prop('disabled', y);
+        $(nextslot).prop('disabled', disable);
       }
     }
   }
@@ -3262,34 +3293,35 @@ function modChange() {
 $("#magicequipment").on("change", ".magicType select", spellChange)
 
 function spellChange() {
-  electronics[$(this).parents("tr").attr("class")]["magicType"]=$(this).val();
+  electronics[$(this).parents("tr").attr("class")]["magicType"] = $(this).val();
 }
 
 $("#qifoci").on("change", ".adeptPowers select", adeptPowerChange)
 
 function adeptPowerChange() {
-  var power=$(this).val();
-  var qifoci=$(this).parents("tr").attr("class");
+  var power = $(this).val();
+  var qifoci = $(this).parents("tr").attr("class");
 
-  if(adeptPowers[power]["level"]=="n/a") {
-    $("."+qifoci+" .ratingUp,"+"."+qifoci+" .ratingDown").addClass("deact");
+  if(adeptPowers[power]["level"] == "n/a") {
+    $("." + qifoci + " .ratingUp," + "." + qifoci + " .ratingDown").addClass("deact");
   } else {
-    $("."+qifoci+" .ratingUp,"+"."+qifoci+" .ratingDown").removeClass("deact");
+    $("." + qifoci + " .ratingUp," + "." + qifoci + " .ratingDown").removeClass("deact");
   }
+
   electronics.qifocus.magicType = power;
-  electronics.qifocus.rating = adeptPowers[power]["cost"]*4;//sets the rating of the focus to 4x the cost of the power points
-  electronics.qifocus.avail = electronics.qifocus.rating*3//sets avail to 3x the focus rating
-  electronics.qifocus.cost = electronics.qifocus.rating*3000//set cost to 3000x the rating
-  $("."+qifoci+" .commrating").empty().append(electronics.qifocus.rating);
-  $("."+qifoci+" .avail").empty().append(electronics.qifocus.avail+" "+electronics.qifocus.restrict);
-  $("."+qifoci+" .price").empty().append(electronics.qifocus.cost+"&yen;");
+  electronics.qifocus.rating = adeptPowers[power]["cost"] * 4;//sets the rating of the focus to 4x the cost of the power points
+  electronics.qifocus.avail = electronics.qifocus.rating * 3;//sets avail to 3x the focus rating
+  electronics.qifocus.cost = electronics.qifocus.rating * 3000;//set cost to 3000x the rating
+  $("." + qifoci + " .commrating").empty().append(electronics.qifocus.rating);
+  $("." + qifoci + " .avail").empty().append(electronics.qifocus.avail + " " + electronics.qifocus.restrict);
+  $("." + qifoci + " .price").empty().append(electronics.qifocus.cost + "&yen;");
 }
 
 $("#cyberlimbs").on("change", "select", typeOfLimb)
 
 function typeOfLimb() {
   var limb = $(this).parents("tr").attr("class");
-  var limbType = $("."+limb+" .type select").val();
+  var limbType = $("." + limb + " .type select").val();
   var selectLimb = $(this).val();
   switch (selectLimb) {
     case "used":
@@ -3306,14 +3338,14 @@ function typeOfLimb() {
       augmentations[limbType][limb]["grade"] = selectLimb;
     case "obvious":
     case "synthetic":
-      $("."+limb+" .limb").empty().append(augmentations[limbType][limb]["name"]);
-      $("."+limb+" .grade select").val(augmentations[limbType][limb]["grade"]);
-      $("."+limb+" .str").empty().append(augmentations[limbType][limb]["str"]);
-      $("."+limb+" .agi").empty().append(augmentations[limbType][limb]["agi"]);
-      $("."+limb+" .cap").empty().append(augmentations[limbType][limb]["capmax"]);
-      $("."+limb+" .avail").empty().append(augmentations[limbType][limb]["avail"]);
-      $("."+limb+" .ess").empty().append(Math.round(augmentations[limbType][limb]["essence"]*1000)/1000);
-      $("."+limb+" .price").empty().append(augmentations[limbType][limb]["cost"]+"&yen;");
+      $("." + limb + " .limb").empty().append(augmentations[limbType][limb]["name"]);
+      $("." + limb + " .grade select").val(augmentations[limbType][limb]["grade"]);
+      $("." + limb + " .str").empty().append(augmentations[limbType][limb]["str"]);
+      $("." + limb + " .agi").empty().append(augmentations[limbType][limb]["agi"]);
+      $("." + limb + " .cap").empty().append(augmentations[limbType][limb]["capmax"]);
+      $("." + limb + " .avail").empty().append(augmentations[limbType][limb]["avail"]);
+      $("." + limb + " .ess").empty().append(Math.round(augmentations[limbType][limb]["essence"] * 1000) / 1000);
+      $("." + limb + " .price").empty().append(augmentations[limbType][limb]["cost"] + "&yen;");
       break;
   }
 }
@@ -3322,52 +3354,61 @@ $("#cyberlimbs").on("click", ".button", customLimb)//this allows for a limb to h
 
 function customLimb() {
   var limb = $(this).parents("tr").attr("class");
-  var limbType = $("."+limb+" .type select").val();
-  var limbGrade = $("."+limb+" .grade select").val();
+  var limbType = $("." + limb + " .type select").val();
+  var limbGrade = $("." + limb + " .grade select").val();
 
   switch ($(this).attr("class")) {
     case "strUp button":
-      if (augmentations[limbType][limb]["str"]>=attributes.maximum.strmax) {return;}
+      if (augmentations[limbType][limb]["str"] >= attributes.maximum.strmax) {
+        return;
+      }
       augmentations[limbType][limb]["str"]++;
       augmentations[limbType][limb]["avail"]++;
-      augmentations[limbType][limb]["cost"]+=(5000*augmentations.grade[limbGrade]["cost"]);
+      augmentations[limbType][limb]["cost"] += (5000 * augmentations.grade[limbGrade]["cost"]);
       customlimbUpdater();
       break;
     case "strDown button":
-      if (augmentations[limbType][limb]["str"]<=3) {return;}
+      if (augmentations[limbType][limb]["str"] <= 3) {
+        return;
+      }
       augmentations[limbType][limb]["str"]--;
       augmentations[limbType][limb]["avail"]--;
-      augmentations[limbType][limb]["cost"]-=(5000*augmentations.grade[limbGrade]["cost"]);
+      augmentations[limbType][limb]["cost"] -= (5000 * augmentations.grade[limbGrade]["cost"]);
       customlimbUpdater();
       break;
     case "agiUp button":
-      if (augmentations[limbType][limb]["agi"]>=attributes.maximum.agimax) {return;}
+      if (augmentations[limbType][limb]["agi"] >= attributes.maximum.agimax) {
+        return;
+      }
       augmentations[limbType][limb]["agi"]++;
       augmentations[limbType][limb]["avail"]++;
-      augmentations[limbType][limb]["cost"]+=(5000*augmentations.grade[limbGrade]["cost"]);
+      augmentations[limbType][limb]["cost"] += (5000 * augmentations.grade[limbGrade]["cost"]);
       customlimbUpdater();
       break;
     case "agiDown button":
-      if (augmentations[limbType][limb]["agi"]<=3) {return;}
+      if (augmentations[limbType][limb]["agi"] <= 3) {
+        return;
+      }
       augmentations[limbType][limb]["agi"]--;
       augmentations[limbType][limb]["avail"]--;
-      augmentations[limbType][limb]["cost"]-=(5000*augmentations.grade[limbGrade]["cost"]);
+      augmentations[limbType][limb]["cost"] -= (5000 * augmentations.grade[limbGrade]["cost"]);
       customlimbUpdater();
       break;
     case "buyAug button":
-      if (augmentations[limbType][limb]["slot"]=="arm"||augmentations[limbType][limb]["slot"]=="leg"){
-        var side = $("."+limb+" .location select").val();
+      if (augmentations[limbType][limb]["slot"] == "arm" || augmentations[limbType][limb]["slot"] == "leg"){
+        var side = $("." + limb + " .location select").val();
       } else {
         var side = "";
       }
+
       if ($.isEmptyObject(characteraugmentation.limbs[side+augmentations[limbType][limb]["slot"]])) {
-        var limbloc=side+augmentations[limbType][limb]["slot"];
+        var limbloc = side + augmentations[limbType][limb]["slot"];
         var cyber = characteraugmentation.limbs[limbloc] = $.extend({}, augmentations[limbType][limb]);
-        $("."+limb).after("<tr class='"+limbloc+"'><td class='sellAug button'><em>-</em></td><td>"+side+" "+limbType+" "+augmentations[limbType][limb]["slot"]+"</td><td class='cybermods' colspan=12><table class='mods'><tbody></tbody></table></td><td class='price'>"+cyber.cost+"&yen;</td></tr>");
+        $("." + limb).after("<tr class='"+limbloc+"'><td class='sellAug button'><em>-</em></td><td>" + side + " " + limbType + " "+augmentations[limbType][limb]["slot"] + "</td><td class='cybermods' colspan=12><table class='mods'><tbody></tbody></table></td><td class='price'>"+cyber.cost+"&yen;</td></tr>");
 
         for (var mod in augmentations.mods) {
           for (var x in augmentations.mods[mod]["allow"]) {
-            if (augmentations.mods[mod]["allow"][x]==augmentations[limbType][limb]["slot"]) {
+            if (augmentations.mods[mod]["allow"][x] == augmentations[limbType][limb]["slot"]) {
               var targetMod = augmentations.mods[mod];
               if (typeof targetMod.rating !== "undefined") {
                 $("."+limbloc+" .cybermods table.mods tbody").append("<tr class='"+mod+"'><td>"+targetMod.name+"</td><td class='modUp button'><strong>+</strong></td><td class='modRating'>0</td><td class='modDown button'><strong>-</strong></td><td class='label'>Cap</td><td class='cap'>["+targetMod.capacity+"]</td><td class='label'>Avail</td><td class='avail'>"+targetMod.avail+targetMod.restrict+"</td><td class='label'>Price</td><td class='price'>"+targetMod.cost*augmentations.grade[cyber.grade]["cost"]+"&yen;</td></tr>");
@@ -3378,33 +3419,33 @@ function customLimb() {
           }
         }
 
-        $("."+limbloc+" .cybermods").append("<table class='weapons'><tbody><tr class='label'><td>CyberWeapon</td><td>Buy</td><td>Ext. Clip</td><td>Laser Sight</td><td>Silencer</td><td>Cap</td><td>Acc</td><td>Dam</td><td>Fire Mod</td><td>RC</td><td>Ammo</td><td>Avail</td><td>Cost</td></tr></tbody></table>");
+        $("." + limbloc + " .cybermods").append("<table class='weapons'><tbody><tr class='label'><td>CyberWeapon</td><td>Buy</td><td>Ext. Clip</td><td>Laser Sight</td><td>Silencer</td><td>Cap</td><td>Acc</td><td>Dam</td><td>Fire Mod</td><td>RC</td><td>Ammo</td><td>Avail</td><td>Cost</td></tr></tbody></table>");
 
         for (var weapon in augmentations.weapons) {
           var weap = augmentations.weapons[weapon];
-          $("."+limbloc+" .cybermods table.weapons tbody").append("<tr class='"+weapon+"'><td>"+weap.name+"</td><td class='buyMod button'><strong>+</strong></td><td class='clip button'>+</td><td class='laser button'>+</td><td class='silencer button'>+</td><td class='capacity'>["+weap.capacity+"]</td><td class='accuracy'>"+weap.stats.accuracy+"("+(weap.stats.accuracy+weap.stats.accmod)+")"+"</td><td class='damage'>"+weap.stats.damage+weap.stats.damtype+"</td><td class='mode'></td><td class='rc'>"+weap.stats.rc+"</td><td class='ammo'></td><td class='avail'>"+weap.avail+weap.restrict+"</td><td class='cost'>"+weap.cost+"&yen;</td></tr>");
+          $("." + limbloc + " .cybermods table.weapons tbody").append("<tr class='"+weapon+"'><td>" + weap.name + "</td><td class='buyMod button'><strong>+</strong></td><td class='clip button'>+</td><td class='laser button'>+</td><td class='silencer button'>+</td><td class='capacity'>["+weap.capacity+"]</td><td class='accuracy'>"+weap.stats.accuracy+"("+(weap.stats.accuracy+weap.stats.accmod)+")"+"</td><td class='damage'>"+weap.stats.damage+weap.stats.damtype+"</td><td class='mode'></td><td class='rc'>"+weap.stats.rc+"</td><td class='ammo'></td><td class='avail'>"+weap.avail+weap.restrict+"</td><td class='cost'>"+weap.cost+"&yen;</td></tr>");
           for (fire in weap.stats.mode) {
-            $("."+limbloc+" .cybermods .weapons ."+weapon+" .mode").append(weap.stats.mode[fire]+", ");
+            $("." + limbloc + " .cybermods .weapons ."+weapon+" .mode").append(weap.stats.mode[fire] + ", ");
           }
           for (type in weap.stats.ammo) {
-            $("."+limbloc+" .cybermods .weapons ."+weapon+" .ammo").append(weap.stats.ammo[type]+"("+weap.stats.clip[type]+")");
+            $("." + limbloc + " .cybermods .weapons ."+weapon+" .ammo").append(weap.stats.ammo[type] + "(" + weap.stats.clip[type] + ")");
           }
         }
 
-        $("."+limbloc+" .cybermods").append("<table class='cyberstats'><tbody><tr class='label'><td>Capacity</td><td>Str</td><td>Agi</td><td>Armor</td><td>RC</td><td>Avail</td><td>Ess</td></tr><tr class='stats'><td class='cap'>"+cyber.cap+"/"+cyber.capmax+"</td><td class='str'>("+(cyber.str+cyber.augstr)+")</td><td class='agi'>("+(cyber.agi+cyber.augagi)+")</td><td class='armor'>"+cyber.armor+"</td><td class='rc'>"+(cyber.rc+(Math.ceil(cyber.str/3))+1)+"</td><td>"+cyber.avail+"</td><td>"+cyber.essence+"</td></tr></tbody></table>")
+        $("." + limbloc + " .cybermods").append("<table class='cyberstats'><tbody><tr class='label'><td>Capacity</td><td>Str</td><td>Agi</td><td>Armor</td><td>RC</td><td>Avail</td><td>Ess</td></tr><tr class='stats'><td class='cap'>"+cyber.cap+"/"+cyber.capmax+"</td><td class='str'>("+(cyber.str+cyber.augstr)+")</td><td class='agi'>("+(cyber.agi+cyber.augagi)+")</td><td class='armor'>"+cyber.armor+"</td><td class='rc'>"+(cyber.rc+(Math.ceil(cyber.str/3))+1)+"</td><td>"+cyber.avail+"</td><td>"+cyber.essence+"</td></tr></tbody></table>")
 
         cyber["mods"] = {};
 
-        ess-=cyber.essence;
-        attributes.current.mag-=cyber.essence;
-        attributes.maximum.magmax-=cyber.essence;
-        attributes.current.res-=cyber.essence;
-        attributes.maximum.resmax-=cyber.essence;
-        nuyen-=cyber.cost;
+        ess -= cyber.essence;
+        attributes.current.mag -= cyber.essence;
+        attributes.maximum.magmax -= cyber.essence;
+        attributes.current.res -= cyber.essence;
+        attributes.maximum.resmax -= cyber.essence;
+        nuyen -= cyber.cost;
         disUpdater();
 
       } else {
-        alert("You already have a wiz new "+side+" "+augmentations[limbType][limb]["slot"]);
+        alert("You already have a wiz new " + side + " " + augmentations[limbType][limb]["slot"]);
       }
 
       break;
@@ -3417,12 +3458,12 @@ function customLimb() {
 
       var charlimb = characteraugmentation.limbs[limb];
       var modslot = charlimb["mods"];
-      modslot[mod]=$().extend({}, augmentations[typeOfMod][mod]);//this copies the limb into its location
+      modslot[mod] = $().extend({}, augmentations[typeOfMod][mod]);//this copies the limb into its location
 
       //this stuff changes all the stats to the new bought stuff
-      charlimb.cap+=modslot[mod]["capacity"];
-      nuyen-=augmentations[typeOfMod][mod]["cost"]*augmentations.grade[charlimb.grade]["cost"];
-      charlimb.cost+=augmentations[typeOfMod][mod]["cost"]*augmentations.grade[charlimb.grade]["cost"];
+      charlimb.cap += modslot[mod]["capacity"];
+      nuyen -= augmentations[typeOfMod][mod]["cost"] * augmentations.grade[charlimb.grade]["cost"];
+      charlimb.cost += augmentations[typeOfMod][mod]["cost"] * augmentations.grade[charlimb.grade]["cost"];
 
       cyberlimbUpdater();
       break;
@@ -3433,9 +3474,9 @@ function customLimb() {
       var typeOfMod = $(this).parents("table").attr("class");
       deactivate($(this));
 
-      charlimb.cap-=charlimb.mods[mod]["capacity"];
-      nuyen+=augmentations[typeOfMod][mod]["cost"]*augmentations.grade[charlimb.grade]["cost"];
-      charlimb.cost-=augmentations[typeOfMod][mod]["cost"]*augmentations.grade[charlimb.grade]["cost"];
+      charlimb.cap -= charlimb.mods[mod]["capacity"];
+      nuyen += augmentations[typeOfMod][mod]["cost"] * augmentations.grade[charlimb.grade]["cost"];
+      charlimb.cost -= augmentations[typeOfMod][mod]["cost"] * augmentations.grade[charlimb.grade]["cost"];
 
       cyberlimbUpdater();
       delete characteraugmentation.limbs[limb]["mods"][mod];
@@ -3446,19 +3487,23 @@ function customLimb() {
       var charlimb = characteraugmentation.limbs[limb];
 
       if (typeof charlimb.mods[mod] === "undefined") {
-        charlimb.mods[mod]=$().extend({}, augmentations.mods[mod]);
+        charlimb.mods[mod] = $().extend({}, augmentations.mods[mod]);
       }
-      if(charlimb.mods[mod]["rating"]>=charlimb.mods[mod]["ratingmax"]){return;}
+      if(charlimb.mods[mod]["rating"] >= charlimb.mods[mod]["ratingmax"]){
+        return;
+      }
 
       charlimb.mods[mod]["rating"]++;
       charlimb.mods[mod]["capacity"]++;
-      var costUp = charlimb.mods[mod]["costx"]*augmentations.grade[charlimb.grade]["cost"];
-      charlimb.mods[mod]["cost"]+=costUp;
-      charlimb.mods[mod]["avail"]+=charlimb.mods[mod]["availx"];
+      var costUp = charlimb.mods[mod]["costx"] * augmentations.grade[charlimb.grade]["cost"];
+      charlimb.mods[mod]["cost"] += costUp;
+      charlimb.mods[mod]["avail"] += charlimb.mods[mod]["availx"];
       charlimb[charlimb.mods[mod]["stat"]]++;
       charlimb.cost += costUp;
-      nuyen-= costUp;
-      charlimb.cap++;//might need to come back and change this if there are mods that capacity increase in higher increments
+      nuyen -= costUp;
+
+      //might need to come back and change this if there are mods that capacity increase in higher increments
+      charlimb.cap++;
 
       cyberEnhanceUpdater();
       cyberlimbUpdater();
@@ -3468,12 +3513,12 @@ function customLimb() {
       var mod = limb;
       limb = $(this).parents("tr").parents("tr").attr("class");
       var charlimb = characteraugmentation.limbs[limb];
-      if (charlimb.mods[mod]["rating"]>0) {
+      if (charlimb.mods[mod]["rating"] > 0) {
         charlimb.mods[mod]["rating"]--;
         charlimb.mods[mod]["capacity"]--;
-        var costDown = charlimb.mods[mod]["costx"]*augmentations.grade[charlimb.grade]["cost"]
-        charlimb.mods[mod]["cost"]-=costDown;
-        charlimb.mods[mod]["avail"]-=charlimb.mods[mod]["availx"];
+        var costDown = charlimb.mods[mod]["costx"] * augmentations.grade[charlimb.grade]["cost"]
+        charlimb.mods[mod]["cost"] -= costDown;
+        charlimb.mods[mod]["avail"] -= charlimb.mods[mod]["availx"];
         charlimb[charlimb.mods[mod]["stat"]]--;
         charlimb.cost -= costDown;
         nuyen += costDown;
@@ -3485,38 +3530,37 @@ function customLimb() {
       break;
     case "sellAug button":
       var cyber = characteraugmentation.limbs[limb];
-      ess+=cyber.essence;
-      attributes.current.mag+=cyber.essence;
-      attributes.maximum.magmax+=cyber.essence;
-      attributes.current.res+=cyber.essence;
-      attributes.maximum.resmax+=cyber.essence;
-      nuyen+=cyber.cost;
+      ess += cyber.essence;
+      attributes.current.mag += cyber.essence;
+      attributes.maximum.magmax += cyber.essence;
+      attributes.current.res += cyber.essence;
+      attributes.maximum.resmax += cyber.essence;
+      nuyen += cyber.cost;
 
       characteraugmentation.limbs[limb] = {};
       $(this).parent().remove();
       disUpdater();
       break;
-
   }
 
   function cyberEnhanceUpdater () {
-    $("."+limb+" ."+mod+" .price").empty().append(charlimb.mods[mod]["cost"]+"&yen;");
-    $("."+limb+" ."+mod+" .avail").empty().append(charlimb.mods[mod]["avail"]);
-    $("."+limb+" ."+mod+" .cap").empty().append("["+charlimb.mods[mod]["capacity"]+"]");
-    $("."+limb+" ."+mod+" .modRating").empty().append(charlimb.mods[mod]["rating"]);
-    $("."+limb+" .cyberstats ."+charlimb.mods[mod]["stat"]).empty().append("("+charlimb[charlimb.mods[mod]["stat"]]+")");
+    $("." + limb + " ." + mod + " .price").empty().append(charlimb.mods[mod]["cost"] + "&yen;");
+    $("." + limb + " ." + mod + " .avail").empty().append(charlimb.mods[mod]["avail"]);
+    $("." + limb + " ." + mod + " .cap").empty().append("["+charlimb.mods[mod]["capacity"] + "]");
+    $("." + limb + " ." + mod + " .modRating").empty().append(charlimb.mods[mod]["rating"]);
+    $("." + limb + " .cyberstats ." + charlimb.mods[mod]["stat"]).empty().append("(" + charlimb[charlimb.mods[mod]["stat"]] + ")");
   }
 
   function cyberlimbUpdater () {
-    $("."+limb+" .cyberstats .cap").empty().append(characteraugmentation.limbs[limb]["cap"]+"/"+characteraugmentation.limbs[limb]["capmax"]);
-    $("."+limb+">.price").empty().append(charlimb.cost+"&yen;")
+    $("." + limb + " .cyberstats .cap").empty().append(characteraugmentation.limbs[limb]["cap"] + "/" + characteraugmentation.limbs[limb]["capmax"]);
+    $("." + limb + ">.price").empty().append(charlimb.cost + "&yen;")
     updaters.nuyenUpdater();
   }
 
   function customlimbUpdater () {
-    $("."+limb+" .str").empty().append(augmentations[limbType][limb]["str"]);
-    $("."+limb+" .agi").empty().append(augmentations[limbType][limb]["agi"]);
-    $("."+limb+" .avail").empty().append(augmentations[limbType][limb]["avail"]);
-    $("."+limb+" .price").empty().append(augmentations[limbType][limb]["cost"]+"&yen;");
+    $("." + limb + " .str").empty().append(augmentations[limbType][limb]["str"]);
+    $("." + limb + " .agi").empty().append(augmentations[limbType][limb]["agi"]);
+    $("." + limb + " .avail").empty().append(augmentations[limbType][limb]["avail"]);
+    $("." + limb + " .price").empty().append(augmentations[limbType][limb]["cost"] + "&yen;");
   }
 }
