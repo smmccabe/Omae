@@ -1584,42 +1584,40 @@ function renderSkills () {//this has become for rendering/updating anything that
     } else {//this is for everything else
       var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"];
     }
-    $("#"+itemNum+" .weaponDP").empty().append("<span>"+(dp)+"</span>");//this renders the dice pool
-    $("#"+itemNum+" .custWeapPrice").empty().append("<span>"+inventory[itemNum]["cost"]+"&#65509</span>");//this renders the cost
-    $("#"+itemNum+" .acc").empty().append(inventory[itemNum]["accuracy"]+"("+(inventory[itemNum]["accuracy"]+inventory[itemNum]["accmod"])+")");//this renders accuacy of a gun
-    $("#"+itemNum+" .rc").empty().append(inventory[itemNum]["rc"]+Math.ceil((attributes.current.str/3)+1)+"("+(inventory[itemNum]["rc"]+inventory[itemNum]["rcmod"]+Math.ceil((attributes.current.str/3)+1))+")");//this renders the recoil comp
-    $("#"+itemNum+" .avail").empty().append(inventory[itemNum]["avail"]+" "+inventory[itemNum]["restrict"]);//this renders the avail of a gun
+    $("#" + itemNum + " .weaponDP").empty().append("<span>"+(dp)+"</span>");//this renders the dice pool
+    $("#" + itemNum + " .custWeapPrice").empty().append("<span>"+inventory[itemNum]["cost"]+"&#65509</span>");//this renders the cost
+    $("#" + itemNum + " .acc").empty().append(inventory[itemNum]["accuracy"]+"("+(inventory[itemNum]["accuracy"]+inventory[itemNum]["accmod"])+")");//this renders accuacy of a gun
+    $("#" + itemNum + " .rc").empty().append(inventory[itemNum]["rc"]+Math.ceil((attributes.current.str/3)+1)+"("+(inventory[itemNum]["rc"]+inventory[itemNum]["rcmod"]+Math.ceil((attributes.current.str/3)+1))+")");//this renders the recoil comp
+    $("#" + itemNum + " .avail").empty().append(inventory[itemNum]["avail"]+" "+inventory[itemNum]["restrict"]);//this renders the avail of a gun
   }
 
-  function augmentedStat(w,x,y,z) {//w-stat modefiers, x=class and key of the stat, y=name of the item and key of the item, z=the object to have the keys work on
-    $("."+y+"."+x).empty().append("<span>"+z[y][x]+"("+(z[y][x]+z[y][w])+")"+"</span>");
+  function augmentedStat(w, x, y, z) {//w-stat modifiers, x=class and key of the stat, y=name of the item and key of the item, z=the object to have the keys work on
+    $("." + y + "." + x).empty().append("<span>" + z[y][x] + "(" + (z[y][x] + z[y][w]) + ")" + "</span>");
   }
 
-  function augmentedDam(u,v,w,x,y,z) {//u=damtype, v=element, w=stat, x=damage, y=[item], z=weapon
+  function augmentedDam(damageType, element, stat, damage, item, weapon) {//u=damtype, v=element, w=stat, x=damage, y=[item], z=weapon
+    //@TODO - investigate how/if this works, it seems like it is checking if something DOESN'T exist, not if it does
     switch ('undefined') {//I'm so happy this works! Its a switch statement that looks to see if something exists
-      case typeof z[y]["altammo"]:
-        damnDamage(u,v,w,x,y,z);
+      case typeof weapon[y]["altammo"]:
+        damnDamage(damageType, element, stat, damage, item, weapon);
         break;
-      case typeof z[y]["altammo"][x]://if altammo.damage doesn't exist, render ammo like normal!
-        damnDamage(u,v,w,x,y,z);
+      case typeof weapon[y]["altammo"][stat]:
+        damnDamage(damageType, element, stat, damage, item, weapon);
         break;
-      case typeof z[y]["altammo"][v]:
-        $("."+y+"."+x).empty().append("<span>"+(z[y][x]+z[y][w])+"("+(z[y][x]+z[y][w]+z[y]["dvmod"])+")"+z[y][u]+" "+z[y][v]+"/ "+(z[y]["altammo"][x]+z[y][w])+"("+(z[y]["altammo"][x]+z[y][w]+z[y]["dvmod"])+")"+z[y][u]+"</span>");
-        damnAP(y);
+      case typeof weapon[y]["altammo"][element]:
+        $("." + item + "." + damage).empty().append("<span>" + (weapon[item][damage] + weapon[item][stat]) + "(" + (weapon[item][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + " " + weapon[item][element] + "/ " + (weapon[item]["altammo"][damage] + weapon[item][stat]) + "(" + (weapon[item]["altammo"][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + "</span>");
+        $(".ap." + item).append("/" + weapons[item]["altammo"]["ap"]);
         break;
       default:
-        $("."+y+"."+x).empty().append("<span>"+(z[y][x]+z[y][w])+"("+(z[y][x]+z[y][w]+z[y]["dvmod"])+")"+z[y][u]+" "+z[y][v]+"/ "+(z[y]["altammo"][x]+z[y][w])+"("+(z[y]["altammo"][x]+z[y][w]+z[y]["dvmod"])+")"+z[y][u]+" "+z[y]["altammo"][v]+"</span>");
-        damnAP(y);
+        $("." + item + "." + damage).empty().append("<span>" + (weapon[item][damage] + weapon[item][stat]) + "(" + (weapon[item][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + " " + weapon[item][element] + "/ " + (weapon[item]["altammo"][damage] + weapon[item][stat]) + "(" + (weapon[item]["altammo"][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + " " + weapon[item]["altammo"][element] + "</span>");
+        $(".ap." + item).append("/" + weapons[item]["altammo"]["ap"]);
         break;
     }
   }
 
-  function damnAP(y) {
-    $(".ap."+y).append("/"+weapons[y]["altammo"]["ap"]);//render weapon altammo ap
-  }
-
-  function damnDamage(u,v,w,x,y,z) {//as if this shit wasn't stupidly complex enough.
-    $("."+y+"."+x).empty().append("<span>"+(z[y][x]+z[y][w])+"("+(z[y][x]+z[y][w]+z[y]["dvmod"])+")"+z[y][u]+" "+z[y][v]+"</span>");
+  //@TODO - check if this can be combined with some of the code above into 1 function
+  function damnDamage(damageType, element, stat, damage, item, weapon) {//as if this shit wasn't stupidly complex enough.
+    $("." + item + "." + damage).empty().append("<span>" + (weapon[item][damage] + weapon[item][stat]) + "(" + (weapon[item][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + " " + weapon[item][element] + "</span>");
   }
 };
 
@@ -1636,18 +1634,14 @@ $(document).ready(function () {//this is makes it so that that skill points beco
   });
 })
 
-$(".knowButton").click(//used to select which type of knowledge skill is being sent
-  knowledgeTypeSelect
-)
+$(".knowButton").click(knowledgeTypeSelect);
 
 function knowledgeTypeSelect () {
   fnselect($(this));
   knowledgeType = $(this).attr("id");
 }
 
-$("#addSkill").click(
-  addKnowing
-)
+$("#addSkill").click(addKnowing);
 
 function addKnowing () {
   knowledgeSkills.push({name:$(".knowledgeName").val(), catalog: knowledgeType, stat:attributes.current.int, rating:0, mod:0, max:6, defaultable:false});
@@ -1660,39 +1654,38 @@ function addKnowing () {
 
 }
 
-$(".add").click(
-  addPowerPoint
-)
+$(".add").click(addPowerPoint);
 
-function addPowerPoint () {//this activates adept powers
+function addPowerPoint () {
   var power = adeptPowers[$(this).attr("id")];//this is just short hand to say adeptPowers["power name"]
 
-  if($(this).hasClass("active")){//if the power is already on, then
-    deactivate($(this));//remove the class that says its on
-    power["active"]=false;//turn off power
-    //I still need to figure out how to reduce the skill mod when we turn off the skill
+  if($(this).hasClass("active")){
+    deactivate($(this));
+    power["active"] = false;
+
+    //@TODO - I still need to figure out how to reduce the skill mod when we turn off the skill
     for (var skill in power["skillmod"]) {
       resetMod(power["skillmod"][skill],power["level"]);
     }
 
-    for (var key in power["attmod"]) {//this rests the augmented attibute...for the most part.
+    for (var key in power["attmod"]) {//this rests the augmented attribute...for the most part.
       switch (power["attmod"][key]) {
         case "body":
-          attributes.augment.bod-=power["level"];
+          attributes.augment.bod -= power["level"];
           break;
         case "reaction":
-          attributes.augment.rea-=power["level"];
+          attributes.augment.rea -= power["level"];
           break;
         case "agility":
-          attributes.augment.agi-=power["level"];
+          attributes.augment.agi -= power["level"];
           break;
         case "strength":
-          attributes.augment.str-=power["level"];
+          attributes.augment.str -= power["level"];
           break;
       }
     }
 
-    if ($(this).attr("id")=="improvedreflexes") {//god damn improvedreflexes has to be a special snowflake and follow different rules
+    if ($(this).attr("id") == "improvedreflexes") {//god damn improvedreflexes has to be a special snowflake and follow different rules
       power["cost"] = 1.5;
       attributes.initiative.iniphyDice=1;
       switch (power["level"]) {
@@ -1721,10 +1714,10 @@ function addPowerPoint () {//this activates adept powers
       $(".decAtt"+"."+$(this).attr("id")).addClass("deact");
     }
     minusLimitMod (power["limitmod"]);//for the 3 powers that increase limits, this will reduce the limits they effect
-  } else {//This is for when the power is already off, it turns it on, amoung other things
-    if (powerPoints - power["cost"] >= 0) {//if the cost of the power takes the powerpoints below 0, then do nothing
+  } else {
+    if (powerPoints - power["cost"] >= 0) {
       activate($(this));
-      power["active"] = true;//turn on
+      power["active"] = true;
 
       if (power["level"] != "n/a") {//if the power is turned on, then add a level and remove the decative class on the + and - buttons
         power["level"]++;
@@ -1741,7 +1734,7 @@ function addPowerPoint () {//this activates adept powers
         }
       }
 
-      addLimitMod (power["limitmod"]);//this will increase limits
+      addLimitMod (power["limitmod"]);
       powerPoints -= power["cost"];
     }
   }
@@ -1786,7 +1779,7 @@ function minusLimitMod(x) {
 }
 
 //@TODO - rename parameter
-function addAttMod(x) {//this will increase the augmented attribute
+function addAttMod(x) {
   for (var key in x) {
     switch (x[key]) {
       case "body":
@@ -1802,7 +1795,7 @@ function addAttMod(x) {//this will increase the augmented attribute
         attributes.augment.str = addAugmentAtt(attributes.augment.str);
         break;
     }
-  };
+  }
 }
 
 function addMod(skill, powerLelve) {
@@ -1824,18 +1817,14 @@ function resetMod(x,y) {
 }
 
 //@TODO - this probably should be more specific and not on EVERY click
-$().click(//this will make a spell as either being a spell or a alchemy preparation
-  spellActivate
-)
+$().click(spellActivate);
 
-$("#spelllist").on("click",".spellact, .prepact",//When ever #spelllist is updated, it we check the spellact and prepact to do the spellactivate function
-  spellActivate
-);
+$("#spelllist").on("click",".spellact, .prepact", spellActivate);
 
 function spellActivate() {//this is used to turn of add spells and alchemical preparations
   var spell = spellforms[$(this).parent().attr("id")];
 
-  switch (spell["name"]) {//switch to find the 3 custom detection spells
+  switch (spell["name"]) {
     case "Detect [Life Form]":
       customDetectSpell($("input.detectlifeform").val(), " ", "detectlifeform");
       break;
@@ -1872,14 +1861,13 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
         }
       }
       break;
-  };
+  }
   displayUpdater();//update the renderer, which will update the spell points to the new total
 
   //@TODO - move outside of parent function
   //@TODO - rename parameters
-  function customDetectSpell(x,y,z) {//this function is for custom detection spells, in case the name wasn't a dead give away
-    if (x==""||typeof spellforms["detect"+x+y]!='undefined') {//Did the user forget to input data or already enter this data? Then do NOTHING!
-      console.log("Stop clicking that!");
+  function customDetectSpell(x, y, z) {
+    if (x==""||typeof spellforms["detect"+x+y]!='undefined') {
       return;
     }
     spellforms["detect"+x+y] = { name:"Detect "+x+" "+y, category: "detection", spell: false, preparation: false, active: "active", direction: spellforms[z]["direction"], type: spellforms[z]["type"], range: "T", duration: "Sustain", drain: spellforms[z]["drain"] };//sets all the values for the new spellform object
@@ -1891,15 +1879,14 @@ function spellActivate() {//this is used to turn of add spells and alchemical pr
   //@TODO - move outside of parent function
   //@TODO - rename parameters
   function customAttributeSpell(x,y,z) {
-    if (x == "" || typeof spellforms[z + x] != 'undefined') {//Did the user forget to input data or already enter this data? Then do NOTHING!
-      console.log("You can't "+z+"that!");
+    if (x == "" || typeof spellforms[z + x] != 'undefined') {
       return;
     }
 
-    spellforms[z + x] = { name:z+" "+x, category: "health", spell: false, preparation: false, essence: "Essence", type: spellforms[y]["type"], range: "T", duration: "Sustain", drain: spellforms[y]["drain"] };//sets all the values for the new spellform object
+    spellforms[z + x] = { name: z + " " + x, category: "health", spell: false, preparation: false, essence: "Essence", type: spellforms[y]["type"], range: "T", duration: "Sustain", drain: spellforms[y]["drain"] };//sets all the values for the new spellform object
     spellhold = spellforms[z+x]//short hand, because typing all that junk was annoying
     var spell = y;
-    $("#"+y).after($("<tr id='"+z+x+"' class='"+spellhold["category"]+"'><td class='spellact "+spell+" button'><strong>-</strong></td><td class='prepact "+spell+" button'><strong>-</strong></td><td class='spellname "+spell+"'>"+spellhold["name"]+"</td><td class='heaEss "+spell+"'>"+spellhold["essence"]+"</td><td class='spelltype "+spell+"'>"+spellhold["type"]+"</td><td class='spellrange "+spell+"'>"+spellhold["range"]+"</td><td class='spelldur "+spell+"'>"+spellhold["duration"]+"</td><td class='drain "+spell+"'>"+spellhold["drain"].toString()+"</td></tr>"));//Add the spell to the list on the DOM after where it was entered
+    $("#" + y).after($("<tr id='" + z + x + "' class='"+spellhold["category"]+"'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact "+spell+" button'><strong>-</strong></td><td class='spellname "+spell+"'>"+spellhold["name"]+"</td><td class='heaEss "+spell+"'>"+spellhold["essence"]+"</td><td class='spelltype "+spell+"'>"+spellhold["type"]+"</td><td class='spellrange "+spell+"'>"+spellhold["range"]+"</td><td class='spelldur "+spell+"'>"+spellhold["duration"]+"</td><td class='drain "+spell+"'>"+spellhold["drain"].toString()+"</td></tr>"));//Add the spell to the list on the DOM after where it was entered
 
   }
 }
@@ -1909,15 +1896,23 @@ $(".formact").click(complexFormActivate);
 function complexFormActivate() {
   var form = complexforms[$(this).parent().attr("id")];
 
-  if($(this).hasClass("active")){//if the complex form has already been activated, then do this stuff
-    deactivate($(this));//remove the active class, and change the + to a -
-    form["formact"] = false;//the form is turned off
-    forms++;//return complex form points to buy more forms
+  //if the complex form has already been activated, then do this stuff
+  if($(this).hasClass("active")){
+    //remove the active class, and change the + to a -
+    deactivate($(this));
+    //the form is turned off
+    form["formact"] = false;
+    //return complex form points to buy more forms
+    forms++;
   } else {//If the form isn't on, then its off, so do this stuff
-    if (forms > 0) {//do you have complex form points to buy more forms?
-      activate($(this));//Then add the active class and replace the - with a +
-      form["formact"] = true;//turn off complex form
-      forms--;//reduce form points
+    //do you have complex form points to buy more forms?
+    if (forms > 0) {
+      //Then add the active class and replace the - with a +
+      activate($(this));
+      //turn off complex form
+      form["formact"] = true;
+      //reduce form points
+      forms--;
     }
   }
   displayUpdater();
@@ -1935,6 +1930,7 @@ function deactivate(x) {//this will turn off the highlight and change the + to a
 
 $(".weapact").click(buyWeapon);
 var invNum = 1;//inventory number for naming two items of the same kind
+
 function buyWeapon() {
   if ($(this).hasClass("deact")) {
     return;
@@ -2032,77 +2028,77 @@ function buyWeapon() {
     $(".inventory."+item+itemNum+" .options").append("<td class='label'>Avail</td><td class='avail "+itemNum+"'>"+itemhold.avail+" "+itemhold.restrict+"</td>");
   }
 
-  //@TODO - rename parameters
-  function moreclips(x,y,z) {
-    inventory[itemNum]["extraclips"]=0;
-    $("<td class='label'>"+z+"</td><td class='"+x+" incAtt extraclips'>+</td><td class='numofclips extraclips'>0</td><td class='"+x+" decAtt extraclips'>-</td>").appendTo($(".inventory."+y+x+" .options"));
-  }
-
-  function holsterAddOn(itemHold, itemNum, item) {//x=itemhold, y=itemNum,z=item
-    var check = itemHold["category"];
-    if (check == "lightpistols" || check == "tasers" || check == "holdouts") {//checks to see if small arms to use arm sldder
-      makeholster(itemNum, item);
-      $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='hiddenarmslide " + itemNum + " button'>Hidden Arm Slide</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
-    };
-    if (check == "heavypistols" || check == "machinepistols") {//checks to see if larger small arms that can use holsters that are not arm slider
-      makeholster(itemNum, item);
-      $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
-    }
-  }
-
-  //@TODO - rename parameters
-  function makeholster(y,z) {//adds the stuff to make the holsters
-    $(".inventory."+z+y).append("<tr class='holsters "+y+"'></tr>");
-    $(".holsters."+y).append("<tr class='holster "+y+"'><td class='label'>Holster</td></tr>");
-  }
-
-  //@TODO - rename parameters
-  function licenseDP(x,y,z,l) {
-    if (z["restrict"]=="Restricted") {//if restricted add the ability to buy a fake license
-      inventory[x]["license"]=0;
-      $("<td class='label'>Fake License</td><td class='"+x+" incAtt license'>+</td><td class='licenserating license'>0</td><td class='"+x+" decAtt license'>-</td>").appendTo($(".inventory."+y+x+l));
-    }
-    $("<td class='labelDP label'>DP</td><td class='weaponDP'>"+(activeSkills[inventory[x]["skill"]]["rating"]+activeSkills[inventory[x]["skill"]]["stat"]+activeSkills[inventory[x]["skill"]]["mod"])+"</td>").appendTo($(".inventory."+y+x+l));
-
-  }
-
-  //@TODO - rename parameters
-  function topMount(x,y) {
-    if (weapons[x]["mods"]["top"]=="empty") {
-      $(".topmount."+y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Imaging Scope'>Imaging Scope</option><option value='Periscope'>Periscope</option><option value='Smartgun'>Smartgun</option></select>");
-    };
-  }
-
-  //@TODO - rename parameters
-  function barrelMount(x,y) {
-    if (weapons[x]["mods"]["barrel"] == "empty") {
-      $(".barrelmount."+y).empty().append("<select><option value='empty'>Empty</option><option value='Gas Vent 1'>Gas Vent System 1</option><option value='Gas Vent 2'>Gas Vent System 2</option><option value='Gas Vent 3'>Gas Vent System 3</option><option value='Silencer'>Silencer</option></select>");
-    };
-  }
-
-  //@TODO - rename parameters
-  function bottomMount(x,y) {
-    if (weapons[x]["mods"]["under"] == "empty") {
-      $(".underbarrel." + y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Bipod'>Bipod</option><option value='Smart Firing Platform'>Smart Firing Platform</option><option value='Smartgun'>Smartgun</option><option value='Tripod'>Tripod</option></select>");
-      if (weapons[x]["skill"] == "heavyweapons" || weapons[x]["category"] == "assaultrifles") {
-        $(".underbarrel." + y + " select").append("<option value='Gyro Mount'>Gyro Mount</option>");
-      }
-    };
-  }
-
-  //@TODO - rename parameters
-  function addingArrows(v,w,x,y,z) {//v=number of columns, w=if to target to set item after, x=the weapon, y=weapon+number from inventory, z=name of projectile
-    inventory[y]["arrow"]=0;
-    inventory[y]["inject"]=0;
-    $(w).after("<tr id='"+y+"'><td class='sell button'><em>-</em></td><td class='inventory "+x+y+"' colspan="+v+"></td><td class='custWeapPrice'></td></tr>");
-    $(".inventory."+x+y).append("<td class='label'>"+z+"</td><td class='"+y+" incAtt arrow'>+</td><td class='arrowNum arrow'>0</td><td class='"+y+" decAtt arrow'>-</td><td class='label'>Injection "+z+"</td><td class='"+y+" incAtt injarrow'>+</td><td class='arrowNum injarrow'>0</td><td class='"+y+" decAtt injarrow'>-</td>");
-  }
-
-  function buyingItem(itemhold) {//reduces money based on the cost of the item
-    nuyen -= itemhold["cost"];
-  }
   invNum++;
   displayUpdater();
+}
+
+//@TODO - rename parameters
+function moreclips(x,y,z) {
+  inventory[itemNum]["extraclips"]=0;
+  $("<td class='label'>"+z+"</td><td class='"+x+" incAtt extraclips'>+</td><td class='numofclips extraclips'>0</td><td class='"+x+" decAtt extraclips'>-</td>").appendTo($(".inventory."+y+x+" .options"));
+}
+
+function holsterAddOn(itemHold, itemNum, item) {//x=itemhold, y=itemNum,z=item
+  var check = itemHold["category"];
+  if (check == "lightpistols" || check == "tasers" || check == "holdouts") {//checks to see if small arms to use arm sldder
+    makeholster(itemNum, item);
+    $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='hiddenarmslide " + itemNum + " button'>Hidden Arm Slide</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
+  };
+  if (check == "heavypistols" || check == "machinepistols") {//checks to see if larger small arms that can use holsters that are not arm slider
+    makeholster(itemNum, item);
+    $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
+  }
+}
+
+//@TODO - rename parameters
+function makeholster(y,z) {//adds the stuff to make the holsters
+  $(".inventory."+z+y).append("<tr class='holsters "+y+"'></tr>");
+  $(".holsters."+y).append("<tr class='holster "+y+"'><td class='label'>Holster</td></tr>");
+}
+
+//@TODO - rename parameters
+function licenseDP(x,y,z,l) {
+  if (z["restrict"]=="Restricted") {//if restricted add the ability to buy a fake license
+    inventory[x]["license"]=0;
+    $("<td class='label'>Fake License</td><td class='"+x+" incAtt license'>+</td><td class='licenserating license'>0</td><td class='"+x+" decAtt license'>-</td>").appendTo($(".inventory."+y+x+l));
+  }
+  $("<td class='labelDP label'>DP</td><td class='weaponDP'>"+(activeSkills[inventory[x]["skill"]]["rating"]+activeSkills[inventory[x]["skill"]]["stat"]+activeSkills[inventory[x]["skill"]]["mod"])+"</td>").appendTo($(".inventory."+y+x+l));
+
+}
+
+//@TODO - rename parameters
+function topMount(x, y) {
+  if (weapons[x]["mods"]["top"]=="empty") {
+    $(".topmount." + y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Imaging Scope'>Imaging Scope</option><option value='Periscope'>Periscope</option><option value='Smartgun'>Smartgun</option></select>");
+  }
+}
+
+//@TODO - rename parameters
+function barrelMount(x, y) {
+  if (weapons[x]["mods"]["barrel"] == "empty") {
+    $(".barrelmount." + y).empty().append("<select><option value='empty'>Empty</option><option value='Gas Vent 1'>Gas Vent System 1</option><option value='Gas Vent 2'>Gas Vent System 2</option><option value='Gas Vent 3'>Gas Vent System 3</option><option value='Silencer'>Silencer</option></select>");
+  }
+}
+
+//@TODO - rename parameters
+function bottomMount(x, y) {
+  if (weapons[x]["mods"]["under"] == "empty") {
+    $(".underbarrel." + y).empty().append("<select><option value='empty'>Empty</option><option value='Laser Sight'>Laser Sight</option><option value='Bipod'>Bipod</option><option value='Smart Firing Platform'>Smart Firing Platform</option><option value='Smartgun'>Smartgun</option><option value='Tripod'>Tripod</option></select>");
+    if (weapons[x]["skill"] == "heavyweapons" || weapons[x]["category"] == "assaultrifles") {
+      $(".underbarrel." + y + " select").append("<option value='Gyro Mount'>Gyro Mount</option>");
+    }
+  }
+}
+
+function addingArrows(columns, target, weapon, weaponNumber, projectile) {
+  inventory[weaponNumber]["arrow"] = 0;
+  inventory[weaponNumber]["inject"] = 0;
+  $(target).after("<tr id='" + weaponNumber + "'><td class='sell button'><em>-</em></td><td class='inventory " + weapon + weaponNumber + "' colspan=" + columns + "></td><td class='custWeapPrice'></td></tr>");
+  $(".inventory." + weapon + weaponNumber).append("<td class='label'>" + projectile + "</td><td class='" + weaponNumber + " incAtt arrow'>+</td><td class='arrowNum arrow'>0</td><td class='" + weaponNumber + " decAtt arrow'>-</td><td class='label'>Injection "+z+"</td><td class='" + weaponNumber + " incAtt injarrow'>+</td><td class='arrowNum injarrow'>0</td><td class='" + weaponNumber + " decAtt injarrow'>-</td>");
+}
+
+function buyingItem(itemhold) {
+  nuyen -= itemhold["cost"];
 }
 
 $("#gearResource").on("click",".sell", sellWeapon);
@@ -2112,12 +2108,14 @@ function sellWeapon() {
   nuyen += inventory[item]["cost"];
   inventory[item]["active"] = false;
   fociRating-=inventory[item]["weaponfoci"];
+
   if (inventory[item]["weaponfoci"] > 0) {
     karma += inventory[item]["weaponfoci"] * 3;
     focinumber--;
     fociRating -= inventory[item]["weaponfoci"];
     pointUpdater("#karmapnt", karma);
-  };
+  }
+
   $(this).parent().remove();
   delete inventory[item];
   updaters.nuyenUpdater();
@@ -2130,133 +2128,127 @@ function settingWeapon() {//this will change the weapon mounts and the nuyen
   var itemmod = inventory[item]["mods"]
   var itemhold = inventory[item];
 
-  itemmod.top=mountCheck($(".topmount." + item + " select").val(), itemmod.top, itemmod.under);
-  itemmod.barrel=mountCheck($(".barrelmount." + item + " select").val(), itemmod.barrel);
-  itemmod.under=mountCheck($(".underbarrel." + item + " select").val(), itemmod.under, itemmod.top);
+  itemmod.top = mountCheck($(".topmount." + item + " select").val(), itemmod.top, itemmod.under);
+  itemmod.barrel = mountCheck($(".barrelmount." + item + " select").val(), itemmod.barrel);
+  itemmod.under = mountCheck($(".underbarrel." + item + " select").val(), itemmod.under, itemmod.top);
 
   //@TODO - rename parameters
   //@TODO - move outside of parent function
-  function mountCheck(x,y,z) {
+  function mountCheck(x, y, z) {
     if (x != y) {//reset stats below
-      price = thePriceisRight(y);//the price of the old mod
+      price = gunModPricing(y);//the price of the old mod
       nuyen += price;//returns money of the old mod
       inventory[item]["cost"] -= price;//takes out of the price of the old mod
       itemhold["rc"] -= addingRecoil(y);//takes away the recoil of the old mod
       itemhold["rcmod"] -= moddingRecoil(y);//takes away the recoil mod of the old mod
-      itemhold["accmod"] -= addingAccurecy(y,z);
+      itemhold["accmod"] -= addingAccuracy(y,z);
 
       //set new stats below
-      price = thePriceisRight(x);//sets the new price
+      price = gunModPricing(x);//sets the new price
       nuyen -= price;//reduces the nuyen by the price of the new mod
       inventory[item]["cost"] += price;//adds the price of the new mod to the gun's price
       itemhold["rc"] += addingRecoil(x);//sets the new recoil
       itemhold["rcmod"] += moddingRecoil(x);//sets the new recoil mod
-      itemhold["accmod"] += addingAccurecy(x,z);
+      itemhold["accmod"] += addingAccuracy(x,z);
     }
 
     return x;
   }
 
-  //@TODO - move outside of function
-  //@TODO - rename parameters
-  function addingAccurecy(x,z) {
-    if (x == "Smartgun" || z == "Smartgun" || itemmod["internalsmart"] == "Smartgun") {//this figures out of accuracy bonus
-      y = 2;
-    } else if (x == "Laser Sight" || z == "Laser Sight" || itemmod["integral"].indexOf("Laser Sight") !== -1) {
-      y = 1;
-    } else {
-      y = 0;
-    };
-    return y;
-  }
-
-  //@TODO - move outside of function
-  //@TODO - rename parameters
-  function moddingRecoil(x) {
-    if (x == "Tripod" || x == "Gyro Mount") {
-      y = 6;
-    } else if (x == "Bipod") {
-      y = 2;
-    } else {
-      y = 0;
-    };
-    return y;
-  }
-
-  //@TODO - move outside of function
-  //@TODO - rename parameters
-  function addingRecoil(x) {
-    if (x == "Gas Vent 3" || itemmod["integral"].indexOf("Gas Vent 3") !== -1) {//gas vents apparently determine the natural recoil
-      y = 3;
-    } else if (x == "Gas Vent 2" || itemmod["integral"].indexOf("Gas Vent 2") !== -1) {
-      y = 2;
-    } else if (x == "Gas Vent 1" || itemmod["integral"].indexOf("Gas Vent 1") !== -1) {
-      y = 1;
-    } else {
-      y = 0;
-    }
-    
-    return y;
-  }
-
-  //@TODO - move outside of function
-  //@TODO - rename function
-  function thePriceisRight(mod) {//this is the price of all the mods
-    var price;
-
-    switch (mod) {
-      default:
-        price = 0;
-        break;
-      case "Laser Sight":
-        price = 125;
-        break;
-      case "Imaging Scope":
-        price = 300;
-        break;
-      case "Periscope":
-        price = 70;
-        break;
-      case "Smartgun":
-        price = 200;
-        break;
-      case "Gas Vent 1":
-        price = 200;
-        break;
-      case "Gas Vent 2":
-        price = 400;
-        break;
-      case "Gas Vent 3":
-        price = 600;
-        break;
-      case "Silencer":
-        price = 500;
-        break;
-      case "Bipod":
-        price = 200;
-        break;
-      case "Gyro Mount":
-        price = 1400;
-        break;
-      case "Smart Firing Platform":
-        price = 2500;
-        break;
-      case "Tripod":
-        price = 500;
-        break;
-    }
-    
-    return price;
-  }
-
   displayUpdater();
 }
 
-$("#firearms").on("click", ".smartgun.button", thinkingsmart)
+//@TODO - rename parameters
+function addingAccuracy(x, z) {
+  if (x == "Smartgun" || z == "Smartgun" || itemmod["internalsmart"] == "Smartgun") {//this figures out of accuracy bonus
+    y = 2;
+  } else if (x == "Laser Sight" || z == "Laser Sight" || itemmod["integral"].indexOf("Laser Sight") !== -1) {
+    y = 1;
+  } else {
+    y = 0;
+  };
+  return y;
+}
 
-//@TODO - rename function
-function thinkingsmart() {//the interal smartgun button
-  if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
+//@TODO - rename parameters
+function moddingRecoil(x) {
+  if (x == "Tripod" || x == "Gyro Mount") {
+    y = 6;
+  } else if (x == "Bipod") {
+    y = 2;
+  } else {
+    y = 0;
+  }
+  return y;
+}
+
+//@TODO - rename parameters
+function addingRecoil(x) {
+  if (x == "Gas Vent 3" || itemmod["integral"].indexOf("Gas Vent 3") !== -1) {//gas vents apparently determine the natural recoil
+    y = 3;
+  } else if (x == "Gas Vent 2" || itemmod["integral"].indexOf("Gas Vent 2") !== -1) {
+    y = 2;
+  } else if (x == "Gas Vent 1" || itemmod["integral"].indexOf("Gas Vent 1") !== -1) {
+    y = 1;
+  } else {
+    y = 0;
+  }
+
+  return y;
+}
+
+function gunModPricing(mod) {//this is the price of all the mods
+  var price;
+
+  switch (mod) {
+    default:
+      price = 0;
+      break;
+    case "Laser Sight":
+      price = 125;
+      break;
+    case "Imaging Scope":
+      price = 300;
+      break;
+    case "Periscope":
+      price = 70;
+      break;
+    case "Smartgun":
+      price = 200;
+      break;
+    case "Gas Vent 1":
+      price = 200;
+      break;
+    case "Gas Vent 2":
+      price = 400;
+      break;
+    case "Gas Vent 3":
+      price = 600;
+      break;
+    case "Silencer":
+      price = 500;
+      break;
+    case "Bipod":
+      price = 200;
+      break;
+    case "Gyro Mount":
+      price = 1400;
+      break;
+    case "Smart Firing Platform":
+      price = 2500;
+      break;
+    case "Tripod":
+      price = 500;
+      break;
+  }
+
+  return price;
+}
+
+$("#firearms").on("click", ".smartgun.button", smartlink)
+
+function smartlink() {
+  if ($(this).hasClass("deact")) {
     return;
   }
 
@@ -2314,10 +2306,10 @@ function thinkingsmart() {//the interal smartgun button
   displayUpdater();
 }
 
-$("#firearms").on("click", ".shockpad.button", shockpadding);
+$("#firearms").on("click", ".shockpad.button", shockPadding);
 
-function shockpadding() {
-  if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
+function shockPadding() {
+  if ($(this).hasClass("deact")) {
     return;
   }
 
@@ -2345,7 +2337,7 @@ $("#firearms").on("click", ".airburstlink.button", airJordan);
 
 //@TODO - rename function
 function airJordan() {//this is for airbustlink for explosive weapons
-  if ($(this).hasClass("deact")) {//if the button is deactivated, do nothing
+  if ($(this).hasClass("deact")) {
     return;
   }
 
@@ -2367,10 +2359,9 @@ function airJordan() {//this is for airbustlink for explosive weapons
   displayUpdater();
 }
 
-$("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holSTAR)
+$("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holsters)
 
-//@TODO - rename function
-function holSTAR () {//this creates and manages the background stuff for the holsters of a gun
+function holsters() {//this creates and manages the background stuff for the holsters of a gun
   var item = $(this).closest(".invName").attr("id");
   var itemmod = inventory[item]["mods"];
   var itemhold = inventory[item];
@@ -2409,10 +2400,9 @@ function holSTAR () {//this creates and manages the background stuff for the hol
   displayUpdater();
 }
 
-$("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingammo);
+$("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingAmmo);
 
-//@TODO - camelCase function properly
-function buyingammo() {
+function buyingAmmo() {
   var ammo = $(this).parent().attr("class");
   var gunclass = $(this).closest(".ammunition").attr("id");
   if ($(this).parent().hasClass("gas")) {
@@ -2469,15 +2459,15 @@ $("#grenadeammo .blastafter, #rocketammo .blastafter").after("<td>Blast</td>");
 
 $( ".grenadesname" ).on("change", "select.toxicgas", toxicgas);
 
-gasgrenade("teargas");//sets grenade at start
+gasGrenade("teargas");//sets grenade at start
 $(".gas .sellgrenades").addClass("deact");
 
 function toxicgas() {
-  gasgrenade($(this).val());
+  gasGrenade($(this).val());
 }
 
 //@TODO - rename parameter
-function gasgrenade(x) {
+function gasGrenade(x) {
   $(".gas .grenadesdammod").empty().append(toxin[x]["power"] + " " + toxin[x]["effect"]);
   $(".gas .avail").empty().append((toxin[x]["avail"] + 2) + " " + toxin[x]["restrict"]);
   $(".gas .cost").empty().append((toxin[x]["cost"] + 40) + "&#65509;");
@@ -2639,10 +2629,9 @@ function sponge() {
   }
 }
 
-$("#clotharmor").on("click", ".sellarmor", naked);
+$("#clotharmor").on("click", ".sellarmor", clearArmor);
 
-//@TODO - rename function
-function naked() {//this sells armor
+function clearArmor() {
   var armtype = $(this).parent().attr("class");
   nuyen += inventory[armtype]["cost"];
   $("." + armtype).remove();
@@ -2650,10 +2639,9 @@ function naked() {//this sells armor
   updaters.nuyenUpdater();
 }
 
-$("#clotharmor").on("click", ".armmodup, .armmoddown, .buyarmmod", armormodding);
+$("#clotharmor").on("click", ".armmodup, .armmoddown, .buyarmmod", armorModding);
 
-//@TODO - camelCase function
-function armormodding() {
+function armorModding() {
   mod = $(this).parent().attr("class");
   item = $(this).parent().parent().parent().attr("class");
   invmod = inventory[item]["mods"][mod];
