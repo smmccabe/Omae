@@ -1157,7 +1157,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
   //@TODO - rename parameter
   function upNAtEm (x) {//function to set up the active and knowledge skills, "Up and at 'em, Atom Ant!"
     for (var skill in x) {
-      skillsum = funSkillSum (x[skill]["defaultable"], x[skill]["rating"], x[skill]["mod"], attributes.current[x[skill]["stat"]]);
+      skillsum = calculateSkillPool (x[skill]["defaultable"], x[skill]["rating"], x[skill]["mod"], attributes.current[x[skill]["stat"]]);
 
       $("<tr class='"+[skill]+"'><td class='incAtt "+[skill]+"'>+</td><td class='rating'>"+x[skill]["rating"]+"</td><td class='decAtt "+[skill]+"'>-</td><td class='skillName'>"+x[skill]["name"]+"</td><td class='stat'>"+attributes.current[x[skill]["stat"]]+"</td><td class= 'mod'>"+x[skill]["mod"]+"</td><td class='skillsum'>"+skillsum+"</td><tr>")
         .appendTo("."+x[skill]["catalog"]);
@@ -1314,10 +1314,10 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
   $("#cyberlimbs .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
 
   //adding ammo details below
-  $(".ammo.label").appendTo(".ammunition");//adds ammo label
+  $(".ammo.label").appendTo(".ammunition");
 
   for (var ammo in ammunition) {
-    var ammotype=ammunition[ammo];
+    var ammotype = ammunition[ammo];
 
     switch (ammotype["class"]) {
       case "taserammo":
@@ -1326,10 +1326,10 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
         abnormalAmmo(ammotype, ammo);
         break;
       case "grenades":
-        explosivesammo("grenadeammo",ammo,ammotype);
+        explosivesAmmo("grenadeammo", ammo, ammotype);
         break;
       case "rockets":
-        explosivesammo("rocketammo",ammo,ammotype);
+        explosivesAmmo("rocketammo", ammo, ammotype);
         break;
       case "none":
         $(".standard.ammunition").append("<tr class='"+ammo+"'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+ammotype["name"]+"</td><td class='dammod'>"+ammotype["dammod"]+" "+ammotype["typemod"]+" "+ammotype["elemod"]+"</td><td class='apmod'>"+ammotype["apmod"]+"</td><td class='avail'>"+ammotype["avail"]+" "+ammotype["restrict"]+"</td><td class='cost'>"+ammotype["cost"]+"&#65509</td></tr>");
@@ -1337,24 +1337,24 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     }
 
     if (ammotype["avail"]>maxAvail) {
-      $("."+ammo+" .button").addClass("deact");
+      $("." + ammo + " .button").addClass("deact");
     }
 
   }
 
-  function explosivesammo(x,y,z) {
-    $("."+x).append("<tr class='"+y+"'><td class='buygrenades button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
+  function explosivesAmmo(x,y,z) {
+    $("." + x).append("<tr class='" + y + "'><td class='buygrenades button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>"+z["name"]+"</td><td class='grenadesdammod'>"+z["dammod"]+" "+z["typemod"]+" "+z["elemod"]+"</td><td class='apmod'>"+z["apmod"]+"</td><td class='blast'>"+z["blast"]+"</td><td class='avail'>"+z["avail"]+" "+z["restrict"]+"</td><td class='cost'>"+z["cost"]+"&#65509</td></tr>");
   }
 
   function abnormalAmmo(x,y) {
-    $("."+x["class"]).append("<tr class='"+y+"'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+x["name"]+"</td><td class='dammod'>"+x["dammod"]+x["typemod"]+" "+x["elemod"]+"</td><td class='apmod'>"+x["apmod"]+"</td><td class='avail'>"+x["avail"]+" "+x["restrict"]+"</td><td class='cost'>"+x["cost"]+"&#65509</td></tr>");
+    $("." + x["class"]).append("<tr class='" + y + "'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>"+x["name"]+"</td><td class='dammod'>"+x["dammod"]+x["typemod"]+" "+x["elemod"]+"</td><td class='apmod'>"+x["apmod"]+"</td><td class='avail'>"+x["avail"]+" "+x["restrict"]+"</td><td class='cost'>"+x["cost"]+"&#65509</td></tr>");
   }
 
   $(".gas .grenadesname").empty().append("<select class='toxicgas'></select>");
 
   for (var dose in toxin) {
-    if (toxin[dose]["avail"]<=maxAvail) {
-      $(".toxicgas").append("<option value='"+dose+"'>"+toxin[dose]["name"]+"</option>")
+    if (toxin[dose]["avail"] <= maxAvail) {
+      $(".toxicgas").append("<option value='" + dose + "'>" + toxin[dose]["name"] + "</option>")
     }
   }
 
@@ -1363,7 +1363,7 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
   $("#explosive .label").appendTo($(".explosives"));
 
   for (var bomb in explosives) {
-    $("."+bomb+".explosives").append("<tr class='"+bomb+"'><td class='buybomb button'><strong>+</strong></td><td class='bombup button'>+</td><td class='explosiverating'>"+explosives[bomb]["rating"]+"</td><td class='bombdown button'>-</td><td>"+explosives[bomb]["avail"]+" "+explosives[bomb]["restrict"]+"</td><td class='bombbond'>"+explosives[bomb]["cost"]+"&#65509;</td></tr>");
+    $("." + bomb + ".explosives").append("<tr class='" + bomb + "'><td class='buybomb button'><strong>+</strong></td><td class='bombup button'>+</td><td class='explosiverating'>" + explosives[bomb]["rating"]+"</td><td class='bombdown button'>-</td><td>"+explosives[bomb]["avail"]+" "+explosives[bomb]["restrict"]+"</td><td class='bombbond'>"+explosives[bomb]["cost"]+"&#65509;</td></tr>");
   }
 
   $(".commercial .bombup,.commercial .bombdown, .plastic .buybomb").addClass("deact");
@@ -1378,42 +1378,42 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
     var device = electronics[devicename];
     switch (device.type) {
       case "commlink":
-        $("#links").append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["model"]+"</td><td>"+device["device"]+"</td><td>"+device["avail"]+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $("#links").append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["model"] + "</td><td>" + device["device"] + "</td><td>" + device["avail"] + "</td><td>"+device["cost"] + "&yen;</td></tr>");
         break;
       case "deck":
-        $("#decks").append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["model"]+"</td><td>"+device["device"]+"</td><td>"+device["array"]+"</td><td>"+device["programs"]+"</td><td>"+device["avail"]+" "+device["restrict"]+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $("#decks").append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["model"] + "</td><td>" + device["device"] + "</td><td>" + device["array"] + "</td><td>" + device["programs"] + "</td><td>" + device["avail"] + " " + device["restrict"] + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "rcc":
-        $("#consoles").append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["model"]+"</td><td>"+device["device"]+"</td><td>"+device["dataprocess"]+"</td><td>"+device["firewall"]+"</td><td>"+device["avail"]+" "+device["restrict"]+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $("#consoles").append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["model"] + "</td><td>" + device["device"] + "</td><td>" + device["dataprocess"] + "</td><td>" + device["firewall"] + "</td><td>" + device["avail"] + " " + device["restrict"] + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "accessory":
-        $("#eccessories").append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["name"]+"</td><td>"+device["device"]+"</td><td>"+device["avail"]+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $("#eccessories").append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["name"] + "</td><td>" + device["device"] + "</td><td>" + device["avail"] + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "rfid":
-        $('#rfid').append("<tr class='"+devicename+"'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0</td><td class='sellDown button'><em>-</em></td><td>"+device["name"]+"</td><td>"+device["device"]+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#rfid').append("<tr class='" + devicename + "'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0</td><td class='sellDown button'><em>-</em></td><td>" + device["name"] + "</td><td>" + device["device"] + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "credsticks":
-        $('#credsticks').append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["name"]+"</td><td>"+device["maxvalue"]+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#credsticks').append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["name"] + "</td><td>" + device["maxvalue"] + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "identification":
-        $('#identification').append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>1</td><td class='ratingDown button'>-</td><td>"+device["name"]+" <input type='text' class='fakename' placeholder='For?'>"+"</td><td class='avail'>"+device["avail"]+" "+device.restrict+"</td><td class='price'>"+device["cost"]+"&yen;</td></tr>");
+        $('#identification').append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>1</td><td class='ratingDown button'>-</td><td>" + device["name"] + " <input type='text' class='fakename' placeholder='For?'>"+"</td><td class='avail'>" + device["avail"] + " " + device.restrict+"</td><td class='price'>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "tools":
-        $('#tools').append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+"<input type='text' class='toolname' placeholder='Skill name'> "+device["name"]+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#tools').append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>"+"<input type='text' class='toolname' placeholder='Skill name'> " + device["name"] + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "restraints":
-        $('#restraints').append("<tr class='"+devicename+"'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0<td class='sellDown'><em>-</em></td></td><td>"+device["name"]+"</td><td>"+device.armor+"</td><td>"+device.structure+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#restraints').append("<tr class='" + devicename + "'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0<td class='sellDown'><em>-</em></td></td><td>" + device["name"] + "</td><td>" + device.armor + "</td><td>" + device.structure + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "chemicals":
-        $('#chemicals').append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["name"]+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#chemicals').append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["name"] + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "grapplegungear":
-        $('#grapplegungear').append("<tr class='"+devicename+"'><td class='buydevice button'><strong>+</strong></td><td>"+device["name"]+"</td><td>"+device["avail"]+" "+device.restrict+"</td><td>"+device["cost"]+"&yen;</td></tr>");
+        $('#grapplegungear').append("<tr class='" + devicename + "'><td class='buydevice button'><strong>+</strong></td><td>" + device["name"] + "</td><td>" + device["avail"] + " " + device.restrict + "</td><td>" + device["cost"] + "&yen;</td></tr>");
         break;
       case "grapplerope":
       case "docwagon":
       case "reagents":
-        bulkBuyGear(device,devicename);
+        bulkBuyGear(device, devicename);
         break;
       case "communications":
       case "optics":
@@ -1427,70 +1427,67 @@ function setUpSkills () {//Well, this is used for more then just skills now. It 
       case "metamagicfoci":
       case "powerfoci":
       case "magicallodgematerials":
-        ratingGear(device,devicename);
+        ratingGear(device, devicename);
         break;
       case "qifoci":
-        ratingGear(device,devicename);
-        $("#"+device.type+" ."+devicename+" .name").after("<td class='adeptPowers'><select></select></td>");
+        ratingGear(device, devicename);
+        $("#" + device.type + " ." + devicename + " .name").after("<td class='adeptPowers'><select></select></td>");
         for (var power in adeptPowers) {
-          $("#"+device.type+" ."+devicename+" .adeptPowers select").append("<option value='"+power+"'>"+adeptPowers[power]["name"]+"</option>");
+          $("#" + device.type + " ." + devicename + " .adeptPowers select").append("<option value='" + power + "'>" + adeptPowers[power]["name"] + "</option>");
         };
         break;
       case "spellfoci":
-        ratingGear(device,devicename);
-        $("#"+device.type+" ."+devicename+" .name").after("<td class='magicType'><select></select></td>");
+        ratingGear(device, devicename);
+        $("#" + device.type + " ." + devicename + " .name").after("<td class='magicType'><select></select></td>");
         if(devicename!="ritualspellcastingfocus") {
           for (var spellCat in spellType) {
-            $("#"+device.type+" ."+devicename+" .magicType select").append("<option value='"+spellType[spellCat]+"'>"+spellType[spellCat]+"</option>");
+            $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + spellType[spellCat] + "'>" + spellType[spellCat] + "</option>");
           };
         } else {
           for (var spellCat in ritualKeywords) {
-            $("#"+device.type+" ."+devicename+" .magicType select").append("<option value='"+ritualKeywords[spellCat]+"'>"+ritualKeywords[spellCat]+"</option>");
+            $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + ritualKeywords[spellCat] + "'>" + ritualKeywords[spellCat] + "</option>");
           };
         }
 
         break;
       case "spiritfoci":
-        ratingGear(device,devicename);
-        $("#"+device.type+" ."+devicename+" .name").after("<td class='magicType'><select></select></td>");
+        ratingGear(device, devicename);
+        $("#" + device.type + " ." + devicename + " .name").after("<td class='magicType'><select></select></td>");
         for (var spirit in spiritType) {
-          $("#"+device.type+" ."+devicename+" .magicType select").append("<option value='"+spiritType[spirit]+"'>"+spiritType[spirit]+"</option>");
+          $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + spiritType[spirit] + "'>" + spiritType[spirit] + "</option>");
         };
         break;
     }
 
     if (device["avail"]>maxAvail) {
-      $("."+devicename+" .buydevice").addClass("deact").empty().append("-");
+      $("." + devicename + " .buydevice").addClass("deact").empty().append("-");
     }
     if (typeof device.rating === "undefined") {
-      $("."+devicename+" .commrating").empty().append("n/a");
+      $("." + devicename + " .commrating").empty().append("n/a");
     }
     if (typeof device.availx === "undefined") {
-      $("."+devicename+" .ratingUp,."+devicename+" .ratingDown").addClass("deact");
+      $("." + devicename + " .ratingUp,."+devicename+" .ratingDown").addClass("deact");
     }
   }
 
   for (var type in armor) {
-    $("#clotharmor #bodyarmor tbody").append("<tr class='"+type+"'><td class='buyarmor button'><strong>+</strong></td><td>"+armor[type]["name"]+"</td><td>"+armor[type]["armor"]+"</td><td>"+armor[type]["avail"]+" "+armor[type]["restrict"]+"</td><td>"+armor[type]["cost"]+"&#65509;</td></tr>");
-    if (armor[type]["avail"]>maxAvail) {
-      $("."+type+" .buyarmor").addClass("deact").empty().append("-");
+    $("#clotharmor #bodyarmor tbody").append("<tr class='" + type + "'><td class='buyarmor button'><strong>+</strong></td><td>" + armor[type]["name"] + "</td><td>" + armor[type]["armor"] + "</td><td>" + armor[type]["avail"] + " " + armor[type]["restrict"] + "</td><td>" + armor[type]["cost"] + "&#65509;</td></tr>");
+    if (armor[type]["avail"] > maxAvail) {
+      $("." + type + " .buyarmor").addClass("deact").empty().append("-");
     }
   }
 
-  //putmorestuffhere
-
-  function ratingGear(x,y){//x=device, y=devicename
-    $('#'+x.type).append("<tr class='"+y+"'><td class='buydevice button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>"+x.rating+"</td><td class='ratingDown button'>-</td><td class='name'>"+x.name+"</td><td class='avail'>"+x.avail+" "+x.restrict+"</td><td class='price'>"+x.cost+"&yen;</td></tr>");
-  };
-  function bulkBuyGear (x,y) {//x=device, y=devicename
-    $('#'+x.type).append("<tr class='"+y+"'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0</td><td class='sellDown button'><em>-</em></td><td>"+x.name+"</td><td>"+x.avail+" "+x.restrict+"</td><td>"+x.cost+"&yen;</td></tr>");
+  function ratingGear(device, deviceName){
+    $('#' + device.type).append("<tr class='" + deviceName + "'><td class='buydevice button'><strong>+</strong></td><td class='ratingUp button'>+</td><td class='commrating'>" + device.rating + "</td><td class='ratingDown button'>-</td><td class='name'>" + device.name + "</td><td class='avail'>" + device.avail + " " + device.restrict + "</td><td class='price'>" + device.cost + "&yen;</td></tr>");
   }
 
+  function bulkBuyGear(device, deviceName) {//x=device, y=devicename
+    $('#' + device.type).append("<tr class='" + deviceName + "'><td class='buyUp button'><strong>+</strong></td><td class='numrfid'>0</td><td class='sellDown button'><em>-</em></td><td>" + device.name + "</td><td>" + device.avail + " " + device.restrict + "</td><td>" + device.cost + "&yen;</td></tr>");
+  }
 }
 
-//@TODO - rename function
 //@TODO - rename parameters
-function funSkillSum (w, x, y, z) {//used to calculate the dice pool of a skill
+function calculateSkillPool (w, x, y, z) {
   var sum;
 
   if (w == true && x == 0) {
@@ -1507,12 +1504,13 @@ function funSkillSum (w, x, y, z) {//used to calculate the dice pool of a skill
 //@TODO - rename function
 function renderSkills () {//this has become for rendering/updating anything that can be accessed with a for loop; it seems.
   for (var prop in activeSkills) {
-    attUpdater ("stat", prop, activeSkills);
+    attributeUpdater ("stat", prop, activeSkills);
     statUpdater ("rating", prop,activeSkills);
     statUpdater ("mod", prop,activeSkills);
-    activeSkills[prop]["skillsum"] = funSkillSum (activeSkills[prop]["defaultable"], activeSkills[prop]["rating"], activeSkills[prop]["mod"], attributes.current[activeSkills[prop]["stat"]]+attributes.augment[activeSkills[prop]["stat"]]);
+    activeSkills[prop]["skillsum"] = calculateSkillPool (activeSkills[prop]["defaultable"], activeSkills[prop]["rating"], activeSkills[prop]["mod"], attributes.current[activeSkills[prop]["stat"]]+attributes.augment[activeSkills[prop]["stat"]]);
     dicePoolUpdater (activeSkills[prop]["skillsum"], [prop]);
   }
+
   for (var prop in knowledgeSkills) {
     switch (knowledgeSkills[prop]["catalog"]) {//knowledge skill shit is here
       case "academic":
@@ -1526,10 +1524,10 @@ function renderSkills () {//this has become for rendering/updating anything that
         break;
     }
 
-    attUpdater ("stat", [prop],knowledgeSkills);
+    attributeUpdater ("stat", [prop],knowledgeSkills);
     statUpdater ("rating", [prop],knowledgeSkills);
     statUpdater ("mod", [prop],knowledgeSkills);
-    skillsum = funSkillSum (knowledgeSkills[prop]["defaultable"], knowledgeSkills[prop]["rating"], knowledgeSkills[prop]["mod"], attributes.current[knowledgeSkills[prop]["stat"]]+attributes.augment[knowledgeSkills[prop]["stat"]]);
+    skillsum = calculateSkillPool (knowledgeSkills[prop]["defaultable"], knowledgeSkills[prop]["rating"], knowledgeSkills[prop]["mod"], attributes.current[knowledgeSkills[prop]["stat"]]+attributes.augment[knowledgeSkills[prop]["stat"]]);
     dicePoolUpdater (skillsum, [prop]);
   }
 
@@ -1540,61 +1538,67 @@ function renderSkills () {//this has become for rendering/updating anything that
     }
   }
 
-  function attUpdater (x, y, z) {//attibute updater
-    $("."+y+" ."+x).empty().append(attributes.current[z[y][x]]+attributes.augment[z[y][x]]);
+  //@TODO - rename parameters
+  function attributeUpdater(x, y, z) {
+    $("." + y + " ." + x).empty().append(attributes.current[z[y][x]] + attributes.augment[z[y][x]]);
   }
 
-  function statUpdater (x, y, z) {//all other stats
-    $("."+y+" ."+x).empty().append("<span>"+z[y][x]+"</span>");
+  //@TODO - rename parameters
+  function statUpdater (x, y, z) {
+    $("." + y + " ." + x).empty().append("<span>" + z[y][x] + "</span>");
   }
 
-  function dicePoolUpdater (x,y) {
-    $("."+y+" .skillsum").empty().append("<span>"+x+"</span>");
+  //@TODO - rename parameters
+  function dicePoolUpdater (x, y) {
+    $("." + y + " .skillsum").empty().append("<span>" + x + "</span>");
   }
 
   for (var skill in groupSkills) {
-    $("."+[skill]+" ."+"rating").empty().append("<span>"+groupSkills[skill]["rating"]+"</span>");
+    $("." + skill + " .rating").empty().append("<span>" + groupSkills[skill]["rating"] + "</span>");
   }
 
   for (var item in weapons) {
-    if (weapons[item]["stat"]>0) {
-      weapons[item]["stat"]=attributes.current.str+attributes.augment.str;
+    if (weapons[item]["stat"] > 0) {
+      weapons[item]["stat"] = attributes.current.str+attributes.augment.str;
     }
-    if (weapons[item]["skill"]=="unarmedcombat"||weapons[item]["skill"]=="throwingweapons") {
-      weapons[item]["accuracy"]=attributes.limits.phyLimit+attributes.limitMod.phyLimitMod;
+
+    if (weapons[item]["skill"] == "unarmedcombat" || weapons[item]["skill"] == "throwingweapons") {
+      weapons[item]["accuracy"] = attributes.limits.phyLimit + attributes.limitMod.phyLimitMod;
     }
+
     augmentedStat("accmod", "accuracy", [item], weapons)
-    $(".reach."+item).empty().append("<span>"+weapons[item]["reach"]+"("+(weapons[item]["reach"]+reachmod)+")"+"</span>");
-    $(".weaprating."+item+".weapratingnum").empty().append(weapons[item]["rating"]);
-    $(".ap."+item).empty().append(weapons[item]["ap"]);//render weapon ap
-    $(".avail."+item).empty().append(weapons[item]["avail"]+" "+weapons[item]["restrict"]);
-    $(".cost."+item).empty().append("<span>"+weapons[item]["cost"]+"&#65509</span>");
-    augmentedDam("damtype","element","stat", "damage", [item], weapons);//render weapon damage this also changes the ap for weapons with altammo
+    $(".reach." + item).empty().append("<span>" + weapons[item]["reach"] + "(" + (weapons[item]["reach"] + reachmod) + ")" + "</span>");
+    $(".weaprating." + item + ".weapratingnum").empty().append(weapons[item]["rating"]);
+    $(".ap." + item).empty().append(weapons[item]["ap"]);
+    $(".avail." + item).empty().append(weapons[item]["avail"] + " " + weapons[item]["restrict"]);
+    $(".cost." + item).empty().append("<span>" + weapons[item]["cost"] + "&#65509</span>");
+    augmentedDamage("damtype", "element", "stat", "damage", [item], weapons);//render weapon damage this also changes the ap for weapons with altammo
   }
 
   for (var itemNum in inventory) {//this is suppose to update the nuyen price of the time
 
-    if (typeof inventory[itemNum]["skill"]==='undefined') {
+    //@TODO - redo this weird empty if statement
+    if (typeof inventory[itemNum]["skill"] === 'undefined') {
 
-    } else if (inventory[itemNum]["weaponfoci"]>0&&activeSkills[inventory[itemNum]["skill"]]["skillsum"]!="n/a") {//this if statements sets the dice pool for the item
-      var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"]+inventory[itemNum]["weaponfoci"];
+    } else if (inventory[itemNum]["weaponfoci"] > 0 && activeSkills[inventory[itemNum]["skill"]]["skillsum"] != "n/a") {//this if statements sets the dice pool for the item
+      var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"] + inventory[itemNum]["weaponfoci"];
     }else if (inventory[itemNum]["rating"]>attributes.current.str) {//this is for bows
-      var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"]-((inventory[itemNum]["rating"]-attributes.current.str)*3);
+      var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"] - ((inventory[itemNum]["rating"] - attributes.current.str)*3);
     } else {//this is for everything else
       var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"];
     }
-    $("#" + itemNum + " .weaponDP").empty().append("<span>"+(dp)+"</span>");//this renders the dice pool
-    $("#" + itemNum + " .custWeapPrice").empty().append("<span>"+inventory[itemNum]["cost"]+"&#65509</span>");//this renders the cost
-    $("#" + itemNum + " .acc").empty().append(inventory[itemNum]["accuracy"]+"("+(inventory[itemNum]["accuracy"]+inventory[itemNum]["accmod"])+")");//this renders accuacy of a gun
-    $("#" + itemNum + " .rc").empty().append(inventory[itemNum]["rc"]+Math.ceil((attributes.current.str/3)+1)+"("+(inventory[itemNum]["rc"]+inventory[itemNum]["rcmod"]+Math.ceil((attributes.current.str/3)+1))+")");//this renders the recoil comp
-    $("#" + itemNum + " .avail").empty().append(inventory[itemNum]["avail"]+" "+inventory[itemNum]["restrict"]);//this renders the avail of a gun
+    $("#" + itemNum + " .weaponDP").empty().append("<span>" + (dp) + "</span>");//this renders the dice pool
+    $("#" + itemNum + " .custWeapPrice").empty().append("<span>" + inventory[itemNum]["cost"] + "&#65509</span>");//this renders the cost
+    $("#" + itemNum + " .acc").empty().append(inventory[itemNum]["accuracy"] + "(" + (inventory[itemNum]["accuracy"] + inventory[itemNum]["accmod"]) + ")");//this renders accuracy of a gun
+    $("#" + itemNum + " .rc").empty().append(inventory[itemNum]["rc"] + Math.ceil((attributes.current.str / 3) + 1) + "(" + (inventory[itemNum]["rc"] + inventory[itemNum]["rcmod"] + Math.ceil((attributes.current.str / 3) + 1)) + ")");//this renders the recoil comp
+    $("#" + itemNum + " .avail").empty().append(inventory[itemNum]["avail"] + " " + inventory[itemNum]["restrict"]);//this renders the avail of a gun
   }
 
-  function augmentedStat(w, x, y, z) {//w-stat modifiers, x=class and key of the stat, y=name of the item and key of the item, z=the object to have the keys work on
-    $("." + y + "." + x).empty().append("<span>" + z[y][x] + "(" + (z[y][x] + z[y][w]) + ")" + "</span>");
+  function augmentedStat(statModifier, classKey, item, object) {
+    $("." + item + "." + classKey).empty().append("<span>" + object[item][classKey] + "(" + (object[item][classKey] + object[item][statModifier]) + ")" + "</span>");
   }
 
-  function augmentedDam(damageType, element, stat, damage, item, weapon) {//u=damtype, v=element, w=stat, x=damage, y=[item], z=weapon
+  function augmentedDamage(damageType, element, stat, damage, item, weapon) {//u=damtype, v=element, w=stat, x=damage, y=[item], z=weapon
     //@TODO - investigate how/if this works, it seems like it is checking if something DOESN'T exist, not if it does
     switch ('undefined') {//I'm so happy this works! Its a switch statement that looks to see if something exists
       case typeof weapon[y]["altammo"]:
@@ -1618,7 +1622,7 @@ function renderSkills () {//this has become for rendering/updating anything that
   function damnDamage(damageType, element, stat, damage, item, weapon) {//as if this shit wasn't stupidly complex enough.
     $("." + item + "." + damage).empty().append("<span>" + (weapon[item][damage] + weapon[item][stat]) + "(" + (weapon[item][damage] + weapon[item][stat] + weapon[item]["dvmod"]) + ")" + weapon[item][damageType] + " " + weapon[item][element] + "</span>");
   }
-};
+}
 
 //@TODO - document ready shouldn't be way down here, move
 $(document).ready(function () {//this is makes it so that that skill points becomes fixed to the window
@@ -1631,7 +1635,7 @@ $(document).ready(function () {//this is makes it so that that skill points beco
       $("#characterPoints").removeClass("fixed");
     }
   });
-})
+});
 
 $(".knowButton").click(knowledgeTypeSelect);
 
@@ -1646,7 +1650,7 @@ function addKnowing () {
   knowledgeSkills.push({name:$(".knowledgeName").val(), catalog: knowledgeType, stat:attributes.current.int, rating:0, mod:0, max:6, defaultable:false});
 
   skill = knowledgeSkills.length-1;
-  skillsum = funSkillSum (knowledgeSkills[skill]["defaultable"], knowledgeSkills[skill]["rating"], knowledgeSkills[skill]["mod"], knowledgeSkills[skill]["stat"]);
+  skillsum = calculateSkillPool (knowledgeSkills[skill]["defaultable"], knowledgeSkills[skill]["rating"], knowledgeSkills[skill]["mod"], knowledgeSkills[skill]["stat"]);
 
   $("<tr class='"+[skill]+"'><td class='incAtt "+[skill]+"'>+</td><td class='rating'>"+knowledgeSkills[skill]["rating"]+"</td><td class='decAtt "+[skill]+"'>-</td><td class='skillName'>"+knowledgeSkills[skill]["name"]+"</td><td class='stat'>"+knowledgeSkills[skill]["stat"]+"</td><td class= 'mod'>"+knowledgeSkills[skill]["mod"]+"</td><td class='skillsum'>"+skillsum+"</td><tr>")
     .appendTo("."+knowledgeSkills[skill]["catalog"]);
