@@ -22,79 +22,77 @@ var priorityA,
 
   attributes = {
     current: {
-      bod:1,//current attrabute
-      agi:1,
-      rea:1,
-      str:1,
-      wil:1,
-      log:1,
-      int:1,
-      cha:1,
-      edg:1,
-      mag:0,
-      res:0
+      bod: 1,
+      agi: 1,
+      rea: 1,
+      str: 1,
+      wil: 1,
+      log: 1,
+      int: 1,
+      cha: 1,
+      edg: 1,
+      mag: 0,
+      res: 0
     },
     minimum: {
-      bodmin:1,//minimum attrabute
-      agimin:1,
-      reamin:1,
-      strmin:1,
-      wilmin:1,
-      logmin:1,
-      intmin:1,
-      chamin:1,
-      edgmin:1,
-      magmin:0,
-      resmin:0
+      bodmin: 1,
+      agimin: 1,
+      reamin: 1,
+      strmin: 1,
+      wilmin: 1,
+      logmin: 1,
+      intmin: 1,
+      chamin: 1,
+      edgmin: 1,
+      magmin: 0,
+      resmin: 0
     },
     maximum: {
-      bodmax:6,//natural maximum attrabute
-      agimax:6,
-      reamax:6,
-      strmax:6,
-      wilmax:6,
-      logmax:6,
-      intmax:6,
-      chamax:6,
-      edgmax:6,
-      magmax:6,
-      resmax:6
+      bodmax: 6,
+      agimax: 6,
+      reamax: 6,
+      strmax: 6,
+      wilmax: 6,
+      logmax: 6,
+      intmax: 6,
+      chamax: 6,
+      edgmax: 6,
+      magmax: 6,
+      resmax: 6
     },
     augment: {
-      bod:0,//augmented attrabute
-      agi:0,
-      rea:0,
-      str:0,
-      wil:0,
-      log:0,
-      int:0,
-      cha:0,
-      edg:0,
-      mag:0,
-      res:0
+      bod: 0,
+      agi: 0,
+      rea: 0,
+      str: 0,
+      wil: 0,
+      log: 0,
+      int: 0,
+      cha: 0,
+      edg: 0,
+      mag: 0,
+      res: 0
     },
     limits: {
-      phyLimit:0,
-      socLimit:0,
-      menLimit:0
+      phyLimit: 0,
+      socLimit: 0,
+      menLimit: 0
     },
     limitMod: {
-      phyLimitMod:0,
-      socLimitMod:0,
-      menLimitMod:0
+      phyLimitMod: 0,
+      socLimitMod: 0,
+      menLimitMod: 0
     },
     initiative: {
-      iniphy:2,//physical initiative
-      iniphyDice:1,//physical ini dice
-      iniast:2,//astral initiative
-      iniastDice:2,//astral dice
-      inimat:1,//matrix initiative
-      inimatcold:3,//coldsim dice
-      inimathot:4//hotsim dice
+      physical: 2,
+      physicalDice: 1,
+      astral: 2,
+      astralDice: 2,
+      matrix: 1,
+      matrixColdDice: 3,
+      matrixHotDice: 4
     }
   },
-
-//var iniphy=attributes.current.int+attributes.current.rea;
 
   dataP = 0,//data processing, for TM's
 
@@ -106,6 +104,7 @@ var priorityA,
 
   maxAvail = 12; //the max availibility at chargen
 
+//@TODO - move to separate json file
 activeSkills = {//the list of all the skills in the entire game forever. Catalysis needs to never release any more skills ever after this
   archery:{name:"Archery", catalog: "agility", stat:"agi", rating:0, mod:0, max:6, defaultable:true},
   automatics:{name:"Automatics", catalog: "agility", stat:"agi", rating:0, mod:0, max:6, defaultable:true},
@@ -182,7 +181,6 @@ activeSkills = {//the list of all the skills in the entire game forever. Catalys
   compiling:{name:"Compiling", catalog: "resonance", stat:"res", rating:0, mod:0, max:6, defaultable:false},
   decompiling:{name:"Decompiling", catalog: "resonance", stat:"res", rating:0, mod:0, max:6, defaultable:false},
   registering:{name:"Registering", catalog: "resonance", stat:"res", rating:0, mod:0, max:6, defaultable:false}
-
 };
 
 var groupSkills = {
@@ -545,7 +543,7 @@ var weapons = {
 };
 
 var weaponmods = {
-  airburstlink: {name:"Airburst Link", weaptype:["grenadelauncher", "rocketlauncher"], },
+  airburstlink: {name:"Airburst Link", weaptype:["grenadelauncher", "rocketlauncher"] }
 };
 
 var ammunition = {
@@ -911,7 +909,7 @@ var visionenhancements = {
   visionenhancement1: {name:"Vision Enhancement 1", rating:1, cap:1, avail:2, restricted: "", cost:500},
   visionenhancement2: {name:"Vision Enhancement 2", rating:2, cap:2, avail:4, restricted: "", cost:1000},
   visionenhancement3: {name:"Vision Enhancement 3", rating:3, cap:3, avail:6, restricted: "", cost:1500},
-  visionmagnification: {name:"Vision Magnification", cap:1, avail:2, restricted: "", cost:250},
+  visionmagnification: {name:"Vision Magnification", cap:1, avail:2, restricted: "", cost:250}
 };
 
 var audioenhancements = {
@@ -922,7 +920,7 @@ var audioenhancements = {
   selectsoundfilter1: {name:"Select Sound Filter 1", rating:1, cap:1, avail:3, restricted: "", cost:250},
   selectsoundfilter2: {name:"Select Sound Filter 2", rating:2, cap:2, avail:6, restricted: "", cost:500},
   selectsoundfilter3: {name:"Select Sound Filter 3", rating:3, cap:3, avail:9, restricted: "", cost:750},
-  spatialrecognizer: {name:"Spatial Recognizer", rating:1, cap:2, avail:4, restricted: "", cost:1000},
+  spatialrecognizer: {name:"Spatial Recognizer", rating:1, cap:2, avail:4, restricted: "", cost:1000}
 };
 
 characteraugmentation = {
@@ -974,7 +972,7 @@ var augmentations = {
     cyberarmslide: {name:"Cyberarm Slide", type:"accessory", allow:["arm"], capacity:3, avail:12, restrict:"R", cost:3000, ref:{book:"SR5", page:"456,457"}},
     cyberholster: {name:"Cyber Holster", type:"accessory", allow:["arm","leg","chest","head"], capacity:5, avail:8, restrict:"R", cost:2000, ref:{book:"SR5", page:"457"}},
     hydraulicjacks: {name:"Hydraulic Jacks", type:"accessory", allow:["leg"], rating:0, ratingmax:6, capacity:0, avail:9, availx:0, restrict:"", cost:0, costx:8000, ref:{book:"SR5", page:"456,457"}},
-    largesmugglingcompartment: {name:"Large Smuggling Compartment", type:"accessory", allow:["arm","leg","chest","head"], capacity:5, avail:6, restrict:"", cost:8000, ref:{book:"SR5", page:"457"}},
+    largesmugglingcompartment: {name:"Large Smuggling Compartment", type:"accessory", allow:["arm","leg","chest","head"], capacity:5, avail:6, restrict:"", cost:8000, ref:{book:"SR5", page:"457"}}
 
   },
   weapons: {

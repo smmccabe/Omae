@@ -6,11 +6,11 @@ $(".a, .b, .c, .d, .e").click( //This controls the Priority table
   selectPriority
 );
 
-function selectPriority() { //Priority table controls
+function selectPriority() {
   var classPrior; //this is the class of what was clicked
   var priorityL; //Priority Level, holds which priority goes into which level
 
-  fnselect ($(this));
+  highlightSelected ($(this));
 
   switch (true) {
     case $(this).hasClass('a'):
@@ -237,26 +237,23 @@ function selectPriority() { //Priority table controls
   displayUpdater();
 }
 
-//@TODO - rename function
 //@TODO - rename parameter
 //function for highlighting what has been selected
-function fnselect (x) {
+function highlightSelected (x) {
   x.siblings().removeClass("selected");
   x.addClass('selected');
 }
 
 //this part will call the metatype select function when a metatype button is clicked
-$(".human, .elf, .dwarf, .ork, .troll").click(
-  selectMetatype
-);
+$(".human, .elf, .dwarf, .ork, .troll").click(selectMetatype());
 
 //Metatype controls
 function selectMetatype() {
   if (!$(this).hasClass('deact')) {
-    fnselect ($(this));//highlights what's been clicked on
+    highlightSelected ($(this));
 
     if ( $(this).hasClass('human') ) {//this stuff sets the metatype attributes and stuff
-      resetAtt ();
+      resetAttributes ();
       metatype = "human";
       attributes.current.edg = 2;
       attributes.maximum.edgmax = 7;
@@ -283,7 +280,7 @@ function selectMetatype() {
     }
 
     if ( $(this).hasClass('elf') ) {
-      resetAtt ();
+      resetAttributes ();
       metatype = "elf";
       attributes.current.agi = 2;
       attributes.current.cha = 3;
@@ -310,7 +307,7 @@ function selectMetatype() {
     }
 
     if ( $(this).hasClass('dwarf') ) {
-      resetAtt ();
+      resetAttributes ();
       metatype = "dwarf";
       attributes.current.bod = 3;
       attributes.current.str = 3;
@@ -338,7 +335,7 @@ function selectMetatype() {
     }
 
     if ( $(this).hasClass('ork') ) {
-      resetAtt ();
+      resetAttributes ();
       metatype = "ork";
       attributes.current.bod = 4;
       attributes.current.str = 3;
@@ -364,7 +361,7 @@ function selectMetatype() {
     }
 
     if ( $(this).hasClass('troll') ) {
-      resetAtt ();
+      resetAttributes ();
       metatype = "troll";
       attributes.current.bod = 5;
       attributes.current.str = 5;
@@ -377,8 +374,10 @@ function selectMetatype() {
       attributes.minimum.bodmin = 5;
       attributes.minimum.strmin = 5;
       reachmod = 1;
+
       displayUpdater();
       $("#racial").empty().append($("<p>Thermographic Vision<br>+1 Reach<br>+1 Dermal Armor<br>100% Lifestyle increase</p>"));
+
       switch ("metatype") {
         case priorityA:
           specAttribute = 5;
@@ -393,7 +392,7 @@ function selectMetatype() {
   }
 }
 
-function resetAtt () {
+function resetAttributes () {
   attributes.current.bod = 1;
   attributes.current.agi = 1;
   attributes.current.rea = 1;
@@ -427,30 +426,30 @@ function resetAtt () {
 //experimenting on removing functions from the global name space
 var updaters = {
   nuyenUpdater: function () {
-    $("#nuyen").empty().append($("<strong>"+nuyen+"&#65509</strong>"));
+    $("#nuyen").empty().append($("<strong>" + nuyen + "&#65509</strong>"));
   },
   essUpdater: function () {
-    $("#essencepnt").empty().append($("<strong>"+Math.round(ess*1000)/1000+"</strong>"));
+    $("#essencepnt").empty().append($("<strong>" + Math.round(ess * 1000) / 1000 + "</strong>"));
   },
   magUpdater: function () {
-    $(".mag" + " .stats").empty().append($("<span>"+Math.floor(attributes.current.mag)+"/"+Math.floor(attributes.maximum.magmax)+"</span>"));
+    $(".mag .stats").empty().append($("<span>" + Math.floor(attributes.current.mag) + "/" + Math.floor(attributes.maximum.magmax) + "</span>"));
   },
   resUpdater: function () {
-    $(".res" + " .stats").empty().append($("<span>"+Math.floor(attributes.current.res)+"/"+Math.floor(attributes.maximum.resmax)+"</span>"));
+    $(".res .stats").empty().append($("<span>" + Math.floor(attributes.current.res) + "/" + Math.floor(attributes.maximum.resmax) + "</span>"));
   }
-}
+};
 
 displayUpdater();//runs the attribute display function on start up
 
 function displayUpdater () {//adds the attributes to the attribute table
-  renderAttStat (attributes.augment.bod, "bod", attributes.current.bod, attributes.maximum.bodmax);
-  renderAttStat (attributes.augment.agi, "agi", attributes.current.agi, attributes.maximum.agimax);
-  renderAttStat (attributes.augment.rea, "rea", attributes.current.rea, attributes.maximum.reamax);
-  renderAttStat (attributes.augment.str, "str", attributes.current.str, attributes.maximum.strmax);
-  renderAttStat (attributes.augment.wil, "wil", attributes.current.wil, attributes.maximum.wilmax);
-  renderAttStat (attributes.augment.log, "log", attributes.current.log, attributes.maximum.logmax);
-  renderAttStat (attributes.augment.int, "int", attributes.current.int, attributes.maximum.intmax);
-  renderAttStat (attributes.augment.cha, "cha", attributes.current.cha, attributes.maximum.chamax);
+  renderAttributeStat (attributes.augment.bod, "bod", attributes.current.bod, attributes.maximum.bodmax);
+  renderAttributeStat (attributes.augment.agi, "agi", attributes.current.agi, attributes.maximum.agimax);
+  renderAttributeStat (attributes.augment.rea, "rea", attributes.current.rea, attributes.maximum.reamax);
+  renderAttributeStat (attributes.augment.str, "str", attributes.current.str, attributes.maximum.strmax);
+  renderAttributeStat (attributes.augment.wil, "wil", attributes.current.wil, attributes.maximum.wilmax);
+  renderAttributeStat (attributes.augment.log, "log", attributes.current.log, attributes.maximum.logmax);
+  renderAttributeStat (attributes.augment.int, "int", attributes.current.int, attributes.maximum.intmax);
+  renderAttributeStat (attributes.augment.cha, "cha", attributes.current.cha, attributes.maximum.chamax);
 
   renderSpecStat ("edg", attributes.current.edg, attributes.maximum.edgmax);
 
@@ -458,39 +457,39 @@ function displayUpdater () {//adds the attributes to the attribute table
   updaters.resUpdater();
 
   pointUpdater (".pnt", attribute);
-  pointUpdater (".spePnt",specAttribute);
+  pointUpdater (".spePnt", specAttribute);
 
   attributes.limits.phyLimit = renderLimit (attributes.limitMod.phyLimitMod,"phyLimit", attributes.current.str + attributes.augment.str, attributes.current.bod+attributes.augment.bod, attributes.current.rea+attributes.augment.rea);
   attributes.limits.socLimit = renderLimit (attributes.limitMod.socLimitMod, "socLimit", attributes.current.cha, attributes.current.wil, ess);
   attributes.limits.menLimit = renderLimit (attributes.limitMod.menLimitMod, "menLimit", attributes.current.log, attributes.current.int, attributes.current.wil);
-  attributes.initiative.iniphy = initiativeRenderMonkey (attributes.current.rea,"meatini", attributes.initiative.iniphyDice,attributes.augment.rea);
-  attributes.initiative.iniast = initiativeRenderMonkey (attributes.current.int,"magicini", attributes.initiative.iniastDice, attributes.augment.int);
-  attributes.initiative.inimat = initiativeRenderMonkey (dataP,"coldmatini", attributes.initiative.inimatcold, 0);
-  attributes.initiative.inimat = initiativeRenderMonkey (dataP,"hotmatini", attributes.initiative.inimathot, 0);
+  attributes.initiative.physical = initiativeRender (attributes.current.rea, "meatini", attributes.initiative.physicalDice, attributes.augment.rea);
+  attributes.initiative.astral = initiativeRender (attributes.current.int, "magicini", attributes.initiative.astralDice, attributes.augment.int);
+  attributes.initiative.matrix = initiativeRender (dataP, "coldmatini", attributes.initiative.matrixColdDice, 0);
+  attributes.initiative.matrix = initiativeRender (dataP, "hotmatini", attributes.initiative.matrixHotDice, 0);
 
-  renderSkills ();//this updates everything that uses a for loop
+  renderSkills ();
 
-  $("#skillpnt").empty().append($("<strong>"+skills+"/"+skillgroups+"</strong>"));
+  $("#skillpnt").empty().append($("<strong>" + skills + "/" + skillgroups + "</strong>"));
 
-  pointUpdater("#knowpnt",knowledgepoints);
-  pointUpdater("#powerpnt",powerPoints);
-  pointUpdater("#spellpnt",spells);
-  pointUpdater("#formpnt",forms);
-  pointUpdater("#karmapnt",karma);
+  pointUpdater("#knowpnt", knowledgepoints);
+  pointUpdater("#powerpnt", powerPoints);
+  pointUpdater("#spellpnt", spells);
+  pointUpdater("#formpnt", forms);
+  pointUpdater("#karmapnt", karma);
 
   updaters.essUpdater();
   updaters.nuyenUpdater();
 }
 
 //@TODO - rename parameters
-function pointUpdater(x,y) {
-  $(x).empty().append($("<strong>"+y+"</strong>"));
+function pointUpdater(x, y) {
+  $(x).empty().append($("<strong>" + y + "</strong>"));
 }
 
 //@TODO - rename parameters
-function renderAttStat (w, x, y, z) {//this shows the current level of an attribute and the attribute max
+function renderAttributeStat (w, x, y, z) {//this shows the current level of an attribute and the attribute max
   var augment = y + w;
-  $("."+ x + " .stats").empty().append($("<span>" + y + "/" + z + "(" + augment + ")" + "</span>"));
+  $("." + x + " .stats").empty().append($("<span>" + y + "/" + z + "(" + augment + ")" + "</span>"));
 }
 
 //@TODO - rename parameters
@@ -499,12 +498,14 @@ function renderSpecStat (x, y, z) {//this is for special stats like edge, attrib
 }
 
 //@TODO - rename parameters
-function initiativeRenderMonkey(x, y, z, w) {
+function initiativeRender(x, y, z, w) {
   if (magres == "technomancer") {
     dataP = attributes.current.log;
   }
-  var ini = attributes.current.int+attributes.augment.int + x + w;
+
+  var ini = attributes.current.int + attributes.augment.int + x + w;
   $("." + y).empty().append($("<strong>" + ini + "+" + z + "D6</strong>"));
+
   return ini;
 }
 
@@ -515,17 +516,15 @@ function renderLimit (v, w, x, y, z) {//function for showing and calculating lim
   return limit;
 }
 
-$("#container").on("click",".incAtt, .decAtt",
-  changeAtt
-);
+$("#container").on("click",".incAtt, .decAtt", changeAttribute());
 
 var phyAttMax = false;
 var menAttMax = false;
 
-function changeAtt () {//this function changes the attrabutes
-
+function changeAttribute () {
   var className = $(this).attr("class");
-  switch(className){//This switch statement is SO LONG!
+
+  switch(className){
     case 'incAtt Bod':
       attributes.current.bod = increasePhy(attributes.current.bod, attributes.maximum.bodmax);
       break;
@@ -543,11 +542,11 @@ function changeAtt () {//this function changes the attrabutes
       break;
     case 'incAtt Log':
       attributes.current.log = increaseMen(attributes.current.log, attributes.maximum.logmax);
-      knowingIsHalftheBattle();//update the number of knowledge skills
+      setKnowledgePoints();
       break;
     case 'incAtt Int':
       attributes.current.int = increaseMen(attributes.current.int, attributes.maximum.intmax);
-      knowingIsHalftheBattle();//update the number of knowledge skills
+      setKnowledgePoints();
       break;
     case 'incAtt Cha':
       attributes.current.cha = increaseMen(attributes.current.cha, attributes.maximum.chamax);
@@ -569,123 +568,123 @@ function changeAtt () {//this function changes the attrabutes
       break;
     case 'decAtt Log':
       attributes.current.log = decreaseMen(attributes.current.log, attributes.minimum.logmin, attributes.maximum.logmax);
-      knowingIsHalftheBattle();//update the number of knowledge skills
+      setKnowledgePoints();
       break;
     case 'decAtt Int':
       attributes.current.int = decreaseMen(attributes.current.int, attributes.minimum.intmin, attributes.maximum.intmax);
-      knowingIsHalftheBattle ();//update the number of knowledge skills
+      setKnowledgePoints ();
       break;
     case 'decAtt Cha':
       attributes.current.cha = decreaseMen(attributes.current.cha, attributes.minimum.chamin, attributes.maximum.chamax);
       break;
     case 'incAtt Edg':
-      attributes.current.edg = increaseSpec(attributes.current.edg, attributes.maximum.edgmax);
+      attributes.current.edg = increaseSpecial(attributes.current.edg, attributes.maximum.edgmax);
       break;
     case "incAtt Mag":
-      if (magres=="adept"&&attributes.current.mag<attributes.maximum.magmax) {
+      if (magres == "adept" && attributes.current.mag < attributes.maximum.magmax) {
         powerPoints++;
       }
-      attributes.current.mag= increaseSpec(attributes.current.mag,attributes.maximum.magmax);
-      fociMaxRating=attributes.current.mag*2;
+      attributes.current.mag = increaseSpecial(attributes.current.mag, attributes.maximum.magmax);
+      fociMaxRating = attributes.current.mag * 2;
       break;
     case "incAtt Res":
-      attributes.current.res= increaseSpec(attributes.current.res,attributes.maximum.resmax);
+      attributes.current.res = increaseSpecial(attributes.current.res, attributes.maximum.resmax);
       break;
     case "decAtt Edg":
-      attributes.current.edg = decreaseSpec(attributes.current.edg,attributes.minimum.edgmin);
+      attributes.current.edg = decreaseSpecial(attributes.current.edg, attributes.minimum.edgmin);
       break;
     case "decAtt Mag":
-      if (magres=="adept"&&attributes.current.mag>attributes.minimum.magmin) {
+      if (magres == "adept" && attributes.current.mag > attributes.minimum.magmin) {
         powerPoints--;
       }
-      attributes.current.mag = decreaseSpec(attributes.current.mag,attributes.minimum.magmin);
-      fociMaxRating=attributes.current.mag*2;
+      attributes.current.mag = decreaseSpecial(attributes.current.mag, attributes.minimum.magmin);
+      fociMaxRating = attributes.current.mag * 2;
       break;
     case "decAtt Res":
-      attributes.current.res = decreaseSpec(attributes.current.res,attributes.minimum.resmin);
+      attributes.current.res = decreaseSpecial(attributes.current.res, attributes.minimum.resmin);
       break;
     case "incAtt bow weaprating": //this increase the bows rating. A strange place to put this...but whatever.
-      if (weapons.bow.rating<10) {
+      if (weapons.bow.rating < 10) {
         weapons.bow.rating++;
         bowUpdater();
       }
       break;
     case "decAtt bow weaprating": //this increase the bows rating. A strange place to put this...but whatever.
-      if (weapons.bow.rating>0) {
+      if (weapons.bow.rating > 0) {
         weapons.bow.rating--;
         bowUpdater();
       }
       break;
-
   }
 
   function bowUpdater() {
-    weapons.bow.damage=weapons.bow.rating+2;
-    weapons.bow.ap=Math.ceil(weapons.bow.rating/4)*-1;
-    weapons.bow.avail=weapons.bow.rating;
-    weapons.bow.cost=weapons.bow.rating*100;
+    weapons.bow.damage = weapons.bow.rating + 2;
+    weapons.bow.ap = Math.ceil(weapons.bow.rating / 4) * -1;
+    weapons.bow.avail = weapons.bow.rating;
+    weapons.bow.cost = weapons.bow.rating * 100;
   }
 
   if ($(this).closest("skilltitle")) {//if the incAtt or decAtt is in the div skilltitle, then its a skill, so update the active skills
-    activeSkills=skillUpdater(activeSkills,skills);
+    activeSkills = skillUpdater(activeSkills, skills);
   }
   if ($(this).closest("knowledgeskills")) {//this updates the knowledge skills
-    knowledgeSkills=skillUpdater(knowledgeSkills,knowledgepoints);
+    knowledgeSkills = skillUpdater(knowledgeSkills, knowledgepoints);
   }
 
-  function knowingIsHalftheBattle () {//this sets how many knowledge points a character gets
-    knowledgepoints=(attributes.current.int+attributes.current.log)*2;//sets the number of knowledge skill points
+  function setKnowledgePoints() {
+    knowledgepoints = (attributes.current.int+attributes.current.log) * 2;
   }
-  //skillupdater is very poorly written, refactor later!
-  function skillUpdater (x,y) {//this function gets called by both the active and knowledge skills
+
+  //@TODO - skillupdater is very poorly written, refactor later!
+  function skillUpdater (x, y) {//this function gets called by both the active and knowledge skills
     for (var skill in x) {//this will increase the skills
-      if (y>0){//if you're out of skill points, don't add skills.
+      if (y > 0){//if you're out of skill points, don't add skills.
         if (x[skill]["rating"]<x[skill]["max"]) {//skill ratings can't be over the max skill
-          if (className=="incAtt "+[skill]) {//if increase attrabute (now poorly named) is not with a skill, then do nothing
-            if (x==activeSkills) {//if this is an active skill decrease the skill points
+          if (className == "incAtt " + skill) {//if increase attrabute (now poorly named) is not with a skill, then do nothing
+            if (x == activeSkills) {
               skills--;
-            } else if (x==knowledgeSkills) {//if this is a knowledge skill decrease the knowledge skill points
+            } else if (x == knowledgeSkills) {//if this is a knowledge skill decrease the knowledge skill points
               knowledgepoints--;
             }
-            x[skill]["rating"]++;//incease the rating of the skill by 1
+            x[skill]["rating"]++;
           }
         }
       }
-      if (x[skill]["rating"]>0 && className=="decAtt "+[skill]) {//if skill rating is over 0 and decrease Attribute is with the skill then do this stuff
-        if (x==activeSkills) {
+      if (x[skill]["rating"] > 0 && className == "decAtt " + skill) {//if skill rating is over 0 and decrease Attribute is with the skill then do this stuff
+        if (x == activeSkills) {
           skills++;
-        } else if (x==knowledgeSkills) {
+        } else if (x == knowledgeSkills) {
           knowledgepoints++;
         }
         x[skill]["rating"]--;
       }
-      else if ( (x[skill]["rating"]===0) && (x==knowledgeSkills) ) { // Removes knowledge skill if at zero and reduced again.
-        if (className=="decAtt "+[skill]) {
-          $('.'+[skill]).remove(); // Technically removes table row. Does not delete array entry to avoid index problems.
+      else if ( (x[skill]["rating"] === 0) && (x == knowledgeSkills) ) { // Removes knowledge skill if at zero and reduced again.
+        if (className == "decAtt " + skill) {
+          $('.' + skill).remove(); // Technically removes table row. Does not delete array entry to avoid index problems.
         }
       }
     }
     return x;
   }
   for (var skill in groupSkills) {//this will increase the skill groups
-    if (skillgroups>0 && groupSkills[skill]["rating"]<skillgroupmax && className=="incAtt "+[skill]){
+    if (skillgroups > 0 && groupSkills[skill]["rating"] < skillgroupmax && className == "incAtt " + skill){
       groupSkills[skill]["rating"]++;
       for (var key in groupSkills[skill]["skillsingroup"]) {
         var x = groupSkills[skill]["skillsingroup"][key];
-        activeSkills[x] ["rating"]=groupSkills[skill]["rating"];
-        $(".incAtt"+"."+x).addClass("deact");
-        $(".decAtt"+"."+x).addClass("deact");
+        activeSkills[x]["rating"] = groupSkills[skill]["rating"];
+        $(".incAtt." + x).addClass("deact");
+        $(".decAtt." + x).addClass("deact");
       }
       skillgroups--;
-    } else if (groupSkills[skill]["rating"]>0 && className=="decAtt "+[skill]) {
+    } else if (groupSkills[skill]["rating"] > 0 && className == "decAtt " + skill) {
       groupSkills[skill]["rating"]--;
       skillgroups++;
       for (var key2 in groupSkills[skill]["skillsingroup"]) {
         var x2 = groupSkills[skill]["skillsingroup"][key2];
-        activeSkills[x2] ["rating"]=groupSkills[skill]["rating"];
-        if (groupSkills[skill]["rating"]===0){
-          $(".incAtt"+"."+x2).removeClass("deact");
-          $(".decAtt"+"."+x2).removeClass("deact");
+        activeSkills[x2]["rating"] = groupSkills[skill]["rating"];
+        if (groupSkills[skill]["rating"] === 0){
+          $(".incAtt." + x2).removeClass("deact");
+          $(".decAtt." + x2).removeClass("deact");
         }
       }
     }
@@ -693,67 +692,67 @@ function changeAtt () {//this function changes the attrabutes
 
   for (var prop in adeptPowers) {
     var power = adeptPowers[prop];
-    if (prop=="improvedreflexes" && power["level"]>0) {//this will reduce the cost of improved reflexes if it is activated
-      power["cost"]=1;
-      if (power["level"]>=1 && power["level"]<3 &&powerPoints-power["cost"]>=0) {
-        if (className=="incAtt "+prop) {
+    if (prop == "improvedreflexes" && power["level"] > 0) {//this will reduce the cost of improved reflexes if it is activated
+      power["cost"] = 1;
+      if (power["level"] >= 1 && power["level"] < 3 && powerPoints - power["cost"] >= 0) {
+        if (className == "incAtt " + prop) {
           power["level"]++;
-          powerPoints=powerPoints-power["cost"];
-          attributes.initiative.iniphyDice++;
+          powerPoints = powerPoints - power["cost"];
+          attributes.initiative.physicalDice++;
           attributes.augment.rea++;
         }
       }
-      if (power["level"]>1) {
-        if (className=="decAtt "+[prop]) {
+      if (power["level"] > 1) {
+        if (className == "decAtt " + prop) {
           power["level"]--;
-          powerPoints=powerPoints+power["cost"];
-          attributes.initiative.iniphyDice--;
+          powerPoints = powerPoints + power["cost"];
+          attributes.initiative.physicalDice--;
           attributes.augment.rea--;
         }
       }
-    } else if (prop=="improvedphysicalattributebody"||prop=="improvedphysicalattributeagility"||prop=="improvedphysicalattributereaction"||prop=="improvedphysicalattributestrength") {//if the power is improve attribute then do this stuff
-      if (powerPoints-power["cost"]>=0 && power["level"]<4 && className=="incAtt "+[prop]) {
+    } else if (prop == "improvedphysicalattributebody" || prop == "improvedphysicalattributeagility" || prop == "improvedphysicalattributereaction" || prop == "improvedphysicalattributestrength") {
+      if (powerPoints - power["cost"] >= 0 && power["level"] < 4 && className == "incAtt " + prop) {
         power["level"]++;
-        powerPoints=powerPoints-power["cost"];
+        powerPoints = powerPoints - power["cost"];
 
         addAttMod (power["attmod"]);
       }
-      if (power["level"]>1 && className=="decAtt "+prop) {
+      if (power["level"] > 1 && className == "decAtt " + prop) {
         power["level"]--;
-        powerPoints=powerPoints+power["cost"];
+        powerPoints = powerPoints + power["cost"];
 
         for (var key in power["attmod"]) {
           switch (power["attmod"][key]) {
             case "body":
-              attributes.augment.bod=minusAugmentAtt(attributes.augment.bod);
+              attributes.augment.bod = minusAugmentAtt(attributes.augment.bod);
               break;
             case "reaction":
-              attributes.augment.rea=minusAugmentAtt(attributes.augment.rea);
+              attributes.augment.rea = minusAugmentAtt(attributes.augment.rea);
               break;
             case "agility":
-              attributes.augment.agi=minusAugmentAtt(attributes.augment.agi);
+              attributes.augment.agi = minusAugmentAtt(attributes.augment.agi);
               break;
             case "strength":
-              attributes.augment.str=minusAugmentAtt(attributes.augment.str);
+              attributes.augment.str = minusAugmentAtt(attributes.augment.str);
               break;
           }
         }
       }
     } else {
-      if (powerPoints-power["cost"]>=0 && power["level"]<attributes.current.mag && className=="incAtt "+[prop]) {
+      if (powerPoints - power["cost"] >= 0 && power["level"] < attributes.current.mag && className == "incAtt " + prop) {
         power["level"]++;
-        powerPoints=powerPoints-power["cost"];
+        powerPoints = powerPoints - power["cost"];
 
         for (var skill in power["skillmod"]) {
           addMod(power["skillmod"][skill], power["level"]);//updates mods that power effect
         }
 
       }
-      if (power["level"]>1 && className=="decAtt "+[prop]) {
+      if (power["level"] > 1 && className == "decAtt " + prop) {
         power["level"]--;
-        powerPoints=powerPoints+power["cost"];
+        powerPoints = powerPoints + power["cost"];
         for (var skill in power["skillmod"]) {
-          minusMod(power["skillmod"][skill], power["level"]);//updates mods that power effect
+          minusMod(power["skillmod"][skill], power["level"]);
         }
       }
     }
@@ -852,11 +851,11 @@ function changeAtt () {//this function changes the attrabutes
       }
 
     }
-  };
+  }
 
   //@TODO - rename parameters
-  function inventoryStatUpdater(x,y,z) {//x=the name of the item, y=the classes to target the table to update the stat. z=the stat to show
-    $("#"+x+" "+y).empty().append(z);
+  function inventoryStatUpdater(item, className, stat) {//x=the name of the item, y=the classes to target the table to update the stat. z=the stat to show
+    $("#" + item + " " + className).empty().append(stat);
   }
 
   //@TODO - rename parameters
@@ -917,7 +916,7 @@ function changeAtt () {//this function changes the attrabutes
     return x;
   }
 
-  function increaseSpec (x, y) {//this is for special attributes, they get their own function because they're special
+  function increaseSpecial (x, y) {
     if (specAttribute > 0) {
       if (x < y) {
         x++;
@@ -928,7 +927,7 @@ function changeAtt () {//this function changes the attrabutes
     return x;
   }
 
-  function decreaseSpec(x, y) {//for when special people make a mistake
+  function decreaseSpecial(x, y) {
     if (x > y) {
       x--;
       specAttribute++;
@@ -957,16 +956,16 @@ function minusAugmentAtt(x) {
 }
 
 //@TODO - move this out of the middle of these functions to somewhere that makes sense
-$(".mage, .techno, .mystic, .adept, .aspect").click(//this part will call the attributes.current.mag/attributes.current.res function
+$(".mage, .techno, .mystic, .adept, .aspect").click(
   selectMagRes
 );
 
 function selectMagRes() {
-  if ($(this).hasClass('deact')||$(this).hasClass('selected')) {//this will make it so that if the button is deactivated that it won't do anything
+  if ($(this).hasClass('deact') || $(this).hasClass('selected')) {
     return;
   }
   else {
-    fnselect ($(this));
+    highlightSelected ($(this));
 
     if ( $(this).hasClass('mage') ) {
       magres = "mage";
@@ -1637,7 +1636,7 @@ $(document).ready(function () {//this is makes it so that that skill points beco
 $(".knowButton").click(knowledgeTypeSelect);
 
 function knowledgeTypeSelect () {
-  fnselect($(this));
+  highlightSelected($(this));
   knowledgeType = $(this).attr("id");
 }
 
@@ -1687,7 +1686,7 @@ function addPowerPoint () {
 
     if ($(this).attr("id") == "improvedreflexes") {//god damn improvedreflexes has to be a special snowflake and follow different rules
       power["cost"] = 1.5;
-      attributes.initiative.iniphyDice=1;
+      attributes.initiative.physicalDice = 1;
       switch (power["level"]) {
         case 1:
           powerPoints += 1.5;
@@ -1730,7 +1729,7 @@ function addPowerPoint () {
 
         if ($(this).attr("id")=="improvedreflexes") {
           attributes.augment.rea++;
-          attributes.initiative.iniphyDice++;
+          attributes.initiative.physicalDice++;
         }
       }
 
