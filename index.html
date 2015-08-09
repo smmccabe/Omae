@@ -1,1161 +1,931 @@
 <!DOCTYPE html>
-    <!--Shadowrun is Copyright 2013, Topps Comapny Inc.-->
-    <!--This program is Copyright 2013, William "Dethstrobe" Johnson-->
-    <!--This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+<!--Shadowrun is Copyright 2013, Topps Comapny Inc.-->
+<!--This program is Copyright 2013, William "Dethstrobe" Johnson-->
+<!--This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
-    
-    <!--Omae is meant to be a single page self-contained html/css/javascript application for the web. Well, minus the links
-    to the jQuery library. As well as the links to the web fonts, Share Tech Mono, but that's optional anyway.
-    If you wish to add to, change, or edit this file, feel free to, so long as you are willing to
-    give back to the community and release your changes for free under the General GNU license and leave the licensing information intact.
-    This part of the document doesn't count at the GNU License you can totally delete it if you want to.
-    If you wish to contact me, the creater, you can on twitter: @dethstrobe or email: william.johnson@dethstrobe.com-->
-    
-    <!--Special Thanks to:
-    Reddit users:
-    BoDiddySauce for helping explain to me how nested objects work - http://www.reddit.com/r/learnjavascript/comments/1o964m/how_do_i_make_an_array_in_an_array/ccq181x
-    porkchopsnapplesauce for helping me figure out nested objects too - http://www.reddit.com/r/learnjavascript/comments/1o964m/how_do_i_make_an_array_in_an_array/ccpws92
-    Kaycat for helping with all the skill data entries - http://www.reddit.com/r/Shadowrun/comments/1obvph/im_working_on_an_sr5_character_generator_and/ccrcjgk
-    Bagelson for helping with the Adept powers and spells, and firearms entries -
-        http://www.reddit.com/r/Shadowrun/comments/1omsyr/omae_now_looking_for_help_with_adept_powers/cctoqy3
-        http://www.reddit.com/r/Shadowrun/comments/1ovzhj/omae_spells_and_powers/ccwzcav
-        http://www.reddit.com/r/Shadowrun/comments/1qckfa/omae_fired_up_about_firearms/cdboann
-    Celeodor for help with the Technomancer Complex Forms - http://www.reddit.com/r/Shadowrun/comments/1plgtm/omae_complex_forms_and_you/
-    shintsurugifor helping with melee weapons - http://www.reddit.com/r/Shadowrun/comments/1pq0vr/omae_mele%C3%A9/cd59t5b
-    JustKelly for helping with the commlinks, decks, and RCCs. justkelly@me.com or reddit.com/u/justkelly
-    Undin for helping with programs and electronic accessories. -
-        http://www.reddit.com/r/Shadowrun/comments/1tx1wb/omae_need_some_help_with_code_slinging/cecluyn
-        http://www.reddit.com/r/Shadowrun/comments/1w77ne/omae_tagger_but_i_just_met_her/cezdnql
-    
-    All the people on the Shadowgrid forums for their rule lawyering - http://forums.shadowruntabletop.com/index.php?board=2.0
-        -->
-<html>
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
+
+<!--Omae is meant to be a single page self-contained html/css/javascript application for the web. Well, minus the links
+to the jQuery library. As well as the links to the web fonts, Share Tech Mono, but that's optional anyway.
+If you wish to add to, change, or edit this file, feel free to, so long as you are willing to
+give back to the community and release your changes for free under the General GNU license and leave the licensing information intact.
+This part of the document doesn't count at the GNU License you can totally delete it if you want to.
+If you wish to contact me, the creater, you can on twitter: @dethstrobe or email: william.johnson@dethstrobe.com-->
+
+<!--Special Thanks to:
+Reddit users:
+BoDiddySauce for helping explain to me how nested objects work - http://www.reddit.com/r/learnjavascript/comments/1o964m/how_do_i_make_an_array_in_an_array/ccq181x
+porkchopsnapplesauce for helping me figure out nested objects too - http://www.reddit.com/r/learnjavascript/comments/1o964m/how_do_i_make_an_array_in_an_array/ccpws92
+Kaycat for helping with all the skill data entries - http://www.reddit.com/r/Shadowrun/comments/1obvph/im_working_on_an_sr5_character_generator_and/ccrcjgk
+Bagelson for helping with the Adept powers and spells, and firearms entries -
+    http://www.reddit.com/r/Shadowrun/comments/1omsyr/omae_now_looking_for_help_with_adept_powers/cctoqy3
+    http://www.reddit.com/r/Shadowrun/comments/1ovzhj/omae_spells_and_powers/ccwzcav
+    http://www.reddit.com/r/Shadowrun/comments/1qckfa/omae_fired_up_about_firearms/cdboann
+Celeodor for help with the Technomancer Complex Forms - http://www.reddit.com/r/Shadowrun/comments/1plgtm/omae_complex_forms_and_you/
+shintsurugifor helping with melee weapons - http://www.reddit.com/r/Shadowrun/comments/1pq0vr/omae_mele%C3%A9/cd59t5b
+JustKelly for helping with the commlinks, decks, and RCCs. justkelly@me.com or reddit.com/u/justkelly
+Undin for helping with programs and electronic accessories. -
+    http://www.reddit.com/r/Shadowrun/comments/1tx1wb/omae_need_some_help_with_code_slinging/cecluyn
+    http://www.reddit.com/r/Shadowrun/comments/1w77ne/omae_tagger_but_i_just_met_her/cezdnql
+
+All the people on the Shadowgrid forums for their rule lawyering - http://forums.shadowruntabletop.com/index.php?board=2.0
+    -->
+<html lang="en">
 <head>
-    <title>Omae SR5 Character Generator</title>
-    <link href='http://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Omae SR5 Character Generator</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="functions.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <h1>Omae SR5 Character Generator</h1>
-        <div id="priorityContain">
-            <table id="priority">
-                <h2>Priority Table</h2>
-                <tr id="priority-label" class="label">
-                    <td class="prilevel"> Priority </td>
-                    <td class="metatype">Metatype</td>
-                    <td class="attribute">Attributes</td>
-                    <td class="magres">Magic/Resonance</td>
-                    <td class="skills">Skills</td>
-                    <td class="resource">Resource</td>
-                </tr>
-                <tr id="priority-a">
-                    <td class="prilevel a selected"> A </td>
-                    <td class="metatype a">
-                        Human (9)<br>
-                        Elf (8)<br>
-                        Dwarf (7)<br>
-                        Ork (7)<br>
-                        Troll (5)
-                    </td>
-                    <td class="attribute a">24</td>
-                    <td class="magres a">
-                        <strong>Magician or Mystic Adept:</strong> Magic 6, two Rating 5 Magic skills, 10 spells<br>
-                        <strong>Technomancer:</strong> Resonance 6, two Rating 5 Resonance Skills, 5 complex forms
-                    </td>
-                    <td class="skills a">46/10</td>
-                    <td class="resource a">
-                        450,000 &#65509
-                    </td>
-                </tr>
-                <tr id="priority-b">
-                    <td class="prilevel b selected"> B </td>
-                    <td class="metatype b">
-                        Human (7)<br>
-                        Elf (6)<br>
-                        Dwarf (4)<br>
-                        Ork (4)<br>
-                        Troll (0)
-                    </td>
-                    <td class="attribute b">
-                        20
-                    </td>
-                    <td class="magres b">
-                        <strong>Magician or Mystic Adept:</strong> Magic 4, two Rating 4 Magic skills, 7 spells<br>
-                        <strong>Technomancer:</strong> Resonance 4, two Rating 4 Resonance Skills, 2 complex forms<br>
-                        <strong>Adept:</strong> Magic 6, one Rating 4 Active Skill<br>
-                        <strong>Aspected Magician:</strong> Magic 5, one Rating 4 Magical Skill group
-                    </td>
-                    <td class="skills b">
-                        36/5
-                    </td>
-                    <td class="resource b">
-                        275,000 &#65509
-                    </td>
-                </tr>
-                <tr id="priority-c">
-                    <td class="prilevel c selected"> C </td>
-                    <td class="metatype c">
-                        Human (5)<br>
-                        Elf (3)<br>
-                        Dwarf (1)<br>
-                        Ork (0)
-                    </td>
-                    <td class="attribute c">
-                        16
-                    </td>
-                    <td class="magres c">
-                        <strong>Magician or Mystic Adept:</strong> Magic 3, 5 spells<br>
-                        <strong>Technomancer:</strong> Resonance 3, 1 complex forms<br>
-                        <strong>Adept:</strong> Magic 4, one Rating 2 Active Skill<br>
-                        <strong>Aspected Magician:</strong> Magic 3, one Rating 2 Magical Skill group
-                    </td>
-                    <td class="skills c">
-                        28/2
-                    </td>
-                    <td class="resource c">
-                        140,000 &#65509
-                    </td>
-                </tr>
-                <tr id="priority-d">
-                    <td class="prilevel d selected"> D </td>
-                    <td class="metatype d">
-                        Human (3)<br>
-                        Elf (0)
-                    </td>
-                    <td class="attribute d">
-                        14
-                    </td>
-                    <td class="magres d">
-                        <strong>Adept:</strong> Magic 2<br>
-                        <strong>Aspected Magician:</strong> Magic 2
-                    </td>
-                    <td class="skills d">
-                        22/0
-                    </td>
-                    <td class="resource d">
-                        50,000 &#65509
-                    </td>
-                </tr>
-                <tr id="priority-e">
-                    <td class="prilevel e selected"> E </td>
-                    <td class="metatype e">
-                        Human (1)
-                    </td>
-                    <td class="attribute e">
-                        12
-                    </td>
-                    <td class="magres e">
-                        <strong>Mundane:</strong> Jack and Squat at the Rating of zilch
-                    </td>
-                    <td class="skills e">
-                        18/0
-                    </td>
-                    <td class="resource e">
-                        6,000 &#65509
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="metatypeContain" class="container">
-            <table id="metatypetable">
-                <h2>Metatype</h2>
-                <tr id="metatypechoice">
-                    <td class="human deact">
-                        Human
-                    </td>
-                    <td class="elf deact">
-                        Elf
-                    </td>
-                    <td class="dwarf deact">
-                        Dwarf
-                    </td>
-                    <td class="ork deact">
-                        Ork
-                    </td>
-                    <td class="troll deact">
-                        Troll
-                    </td>
-                </tr>
-            </table>
-            <h3>Racials</h3>
-            <div id="racial">
-                
-            </div>
-        </div>
-        <div id="magresContain" class="container">
-            <table id="magrestable">
-                <h2>Magic/Resonance</h2>
-                <tr id="magreschoice">
-                    <td class="mage deact">
-                        Magician
-                    </td>
-                    <td class="techno deact">
-                        Technomancer
-                    </td>
-                    <td class="mystic deact">
-                        Mystic Adept
-                    </td>
-                    <td class="adept deact">
-                        Adept
-                    </td>
-                    <td class="aspect deact">
-                        Aspected Magician
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="attributeContain" class="container">
-            <table id="attribute">
-                <h2>Attributes</h2>
-                <tr id="attLabel" class="label">
-                    <td>
-                        Bod
-                    </td>
-                    <td>
-                        Agi
-                    </td>
-                    <td>
-                        Rea
-                    </td>
-                    <td>
-                        Str
-                    </td>
-                    <td>
-                        Wil
-                    </td>
-                    <td>
-                        Log
-                    </td>
-                    <td>
-                        Int
-                    </td>
-                    <td>
-                        Cha
-                    </td>
-                    <td>
-                        Points
-                    </td>
-                </tr>
-                <tr>
-                    <td class="incAtt Bod">
-                        +
-                    </td>
-                    <td class="incAtt Agi">
-                        +
-                    </td>
-                    <td class="incAtt Rea">
-                        +
-                    </td>
-                    <td class="incAtt Str">
-                        +
-                    </td>
-                    <td class="incAtt Wil">
-                        +
-                    </td>
-                    <td class="incAtt Log">
-                        +
-                    </td>
-                    <td class="incAtt Int">
-                        +
-                    </td>
-                    <td class="incAtt Cha">
-                        +
-                    </td>
-                    <td class="label">
-                        raise
-                    </td>
-                </tr>
-                <tr>
-                    <td class="bod">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="agi">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="rea">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="str">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="wil">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="log">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="int">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="cha">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="pnt">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="decAtt Bod">
-                        -
-                    </td>
-                    <td class="decAtt Agi">
-                        -
-                    </td>
-                    <td class="decAtt Rea">
-                        -
-                    </td>
-                    <td class="decAtt Str">
-                        -
-                    </td>
-                    <td class="decAtt Wil">
-                        -
-                    </td>
-                    <td class="decAtt Log">
-                        -
-                    </td>
-                    <td class="decAtt Int">
-                        -
-                    </td>
-                    <td class="decAtt Cha">
-                        -
-                    </td>
-                    <td class="label">
-                        lower
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="specialContain" class="container">
-            <table id="special">
-                <h2>Special</h2>
-                <tr id="spcLabel" class="label">
-                    <td>
-                        Edge
-                    </td>
-                    <td class="Mag hide">
-                        Magic
-                    </td>
-                    <td class="Res hide">
-                        Reson
-                    </td>
-                    <td>
-                        Points
-                    </td>
-                </tr>
-                <tr>
-                    <td class="incAtt Edg">
-                        +
-                    </td>
-                    <td class="incAtt Mag hide">
-                        +
-                    </td>
-                    <td class="incAtt Res hide">
-                        +
-                    </td>
-                    <td class="label">
-                        raise
-                    </td>
-                </tr>
-                <tr>
-                    <td class="edg">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="Mag mag hide">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="Res res hide">
-                        <span class="stats"></span>
-                    </td>
-                    <td class="spePnt">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="decAtt Edg">
-                        -
-                    </td>
-                    <td class="decAtt Mag hide">
-                        -
-                    </td>
-                    <td class="decAtt Res hide">
-                        -
-                    </td>
-                    <td class="label">
-                        lower
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="limitContain" class="container">
-            <table id="limits">
-                <h2>Limits</h2>
-                <tr id="limitLabel" class="label">
-                    <td>
-                        Physical
-                    </td>
-                    <td >
-                        Mental
-                    </td>
-                    <td>
-                        Social
-                    </td>
-                </tr>
-                <tr id="limitPoint" class="">
-                    <td class="phyLimit">
-                        
-                    </td>
-                    <td class="menLimit">
-                        
-                    </td>
-                    <td class="socLimit">
-                        
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="initiative" class="container">
-            <table>
-                <h2>Initiative</h2>
-                <tr id="inilabels" class="label">
-                    <td>
-                        Physical
-                    </td>
-                    <td>
-                        Astral
-                    </td>
-                    <td>
-                        ColdSim
-                    </td>
-                    <td>
-                        HotSim
-                    </td>
-                </tr>
-                <tr id="inistats">
-                    <td class="meatini">
-                        
-                    </td>
-                    <td class="magicini">
-                        
-                    </td>
-                    <td class="coldmatini">
-                        
-                    </td>
-                    <td class="hotmatini">
-                        
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="skillcontainer">
-            <table id="characterPoints"> <!--This displays how many points are left to spend-->
-                <tr>
-                    <th><h3>Skill Points</h3></th>
-                    <th><h3>Knowledge Points</h3></th>
-                    <th class="Mag hide"><h3>Power Points</h3></th>
-                    <th class="Mag hide"><h3>Spells</h3></th>
-                    <th class="Res hide"><h3>Forms</h3></th>
-                    <th><h3>Nuyen</h3></th>
-                    <th><h3>Essence</h3></th>
-                    <th><h3>Karma</h3></th>
-                </tr>
-                <tr>
-                    <td id="skillpnt" class="points"></td>
-                    <td id="knowpnt" class="points"></td>
-                    <td id="powerpnt" class="points Mag hide"></td>
-                    <td id="spellpnt" class="points Mag hide"></td>
-                    <td id="formpnt" class="points Res hide"></td>
-                    <td id="nuyen" class="points">0&#65509</td>
-                    <td id="essencepnt" class="points">6</td>
-                    <td id="karmapnt" class="points">25</td>
-                </tr>
-            </table>
-            <table id="skillgrouplist">
-                <h2 id="skillgroupHeader">Skill Groups</h2>
-                <tr class="skillgroupTitles label">
-                    <td>
-                        raise
-                    </td>
-                    <td>
-                        Rating
-                    </td>
-                    <td>
-                        lower
-                    </td>
-                    <td class="skillgroupname">
-                        Skill Group
-                    </td>
-                    <td class="skillsingroup">
-                        Skills
-                    </td>
-                </tr>
-                <tr class="skillgroups">
-                    
-                </tr>
-            </table>
-            <table id="skilllist">
-                <h2> Active Skills</h2>
-                <tr class="skilltitle">
-                    <td><h3>Agility</h3></td>
-                </tr>
-                <tr class="skills agility">
-                    <tr class="skilllabel label">
-                        <td>raise</td>
-                        <td>Rating</td>
-                        <td>lower</td>
-                        <td class="skillName">Skill Name</td>
-                        <td>Attributes</td>
-                        <td>Modifiers</td>
-                        <td>Dice Pool</td>
-                    </tr>
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Body</h3></td>
-                </tr>
-                <tr class="skills body">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Reaction</h3></td>
-                </tr>
-                <tr class="skills reaction">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Strength</h3></td>
-                </tr>
-                <tr class="skills strength">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Charisma</h3></td>
-                </tr>
-                <tr class="skills charisma">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Intuition</h3></td>
-                </tr>
-                <tr class="skills intuition">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Logic</h3></td>
-                </tr>
-                <tr class="skills logic">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Willpower</h3></td>
-                </tr>
-                <tr class="skills will">
-                    
-                </tr>
-                <tr class="skilltitle Mag hide">
-                    <td><h3 class="Mag hide">Magic</h3></td>
-                </tr>
-                <tr class="skills magic Mag hide">
-                    
-                </tr>
-                <tr class="skilltitle Res hide">
-                    <td><h3 class="Res hide">Resonance</h3></td>
-                </tr>
-                <tr class="skills resonance Res hide">
-                    
-                </tr>
-            </table>
-            <table id="knowledgeskills">
-                <h2>Knowledge Skills</h2>
-                <tr class="knowledgename">
-                    <td>
-                        <input type="text" class="knowledgeName" placeholder="Input Knowledge">
-                    </td>
-                    <td id="academic" class="knowButton" title="Logic">Academic</td>
-                    <td id="interests" class="knowButton" title="Intuition">Interests</td>
-                    <td id="professional" class="knowButton" title="Logic">Professional</td>
-                    <td id="street" class="knowButton" title="Intuition">Street</td>
-                    <td id="language" class="knowButton" title="Intuition">Language</td>
-                    <td id="addSkill" class="button"><strong>Add Knowledge</strong></td>
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Add Knowledge Skill</h3></td>
-                </tr>
-                    <tr class="namingStuffIsHard">
-                        
-                    </tr>
-                <tr class="skilltitle">
-                    <td><h3>Academic</h3></td>
-                </tr>
-                <tr class="skills academic">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Interests</h3></td>
-                </tr>
-                <tr class="skills interests">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Professional</h3></td>
-                </tr>
-                <tr class="skills professional">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Street</h3></td>
-                </tr>
-                <tr class="skills street">
-                    
-                </tr>
-                <tr class="skilltitle">
-                    <td><h3>Language</h3></td>
-                </tr>
-                <tr class="skills language">
-                    
-                </tr>
-            </table>
-        </div>
-        <div id="magicResource">
-            <table id="adeptpowers" class="Mag hide">
-                <h2 class="Mag hide">Adept Powers</h2>
-                <tr id="adeptlabel" class="label">
-                    <td>Add Power</td>
-                    <td>raise</td>
-                    <td>Level</td>
-                    <td>lower</td>
-                    <td>Power Name</td>
-                    <td>Cost</td>
-                    <td>Activation</td>
-                    <td>Drain</td>
-                </tr>
-                <tr id="powerlist">
-                    
-                </tr>
-            </table>
-            <table id="spelllist" class="Mag hide">
-                <h2 class="Mag hide">Spells</h2>
-                <tr class="label combat">
-                    <td>Spell</td>
-                    <td>Prep</td>
-                    <td>Spell Name</td>
-                    <td>Direct</td>
-                    <td>Element</td>
-                    <td>Type</td>
-                    <td>Range</td>
-                    <td>Damage</td>
-                    <td>Duration</td>
-                    <td>Drain</td>
-                </tr>
-                <tr class="label detection">
-                    <td>Spell</td>
-                    <td>Prep</td>
-                    <td>Spell Name</td>
-                    <td>Active</td>
-                    <td>Direction</td>
-                    <td>Type</td>
-                    <td>Range</td>
-                    <td>Duration</td>
-                    <td>Drain</td>
-                </tr>
-                <tr class="label health">
-                    <td>Spell</td>
-                    <td>Prep</td>
-                    <td>Spell Name</td>
-                    <td>Essence</td>
-                    <td>Type</td>
-                    <td>Range</td>
-                    <td>Duration</td>
-                    <td>Drain</td>
-                </tr>
-                <tr class="label illusion">
-                    <td>Spell</td>
-                    <td>Prep</td>
-                    <td>Spell Name</td>
-                    <td>Realistic</td>
-                    <td>Sense</td>
-                    <td>Type</td>
-                    <td>Range</td>
-                    <td>Duration</td>
-                    <td>Drain</td>
-                </tr>
-                <tr class="label manipulation">
-                    <td>Spell</td>
-                    <td>Prep</td>
-                    <td>Spell Name</td>
-                    <td>Effect</td>
-                    <td>Damage</td>
-                    <td>Type</td>
-                    <td>Range</td>
-                    <td>Duration</td>
-                    <td>Drain</td>
-                </tr>
-                <tr class="spellcata combat">
-                    <td><h3>Combat Spells</h3></td>
-                </tr>
-                <tr class="spells combat">
-                    
-                </tr>
-                <tr class="spellcata detection">
-                    <td><h3>Detection Spells</h3></td>
-                </tr>
-                <tr class="spells detection">
-                    
-                </tr>
-                <tr class="spellcata health">
-                    <td><h3>Health Spells</h3></td>
-                </tr>
-                <tr class="spells health">
-                    
-                </tr>
-                <tr class="spellcata illusion">
-                    <td><h3>Illusion Spells</h3></td>
-                </tr>
-                <tr class="spells illusion">
-                    
-                </tr>
-                <tr class="spellcata manipulation">
-                    <td><h3>Manipulation Spells</h3></td>
-                </tr>
-                <tr class="spells manipulation">
-                    
-                </tr>
-            </table>
-        </div>
-        <div id="resonanceResource" class="Res hide">
-            <table id="formlist" class="">
-                <h2 class="Res hide">Complex Forms</h2>
-                <tr class="label complexforms">
-                    <td>Add Form</td>
-                    <td>Form Name</td>
-                    <td>Target</td>
-                    <td>Duration</td>
-                    <td>Fading</td>
-                </tr>
-                <tr class="complexforms library">
-                    
-                </tr>
-            </table>
-        </div>
-        <div id="gearResource">
-            <h2>Gear</h2>
-            <div id="meleeweapons">
-                <h2>Melee Weapons</h2>
-                <table>
-                    <tr><td><h3>Blades</h3></td></tr>
-                    <tr class="melee label">
-                        <td>Buy</td>
-                        <td>Weapon Name</td>
-                        <td>Accuracy</td>
-                        <td>Reach</td>
-                        <td>Damage</td>
-                        <td>AP</td>
-                        <td>Availability</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr class="meleeweapon blades">
-                        
-                    </tr>
-                    <tr><td><h3>Clubs</h3></td></tr>
-                    <tr class="meleeweapon clubs">
-                        
-                    </tr>
-                    <tr><td><h3>Unarmed</h3></td></tr>
-                    <tr class="meleeweapon unarmedcombat">
-                        
-                    </tr>
-                    <tr><td><h3>Exotic Melee Weapon</h3></td></tr>
-                    <tr class="meleeweapon exoticmeleeweapon">
-                        
-                    </tr>
-                </table>
-            </div>
-            <div id="projectiles">
-                <h2>Projectiles</h2>
-                <table>
-                    <tr><td><h3>Bows</h3></td></tr>
-                    <tr class="bow label">
-                        <td>Buy</td>
-                        <td>raise</td>
-                        <td>Rating</td>
-                        <td>lower</td>
-                        <td>Accuracy</td>
-                        <td>Damage</td>
-                        <td>AP</td>
-                        <td>Availibility</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr class="projectiles bow">
-                        
-                    </tr>
-                </table>
-                <table>
-                    <tr><td><h3>Crossbows</h3></td></tr>
-                    <tr class="crossbow label">
-                        <td>Buy</td>
-                        <td>Accuracy</td>
-                        <td>Damage</td>
-                        <td>AP</td>
-                        <td>Availibility</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr class="projectiles crossbow">
-                        
-                    </tr>
-                </table>
-                <table>
-                    <tr><td><h3>Throwing Weapons</h3></td></tr>
-                    <tr class="throwingweapon label">
-                        <td>Buy</td>
-                        <td>Accuracy</td>
-                        <td>Damage</td>
-                        <td>AP</td>
-                        <td>Availibility</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr class="projectiles throwingweapons">
-                        
-                    </tr>
-                </table>
-            </div>
-            <div id="firearms">
-                <h2>Firearms</h2>
-                <table>
-                    <tr><td><h3>Tasers</h3></td></tr>
-                    <tr class="firearm label">
-                        <td>Buy</td>
-                        <td>Weapon Name</td>
-                        <td>Accuracy</td>
-                        <td>Damage</td>
-                        <td>AP</td>
-                        <td>Mode</td>
-                        <td>RC</td>
-                        <td>Ammo</td>
-                        <td>Availability</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr class="firearms tasers">
-                        
-                    </tr>
-                    <tr><td><h3>Hold-outs</h3></td></tr>
-                    <tr class="firearms holdouts">
-                        
-                    </tr>
-                    <tr><td><h3>Light Pistols</h3></td></tr>
-                    <tr class="firearms lightpistols">
-                        
-                    </tr>
-                    <tr><td><h3>Heavy Pistols</h3></td></tr>
-                    <tr class="firearms heavypistols">
-                        
-                    </tr>
-                    <tr><td><h3>Machine Pistols</h3></td></tr>
-                    <tr class="firearms machinepistols">
-                        
-                    </tr>
-                    <tr><td><h3>Submachine Guns</h3></td></tr>
-                    <tr class="firearms submachineguns">
-                        
-                    </tr>
-                    <tr><td><h3>Assault Rifles</h3></td></tr>
-                    <tr class="firearms assaultrifles">
-                        
-                    </tr>
-                    <tr><td><h3>Sniper Rifles</h3></td></tr>
-                    <tr class="firearms sniperrifles">
-                        
-                    </tr>
-                    <tr><td><h3>Shotguns</h3></td></tr>
-                    <tr class="firearms shotguns">
-                        
-                    </tr>
-                    <tr><td><h3>Machine Guns</h3></td></tr>
-                    <tr class="firearms machineguns">
-                        
-                    </tr>
-                    <tr><td><h3>Cannons/Launchers</h3></td></tr>
-                    <tr class="firearms cannonslaunchers">
-                        
-                    </tr>
-                    <tr><td><h3>Exotic Ranged Weapons</h3></td></tr>
-                    <tr class="firearms exoticrangedweapon">
-                        
-                    </tr>
-                </table>
-            </div>
-            <div id="ammunition">
-                <h2>Ammunition</h2>
-                <table>
-                    <tr class='ammo label'>
-                        <td>Buy</td>
-                        <td>Ammount</td>
-                        <td>Sell</td>
-                        <td>Name</td>
-                        <td>Dam Modifier</td>
-                        <td class='blastafter'>AP Modifier</td>
-                        <td>Availability</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr><td><h3>Taser Ammo</h3></td></tr>
-                    <tr id="taserammo" class="ammunition taserammo">
-                        
-                    </tr>
-                    <tr><td><h3>Hold-Out Ammo</h3></td></tr>
-                    <tr id="holdoutammo" class="standard ammunition holdoutammo">
-                        
-                    </tr>
-                    <tr><td><h3>Light Pistol Ammo</h3></td></tr>
-                    <tr id="lightammo" class="standard ammunition lightammo">
-                        
-                    </tr>
-                    <tr><td><h3>Heavy Pistol Ammo</h3></td></tr>
-                    <tr id="heavyammo" class="standard ammunition heavyammo">
-                        
-                    </tr>
-                    <tr><td><h3>Machine Pistol Ammo</h3></td></tr>
-                    <tr id="machineammo" class="standard ammunition machineammo">
-                        
-                    </tr>
-                    <tr><td><h3>Submachine Gun Ammo</h3></td></tr>
-                    <tr id="smgammo" class="standard ammunition smgammo">
-                        
-                    </tr>
-                    <tr><td><h3>Assault Rifle Ammo</h3></td></tr>
-                    <tr id="assaultammo" class="standard ammunition assaultammo">
-                        
-                    </tr>
-                    <tr><td><h3>Sniper Rifle Ammo</h3></td></tr>
-                    <tr id="sniperammo" class="standard ammunition sniperammo">
-                        
-                    </tr>
-                    <tr><td><h3>Shotgun Ammo</h3></td></tr>
-                    <tr id="shotgunammo" class="standard ammunition shotgunammo">
-                        
-                    </tr>
-                    <tr><td><h3>Machine Gun Ammo</h3></td></tr>
-                    <tr id="lmgammo" class="standard ammunition lmgammo">
-                        
-                    </tr>
-                    <tr><td><h3>Cannon Ammo</h3></td></tr>
-                    <tr id="cannonammo" class="ammunition cannonammo">
-                        
-                    </tr>
-                    <tr><td><h3>Grenades</h3></td></tr>
-                    <tr id="grenadeammo" class="ammunition grenadeammo">
-                        
-                    </tr>
-                    <tr><td><h3>Rockets</h3></td></tr>
-                    <tr id="rocketammo" class="ammunition rocketammo">
-                        
-                    </tr>
-                    <tr><td><h3>(Exotic) Special Ammo</h3></td></tr>
-                    <tr id="specialammo" class="ammunition specialammo">
-                        
-                    </tr>
-                </table>
-            </div>
-            <div id='explosive'>
-                <h2>Explosives</h2>
-                <table>
-                    <tr class="label">
-                        <td>Buy</td>
-                        <td>raise</td>
-                        <td>Rating</td>
-                        <td>lower</td>
-                        <td>Availability</td>
-                        <td>Cost</td>
-                    </tr>
-                    <tr><td><h3>Commercial</h3></td></tr>
-                    <tr class="commercial explosives"></tr>
-                    <tr><td><h3>Foam</h3></td></tr>
-                    <tr class="foam explosives"></tr>
-                    <tr><td><h3>Plastic</h3></td></tr>
-                    <tr class="plastic explosives"></tr>
-                    <tr><td><h3>Detonator Cap</h3></td></tr>
-                    <tr class="detonator"></tr>
-                </table>
-            </div>
-            <div id="clotharmor">
-                <h2>Clothing</h2>
-                <table>
-                    <tr class="label">
-                        <td>Buy</td>
-                        <td>Cost</td>
-                        <td colspan=3>Mods</td>
-                        <td>Armor</td>
-                        <td>Availability</td>
-                        <td>Total Cost</td>
-                    </tr>
-                    <tr id="clothing">
-                        <td class="buycloths button"><strong>+</strong></td>
-                        <td><input type="number" min="20" max="100000" placeholder="20-100000" name="clothingcost"></td>
-                        <td class="electrochromic button">Electrochromic</td>
-                        <td class="feedback button">Feedback</td>
-                        <td class="leather button">Synthleather</td>
-                        <td class="armor">0</td>
-                        <td class="avail">0</td>
-                        <td class="cost">20&yen;</td>
-                    </tr>
-                </table>
-                <h2>Armor</h2>
-                <table id="bodyarmor">
-                    <tr class="armor label">
-                        <td>Buy</td>
-                        <td>Name</td>
-                        <td>Armor</td>
-                        <td>Availability</td>
-                        <td>Cost</td>
-                    </tr>
-                </table>
-            </div>
-            <div id="devices">
-                <h2>Electronics</h2>
-                <table>
-                    <tr><td><h3>Commlinks</h3></td></tr>
-                    <tr id="links"></tr>
-                    <tr class="commlinks label"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
-                    <tr><td><h3>Cyberdecks</h3></td></tr>
-                    <tr id="decks"></tr>
-                    <tr class="cyberdecks label"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Array</td><td>Programs</td><td>Avail</td><td>Cost</td></tr>
-                    <tr><td><h3>Rigger Control Console</h3></td></tr>
-                    <tr id="consoles"></tr>
-                    <tr class="rccs label"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Data Process</td><td>Firewall</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-            </div>
-            <div id="e-accessories">
-                <h2>Electonic Accessories</h2>
-                <table id="eccessories">
-                    <tr class="label"><td>Buy</td><td>Accessory</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>RFID Tags</h2>
-                <table id="rfid">
-                    <tr class="label"><td>Buy</td><td>Ammount</td><td>Sell</td><td>Tags</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Communications</h2>
-                <table id="communications">
-                    <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                 <h2>Credsticks</h2>
-                 <table id="credsticks">
-                     <tr class="label"><td>Buy</td><td>Type</td><td>Max Amount</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Identification</h2>
-                 <table id="identification">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Tools</h2>
-                 <table id="tools">
-                     <tr class="label"><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Optical & Imaging Devices</h2>
-                 <table id="optics">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-
-                <h2>Audio Devices</h2>
-                 <table id="audio">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-
-                <h2>Security Devices</h2>
-                 <table id="securitydevice">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Restraints</h2>
-                 <table id="restraints">
-                     <tr class="label"><td>Buy</td><td>Ammount</td><td>Sell</td><td>Type</td><td>Armor</td><td>Structure</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Breaking and Entering Gear</h2>
-                 <table id="bnegear">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                 <h2>Industrial Chemicals</h2>
-                 <table id="chemicals">
-                     <tr class="label"><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                 <h2>Survival Gear</h2>
-                 <table id="survivalgear">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>Grapple Gun Gear</h2>
-                 <table id="grapplegungear">
-                     <tr class="label"><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                <h2>Grapple Rope</h2>
-                <table id="grapplerope">
-                    <tr class="label"><td>Buy</td><td>Meters</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>Biotech</h2>
-                 <table id="biotech">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>DocWagon Contract</h2>
-                 <table id="docwagon">
-                    <tr class="label"><td>Buy</td><td>Years</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>Slap Patches</h2>
-                 <table id="slappatches">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-            </div>
-            <div id="magicequipment" class="Mag hide">
-                <h2>Magic Equipment</h2>
-                <h3>Enchanting Foci</h3>
-                <table id="enchantingfoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h3>Metamagic Foci</h3>
-                 <table id="metamagicfoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h3>Power Foci</h3>
-                 <table id="powerfoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h3>Qi Foci</h3>
-                 <table id="qifoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Power</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h3>Spell Foci</h3>
-                 <table id="spellfoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spell</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h3>Spirit Foci</h3>
-                 <table id="spiritfoci">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spirit</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>Magic Supplies</h2>
-                  <h3>Magical Lodge Materials</h3>
-                 <table id="magicallodgematerials">
-                     <tr class="label"><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-                  <h2>Reagents</h2>
-                 <table id="reagents">
-                    <tr class="label"><td>Buy</td><td>Dram</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
-                </table>
-            </div>
-            <div id="augmentations">
-                <h2>Augmentations</h2>
-                <h3>Cyber Limbs</h3>
-                <table id="cyberlimbs">
-                    <tr class="label"><td>Buy</td><td>Limb</td><td>Type</td><td>Grade</td><td>Location</td><td>+</td><td>Str</td><td>-</td><td>+</td><td>Agi</td><td>-</td><td>Capacity</td><td>Avail</td><td>Ess</td><td>Cost</td></tr>
-                </table>
-            </div>
-        </div>
+<nav id="characterPoints" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
     </div>
+    <div class="collapse navbar-collapse">
+      <table class="table">
+        <tr>
+          <th><h3>Skill Points</h3></th>
+          <th><h3>Knowledge Points</h3></th>
+          <th class="Mag hide"><h3>Power Points</h3></th>
+          <th class="Mag hide"><h3>Spells</h3></th>
+          <th class="Res hide"><h3>Forms</h3></th>
+          <th><h3>Nuyen</h3></th>
+          <th><h3>Essence</h3></th>
+          <th><h3>Karma</h3></th>
+        </tr>
+        <tr>
+          <td id="skillpnt" class="points"></td>
+          <td id="knowpnt" class="points"></td>
+          <td id="powerpnt" class="points Mag hide"></td>
+          <td id="spellpnt" class="points Mag hide"></td>
+          <td id="formpnt" class="points Res hide"></td>
+          <td id="nuyen" class="points">0&#65509</td>
+          <td id="essencepnt" class="points">6</td>
+          <td id="karmapnt" class="points">25</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</nav>
+
+<div id="container" class="container">
+  <h1>Omae SR5 Character Generator</h1>
+
+  <div id="priorityContain">
+    <h2>Priority Table</h2>
+    <table id="priority" class="table">
+      <thead>
+      <tr id="priority-label">
+        <th class="prilevel">Priority</th>
+        <th class="metatype">Metatype</th>
+        <th class="attribute">Attributes</th>
+        <th class="magres">Magic/Resonance</th>
+        <th class="skills">Skills</th>
+        <th class="resource">Resource</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr id="priority-a">
+        <td class="prilevel a selected"> A </td>
+        <td class="metatype a">
+          Human (9)<br>
+          Elf (8)<br>
+          Dwarf (7)<br>
+          Ork (7)<br>
+          Troll (5)
+        </td>
+        <td class="attribute a">24</td>
+        <td class="magres a">
+          <strong>Magician or Mystic Adept:</strong> Magic 6, two Rating 5 Magic skills, 10 spells<br>
+          <strong>Technomancer:</strong> Resonance 6, two Rating 5 Resonance Skills, 5 complex forms
+        </td>
+        <td class="skills a">46/10</td>
+        <td class="resource a">
+          450,000 &#65509
+        </td>
+      </tr>
+      <tr id="priority-b">
+        <td class="prilevel b selected"> B </td>
+        <td class="metatype b">
+          Human (7)<br>
+          Elf (6)<br>
+          Dwarf (4)<br>
+          Ork (4)<br>
+          Troll (0)
+        </td>
+        <td class="attribute b">
+          20
+        </td>
+        <td class="magres b">
+          <strong>Magician or Mystic Adept:</strong> Magic 4, two Rating 4 Magic skills, 7 spells<br>
+          <strong>Technomancer:</strong> Resonance 4, two Rating 4 Resonance Skills, 2 complex forms<br>
+          <strong>Adept:</strong> Magic 6, one Rating 4 Active Skill<br>
+          <strong>Aspected Magician:</strong> Magic 5, one Rating 4 Magical Skill group
+        </td>
+        <td class="skills b">
+          36/5
+        </td>
+        <td class="resource b">
+          275,000 &#65509
+        </td>
+      </tr>
+      <tr id="priority-c">
+        <td class="prilevel c selected"> C </td>
+        <td class="metatype c">
+          Human (5)<br>
+          Elf (3)<br>
+          Dwarf (1)<br>
+          Ork (0)
+        </td>
+        <td class="attribute c">
+          16
+        </td>
+        <td class="magres c">
+          <strong>Magician or Mystic Adept:</strong> Magic 3, 5 spells<br>
+          <strong>Technomancer:</strong> Resonance 3, 1 complex forms<br>
+          <strong>Adept:</strong> Magic 4, one Rating 2 Active Skill<br>
+          <strong>Aspected Magician:</strong> Magic 3, one Rating 2 Magical Skill group
+        </td>
+        <td class="skills c">
+          28/2
+        </td>
+        <td class="resource c">
+          140,000 &#65509
+        </td>
+      </tr>
+      <tr id="priority-d">
+        <td class="prilevel d selected"> D </td>
+        <td class="metatype d">
+          Human (3)<br>
+          Elf (0)
+        </td>
+        <td class="attribute d">
+          14
+        </td>
+        <td class="magres d">
+          <strong>Adept:</strong> Magic 2<br>
+          <strong>Aspected Magician:</strong> Magic 2
+        </td>
+        <td class="skills d">
+          22/0
+        </td>
+        <td class="resource d">
+          50,000 &#65509
+        </td>
+      </tr>
+      <tr id="priority-e">
+        <td class="prilevel e selected"> E </td>
+        <td class="metatype e">
+          Human (1)
+        </td>
+        <td class="attribute e">
+          12
+        </td>
+        <td class="magres e">
+          <strong>Mundane:</strong> Jack and Squat at the Rating of zilch
+        </td>
+        <td class="skills e">
+          18/0
+        </td>
+        <td class="resource e">
+          6,000 &#65509
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="metatypeContain">
+    <h2>Metatype</h2>
+      <div id="metatypechoice" class="btn-group-lg" role="group">
+        <button type="button" class="btn btn-default human deact">Human</button>
+        <button type="button" class="btn btn-default elf deact">Elf</button>
+        <button type="button" class="btn btn-default dwarf deact">Dwarf</button>
+        <button type="button" class="btn btn-default ork deact">Ork</button>
+        <button type="button" class="btn btn-default troll deact">Troll</button>
+      </div>
+    <h3>Racials</h3>
+    <div id="racial" class="text-center">
+
+    </div>
+  </div>
+  <div id="magresContain">
+    <h2>Magic/Resonance</h2>
+    <table id="magrestable" class="table">
+      <tr id="magreschoice">
+        <td class="mage deact">
+          Magician
+        </td>
+        <td class="techno deact">
+          Technomancer
+        </td>
+        <td class="mystic deact">
+          Mystic Adept
+        </td>
+        <td class="adept deact">
+          Adept
+        </td>
+        <td class="aspect deact">
+          Aspected Magician
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="attributeContain">
+    <h2>Attributes</h2>
+    <table id="attribute" class="table">
+      <tr id="attLabel">
+        <th>Bod</th>
+        <th>Agi</th>
+        <th>Rea</th>
+        <th>Str</th>
+        <th>Wil</th>
+        <th>Log</th>
+        <th>Int</th>
+        <th>Cha</th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td class="incAtt Bod"> + </td>
+        <td class="incAtt Agi"> + </td>
+        <td class="incAtt Rea"> + </td>
+        <td class="incAtt Str"> + </td>
+        <td class="incAtt Wil"> + </td>
+        <td class="incAtt Log"> + </td>
+        <td class="incAtt Int"> + </td>
+        <td class="incAtt Cha"> + </td>
+        <td>Raise</td>
+      </tr>
+      <tr>
+        <td class="bod">
+          <span class="stats"></span>
+        </td>
+        <td class="agi">
+          <span class="stats"></span>
+        </td>
+        <td class="rea">
+          <span class="stats"></span>
+        </td>
+        <td class="str">
+          <span class="stats"></span>
+        </td>
+        <td class="wil">
+          <span class="stats"></span>
+        </td>
+        <td class="log">
+          <span class="stats"></span>
+        </td>
+        <td class="int">
+          <span class="stats"></span>
+        </td>
+        <td class="cha">
+          <span class="stats"></span>
+        </td>
+        <td class="pnt">
+
+        </td>
+      </tr>
+      <tr>
+        <td class="decAtt Bod"> - </td>
+        <td class="decAtt Agi"> - </td>
+        <td class="decAtt Rea"> - </td>
+        <td class="decAtt Str"> - </td>
+        <td class="decAtt Wil"> - </td>
+        <td class="decAtt Log"> - </td>
+        <td class="decAtt Int"> - </td>
+        <td class="decAtt Cha"> - </td>
+        <td>Lower</td>
+      </tr>
+    </table>
+  </div>
+  <div id="specialContain">
+    <h2>Special</h2>
+    <table id="special" class="table">
+      <tr id="spcLabel">
+        <th>Edge</th>
+        <th class="Mag hide">Magic</th>
+        <th class="Res hide">Resonance</th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td class="incAtt Edg"> + </td>
+        <td class="incAtt Mag hide"> + </td>
+        <td class="incAtt Res hide"> + </td>
+        <td>Raise</td>
+      </tr>
+      <tr>
+        <td class="edg">
+          <span class="stats"></span>
+        </td>
+        <td class="Mag mag hide">
+          <span class="stats"></span>
+        </td>
+        <td class="Res res hide">
+          <span class="stats"></span>
+        </td>
+        <td class="spePnt">
+
+        </td>
+      </tr>
+      <tr>
+        <td class="decAtt Edg"> - </td>
+        <td class="decAtt Mag hide"> - </td>
+        <td class="decAtt Res hide"> - </td>
+        <td>Lower</td>
+      </tr>
+    </table>
+  </div>
+  <div id="limitContain">
+    <h2>Limits</h2>
+    <table id="limits" class="table">
+      <tr id="limitLabel">
+        <th>Physical</th>
+        <th>Mental</th>
+        <th>Social</th>
+      </tr>
+      <tr id="limitPoint" class="">
+        <td class="phyLimit">
+
+        </td>
+        <td class="menLimit">
+
+        </td>
+        <td class="socLimit">
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="initiative">
+    <h2>Initiative</h2>
+    <table class="table">
+      <tr id="inilabels">
+        <th>Physical</th>
+        <th>Astral</th>
+        <th>ColdSim</th>
+        <th>HotSim</th>
+      </tr>
+      <tr id="inistats">
+        <td class="meatini">
+
+        </td>
+        <td class="magicini">
+
+        </td>
+        <td class="coldmatini">
+
+        </td>
+        <td class="hotmatini">
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="skillcontainer">
+    <h2 id="skillgroupHeader">Skill Groups</h2>
+    <table id="skillgrouplist" class="table">
+      <tr class="skillgroupTitles">
+        <th>Raise</th>
+        <th>Rating</th>
+        <th>Lower</th>
+        <th class="skillgroupname">Skill Group</th>
+        <th class="skillsingroup">Skills</th>
+      </tr>
+      <tr class="skillgroups">
+
+      </tr>
+    </table>
+    <h2> Active Skills</h2>
+    <table id="skillList" class="table">
+      <thead>
+        <tr class="">
+          <th>Raise</th>
+          <th>Rating</th>
+          <th>Lower</th>
+          <th class="skillName">Skill Name</th>
+          <th>Attributes</th>
+          <th>Modifiers</th>
+          <th>Dice Pool</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="skillTitle agility">
+          <th colspan="7">Agility</th>
+        </tr>
+        <tr class="skillTitle body">
+          <th colspan="7">Body</th>
+        </tr>
+        <tr class="skillTitle reaction">
+          <th colspan="7">Reaction</th>
+        </tr>
+        <tr class="skillTitle strength">
+          <th colspan="7">Strength</th>
+        </tr>
+        <tr class="skillTitle charisma">
+          <th colspan="7">Charisma</th>
+        </tr>
+        <tr class="skillTitle intuition">
+          <th colspan="7">Intuition</th>
+        </tr>
+        <tr class="skillTitle logic">
+          <th colspan="7">Logic</th>
+        </tr>
+        <tr class="skillTitle will">
+          <th colspan="7">Willpower</th>
+        </tr>
+        <tr class="skillTitle magic Mag hide">
+          <th colspan="7">Magic</th>
+        </tr>
+        <tr class="skillTitle resonance Res hide">
+          <th colspan="7">Resonance</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="knowledgeSkillsContainer" class="container">
+      <h2>Knowledge Skills</h2>
+      <div class="knowledgename">
+        <input type="text" class="knowledgeName" placeholder="Input Knowledge" />
+        <button type="button" id="academic" class="knowButton btn btn-default" title="Logic">Academic</button>
+        <button type="button" id="interests" class="knowButton btn btn-default" title="Intuition">Interests</button>
+        <button type="button" id="professional" class="knowButton btn btn-default" title="Logic">Professional</button>
+        <button type="button" id="street" class="knowButton btn btn-default" title="Intuition">Street</button>
+        <button type="button" id="language" class="knowButton btn btn-default" title="Intuition">Language</button>
+        <button type="button" id="addSkill" class="button btn btn-primary">Add Knowledge</button>
+      </div>
+      <table id="knowledgeskills" class="table">
+        <tr class="skillTitle academic">
+          <th colspan="7">Academic</th>
+        </tr>
+        <tr class="skillTitle interests">
+          <th colspan="7">Interests</th>
+        </tr>
+        <tr class="skillTitle professional">
+          <th colspan="7">Professional</th>
+        </tr>
+        <tr class="skillTitle street">
+          <th colspan="7">Street</th>
+        </tr>
+        <tr class="skillTitle language">
+          <th colspan="7">Language</th>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <div id="magicResource">
+    <h2 class="Mag hide">Adept Powers</h2>
+    <table id="adeptpowers" class="table Mag hide">
+      <tr id="adeptlabel">
+        <td>Add Power</td>
+        <td>raise</td>
+        <td>Level</td>
+        <td>lower</td>
+        <td>Power Name</td>
+        <td>Cost</td>
+        <td>Activation</td>
+        <td>Drain</td>
+      </tr>
+      <tr id="powerlist">
+
+      </tr>
+    </table>
+    <h2 class="Mag hide">Spells</h2>
+    <table id="spelllist" class="table Mag hide">
+      <tr class="combat">
+        <td>Spell</td>
+        <td>Prep</td>
+        <td>Spell Name</td>
+        <td>Direct</td>
+        <td>Element</td>
+        <td>Type</td>
+        <td>Range</td>
+        <td>Damage</td>
+        <td>Duration</td>
+        <td>Drain</td>
+      </tr>
+      <tr class="detection">
+        <td>Spell</td>
+        <td>Prep</td>
+        <td>Spell Name</td>
+        <td>Active</td>
+        <td>Direction</td>
+        <td>Type</td>
+        <td>Range</td>
+        <td>Duration</td>
+        <td>Drain</td>
+      </tr>
+      <tr class="health">
+        <td>Spell</td>
+        <td>Prep</td>
+        <td>Spell Name</td>
+        <td>Essence</td>
+        <td>Type</td>
+        <td>Range</td>
+        <td>Duration</td>
+        <td>Drain</td>
+      </tr>
+      <tr class="illusion">
+        <td>Spell</td>
+        <td>Prep</td>
+        <td>Spell Name</td>
+        <td>Realistic</td>
+        <td>Sense</td>
+        <td>Type</td>
+        <td>Range</td>
+        <td>Duration</td>
+        <td>Drain</td>
+      </tr>
+      <tr class="manipulation">
+        <td>Spell</td>
+        <td>Prep</td>
+        <td>Spell Name</td>
+        <td>Effect</td>
+        <td>Damage</td>
+        <td>Type</td>
+        <td>Range</td>
+        <td>Duration</td>
+        <td>Drain</td>
+      </tr>
+      <tr class="spellcata combat">
+        <td><h3>Combat Spells</h3></td>
+      </tr>
+      <tr class="spells combat">
+
+      </tr>
+      <tr class="spellcata detection">
+        <td><h3>Detection Spells</h3></td>
+      </tr>
+      <tr class="spells detection">
+
+      </tr>
+      <tr class="spellcata health">
+        <td><h3>Health Spells</h3></td>
+      </tr>
+      <tr class="spells health">
+
+      </tr>
+      <tr class="spellcata illusion">
+        <td><h3>Illusion Spells</h3></td>
+      </tr>
+      <tr class="spells illusion">
+
+      </tr>
+      <tr class="spellcata manipulation">
+        <td><h3>Manipulation Spells</h3></td>
+      </tr>
+      <tr class="spells manipulation">
+
+      </tr>
+    </table>
+  </div>
+  <div id="resonanceResource" class="Res hide">
+    <h2 class="Res hide">Complex Forms</h2>
+    <table id="formlist" class="table">
+      <tr class="complexforms">
+        <td>Add Form</td>
+        <td>Form Name</td>
+        <td>Target</td>
+        <td>Duration</td>
+        <td>Fading</td>
+      </tr>
+      <tr class="complexforms library">
+
+      </tr>
+    </table>
+  </div>
+  <div id="gearResource">
+    <h2>Gear</h2>
+    <div id="meleeweapons">
+      <h2>Melee Weapons</h2>
+      <table class="table">
+        <tr class="melee">
+          <th>Buy</th>
+          <th>Weapon Name</th>
+          <th>Accuracy</th>
+          <th>Reach</th>
+          <th>Damage</th>
+          <th>AP</th>
+          <th>Availability</th>
+          <th>Cost</th>
+          <th>References</th>
+        </tr>
+        <tr class="meleeweapon blades"><th colspan="9">Blades</th></tr>
+        <tr class="meleeweapon clubs"><th colspan="9">Clubs</th></tr>
+        <tr class="meleeweapon unarmedcombat"><th colspan="9">Unarmed</th></tr>
+        <tr class="meleeweapon exoticmeleeweapon"><th colspan="9">Exotic Melee Weapon</th></tr>
+      </table>
+    </div>
+    <div id="projectiles">
+      <h2>Projectiles</h2>
+      <table class="table">
+        <tr><th colspan="10">Bows</th></tr>
+        <tr class="projectiles bow">
+          <th>Buy</th>
+          <th>Raise</th>
+          <th>Rating</th>
+          <th>Lower</th>
+          <th>Accuracy</th>
+          <th>Damage</th>
+          <th>AP</th>
+          <th>Availability</th>
+          <th>Cost</th>
+          <th>References</th>
+        </tr>
+      </table>
+      <table class="table">
+        <tr><th colspan="10">Crossbows</th></tr>
+        <tr class="projectiles crossbow">
+          <th>Buy</th>
+          <th>Raise</th>
+          <th>Rating</th>
+          <th>Lower</th>
+          <th>Accuracy</th>
+          <th>Damage</th>
+          <th>AP</th>
+          <th>Availability</th>
+          <th>Cost</th>
+          <th>References</th>
+        </tr>
+      </table>
+      <table class="table">
+        <tr><th colspan="10">Throwing Weapons</th></tr>
+        <tr class="projectiles throwingweapons">
+          <th>Buy</th>
+          <th>Accuracy</th>
+          <th>Damage</th>
+          <th>AP</th>
+          <th>Availability</th>
+          <th>Cost</th>
+          <th>References</th>
+        </tr>
+      </table>
+    </div>
+    <div id="firearms">
+      <h2>Firearms</h2>
+      <table class="table">
+        <tr>
+          <th>Buy</th>
+          <th>Weapon Name</th>
+          <th>Accuracy</th>
+          <th>Damage</th>
+          <th>AP</th>
+          <th>Mode</th>
+          <th>RC</th>
+          <th>Ammo</th>
+          <th>Availability</th>
+          <th>Cost</th>
+        </tr>
+        <tr class="firearms tasers"><th colspan="10">Tasers</th></tr>
+        <tr class="firearms holdouts"><th colspan="10">Hold-outs</td></tr>
+        <tr class="firearms lightpistols"><th colspan="10">Light Pistols</th></tr>
+        <tr class="firearms heavypistols"><th colspan="10">Heavy Pistols</th></tr>
+        <tr class="firearms machinepistols"><th colspan="10">Machine Pistols</th></tr>
+        <tr class="firearms submachineguns"><th colspan="10">Submachine Guns</th></tr>
+        <tr class="firearms assaultrifles"><th colspan="10">Assault Rifles</th></tr>
+        <tr class="firearms sniperrifles"><th colspan="10">Sniper Rifles</th></tr>
+        <tr class="firearms shotguns"><th colspan="10">Shotguns</th></tr>
+        <tr class="firearms machineguns"><th colspan="10">Machine Guns</th></tr>
+        <tr class="firearms cannonslaunchers"><th colspan="10">Cannons/Launchers</th></tr>
+        <tr class="firearms exoticrangedweapon"><th colspan="10">Exotic Ranged Weapons</th></tr>
+      </table>
+    </div>
+    <div id="ammunition">
+      <h2>Ammunition</h2>
+      <table class="table">
+        <tr class='ammo'>
+          <th>Buy</th>
+          <th>Amount</th>
+          <th>Sell</th>
+          <th>Name</th>
+          <th>Dam Modifier</th>
+          <th class='blastafter'>AP Modifier</th>
+          <th>Availability</th>
+          <th>Cost</th>
+          <th>Radius</th>
+        </tr>
+        <tr id="taserammo" class="ammunition taserammo"><th colspan="9">Taser Ammo</th></tr>
+        <tr id="holdoutammo" class="standard ammunition holdoutammo"><th colspan="9">Hold-Out Ammo</th></tr>
+        <tr id="lightammo" class="standard ammunition lightammo"><th colspan="9">Light Pistol Ammo</th></tr>
+        <tr id="heavyammo" class="standard ammunition heavyammo"><th colspan="9">Heavy Pistol Ammo</th></tr>
+        <tr id="machineammo" class="standard ammunition machineammo"><th colspan="9">Machine Pistol Ammo</th></tr>
+        <tr id="smgammo" class="standard ammunition smgammo"><th colspan="9">Submachine Gun Ammo</th></tr>
+        <tr id="assaultammo" class="standard ammunition assaultammo"><th colspan="9">Assault Rifle Ammo</th></tr>
+        <tr id="sniperammo" class="standard ammunition sniperammo"><th colspan="9">Sniper Rifle Ammo</th></tr>
+        <tr id="shotgunammo" class="standard ammunition shotgunammo"><th colspan="9">Shotgun Ammo</th></tr>
+        <tr id="lmgammo" class="standard ammunition lmgammo"><th colspan="9">Machine Gun Ammo</th></tr>
+        <tr id="cannonammo" class="ammunition cannonammo"><th colspan="9">Cannon Ammo</th></tr>
+        <tr id="grenadeammo" class="ammunition grenadeammo"><th colspan="9">Grenades</th></tr>
+        <tr id="rocketammo" class="ammunition rocketammo"><th colspan="9">Rockets</th></tr>
+        <tr id="specialammo" class="ammunition specialammo"><th colspan="9">(Exotic) Special Ammo</th></tr>
+      </table>
+    </div>
+    <div id='explosive'>
+      <h2>Explosives</h2>
+      <table class="table">
+        <tr>
+          <th>Buy</th>
+          <th>Raise</th>
+          <th>Rating</th>
+          <th>Lower</th>
+          <th>Availability</th>
+          <th>Cost</th>
+        </tr>
+        <tr class="commercial explosives"><th colspan="6">Commercial</th></tr>
+        <tr class="foam explosives"><th colspan="6">Foam</th></tr>
+        <tr class="plastic explosives"><th colspan="6">Plastic</th></tr>
+        <tr class="detonator"><th colspan="6">Detonator Cap</th></tr>
+      </table>
+    </div>
+    <div id="clotharmor">
+      <h2>Clothing</h2>
+      <table class="table">
+        <tr>
+          <th>Buy</th>
+          <th>Cost</th>
+          <th colspan=3>Mods</th>
+          <th>Armor</th>
+          <th>Availability</th>
+          <th>Total Cost</th>
+        </tr>
+        <tr id="clothing">
+          <td class="buycloths button"><strong>+</strong></td>
+          <td><input type="number" min="20" max="100000" placeholder="20-100000" name="clothingcost"></td>
+          <td class="electrochromic button">Electrochromic</td>
+          <td class="feedback button">Feedback</td>
+          <td class="leather button">Synthleather</td>
+          <td class="armor">0</td>
+          <td class="avail">0</td>
+          <td class="cost">20&yen;</td>
+        </tr>
+      </table>
+      <h2>Armor</h2>
+      <table id="bodyarmor" class="table">
+        <tr class="armor">
+          <td>Buy</td>
+          <td>Name</td>
+          <td>Armor</td>
+          <td>Availability</td>
+          <td>Cost</td>
+        </tr>
+      </table>
+    </div>
+    <div id="devices">
+      <h2>Electronics</h2>
+      <table class="table">
+        <tr><td><h3>Commlinks</h3></td></tr>
+        <tr id="links"></tr>
+        <tr class="commlinks"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
+        <tr><td><h3>Cyberdecks</h3></td></tr>
+        <tr id="decks"></tr>
+        <tr class="cyberdecks"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Array</td><td>Programs</td><td>Avail</td><td>Cost</td></tr>
+        <tr><td><h3>Rigger Control Console</h3></td></tr>
+        <tr id="consoles"></tr>
+        <tr class="rccs"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Data Process</td><td>Firewall</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+    </div>
+    <div id="e-accessories">
+      <h2>Electonic Accessories</h2>
+      <table id="eccessories" class="table">
+        <tr><td>Buy</td><td>Accessory</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>RFID Tags</h2>
+      <table id="rfid" class="table">
+        <tr><td>Buy</td><td>Ammount</td><td>Sell</td><td>Tags</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Communications</h2>
+      <table id="communications" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Credsticks</h2>
+      <table id="credsticks" class="table">
+        <tr><td>Buy</td><td>Type</td><td>Max Amount</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Identification</h2>
+      <table id="identification" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Tools</h2>
+      <table id="tools" class="table">
+        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Optical & Imaging Devices</h2>
+      <table id="optics" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+
+      <h2>Audio Devices</h2>
+      <table id="audio" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+
+      <h2>Security Devices</h2>
+      <table id="securitydevice" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Restraints</h2>
+      <table id="restraints" class="table">
+        <tr><td>Buy</td><td>Ammount</td><td>Sell</td><td>Type</td><td>Armor</td><td>Structure</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Breaking and Entering Gear</h2>
+      <table id="bnegear" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Industrial Chemicals</h2>
+      <table id="chemicals" class="table">
+        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Survival Gear</h2>
+      <table id="survivalgear" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Grapple Gun Gear</h2>
+      <table id="grapplegungear" class="table">
+        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Grapple Rope</h2>
+      <table id="grapplerope" class="table">
+        <tr><td>Buy</td><td>Meters</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Biotech</h2>
+      <table id="biotech" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>DocWagon Contract</h2>
+      <table id="docwagon" class="table">
+        <tr><td>Buy</td><td>Years</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Slap Patches</h2>
+      <table id="slappatches" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+    </div>
+    <div id="magicequipment" class="Mag hide">
+      <h2>Magic Equipment</h2>
+      <h3>Enchanting Foci</h3>
+      <table id="enchantingfoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h3>Metamagic Foci</h3>
+      <table id="metamagicfoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h3>Power Foci</h3>
+      <table id="powerfoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h3>Qi Foci</h3>
+      <table id="qifoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Power</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h3>Spell Foci</h3>
+      <table id="spellfoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spell</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h3>Spirit Foci</h3>
+      <table id="spiritfoci" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spirit</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Magic Supplies</h2>
+      <h3>Magical Lodge Materials</h3>
+      <table id="magicallodgematerials" class="table">
+        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+      <h2>Reagents</h2>
+      <table id="reagents" class="table">
+        <tr><td>Buy</td><td>Dram</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+      </table>
+    </div>
+    <div id="augmentations">
+      <h2>Augmentations</h2>
+      <h3>Cyber Limbs</h3>
+      <table id="cyberlimbs" class="table">
+        <tr><td>Buy</td><td>Limb</td><td>Type</td><td>Grade</td><td>Location</td><td>+</td><td>Str</td><td>-</td><td>+</td><td>Agi</td><td>-</td><td>Capacity</td><td>Avail</td><td>Ess</td><td>Cost</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
 </body>
 </html>

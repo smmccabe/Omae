@@ -6,7 +6,16 @@ body {background: #333; /* Old browsers */
     text-align: center;
 }
 
-div, table, tr, td {
+.navbar {
+  background: #222;
+  border: green;
+}
+
+.navbar .table {
+  margin-bottom: 0;
+}
+
+table, tr, td {
     border: solid 1px green;
     border-radius: 15px 0;
 }
@@ -27,10 +36,6 @@ h1 {
     margin: 10px;
 }
 
-h2, h3 {
-    margin-left: 20px;
-}
-
 strong {
     color: yellow;
 }
@@ -39,36 +44,15 @@ em {
     color: red;
 }
 
-p, td {
-    padding: 10px;
-}
-
-#priority, #metatypechoice, #magreschoice, .incAtt, .decAtt, .knowButton, .button {
+#priority td, #metatypechoice, #magreschoice, .incAtt, .decAtt, .knowButton, .button {
     cursor: pointer;
-}
-
-#priority-label td {
-    cursor: default;
-}
-
-#container {
-    width: 1200px;
-    margin: auto;
-}
-
-#racial {
-    min-height: 67px;
-}
-
-.magres, h1, h2, h3, #racial {
-    text-align: left;
 }
 
 .selected {
     border-color: #0f0;
 }
 
-.deact, .label {
+.deact, th {
     background: #040;
     color: #020;
     border-color: #020;
@@ -79,43 +63,14 @@ p, td {
     color: #020;
 }
 
-.label {
-    color: lightgreen;
-}
-
-.container {
-    float: left;
-    margin: 15px 5px;
-}
-
-#characterPoints {
-    margin: 0;
-    padding-right: 11px;
-    position: absolute;
-    background: #222;
-    width: 1198px;;
-}
-
-#characterPoints.fixed {
-    position: fixed;
-    top: 0;
-}
-
-h2#skillgroupHeader {
-    margin-top: 150px;
+th {
+  color: lightgreen;
+  text-align: center;
 }
 
 .points {
     padding: 10px;
     margin: 10px;
-}
-
-.skillsin {
-    width: 450px;
-}
-
-.skillName {
-    width: 250px;
 }
 
 #metatypeContain, #magresContain {
@@ -134,28 +89,8 @@ h2#skillgroupHeader {
     border-color: #0f0;
 }
 
-.spellname {
-    width: 200px;
-}
-
-.combat .spellname {
-    width: 140px;
-}
-
 .inventory {
     padding:0;
-}
-
-.ammoname {
-    width: 200px;
-}
-
-.dammod, .grenadesdammod {
-    width: 170px;
-}
-
-#clothing input {
-    width: 110px;
 }
 
 .alert {
