@@ -51,8 +51,11 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
   <script src="data.js"></script>
-  <script src="script.js"></script>
   <script src="functions.js"></script>
+  <script src="gear.js"></script>
+  <script src="spells.js"></script>
+  <script src="chrome.js"></script>
+  <script src="script.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -724,7 +727,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
           <th class='blastafter'>AP Modifier</th>
           <th>Availability</th>
           <th>Cost</th>
-          <th>Radius</th>
+          <th>Blast</th>
         </tr>
         <tr id="taserammo" class="ammunition taserammo"><th colspan="9">Taser Ammo</th></tr>
         <tr id="holdoutammo" class="standard ammunition holdoutammo"><th colspan="9">Hold-Out Ammo</th></tr>
@@ -756,6 +759,15 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         <tr class="commercial explosives"><th colspan="6">Commercial</th></tr>
         <tr class="foam explosives"><th colspan="6">Foam</th></tr>
         <tr class="plastic explosives"><th colspan="6">Plastic</th></tr>
+      </table>
+      <table class="table">
+        <tr>
+          <th>Buy</th>
+          <th>Amount</th>
+          <th>Sell</th>
+          <th>Availability</th>
+          <th>Cost</th>
+        </tr>
         <tr class="detonator"><th colspan="6">Detonator Cap</th></tr>
       </table>
     </div>
@@ -784,145 +796,168 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       <h2>Armor</h2>
       <table id="bodyarmor" class="table">
         <tr class="armor">
-          <td>Buy</td>
-          <td>Name</td>
-          <td>Armor</td>
-          <td>Availability</td>
-          <td>Cost</td>
+          <th>Buy</th>
+          <th>Name</th>
+          <th>Armor</th>
+          <th>Availability</th>
+          <th>Cost</th>
         </tr>
       </table>
     </div>
     <div id="devices">
       <h2>Electronics</h2>
       <table class="table">
-        <tr><td><h3>Commlinks</h3></td></tr>
-        <tr id="links"></tr>
-        <tr class="commlinks"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
-        <tr><td><h3>Cyberdecks</h3></td></tr>
-        <tr id="decks"></tr>
-        <tr class="cyberdecks"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Array</td><td>Programs</td><td>Avail</td><td>Cost</td></tr>
-        <tr><td><h3>Rigger Control Console</h3></td></tr>
-        <tr id="consoles"></tr>
-        <tr class="rccs"><td>Buy</td><td>Model</td><td>Device Rating</td><td>Data Process</td><td>Firewall</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th colspan="5">Commlinks</th></tr>
+        <tr id="links" class="commlinks"><th>Buy</th><th>Model</th><th>Device Rating</th><th>Avail</th><th>Cost</th></tr>
+      </table>
+      <table class="table">
+        <tr><th colspan="7">Cyberdecks</th></tr>
+        <tr id="decks" class="cyberdecks"><th>Buy</th><th>Model</th><th>Device Rating</th><th>Array</th><th>Programs</th><th>Avail</th><th>Cost</th></tr>
+      </table>
+      <table class="table">
+        <tr><th colspan="7">Rigger Control Console</th></tr>
+        <tr id="consoles" class="rccs"><th>Buy</td><th>Model</th><th>Device Rating</th><th>Data Process</th><th>Firewall</th><th>Avail</th><th>Cost</th></tr>
       </table>
     </div>
     <div id="e-accessories">
       <h2>Electonic Accessories</h2>
       <table id="eccessories" class="table">
-        <tr><td>Buy</td><td>Accessory</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Accessory</th><th>Device Rating</th><th>Avail</th><th>Cost</th></tr>
       </table>
+
       <h2>RFID Tags</h2>
       <table id="rfid" class="table">
-        <tr><td>Buy</td><td>Ammount</td><td>Sell</td><td>Tags</td><td>Device Rating</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Amount</th><th>Sell</th><th>Tags</th><th>Device Rating</th><th>Avail</th><th>Cost</th></tr>
       </table>
+
       <h2>Communications</h2>
       <table id="communications" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
+
       <h2>Credsticks</h2>
       <table id="credsticks" class="table">
-        <tr><td>Buy</td><td>Type</td><td>Max Amount</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Type</th><th>Max Amount</th><th>Avail</th><th>Cost</th></tr>
       </table>
+
       <h2>Identification</h2>
       <table id="identification" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+
       <h2>Tools</h2>
       <table id="tools" class="table">
-        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
       <h2>Optical & Imaging Devices</h2>
       <table id="optics" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Capacity</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Audio Devices</h2>
       <table id="audio" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Capacity</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Capacity</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Security Devices</h2>
       <table id="securitydevice" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Restraints</h2>
       <table id="restraints" class="table">
-        <tr><td>Buy</td><td>Ammount</td><td>Sell</td><td>Type</td><td>Armor</td><td>Structure</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Ammount</th><th>Sell</th><th>Type</th><th>Armor</th><th>Structure</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Breaking and Entering Gear</h2>
       <table id="bnegear" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Industrial Chemicals</h2>
       <table id="chemicals" class="table">
-        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Survival Gear</h2>
       <table id="survivalgear" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Grapple Gun Gear</h2>
       <table id="grapplegungear" class="table">
-        <tr><td>Buy</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Grapple Rope</h2>
       <table id="grapplerope" class="table">
-        <tr><td>Buy</td><td>Meters</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Meters</th><th>Sell</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Biotech</h2>
       <table id="biotech" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>DocWagon Contract</h2>
       <table id="docwagon" class="table">
-        <tr><td>Buy</td><td>Years</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Years</th><th>Sell</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Slap Patches</h2>
       <table id="slappatches" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Rating</td><td>lower</td><td>Device</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
     </div>
     <div id="magicequipment" class="Mag hide">
       <h2>Magic Equipment</h2>
       <h3>Enchanting Foci</h3>
       <table id="enchantingfoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h3>Metamagic Foci</h3>
       <table id="metamagicfoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h3>Power Foci</h3>
       <table id="powerfoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h3>Qi Foci</h3>
       <table id="qifoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Power</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Power</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h3>Spell Foci</h3>
       <table id="spellfoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spell</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Spell</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h3>Spirit Foci</h3>
       <table id="spiritfoci" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Spirit</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Spirit</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Magic Supplies</h2>
       <h3>Magical Lodge Materials</h3>
       <table id="magicallodgematerials" class="table">
-        <tr><td>Buy</td><td>raise</td><td>Force</td><td>lower</td><td>Focus</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
       <h2>Reagents</h2>
       <table id="reagents" class="table">
-        <tr><td>Buy</td><td>Dram</td><td>Sell</td><td>Type</td><td>Avail</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Dram</th><th>Sell</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
+      
     </div>
     <div id="augmentations">
       <h2>Augmentations</h2>
       <h3>Cyber Limbs</h3>
       <table id="cyberlimbs" class="table">
-        <tr><td>Buy</td><td>Limb</td><td>Type</td><td>Grade</td><td>Location</td><td>+</td><td>Str</td><td>-</td><td>+</td><td>Agi</td><td>-</td><td>Capacity</td><td>Avail</td><td>Ess</td><td>Cost</td></tr>
+        <tr><th>Buy</th><th>Limb</th><th>Type</th><th>Grade</th><th>Location</th><th>+</th><th>Str</th><th>-</th><th>+</th><th>Agi</th><th>-</th><th>Capacity</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
       </table>
     </div>
   </div>

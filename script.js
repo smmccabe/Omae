@@ -12,6 +12,11 @@ var clothingarmor = 0; //the armor value of the clothing, only effected by leath
 
 $(function() {
   setupSkills();
+  setupGear();
+  setupAugmentations();
+  setupAmmo();
+  setupElectronics();
+  setupArmor();
 
   $(".a, .b, .c, .d, .e").click(selectPriority);
 
@@ -44,7 +49,7 @@ $(function() {
   $("#firearms").on("change", "select", settingWeapon);
   $("#firearms").on("click", ".smartgun.button", smartlink)
   $("#firearms").on("click", ".shockpad.button", shockPadding);
-  $("#firearms").on("click", ".airburstlink.button", airJordan);
+  $("#firearms").on("click", ".airburstlink.button", airBurstLink);
   $("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holsters)
 
   $("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingAmmo);
@@ -60,7 +65,6 @@ $(function() {
   $("#explosive").on("click", ".buybomb,.sellbomb", bombsaway); //buy and sell explosives
   $("#explosive").on("click", ".kgup, .kgdown", fatboy);
   $("#explosive").on("click", ".buyDet, .sellDet", buyDetonator);
-  $(".detonator").append("<tr class='label'><td>Buy</td><td>Amount</td><td>Sell</td><td>Availability</td><td>Cost</td></tr><tr><td class='buyDet button'>+</td><td class='caps'>0</td><td class='sellDet button'>-</td><td>" + detonator.avail + " " + detonator.restrict + "</td><td>" + detonator.cost + "&#65509;</td></tr>");
 
   $("#clotharmor").on("click", ".buyarmor", sponge);
   $("#clotharmor").on("click", ".sellarmor", clearArmor);
