@@ -55,6 +55,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
   <script src="gear.js"></script>
   <script src="spells.js"></script>
   <script src="chrome.js"></script>
+  <script src="adept.js"></script>
   <script src="script.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -502,105 +503,92 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
     <h2 class="Mag hide">Adept Powers</h2>
     <table id="adeptpowers" class="table Mag hide">
       <tr id="adeptlabel">
-        <td>Add Power</td>
-        <td>raise</td>
-        <td>Level</td>
-        <td>lower</td>
-        <td>Power Name</td>
-        <td>Cost</td>
-        <td>Activation</td>
-        <td>Drain</td>
-      </tr>
-      <tr id="powerlist">
-
+        <th>Add Power</th>
+        <th>Raise</th>
+        <th>Level</th>
+        <th>Lower</th>
+        <th>Power Name</th>
+        <th>Cost</th>
+        <th>Activation</th>
+        <th>Drain</th>
       </tr>
     </table>
     <h2 class="Mag hide">Spells</h2>
     <table id="spelllist" class="table Mag hide">
-      <tr class="combat">
-        <td>Spell</td>
-        <td>Prep</td>
-        <td>Spell Name</td>
-        <td>Direct</td>
-        <td>Element</td>
-        <td>Type</td>
-        <td>Range</td>
-        <td>Damage</td>
-        <td>Duration</td>
-        <td>Drain</td>
-      </tr>
-      <tr class="detection">
-        <td>Spell</td>
-        <td>Prep</td>
-        <td>Spell Name</td>
-        <td>Active</td>
-        <td>Direction</td>
-        <td>Type</td>
-        <td>Range</td>
-        <td>Duration</td>
-        <td>Drain</td>
-      </tr>
-      <tr class="health">
-        <td>Spell</td>
-        <td>Prep</td>
-        <td>Spell Name</td>
-        <td>Essence</td>
-        <td>Type</td>
-        <td>Range</td>
-        <td>Duration</td>
-        <td>Drain</td>
-      </tr>
-      <tr class="illusion">
-        <td>Spell</td>
-        <td>Prep</td>
-        <td>Spell Name</td>
-        <td>Realistic</td>
-        <td>Sense</td>
-        <td>Type</td>
-        <td>Range</td>
-        <td>Duration</td>
-        <td>Drain</td>
-      </tr>
-      <tr class="manipulation">
-        <td>Spell</td>
-        <td>Prep</td>
-        <td>Spell Name</td>
-        <td>Effect</td>
-        <td>Damage</td>
-        <td>Type</td>
-        <td>Range</td>
-        <td>Duration</td>
-        <td>Drain</td>
-      </tr>
       <tr class="spellcata combat">
-        <td><h3>Combat Spells</h3></td>
+        <th colspan="10">Combat Spells</th>
       </tr>
       <tr class="spells combat">
-
+        <th>Spell</th>
+        <th>Prep</th>
+        <th>Spell Name</th>
+        <th>Direct</th>
+        <th>Element</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Damage</th>
+        <th>Duration</th>
+        <th>Drain</th>
       </tr>
       <tr class="spellcata detection">
-        <td><h3>Detection Spells</h3></td>
+        <th colspan="10">Detection Spells</th>
       </tr>
       <tr class="spells detection">
-
+        <th>Spell</th>
+        <th>Prep</th>
+        <th>Spell Name</th>
+        <th>Active</th>
+        <th>Direction</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Duration</th>
+        <th>Drain</th>
+        <th></th>
       </tr>
       <tr class="spellcata health">
-        <td><h3>Health Spells</h3></td>
+        <th colspan="10">Health Spells</th>
       </tr>
       <tr class="spells health">
-
+        <th>Spell</th>
+        <th>Prep</th>
+        <th>Spell Name</th>
+        <th>Essence</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Duration</th>
+        <th>Drain</th>
+        <th></th>
+        <th></th>
       </tr>
       <tr class="spellcata illusion">
-        <td><h3>Illusion Spells</h3></td>
+        <th colspan="10">Illusion Spells</th>
       </tr>
       <tr class="spells illusion">
-
+        <th>Spell</th>
+        <th>Prep</th>
+        <th>Spell Name</th>
+        <th>Realistic</th>
+        <th>Sense</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Duration</th>
+        <th>Drain</th>
+        <th></th>
       </tr>
       <tr class="spellcata manipulation">
-        <td><h3>Manipulation Spells</h3></td>
+        <th colspan="10">Manipulation Spells</th>
       </tr>
       <tr class="spells manipulation">
-
+        <th>Spell</th>
+        <th>Prep</th>
+        <th>Spell Name</th>
+        <th>Effect</th>
+        <th>Damage</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Duration</th>
+        <th>Drain</th>
+        <th></th>
       </tr>
     </table>
   </div>
@@ -702,7 +690,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
           <th>Cost</th>
         </tr>
         <tr class="firearms tasers"><th colspan="10">Tasers</th></tr>
-        <tr class="firearms holdouts"><th colspan="10">Hold-outs</td></tr>
+        <tr class="firearms holdouts"><th colspan="10">Hold-outs</th></tr>
         <tr class="firearms lightpistols"><th colspan="10">Light Pistols</th></tr>
         <tr class="firearms heavypistols"><th colspan="10">Heavy Pistols</th></tr>
         <tr class="firearms machinepistols"><th colspan="10">Machine Pistols</th></tr>
@@ -723,7 +711,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
           <th>Amount</th>
           <th>Sell</th>
           <th>Name</th>
-          <th>Dam Modifier</th>
+          <th>Damage Modifier</th>
           <th class='blastafter'>AP Modifier</th>
           <th>Availability</th>
           <th>Cost</th>
@@ -816,7 +804,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       </table>
       <table class="table">
         <tr><th colspan="7">Rigger Control Console</th></tr>
-        <tr id="consoles" class="rccs"><th>Buy</td><th>Model</th><th>Device Rating</th><th>Data Process</th><th>Firewall</th><th>Avail</th><th>Cost</th></tr>
+        <tr id="consoles" class="rccs"><th>Buy</th><th>Model</th><th>Device Rating</th><th>Data Process</th><th>Firewall</th><th>Avail</th><th>Cost</th></tr>
       </table>
     </div>
     <div id="e-accessories">
@@ -832,7 +820,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
 
       <h2>Communications</h2>
       <table id="communications" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Credsticks</h2>
@@ -842,7 +830,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
 
       <h2>Identification</h2>
       <table id="identification" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Tools</h2>
@@ -851,27 +839,27 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       </table>
       <h2>Optical & Imaging Devices</h2>
       <table id="optics" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Capacity</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Capacity</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Audio Devices</h2>
       <table id="audio" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Capacity</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Capacity</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
 
       <h2>Security Devices</h2>
       <table id="securitydevice" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Restraints</h2>
       <table id="restraints" class="table">
-        <tr><th>Buy</th><th>Ammount</th><th>Sell</th><th>Type</th><th>Armor</th><th>Structure</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Amount</th><th>Sell</th><th>Type</th><th>Armor</th><th>Structure</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Breaking and Entering Gear</h2>
       <table id="bnegear" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Industrial Chemicals</h2>
@@ -881,7 +869,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       
       <h2>Survival Gear</h2>
       <table id="survivalgear" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Grapple Gun Gear</h2>
@@ -896,7 +884,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       
       <h2>Biotech</h2>
       <table id="biotech" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>DocWagon Contract</h2>
@@ -906,45 +894,45 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       
       <h2>Slap Patches</h2>
       <table id="slappatches" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Rating</th><th>lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Device</th><th>Avail</th><th>Cost</th></tr>
       </table>
     </div>
     <div id="magicequipment" class="Mag hide">
       <h2>Magic Equipment</h2>
       <h3>Enchanting Foci</h3>
       <table id="enchantingfoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h3>Metamagic Foci</h3>
       <table id="metamagicfoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h3>Power Foci</h3>
       <table id="powerfoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h3>Qi Foci</h3>
       <table id="qifoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Power</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Power</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h3>Spell Foci</h3>
       <table id="spellfoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Spell</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Spell</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h3>Spirit Foci</h3>
       <table id="spiritfoci" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Spirit</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Spirit</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Magic Supplies</h2>
       <h3>Magical Lodge Materials</h3>
       <table id="magicallodgematerials" class="table">
-        <tr><th>Buy</th><th>raise</th><th>Force</th><th>lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Force</th><th>Lower</th><th>Focus</th><th>Avail</th><th>Cost</th></tr>
       </table>
       
       <h2>Reagents</h2>

@@ -18,12 +18,13 @@ $(function() {
   setupElectronics();
   setupArmor();
 
+  //runs the attribute display function on start up
+  displayUpdater();
+
   $(".a, .b, .c, .d, .e").click(selectPriority);
 
 //this part will call the metatype select function when a metatype button is clicked
   $(".human, .elf, .dwarf, .ork, .troll").click(selectMetatype);
-
-  displayUpdater(); //runs the attribute display function on start up
 
   $("#container").on("click", ".incAtt, .decAtt", changeAttribute);
 
@@ -47,10 +48,10 @@ $(function() {
   $("#gearResource").on("click", ".sell", sellWeapon);
 
   $("#firearms").on("change", "select", settingWeapon);
-  $("#firearms").on("click", ".smartgun.button", smartlink)
+  $("#firearms").on("click", ".smartgun.button", smartlink);
   $("#firearms").on("click", ".shockpad.button", shockPadding);
   $("#firearms").on("click", ".airburstlink.button", airBurstLink);
-  $("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holsters)
+  $("#firearms").on("click", ".concealableholster.button, .hiddenarmslide.button, .quickdrawholster.button", holsters);
 
   $("#ammunition").on("click", ".buyammo,.sellammo,.buygrenades,.sellgrenades", buyingAmmo);
 
@@ -76,7 +77,7 @@ $(function() {
 
   $("#gearResource").on("click", ".buyUp, .sellDown", buyinbulk);
   $("#gearResource").on("click", ".buydevice", appleStore);
-  $("#gearResource").on("click", ".selldevice", microsoftStore);
+  $("#gearResource").on("click", ".selldevice", sellDevice);
   $("#gearResource").on("click", ".ratingUp, .ratingDown", commRating);
 
   $("#securitydevice").on('click', ".addmod", addingMagMod);
@@ -90,6 +91,7 @@ $(function() {
 
   $("#qifoci").on("change", ".adeptPowers select", adeptPowerChange);
 
-  $("#cyberlimbs").on("change", "select", typeOfLimb)
-  $("#cyberlimbs").on("click", ".button", customLimb) //this allows for a limb to have custom str or agi. It also allows people to buy limbs, since that's also a button
+  $("#cyberlimbs").on("change", "select", typeOfLimb);
+  //this allows for a limb to have custom str or agi. It also allows people to buy limbs, since that's also a button
+  $("#cyberlimbs").on("click", ".button", customLimb);
 });

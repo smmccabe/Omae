@@ -513,6 +513,7 @@ function renderLimit(v, w, x, y, z) { //function for showing and calculating lim
   var limit = (x * 2 + y + z) / 3;
   limit = Math.ceil(limit);
   $("." + w).empty().append($("<strong>" + limit + "(" + (limit + v) + ")" + "</strong>"));
+
   return limit;
 }
 
@@ -662,6 +663,7 @@ function changeAttribute() {
     }
     return x;
   }
+
   for (var skill in groupSkills) { //this will increase the skill groups
     if (skillgroups > 0 && groupSkills[skill]["rating"] < skillgroupmax && className == "incAtt " + skill) {
       groupSkills[skill]["rating"]++;
@@ -711,7 +713,7 @@ function changeAttribute() {
         power["level"]++;
         powerPoints = powerPoints - power["cost"];
 
-        addAttMod(power["attmod"]);
+        addAttributeMod(power["attmod"]);
       }
       if (power["level"] > 1 && className == "decAtt " + prop) {
         power["level"]--;
@@ -755,7 +757,7 @@ function changeAttribute() {
   }
 
   for (var item in inventory) { //this will be used to increase and decrease the weapon foci rating and license rating, and now clips too
-    var itemhold = inventory[item]
+    var itemhold = inventory[item];
     if ($(this).parents("#" + item).attr("id") == item) {
       if ($(this).attr("class") == item + " incAtt weaponfoci" && fociRating < fociMaxRating && focinumber < attributes.current.mag && itemhold["weaponfoci"] < 3 && nuyen - 7000 > 0 && karma - 3 > 0) {
         if (itemhold["weaponfoci"] == 0) {
@@ -791,16 +793,17 @@ function changeAttribute() {
         itemhold["cost"] -= 200;
       }
 
+      var arrowPrice, injectPrice;
       if (itemhold["rating"] > 0) { //if rating 0 its a crossbow.
-        var arrowPrice = itemhold["rating"] * 2;
-        var injectPrice = itemhold["rating"] * 20;
+        arrowPrice = itemhold["rating"] * 2;
+        injectPrice = itemhold["rating"] * 20;
       } else {
-        var arrowPrice = 5;
-        var injectPrice = 50;
+        arrowPrice = 5;
+        injectPrice = 50;
       }
 
       if (itemhold.name == "shuriken") {
-        var arrowPrice = 25;
+        arrowPrice = 25;
       }
 
       if ($(this).attr("class") == item + " incAtt arrow" && nuyen - arrowPrice > 0) {
@@ -1106,25 +1109,7 @@ function awaken(x, y) { //this is suppose to unhide attributes.current.mag or re
   $("." + y).addClass("hide");
 }
 
-//@TODO - rename
-function setupSkills() { //Well, this is used for more then just skills now. It should only run once at start up
-                         //@TODO - remove all this "theLabeler" stuff
-  theLabeler("#adeptlabel", "#powerlist");
-  theLabeler(".label.combat", ".spells.combat");
-  theLabeler(".label.detection", ".spells.detection");
-  theLabeler(".label.health", ".spells.health");
-  theLabeler(".label.illusion", ".spells.illusion");
-  theLabeler(".label.manipulation", ".spells.manipulation");
-  theLabeler(".label.complexforms", ".complexforms.library");
-  theLabeler(".label.bow", ".projectiles.bow");
-  theLabeler(".label.crossbow", ".projectiles.crossbow");
-  theLabeler(".label.throwingweapon", ".projectiles.throwingweapons");
-  theLabeler(".label.firearm", ".firearms");
-
-  function theLabeler(x, y) {
-    $(x).appendTo(y);
-  }
-
+function setupSkills() {
   for (var x in weapons) { //adds exotic melee weapons to the skill list
     if (weapons[x]["category"] == "exoticmeleeweapon") {
       makeExoticSkill("agi", weapons[x], "Exotic Melee (", "agility");
@@ -1165,92 +1150,17 @@ function setupSkills() { //Well, this is used for more then just skills now. It 
   }
 
   for (var power in adeptPowers) { //this for loop sets up the adept powers
-    $("#powerlist").append($("<tr class='" + [power] + "'><td id='" + [power] + "'class='add " + [power] + " button'><strong>-</strong></td><td class='incAtt " + [power] + " deact'>+</td><td class='level " + [power] + "'>" + adeptPowers[power]["level"] + "</td><td class='decAtt " + [power] + " deact'>-</td><td class='name " + [power] + "'>" + adeptPowers[power]["name"] + "</td><td class='cost " + [power] + "'>" + adeptPowers[power]["cost"] + "</td><td class='activation " + [power] + "'>" + adeptPowers[power]["activation"] + "</td><td class='drain " + [power] + "'>n/a</td></tr>"));
+    $("#adeptpowers").append($("<tr class='" + [power] + "'><td id='" + [power] + "'class='add " + [power] + " button'><strong>-</strong></td><td class='incAtt " + [power] + " deact'>+</td><td class='level " + [power] + "'>" + adeptPowers[power]["level"] + "</td><td class='decAtt " + [power] + " deact'>-</td><td class='name " + [power] + "'>" + adeptPowers[power]["name"] + "</td><td class='cost " + [power] + "'>" + adeptPowers[power]["cost"] + "</td><td class='activation " + [power] + "'>" + adeptPowers[power]["activation"] + "</td><td class='drain " + [power] + "'>n/a</td></tr>"));
 
     if (adeptPowers[power]["drain"] == true) {
       $(".drain." + [power]).empty().append($(adeptPowers[power]["level"]));
     }
   }
 
-  for (var spell in spellforms) { //this sets up the spells
-    var spellhold = spellforms[spell];
-    if (spellforms[spell]["category"] == "combat") {
-      $(".spells.combat").append($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='direct " + spell + "'></td><td class='element " + spell + "'>" + spellhold["element"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldam " + spell + "'>" + spellhold["damage"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
-      if (spellhold["direct"] == true) {
-        $("<span>Direct</span>").appendTo($(".direct." + spell));
-      } else {
-        $("<span>Indirect</span>").appendTo($(".direct." + spell));
-      }
-    }
-
-    if (spellforms[spell]["category"] == "detection") {
-      $(".spells.detection").append($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='illact " + spell + "'>" + spellhold["active"] + "</td><td class='direction " + spell + "'>" + spellhold["direction"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
-    }
-
-    if (spellforms[spell]["category"] == "health") {
-      $(".spells.health").append($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='heaEss " + spell + "'></td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
-      if (spellhold["essence"] == true) {
-        $(".heaEss." + spell).append($("<span>Essence</span>"));
-      } else {
-        $(".heaEss." + spell).append($("<span>n/a</span>"));
-      }
-    }
-
-    if (spellforms[spell]["category"] == "illusion") {
-      $(".spells.illusion").append($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='realistic " + spell + "'></td><td class='sense " + spell + "'>" + spellhold["sense"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
-      if (spellhold["realistic"] == true) {
-        $(".realistic." + spell).append($("<span>Realistic</span>"))
-      } else {
-        $(".realistic." + spell).append($("<span>Obvious</span>"))
-      }
-    }
-
-    if (spellforms[spell]["category"] == "manipulation") {
-      $(".spells.manipulation").append($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='effect " + spell + "'>" + spellhold["effect"] + "</td><td class='damage " + spell + "'>" + spellhold["damage"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
-    }
-  }
-
-  spellinput(" ", "detectlifeform", "Life Form");
-  spellinput(" Extended", "detectlifeformextended", "Life Form");
-  spellinput(" ", "detectobject", "Object");
-
-  //@TODO - organize functions and logic
-  spellAttributeSelect("decreaseattribute", "Decrease ");
-  spellAttributeSelect("increaseattribute", "Increase ");
-
   for (var form in complexforms) {
     var formhold = complexforms[form];
     $(".complexforms.library").append($("<tr id='" + form + "'class='form'><td class='formact " + form + " button'><strong>-</strong></td><td class='formname " + form + "'>" + formhold["name"] + "</td><td class='formtarget " + form + "'>" + formhold["target"] + "</td><td class='formdur " + form + "'>" + formhold["duration"] + "</td><td class='fading " + form + "'>" + formhold["fading"] + "</td></tr>"));
   }
-
-}
-
-function setupAugmentations() {
-  for (var aug in augmentations) { //render augmentations
-    switch (aug) {
-      case "obvious":
-        for (var limb in augmentations[aug]) {
-          $("#cyberlimbs").append("<tr class=" + limb + "><td class='buyAug button'><strong>+</strong></td><td class='limb'>" + augmentations[aug][limb]["name"] + "</td><td class='type'>Obvious</td><td class='grade'>Standard</td><td class='location'>Left</td><td class='strUp button'>+</td><td class='str'>3</td><td class='strDown button'>-</td><td class='agiUp button'>+</td><td class='agi'>3</td><td class='agiDown button'>-</td><td class='cap'>" + augmentations[aug][limb]["capmax"] + "</td><td class='avail'>" + augmentations[aug][limb]["avail"] + "</td><td class='ess'>" + augmentations[aug][limb]["essence"] + "</td><td class='price'>" + augmentations[aug][limb]["cost"] + "&yen;</td></tr>");
-          switch (augmentations[aug][limb]["slot"]) {
-            case "chest":
-              $("." + limb + " .location").empty().append("Chest");
-              break;
-            case "head":
-              $("." + limb + " .location").empty().append("Head");
-              break;
-            case "arm":
-            case "leg":
-              $("." + limb + " .location").empty().append("<select><option value='left'>Left</option><option value='right'>Right</option></select> " + augmentations[aug][limb]["slot"]);
-              break;
-
-          }
-        }
-        break;
-    }
-  }
-
-  $("#cyberlimbs .type").empty().append("<select><option value='obvious'>Obvious</option><option value='synthetic'>Synthetic</option></select>");
-  $("#cyberlimbs .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
 }
 
 function addSkillLine(skill) {
@@ -1262,7 +1172,7 @@ function addSkillLine(skill) {
   skillLine += "<td class='decAtt " + skill.id + "'>-</td>";
   skillLine += "<td class='skillName'>" + skill["name"] + "</td>";
   skillLine += "<td class='stat'>" + attributes.current[skill["stat"]] + "</td>";
-  skillLine += "<td class='mod'>" + skill["mod"] + "</td>"
+  skillLine += "<td class='mod'>" + skill["mod"] + "</td>";
   skillLine += "<td class='skillsum'>" + skillsum + "</td><tr>";
 
   $("." + skill["catalog"]).after(skillLine);
@@ -1333,7 +1243,7 @@ function renderSkills() { //this has become for rendering/updating anything that
       weapons[item]["accuracy"] = attributes.limits.phyLimit + attributes.limitMod.phyLimitMod;
     }
 
-    augmentedStat("accmod", "accuracy", [item], weapons)
+    augmentedStat("accmod", "accuracy", [item], weapons);
     $(".reach." + item).empty().append("<span>" + weapons[item]["reach"] + "(" + (weapons[item]["reach"] + reachmod) + ")" + "</span>");
     $(".weaprating." + item + ".weapratingnum").empty().append(weapons[item]["rating"]);
     $(".ap." + item).empty().append(weapons[item]["ap"]);
@@ -1413,92 +1323,6 @@ function addKnowing() {
   addSkillLine(skill);
 }
 
-function addPowerPoint() {
-  var power = adeptPowers[$(this).attr("id")]; //this is just short hand to say adeptPowers["power name"]
-
-  if ($(this).hasClass("active")) {
-    deactivate($(this));
-    power["active"] = false;
-
-    //@TODO - I still need to figure out how to reduce the skill mod when we turn off the skill
-    for (var skill in power["skillmod"]) {
-      resetMod(power["skillmod"][skill], power["level"]);
-    }
-
-    for (var key in power["attmod"]) { //this rests the augmented attribute...for the most part.
-      switch (power["attmod"][key]) {
-        case "body":
-          attributes.augment.bod -= power["level"];
-          break;
-        case "reaction":
-          attributes.augment.rea -= power["level"];
-          break;
-        case "agility":
-          attributes.augment.agi -= power["level"];
-          break;
-        case "strength":
-          attributes.augment.str -= power["level"];
-          break;
-      }
-    }
-
-    if ($(this).attr("id") == "improvedreflexes") { //god damn improvedreflexes has to be a special snowflake and follow different rules
-      power["cost"] = 1.5;
-      attributes.initiative.physicalDice = 1;
-      switch (power["level"]) {
-        case 1:
-          powerPoints += 1.5;
-          attributes.augment.rea -= 1;
-          break;
-        case 2:
-          powerPoints += 2.5;
-          attributes.augment.rea -= 2;
-          break;
-        case 3:
-          powerPoints += 3.5;
-          attributes.augment.rea -= 3;
-          break;
-      }
-    } else if (power["level"] != "n/a") { //this is for every power that is not improve reflexes
-      powerPoints += power["cost"] * power["level"]; //basically, it recovers the amount of power points that was spend on the power of turned off
-    } else {
-      powerPoints += power["cost"];
-    }
-
-    if (power["level"] != "n/a") { //if the power level is NOT n/a then do this stuff here
-      power["level"] = 0;
-      $(".incAtt" + "." + $(this).attr("id")).addClass("deact");
-      $(".decAtt" + "." + $(this).attr("id")).addClass("deact");
-    }
-    minusLimitMod(power["limitmod"]); //for the 3 powers that increase limits, this will reduce the limits they effect
-  } else {
-    if (powerPoints - power["cost"] >= 0) {
-      activate($(this));
-      power["active"] = true;
-
-      if (power["level"] != "n/a") { //if the power is turned on, then add a level and remove the decative class on the + and - buttons
-        power["level"]++;
-        $(".incAtt" + "." + $(this).attr("id")).removeClass("deact");
-        $(".decAtt" + "." + $(this).attr("id")).removeClass("deact");
-        for (var skill in power["skillmod"]) {
-          addMod(power["skillmod"][skill], power["level"]);
-        }
-        addAttMod(power["attmod"]);
-
-        if ($(this).attr("id") == "improvedreflexes") {
-          attributes.augment.rea++;
-          attributes.initiative.physicalDice++;
-        }
-      }
-
-      addLimitMod(power["limitmod"]);
-      powerPoints -= power["cost"];
-    }
-  }
-
-  displayUpdater();
-}
-
 //@TODO - rename parameter
 function addLimitMod(x) {
   for (var key in x) {
@@ -1536,7 +1360,7 @@ function minusLimitMod(x) {
 }
 
 //@TODO - rename parameter
-function addAttMod(x) {
+function addAttributeMod(x) {
   for (var key in x) {
     switch (x[key]) {
       case "body":
@@ -1555,7 +1379,7 @@ function addAttMod(x) {
   }
 }
 
-function addMod(skill, powerLelve) {
+function addMod(skill, powerLevel) {
   if (powerLevel <= attributes.current.mag) {
     activeSkills[skill]["mod"]++;
   }
@@ -1612,11 +1436,11 @@ function costUpdater(x) {
   $("." + x + " .armorcost").empty().append(inventory[x]["cost"] + "&yen;");
 }
 
-function sellsign(x) {
+function sellSign(x) {
   x.empty().append("<em>-</em>");
 }
 
-function buysign(x) {
+function buySign(x) {
   x.empty().append("<strong>+</strong>");
 }
 
@@ -1654,10 +1478,10 @@ function addingMagMod() {
 }
 
 //This function is for giving devices access to its mods
-function enhancements(enhancements, deviceCapacity, deviceName, normalDevice) { //w==enchancements, x=device capacity, y=device name + inventory number, z=the normal device
+function enhancements(enhancements, deviceCapacity, deviceName, normalDevice) {
 
   inventory[deviceName]["mods"] = [];
-  var defaultMods = electronics[z]["mods"];
+  var defaultMods = electronics[normalDevice]["mods"];
   if (typeof defaultMods !== "undefined") {
     inventory[deviceName]["mods"] = defaultMods.slice(0);
   }
@@ -1668,7 +1492,7 @@ function enhancements(enhancements, deviceCapacity, deviceName, normalDevice) { 
     $("." + deviceName + " .moody").append("<div class='modslot " + i + "'>" + inventory[deviceName]["mods"][mod] + "</div>");
   }
 
-  for (var i = 0 + preinstalled; i < x + preinstalled; i++) {
+  for (var i = 0 + preinstalled; i < deviceCapacity + preinstalled; i++) {
     $("." + deviceName + " .moody").append("<div class='modslot " + i + "'>" + "<select class='" + inventory[deviceName]["type"] + "'></select>" + "</div>");
     inventory[deviceName]["mods"][i] = "";
   }
@@ -1682,21 +1506,6 @@ function enhancements(enhancements, deviceCapacity, deviceName, normalDevice) { 
       }
     }
   }
-}
-
-//@TODO - Rename function
-function microsoftStore() { //this sells the device
-  var devicename = $(this).parent().attr("class");
-  $("." + devicename).remove();
-  nuyen += inventory[devicename]["cost"];
-  if (typeof inventory[devicename]["karmaCost"] !== "undefined") {
-    focinumber--;
-    fociRating -= inventory[devicename]["rating"];
-    karma += inventory[devicename]["rating"] * inventory[devicename]["karmaCost"];
-    pointUpdater("#karmapnt", karma);
-  }
-  delete inventory[devicename];
-  nuyenUpdater();
 }
 
 function buyProgram() {
@@ -1755,13 +1564,13 @@ function buyProgram() {
     nuyen -= cost;
     inventory[device]["cost"] += cost;
   }
+
   $("." + device + " .devicecost").empty().append(inventory[device]["cost"] + "&yen;");
   nuyenUpdater();
 
-  //@TODO - rename parameter
-  function programCost(x) {
+  function programCost(program) {
     cost = 0;
-    if (programs[x]["category"] == "common") {
+    if (programs[program].category == "common") {
       cost = 80;
     } else {
       cost = 250;
@@ -1815,6 +1624,7 @@ function buylinkmod() {
       }
     }
   }
+
   $("." + device + " .devicecost").empty().append(inventory[device]["cost"] + "&yen;");
   nuyenUpdater();
 }
@@ -1826,31 +1636,31 @@ function commRating() {
 
   var device = $(this).parent().attr("class");
 
-  //@TODO - figure out and rename ed
+  var electronicDevice;
   if (typeof electronics[device] !== "undefined") {
-    var ed = electronics[device]; //ed=electronic device
+    electronicDevice = electronics[device];
   } else if (typeof maglockMod !== "undefined") {
-    var ed = maglockMod[device];
+    electronicDevice = maglockMod[device];
   }
 
-  if (typeof ed.ratingmax === "undefined") { //if ratingmax isn't defined, then the max is 6, else its the ratingmax
-    var ratingmax = 6;
-  } else {
-    var ratingmax = ed.ratingmax;
+  var ratingmax = 6;
+  if (typeof electronicDevice.ratingmax !== "undefined") {
+    ratingmax = electronicDevice.ratingmax;
   }
 
-  if ($(this).hasClass("ratingUp") && ed["avail"] < maxAvail && ed["rating"] < ratingmax) { //if this is the rating up button, up the rating of the device
-    ed["rating"]++;
-    ed["avail"] += ed["availx"];
-    ed.cost += ed.costx;
-  } else if ($(this).hasClass("ratingDown") && ed["rating"] > 1) { //else if this is the rating down device, lower the rating
-    ed["rating"]--;
-    ed["avail"] -= ed["availx"];
-    ed.cost -= ed.costx;
+  if ($(this).hasClass("ratingUp") && electronicDevice.avail < maxAvail && electronicDevice.rating < ratingmax) {
+    electronicDevice.rating++;
+    electronicDevice.avail += electronicDevice.availx;
+    electronicDevice.cost += electronicDevice.costx;
+  } else if ($(this).hasClass("ratingDown") && electronicDevice.rating > 1) {
+    electronicDevice.rating--;
+    electronicDevice.avail -= electronicDevice.availx;
+    electronicDevice.cost -= electronicDevice.costx;
   }
-  $("." + device + " .commrating").empty().append(ed["rating"]);
-  $("." + device + " .avail").empty().append(ed["avail"] + " " + ed["restrict"]);
-  $("." + device + " .price").empty().append(ed["cost"] + "&yen;");
+
+  $("." + device + " .commrating").empty().append(electronicDevice.rating);
+  $("." + device + " .avail").empty().append(electronicDevice.avail + " " + electronicDevice.restrict);
+  $("." + device + " .price").empty().append(electronicDevice.cost + "&yen;");
 }
 
 function modChange() {
@@ -1864,12 +1674,13 @@ function modChange() {
     oldMod = "empty";
   }
 
+  var enhanceMods;
   switch ($(this).attr("class")) {
     case "audio":
-      var enhanceMods = audioenhancements;
+      enhanceMods = audioenhancements;
       break;
     case "optics":
-      var enhanceMods = visionenhancements;
+      enhanceMods = visionenhancements;
       break;
   }
 
@@ -1914,55 +1725,5 @@ function modChange() {
         $(nextslot).prop('disabled', disable);
       }
     }
-  }
-}
-
-function adeptPowerChange() {
-  var power = $(this).val();
-  var qifoci = $(this).parents("tr").attr("class");
-
-  if (adeptPowers[power]["level"] == "n/a") {
-    $("." + qifoci + " .ratingUp," + "." + qifoci + " .ratingDown").addClass("deact");
-  } else {
-    $("." + qifoci + " .ratingUp," + "." + qifoci + " .ratingDown").removeClass("deact");
-  }
-
-  electronics.qifocus.magicType = power;
-  electronics.qifocus.rating = adeptPowers[power]["cost"] * 4; //sets the rating of the focus to 4x the cost of the power points
-  electronics.qifocus.avail = electronics.qifocus.rating * 3; //sets avail to 3x the focus rating
-  electronics.qifocus.cost = electronics.qifocus.rating * 3000; //set cost to 3000x the rating
-  $("." + qifoci + " .commrating").empty().append(electronics.qifocus.rating);
-  $("." + qifoci + " .avail").empty().append(electronics.qifocus.avail + " " + electronics.qifocus.restrict);
-  $("." + qifoci + " .price").empty().append(electronics.qifocus.cost + "&yen;");
-}
-
-function typeOfLimb() {
-  var limb = $(this).parents("tr").attr("class");
-  var limbType = $("." + limb + " .type select").val();
-  var selectLimb = $(this).val();
-  switch (selectLimb) {
-    case "used":
-    case "standard":
-    case "alpha":
-    case "beta":
-    case "delta":
-      augmentations[limbType][limb]["cost"] /= augmentations["grade"][augmentations[limbType][limb]["grade"]]["cost"];
-      augmentations[limbType][limb]["cost"] *= augmentations["grade"][selectLimb]["cost"];
-      augmentations[limbType][limb]["essence"] /= augmentations["grade"][augmentations[limbType][limb]["grade"]]["ess"];
-      augmentations[limbType][limb]["essence"] *= augmentations["grade"][selectLimb]["ess"];
-      augmentations[limbType][limb]["avail"] -= augmentations["grade"][augmentations[limbType][limb]["grade"]]["avail"];
-      augmentations[limbType][limb]["avail"] += augmentations["grade"][selectLimb]["avail"];
-      augmentations[limbType][limb]["grade"] = selectLimb;
-    case "obvious":
-    case "synthetic":
-      $("." + limb + " .limb").empty().append(augmentations[limbType][limb]["name"]);
-      $("." + limb + " .grade select").val(augmentations[limbType][limb]["grade"]);
-      $("." + limb + " .str").empty().append(augmentations[limbType][limb]["str"]);
-      $("." + limb + " .agi").empty().append(augmentations[limbType][limb]["agi"]);
-      $("." + limb + " .cap").empty().append(augmentations[limbType][limb]["capmax"]);
-      $("." + limb + " .avail").empty().append(augmentations[limbType][limb]["avail"]);
-      $("." + limb + " .ess").empty().append(Math.round(augmentations[limbType][limb]["essence"] * 1000) / 1000);
-      $("." + limb + " .price").empty().append(augmentations[limbType][limb]["cost"] + "&yen;");
-      break;
   }
 }

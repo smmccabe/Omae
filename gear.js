@@ -11,7 +11,7 @@ function setupGear() {
       case "unarmedcombat":
       case "exoticmeleeweapon":
         //this one populates the melee weapons
-        $(".meleeweapon." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='reach " + item + "'>" + itemhold["reach"] + "(" + (itemhold["reach"] + reachmod) + ")" + "</td><td class='damage " + item + "'>" + (itemhold["stat"] + itemhold["damage"]) + "(" + (itemhold["stat"] + itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509" + "</td><td>" + itemhold.ref.book + " p" + itemhold.ref.page + "</td></tr>")
+        $(".meleeweapon." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='reach " + item + "'>" + itemhold["reach"] + "(" + (itemhold["reach"] + reachmod) + ")" + "</td><td class='damage " + item + "'>" + (itemhold["stat"] + itemhold["damage"]) + "(" + (itemhold["stat"] + itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509" + "</td><td>" + itemhold.ref.book + " p" + itemhold.ref.page + "</td></tr>");
         break;
       case "bow":
       case "crossbow":
@@ -103,7 +103,7 @@ function setupAmmo() {
   $(".holdoutammo .tracer, .lightammo .tracer, .heavyammo .tracer, .sniperammo .tracer, .shotgunammo .tracer").remove();
 
   for (var bomb in explosives) {
-    $("." + bomb + ".explosives").after("<tr class='" + bomb + "'><td class='buybomb button'><strong>+</strong></td><td class='bombup button'>+</td><td class='explosiverating'>" + explosives[bomb]["rating"] + "</td><td class='bombdown button'>-</td><td>" + explosives[bomb]["avail"] + " " + explosives[bomb]["restrict"] + "</td><td class='bombbond'>" + explosives[bomb]["cost"] + "&#65509;</td></tr>");
+    $("." + bomb + ".explosives").after("<tr class='" + bomb + "'><td class='buybomb button'><strong>+</strong></td><td class='bombup button'>+</td><td class='explosiverating'>" + explosives[bomb].rating + "</td><td class='bombdown button'>-</td><td>" + explosives[bomb]["avail"] + " " + explosives[bomb]["restrict"] + "</td><td class='bombbond'>" + explosives[bomb]["cost"] + "&#65509;</td></tr>");
   }
   $(".detonator").after("<tr><td class='buyDet button'>+</td><td class='caps'>0</td><td class='sellDet button'>-</td><td>" + detonator.avail + " " + detonator.restrict + "</td><td>" + detonator.cost + "&#65509;</td></tr>");
 
@@ -173,7 +173,7 @@ function setupElectronics() {
         for (var power in adeptPowers) {
           $("#" + device.type + " ." + devicename + " .adeptPowers select").append("<option value='" + power + "'>" + adeptPowers[power]["name"] + "</option>");
         }
-        ;
+
         break;
       case "spellfoci":
         ratingGear(device, devicename);
@@ -182,12 +182,12 @@ function setupElectronics() {
           for (var spellCat in spellType) {
             $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + spellType[spellCat] + "'>" + spellType[spellCat] + "</option>");
           }
-          ;
+
         } else {
           for (var spellCat in ritualKeywords) {
             $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + ritualKeywords[spellCat] + "'>" + ritualKeywords[spellCat] + "</option>");
           }
-          ;
+
         }
 
         break;
@@ -197,7 +197,7 @@ function setupElectronics() {
         for (var spirit in spiritType) {
           $("#" + device.type + " ." + devicename + " .magicType select").append("<option value='" + spiritType[spirit] + "'>" + spiritType[spirit] + "</option>");
         }
-        ;
+
         break;
     }
 
@@ -352,7 +352,7 @@ function holsterAddOn(itemHold, itemNum, item) { //x=itemhold, y=itemNum,z=item
   if (check == "lightpistols" || check == "tasers" || check == "holdouts") { //checks to see if small arms to use arm sldder
     makeHolster(itemNum, item);
     $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='hiddenarmslide " + itemNum + " button'>Hidden Arm Slide</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
-  };
+  }
   if (check == "heavypistols" || check == "machinepistols") { //checks to see if larger small arms that can use holsters that are not arm slider
     makeHolster(itemNum, item);
     $(".holster." + itemNum).append("<td class='concealableholster " + itemNum + " button'>Concealable Holster</td><td class='quickdrawholster " + itemNum + " button'>Quick-draw Holster</td>");
@@ -411,7 +411,7 @@ function buyingItem(itemhold) {
 }
 
 function sellWeapon() {
-  var item = $(this).parent().attr("id")
+  var item = $(this).parent().attr("id");
   nuyen += inventory[item]["cost"];
   inventory[item]["active"] = false;
   fociRating -= inventory[item]["weaponfoci"];
@@ -430,7 +430,7 @@ function sellWeapon() {
 
 function settingWeapon() { //this will change the weapon mounts and the nuyen
   var item = $(this).closest(".invName").attr("id");
-  var itemmod = inventory[item]["mods"]
+  var itemmod = inventory[item]["mods"];
   var itemhold = inventory[item];
 
   itemmod.top = mountCheck($(".topmount." + item + " select").val(), itemmod.top, itemmod.under);
@@ -471,7 +471,8 @@ function addingAccuracy(x, z) {
     y = 1;
   } else {
     y = 0;
-  };
+  }
+
   return y;
 }
 
@@ -715,9 +716,9 @@ function buyingAmmo() {
         avail: gas["avail"] + 2,
         restrict: gas["restrict"],
         cost: gas["cost"] + 40
-      }
+      };
 
-      z = ammunition[gasname]
+      z = ammunition[gasname];
       $(".gas").after("<tr class='" + gasname + "'><td class='buygrenades button'>+</td><td class='amountofammo'>0</td><td class='sellgrenades button'>-</td><td class='grenadesname'>" + z["name"] + "</td><td class='grenadesdammod'>" + z["dammod"] + " " + z["typemod"] + " " + z["elemod"] + "</td><td class='apmod'>" + z["apmod"] + "</td><td class='blast'>" + z["blast"] + "</td><td class='avail'>" + z["avail"] + " " + z["restrict"] + "</td><td class='cost'>" + z["cost"] + "&#65509</td></tr>");
     }
     return;
@@ -946,7 +947,7 @@ function armorModding() {
     nuyen -= invmod["cost"];
     inventory[item]["cost"] += invmod["cost"];
     invmod["active"] = true;
-    sellsign($(this));
+    sellSign($(this));
     costUpdater(item);
     if (mod == "chemicalseal" && inventory[item]["helm"] == false) {
       turnonhelm(item, $("." + item + " .buyhelmmod"));
@@ -956,7 +957,7 @@ function armorModding() {
     nuyen += invmod["cost"];
     inventory[item]["cost"] -= invmod["cost"];
     invmod["active"] = false;
-    buysign($(this));
+    buySign($(this));
     costUpdater(item);
   }
   nuyenUpdater();
@@ -973,7 +974,7 @@ function helmup() {
   if (inventory[item]["helm"] == false && nuyen - inventory[item]["helmmod"]["cost"] > 0) {
     turnonhelm(item, $(this));
   } else {
-    buysign($(this));
+    buySign($(this));
     inventory[item]["helm"] = false;
     nuyen += inventory[item]["helmmod"]["cost"];
     inventory[item]["cost"] -= inventory[item]["helmmod"]["cost"];
@@ -984,7 +985,7 @@ function helmup() {
       nuyen += invmod["cost"];
       inventory[item]["cost"] -= invmod["cost"];
       invmod["active"] = false;
-      buysign($("." + item + " .chemicalseal .buyarmmod"));
+      buySign($("." + item + " .chemicalseal .buyarmmod"));
       costUpdater(item);
     }
   }
@@ -992,7 +993,7 @@ function helmup() {
 }
 
 function turnonhelm(item, x) {
-  sellsign(x);
+  sellSign(x);
   inventory[item]["helm"] = true;
   nuyen -= inventory[item]["helmmod"]["cost"];
   inventory[item]["cost"] += inventory[item]["helmmod"]["cost"];
@@ -1057,7 +1058,8 @@ function fashionbutton() { //this will change the value and avail of cloths base
         armor: clothingarmor,
         avail: clothingavail,
         cost: parseInt(clothingcost) + electrochromiccost + feedbackcost + synthleathercost
-      }
+      };
+
       $("#clothing").after("<tr class='clothing" + invNum + "'><td class='sellarmor button'><em>-</em></td><td>" + clothingcost + "&yen;</td><td class='electrochromic'>Electrochromic</td><td class='feedback'>Feedback</td><td class='leather'>Synthleather</td><td>" + clothingarmor + "</td><td>" + clothingavail + "</td><td>" + inventory["clothing" + invNum]["cost"] + "&yen;</td></tr>");
 
       if (synthleathercost == 200) {
@@ -1075,7 +1077,7 @@ function fashionbutton() { //this will change the value and avail of cloths base
         clothingmodactive(invNum + " .electrochromic");
       }
 
-      nuyen -= inventory["clothing" + invNum]["cost"]
+      nuyen -= inventory["clothing" + invNum]["cost"];
       invNum++;
       nuyenUpdater();
       break;
@@ -1250,7 +1252,7 @@ function appleStore() { //this function handles buying electronic devices, and n
       inventory[x + invNum][deviceAtt] = electronics[x][deviceAtt];
     }
 
-    var y = electronics[x]["type"]
+    var y = electronics[x]["type"];
     if (y == "deck" || y == "rcc" || y == "commlink") {
       inventory[x + invNum]["programlist"] = {};
 
@@ -1266,4 +1268,18 @@ function appleStore() { //this function handles buying electronic devices, and n
       $("." + deviceName).after("<tr class='" + deviceInventoryName + "'><td class='selldevice button'><em>-</em></td><td class='moody' colspan=3>" + deviceInventory.rating + "</td><td>" + deviceInventory.name + "</td><td>" + deviceInventory.magicType + "</td><td>" + deviceInventory.avail + " " + deviceInventory.restrict + "</td><td class='devicecost'>" + deviceInventory.cost + "&yen;</td></tr>");
     }
   }
+}
+
+function sellDevice() {
+  var devicename = $(this).parent().attr("class");
+  $("." + devicename).remove();
+  nuyen += inventory[devicename]["cost"];
+  if (typeof inventory[devicename]["karmaCost"] !== "undefined") {
+    focinumber--;
+    fociRating -= inventory[devicename]["rating"];
+    karma += inventory[devicename]["rating"] * inventory[devicename]["karmaCost"];
+    pointUpdater("#karmapnt", karma);
+  }
+  delete inventory[devicename];
+  nuyenUpdater();
 }

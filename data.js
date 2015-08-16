@@ -5428,13 +5428,6 @@ var weapons = {
   }
 };
 
-var weaponmods = {
-  airburstlink: {
-    name: "Airburst Link",
-    weaptype: ["grenadelauncher", "rocketlauncher"]
-  }
-};
-
 var ammunition = {
   //taser
   taserdart: {
@@ -5748,7 +5741,7 @@ var explosives = {
 
 var detonator = {
   name: "Detonator Cap",
-  ammount: 0,
+  amount: 0,
   avail: 8,
   restrict: "Restricted",
   cost: 75

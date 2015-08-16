@@ -1,3 +1,51 @@
+function setupSpells() {
+  for (var spell in spellforms) {
+    var spellhold = spellforms[spell];
+    if (spellforms[spell]["category"] == "combat") {
+      $(".spells.combat").after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='direct " + spell + "'></td><td class='element " + spell + "'>" + spellhold["element"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldam " + spell + "'>" + spellhold["damage"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
+      if (spellhold["direct"] == true) {
+        $("<span>Direct</span>").appendTo($(".direct." + spell));
+      } else {
+        $("<span>Indirect</span>").appendTo($(".direct." + spell));
+      }
+    }
+
+    if (spellforms[spell]["category"] == "detection") {
+      $(".spells.detection").after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='illact " + spell + "'>" + spellhold["active"] + "</td><td class='direction " + spell + "'>" + spellhold["direction"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
+    }
+
+    if (spellforms[spell]["category"] == "health") {
+      $(".spells.health").after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='heaEss " + spell + "'></td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
+      if (spellhold["essence"] == true) {
+        $(".heaEss." + spell).append($("<span>Essence</span>"));
+      } else {
+        $(".heaEss." + spell).append($("<span>n/a</span>"));
+      }
+    }
+
+    if (spellforms[spell]["category"] == "illusion") {
+      $(".spells.illusion").after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='realistic " + spell + "'></td><td class='sense " + spell + "'>" + spellhold["sense"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
+      if (spellhold["realistic"] == true) {
+        $(".realistic." + spell).append($("<span>Realistic</span>"))
+      } else {
+        $(".realistic." + spell).append($("<span>Obvious</span>"))
+      }
+    }
+
+    if (spellforms[spell]["category"] == "manipulation") {
+      $(".spells.manipulation").after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='effect " + spell + "'>" + spellhold["effect"] + "</td><td class='damage " + spell + "'>" + spellhold["damage"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
+    }
+  }
+
+  spellinput(" ", "detectlifeform", "Life Form");
+  spellinput(" Extended", "detectlifeformextended", "Life Form");
+  spellinput(" ", "detectobject", "Object");
+
+  //@TODO - organize functions and logic
+  spellAttributeSelect("decreaseattribute", "Decrease ");
+  spellAttributeSelect("increaseattribute", "Increase ");
+}
+
 function spellinput(x, y, z) { //so people can input their own detection spells
   $(".spellname." + y).empty().append($("<span>Detect " + "<input type='text' class='" + y + "' placeholder='" + z + "'>" + x + "</span>"));
 }
@@ -56,6 +104,8 @@ function spellActivate() { //this is used to turn of add spells and alchemical p
     if (x == "" || typeof spellforms["detect" + x + y] != 'undefined') {
       return;
     }
+
+    //sets all the values for the new spellform object
     spellforms["detect" + x + y] = {
       name: "Detect " + x + " " + y,
       category: "detection",
@@ -67,8 +117,9 @@ function spellActivate() { //this is used to turn of add spells and alchemical p
       range: "T",
       duration: "Sustain",
       drain: spellforms[z]["drain"]
-    }; //sets all the values for the new spellform object
-    spellhold = spellforms["detect" + x + y] //short hand, because typing all that junk was annoying
+    };
+
+    spellhold = spellforms["detect" + x + y]; //short hand, because typing all that junk was annoying
     var spell = "detect" + x + y;
     $("#" + z).after($("<tr id='" + spell + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='illact " + spell + "'>" + spellhold["active"] + "</td><td class='direction " + spell + "'>" + spellhold["direction"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>")); //Add the spell to the list on the DOM after where it was entered
   }
@@ -80,6 +131,7 @@ function spellActivate() { //this is used to turn of add spells and alchemical p
       return;
     }
 
+    //sets all the values for the new spellform object
     spellforms[z + x] = {
       name: z + " " + x,
       category: "health",
@@ -90,11 +142,13 @@ function spellActivate() { //this is used to turn of add spells and alchemical p
       range: "T",
       duration: "Sustain",
       drain: spellforms[y]["drain"]
-    }; //sets all the values for the new spellform object
-    spellhold = spellforms[z + x] //short hand, because typing all that junk was annoying
-    var spell = y;
-    $("#" + y).after($("<tr id='" + z + x + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='heaEss " + spell + "'>" + spellhold["essence"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>")); //Add the spell to the list on the DOM after where it was entered
+    };
 
+    spellhold = spellforms[z + x]; //short hand, because typing all that junk was annoying
+    var spell = y;
+
+    //Add the spell to the list on the DOM after where it was entered
+    $("#" + y).after($("<tr id='" + z + x + "' class='" + spellhold["category"] + "'><td class='spellact " + spell + " button'><strong>-</strong></td><td class='prepact " + spell + " button'><strong>-</strong></td><td class='spellname " + spell + "'>" + spellhold["name"] + "</td><td class='heaEss " + spell + "'>" + spellhold["essence"] + "</td><td class='spelltype " + spell + "'>" + spellhold["type"] + "</td><td class='spellrange " + spell + "'>" + spellhold["range"] + "</td><td class='spelldur " + spell + "'>" + spellhold["duration"] + "</td><td class='drain " + spell + "'>" + spellhold["drain"].toString() + "</td></tr>"));
   }
 }
 

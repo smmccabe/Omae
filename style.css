@@ -1,43 +1,82 @@
-body {background: #333; /* Old browsers */
-    background: -webkit-linear-gradient(top, #222 0%,#2a0022 100%); /* Chrome10+,Safari5.1+ */
-    background: linear-gradient(to bottom, #222 0%,#2a0022 100%); /* W3C */
+body {
+    background: rgb(29,49,50);
     font-family: Share Tech Mono, "Verdana", sans-serif;
-    color: green;
+    color: rgb(66,231,234);
     text-align: center;
 }
 
 .navbar {
-  background: #222;
-  border: green;
+    background: rgb(29,49,50);
+    border-bottom: none;
+}
+
+table, tr, td, th{
+    border: solid 1px rgb(66,231,234);
+    border-top: solid 1px rgb(66,231,234);
 }
 
 .navbar .table {
-  margin-bottom: 0;
+    margin-bottom: 0;
+    background: rgb(17,76,76);
+    border: solid 1px rgb(29,49,50);
 }
 
-table, tr, td {
-    border: solid 1px green;
-    border-radius: 15px 0;
+th {
+    text-align: center;
 }
 
 input {
-    background: none;
-    color: white;
+    background: rgb(17,76,76);
+    color: rgb(187,197,201);
     font-size: 17px;
     font-family: Share Tech Mono, "Verdana", sans-serif;
-    border: solid green;
+    border: solid rgb(66,231,234);
+    padding: 5px;
+    text-align: center;
+}
+
+select {
+    background: rgb(17,76,76);
+    color: rgb(187,197,201);
+    font-size: 17px;
+    font-family: Share Tech Mono, "Verdana", sans-serif;
+    border: solid rgb(66,231,234);
     padding: 5px;
     text-align: center;
 }
 
 h1 {
-    border: double 15px green;
+    border: double 15px rgb(66,231,234);
     padding: 15px;
     margin: 10px;
 }
 
+.btn-default {
+    color: rgb(66,231,234);
+    border-color: rgb(66,231,234);
+    background-color: rgb(17,76,76);
+}
+
+.btn-default:hover, .btn-default.active:focus, .btn-default:focus, .btn-default:active:focus {
+    color: rgb(255,166,53);
+    border-color: rgb(255,166,53);
+    background-color: rgb(17,76,76);
+}
+
+.btn-primary {
+    color: rgb(255,166,53);
+    border-color: rgb(66,231,234);
+    background-color: rgb(17,76,76);
+}
+
+.btn-primary:hover,.btn-primary.active {
+    color: rgb(255,166,53);
+    border-color: rgb(255,166,53);
+    background-color: rgb(17,76,76);
+}
+
 strong {
-    color: yellow;
+    color: rgb(255,166,53);
 }
 
 em {
@@ -49,55 +88,20 @@ em {
 }
 
 .selected {
-    border-color: #0f0;
+    color: rgb(255,166,53);
+    border-color: rgb(255,166,53);
 }
 
-.deact, th {
-    background: #040;
-    color: #020;
-    border-color: #020;
+.deact,.deact:hover{
+    color: rgb(95,107,112);
+    border-color: rgb(95,107,112);
     cursor: default;
 }
 
 .deact strong, .deact em {
-    color: #020;
-}
-
-th {
-  color: lightgreen;
-  text-align: center;
-}
-
-.points {
-    padding: 10px;
-    margin: 10px;
-}
-
-#metatypeContain, #magresContain {
-    margin-left: 0;
-}
-
-#specialContain, #skillcontainer {
-    clear: both;
+    color: rgb(95,107,112);
 }
 
 .hide {
     display: none;
-}
-
-.active {
-    border-color: #0f0;
-}
-
-.inventory {
-    padding:0;
-}
-
-.alert {
-    color:black;
-    background-color: red;
-    -webkit-transition: background-color 1s;
-    -moz-transition: background-color 1s;
-    -o-transition: background-color 1s;
-    transition: background-color 1s;
 }
