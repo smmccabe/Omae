@@ -622,7 +622,7 @@ function changeAttribute() {
     weapons.bow.cost = weapons.bow.rating * 100;
   }
 
-  if ($(this).closest("skilltitle")) { //if the incAtt or decAtt is in the div skilltitle, then its a skill, so update the active skills
+  if ($(this).closest("skillTitle")) { //if the incAtt or decAtt is in the div skilltitle, then its a skill, so update the active skills
     activeSkills = skillUpdater(activeSkills, skills);
   }
   if ($(this).closest("knowledgeskills")) { //this updates the knowledge skills
