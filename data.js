@@ -7774,6 +7774,856 @@ var augmentations = {
       avail: 8
     }
   },
+  cyberware: {
+    // headware
+    commlink: {
+      name: "Commlink",
+      grade: "standard",
+      slot: "head",
+      essence: 0.2,
+      cap: 2,
+      avail: 0,
+      restrict: "",
+      cost: 2000, // + commlink cost
+      ref: {
+        book: "SR5",
+        page: "451,453"
+      }
+    },
+    controlrig1: {
+      name: "Control Rig 1",
+      grade: "standard",
+      slot: "head",
+      essence: 1,
+      cap: 0,
+      avail: 5,
+      restrict: "R",
+      cost: 43000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    controlrig2: {
+      name: "Control Rig 2",
+      grade: "standard",
+      slot: "head",
+      essence: 2,
+      cap: 0,
+      avail: 10,
+      restrict: "R",
+      cost: 97000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    controlrig3: {
+      name: "Control Rig 3",
+      grade: "standard",
+      slot: "head",
+      essence: 3,
+      cap: 0,
+      avail: 15,
+      restrict: "R",
+      cost: 208000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    cortexbombkink: {
+      name: "Cortex Bomb: Kink",
+      grade: "standard",
+      slot: "head",
+      essence: 0,
+      cap: 1,
+      avail: 12,
+      restrict: "F",
+      cost: 10000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    cortexbombmicrobomb: {
+      name: "Cortex Bomb: Microbomb",
+      grade: "standard",
+      slot: "head",
+      essence: 0,
+      cap: 2,
+      avail: 16,
+      restrict: "F",
+      cost: 25000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    cortexbombareabomb: {
+      name: "Cortex Bomb: Area Bomb",
+      grade: "standard",
+      slot: "head",
+      essence: 0,
+      cap: 3,
+      avail: 20,
+      restrict: "R",
+      cost: 40000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    cyberdeck: {
+      name: "Cyberdeck",
+      grade: "standard",
+      slot: "head",
+      essence: 0.4,
+      cap: 4,
+      avail: 5,
+      restrict: "R",
+      cost: 5000, // + deck cost
+      ref: {
+        book: "SR5",
+        page: "451,453"
+      }
+    },
+    datajack: {
+      name: "Datajack",
+      grade: "standard",
+      slot: "head",
+      essence: 0.1,
+      cap: 0,
+      avail: 2,
+      restrict: "",
+      cost: 1000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    datalock: {
+      name: "Data Lock",
+      grade: "standard",
+      slot: "head",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 12,
+      cap: 0,
+      avail: 0,
+      availx: 2,
+      restrict: "",
+      cost: 0,
+      costx: 1000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    olfactorybooster: {
+      name: "Olfactory Booster",
+      grade: "standard",
+      slot: "head",
+      essence: 0.2,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 4000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    simrig: {
+      name: "Simrig",
+      grade: "standard",
+      slot: "head",
+      essence: 0.2,
+      cap: 0,
+      avail: 12,
+      restrict: "R",
+      cost: 4000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    skilljack: {
+      name: "Skilljack",
+      grade: "standard",
+      slot: "head",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      avail: 0,
+      availx: 2,
+      restrict: "",
+      cost: 0,
+      costx: 20000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    tastebooster: {
+      name: "Taste Booster",
+      grade: "standard",
+      slot: "head",
+      essence: 0.2,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 3000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    toothcompartment: {
+      name: "Tooth Compartment",
+      grade: "standard",
+      slot: "head",
+      essence: 0,
+      cap: 0,
+      avail: 8,
+      restrict: "",
+      cost: 800,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    ultrasoundsensor: {
+      name: "Ultrasound Sensor",
+      grade: "standard",
+      slot: "head",
+      essence: 0.25,
+      rating: 0,
+      ratingmax: 6,
+      cap: 2,
+      avail: 10,
+      availx: 0,
+      restrict: "",
+      cost: 0,
+      costx: 12000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    voicemodulator: {
+      name: "Voice Modulator",
+      grade: "standard",
+      slot: "head",
+      essence: 0.2,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      avail: 0,
+      availx: 3,
+      restrict: "F",
+      cost: 0,
+      costx: 5000,
+      ref: {
+        book: "SR5",
+        page: "452,453"
+      }
+    },
+    // eyeware
+    cybereyes1: {
+      name: "Cybereyes 1",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.2,
+      cap: 4,
+      avail: 3,
+      restrict: "",
+      cost: 4000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cybereyes2: {
+      name: "Cybereyes 2",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.3,
+      cap: 8,
+      avail: 6,
+      restrict: "",
+      cost: 6000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cybereyes3: {
+      name: "Cybereyes 3",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.4,
+      cap: 12,
+      avail: 9,
+      restrict: "",
+      cost: 10000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cybereyes4: {
+      name: "Cybereyes 4",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.5,
+      cap: 16,
+      avail: 12,
+      restrict: "",
+      cost: 14000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    flarecompensation: {
+      name: "Flare Compensation",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      cap: 1,
+      avail: 4,
+      restrict: "",
+      cost: 1000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    imagelink: {
+      name: "Image Link",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      cap: 0,
+      avail: 4,
+      restrict: "",
+      cost: 1000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    lowlightvision: {
+      name: "Low-light Vision",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      cap: 2,
+      avail: 4,
+      restrict: "",
+      cost: 1500,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    occulardrone: {
+      name: "Occular Drone",
+      grade: "standard",
+      slot: "eye",
+      essence: 0,
+      cap: 6,
+      avail: 6,
+      restrict: "",
+      cost: 6000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    retinalduplication: {
+      name: "Retinal Duplication",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      cap: 1,
+      avail: 16,
+      availx: 0,
+      restrict: "F",
+      cost: 0,
+      costx: 20000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    smartlink: {
+      name: "Smartlink",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.2,
+      cap: 3,
+      avail: 8,
+      restrict: "R",
+      cost: 4000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    thermographicvision: {
+      name: "Thermographic Vision",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      cap: 2,
+      avail: 4,
+      restrict: "",
+      cost: 1500,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    visionenhancement: {
+      name: "Vision Enhancement",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 3,
+      cap: 0,
+      capx: 1,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 4000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    visionmagnification: {
+      name: "Vision Magnification",
+      grade: "standard",
+      slot: "eye",
+      essence: 0.1,
+      cap: 2,
+      avail: 4,
+      restrict: "",
+      cost: 2000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    // earware
+    cyberears1: {
+      name: "Cyberears 1",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.2,
+      cap: 4,
+      avail: 3,
+      restrict: "",
+      cost: 3000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cyberears2: {
+      name: "Cyberears 2",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.3,
+      cap: 8,
+      avail: 6,
+      restrict: "",
+      cost: 4500,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cyberears3: {
+      name: "Cyberears 3",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.4,
+      cap: 12,
+      avail: 9,
+      restrict: "",
+      cost: 7500,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    cyberears4: {
+      name: "Cyberears 4",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.5,
+      cap: 16,
+      avail: 12,
+      restrict: "",
+      cost: 11000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    audioenhancement: {
+      name: "Audio Enhancement",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 3,
+      cap: 0,
+      capx: 1,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 4000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    balanceaugmenter: {
+      name: "Balance Augmenter",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      cap: 4,
+      avail: 8,
+      restrict: "",
+      cost: 8000,
+      ref: {
+        book: "SR5",
+        page: "453,454"
+      }
+    },
+    damper: {
+      name: "Damper",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      cap: 1,
+      avail: 6,
+      restrict: "",
+      cost: 2250,
+      ref: {
+        book: "SR5",
+        page: "454"
+      }
+    },
+    selectsoundfilter: {
+      name: "Select Sound Filter",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      capx: 1,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 3500,
+      ref: {
+        book: "SR5",
+        page: "454"
+      }
+    },
+    soundlink: {
+      name: "Sound Link",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      cap: 0,
+      avail: 4,
+      restrict: "",
+      cost: 1000,
+      ref: {
+        book: "SR5",
+        page: "454"
+      }
+    },
+    spatialrecognizer: {
+      name: "Spatial Recognizer",
+      grade: "standard",
+      slot: "ear",
+      essence: 0.1,
+      cap: 2,
+      avail: 8,
+      restrict: "",
+      cost: 4000,
+      ref: {
+        book: "SR5",
+        page: "454"
+      }
+    },
+    // bodyware
+    plasticbonelacing: {
+      name: "Plastic Bone Lacing",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.5,
+      cap: 0,
+      avail: 8,
+      restrict: "R",
+      cost: 8000,
+      ref: {
+        book: "SR5",
+        page: "454,455,456"
+      },
+      stats: {
+        body: 1,
+        armor: 1,
+        damage: 1,
+        damtype: "P"
+      }
+    },
+    aluminiumbonelacing: {
+      name: "Aluminium Bone Lacing",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 1,
+      cap: 0,
+      avail: 12,
+      restrict: "R",
+      cost: 18000,
+      ref: {
+        book: "SR5",
+        page: "454,455,456"
+      },
+      stats: {
+        body: 2,
+        armor: 2,
+        damage: 2,
+        damtype: "P"
+      }
+    },
+    titaniumbonelacing: {
+      name: "Titanium Bone Lacing",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 1.5,
+      cap: 0,
+      avail: 16,
+      restrict: "R",
+      cost: 30000,
+      ref: {
+        book: "SR5",
+        page: "454,455,456"
+      },
+      stats: {
+        body: 3,
+        armor: 3,
+        damage: 3,
+        damtype: "P"
+      }
+    },
+    dermalplating: {
+      name: "Dermal Plating",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.5,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      capx: 0,
+      avail: 0,
+      availx: 4,
+      restrict: "R",
+      cost: 0,
+      costx: 3000,
+      ref: {
+        book: "SR5",
+        page: "454,456"
+      }
+    },
+    fingertipcompartment: {
+      name: "Fingertip Compartment",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.1,
+      cap: 1,
+      avail: 4,
+      restrict: "",
+      cost: 3000,
+      ref: {
+        book: "SR5",
+        page: "454,456"
+      }
+    },
+    grapplegun: {
+      name: "Grapple Gun",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.5,
+      cap: 4,
+      avail: 8,
+      restrict: "",
+      cost: 5000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    internalairtank: {
+      name: "Internal Air Tank",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.25,
+      rating: 0,
+      ratingmax: 3,
+      cap: 3,
+      capx: 0,
+      avail: 0,
+      availx: 1,
+      restrict: "",
+      cost: 0,
+      costx: 4500,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    musclereplacement: {
+      name: "Muscle Replacement",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0,
+      essencex: 1,
+      rating: 0,
+      ratingmax: 4,
+      cap: 0,
+      capx: 0,
+      avail: 0,
+      availx: 5,
+      restrict: "R",
+      cost: 0,
+      costx: 25000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    reactionenhancers: {
+      name: "Reaction Enhancers",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.3,
+      rating: 0,
+      ratingmax: 3,
+      cap: 0,
+      capx: 0,
+      avail: 0,
+      availx: 5,
+      restrict: "R",
+      cost: 0,
+      costx: 13000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    skillwires: {
+      name: "Skillwires",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      cap: 0,
+      capx: 0,
+      avail: 0,
+      availx: 4,
+      restrict: "",
+      cost: 0,
+      costx: 20000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    smugglingcompartment: {
+      name: "Smuggling Compartment",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 0.2,
+      cap: 2,
+      avail: 6,
+      restrict: "",
+      cost: 7500,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    wiredreflexes1: {
+      name: "Wired Reflexes 1",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 2,
+      cap: 0,
+      avail: 8,
+      restrict: "R",
+      cost: 39000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    wiredreflexes2: {
+      name: "Wired Reflexes 2",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 3,
+      cap: 0,
+      avail: 12,
+      restrict: "R",
+      cost: 149000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+    wiredreflexes3: {
+      name: "Wired Reflexes 3",
+      grade: "standard",
+      slot: "bodyware",
+      essence: 5,
+      cap: 0,
+      avail: 20,
+      restrict: "R",
+      cost: 217000,
+      ref: {
+        book: "SR5",
+        page: "455,456"
+      }
+    },
+  },
   obvious: {
     fullarm: {
       name: "Obvious Full Arm",
@@ -8074,7 +8924,6 @@ var augmentations = {
         page: "456,457"
       }
     },
-
     //limb accessories
     cyberarmgyromount: {
       name: "Cyberarm Gyromount",
@@ -8147,12 +8996,12 @@ var augmentations = {
         page: "457"
       }
     }
-
   },
-  weapons: {
+  weapons: {   // can be cyberlimb mods XOR meat-implanted weapons
     holdoutpistol: {
       name: "Hold-Out Pistol",
       type: "cybergun",
+      allow: ["arm", "leg", "chest", "head"],
       clip: false,
       laser: false,
       silencer: false,
@@ -8188,6 +9037,1091 @@ var augmentations = {
         },
         ap: 0
       }
+    },
+    // light pistol
+    // machine pistol
+    // heavy pistol
+    // smg
+    // shotgun
+    // microgrenade
+    // hand blade
+    // hand razors
+    spurs: {
+      name: "Spurs (Retractable)",
+      type: "cybermelee",
+      allow: ["arm"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      capacity: 3,
+      avail: 12,
+      restrict: "F",
+      cost: 5000,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "unarmedcombat",
+        accuracy: 0,
+        accmod: 0,
+        damage: 3,
+        stat: attributes.current.str,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {},
+        rc: 0,
+        rcmod: 0,
+        ammo: {},
+        clip: {},
+        ap: 0
+      }
+    }
+    // shock hand
+  },
+  bioware: {
+    // adrenaline pump 1-3
+    // bone density aug 1-4
+    catseye: {
+      name: "Cat's Eye",
+      grade: "standard",
+      essence: 0.1,
+      avail: 4,
+      cost: 4000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    }
+    // enhanced articultion
+    // muscle aug 1-4
+    // muscle toner 1-4
+    // orthoskin 1-4
+    // pathogenic defense 1-6
+    // platelet factories
+    // skin pocket
+    // suprathyroid gland
+    // symbiotes 1-4
+    // synthacardium 1-3
+    // tailored pheromones 1-3
+    // toxin extractor 1-6
+    // trachael filter 1-6
+    // cerebral booster 1-3
+    // damage compensators 1-12
+    // mnemonic enhancer 1-3
+    // pain editor
+    // reflex recorder [per skill]
+    // sleep regulator
+    // synaptic booster 1-3
+  }
+};
+
+var vehicles = {
+  // groundcraft
+  scoot: {
+    name: "Dodge Scoot",
+    category: "ground",
+    type: "bike",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 3,
+    speed: 3,
+    accel: 1,
+    body: 4,
+    armor: 4,
+    pilot: 1,
+    sensor: 1,
+    seats: 1,
+    avail: 0,
+    restrict: "",
+    cost: 3000,
+    ref: {
+      book: "SR5",
+      page: "462,463"
+    }
+  },
+  scorpion: {
+    name: "Harley-Davidson Scorpion",
+    category: "ground",
+    type: "bike",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 3,
+    speed: 4,
+    accel: 2,
+    body: 8,
+    armor: 9,
+    pilot: 1,
+    sensor: 2,
+    seats: 1,
+    avail: 0,
+    restrict: "",
+    cost: 12000,
+    ref: {
+      book: "SR5",
+      page: "462,463"
+    }
+  },
+  growler: {
+    name: "Yamaha Growler",
+    category: "ground",
+    type: "bike",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 5,
+    speed: 3,
+    speedoffroad: 4,
+    accel: 1,
+    body: 5,
+    armor: 5,
+    pilot: 1,
+    sensor: 1,
+    seats: 1,
+    avail: 0,
+    restrict: "",
+    cost: 5000,
+    ref: {
+      book: "SR5",
+      page: "462,463"
+    }
+  },
+  mirage: {
+    name: "Suzuki Mirage",
+    category: "ground",
+    type: "bike",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    handlingoffroad: 3,
+    speed: 6,
+    accel: 3,
+    body: 5,
+    armor: 6,
+    pilot: 1,
+    sensor: 2,
+    seats: 1,
+    avail: 0,
+    restrict: "",
+    cost: 8500,
+    ref: {
+      book: "SR5",
+      page: "462,463"
+    }
+  },
+  jackrabbit: {
+    name: "Chrysler-Nissan Jackrabbit",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 3,
+    speed: 3,
+    accel: 2,
+    body: 8,
+    armor: 4,
+    pilot: 1,
+    sensor: 2,
+    seats: 2,
+    avail: 0,
+    restrict: "",
+    cost: 10000,
+    ref: {
+      book: "SR5",
+      page: "462,463"
+    }
+  },
+  spirit: {
+    name: "Honda Spirit",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 3,
+    handlingoffroad: 2,
+    speed: 4,
+    accel: 2,
+    body: 8,
+    armor: 6,
+    pilot: 1,
+    sensor: 2,
+    seats: 2,
+    avail: 0,
+    restrict: "",
+    cost: 12000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  shinhyung: {
+    name: "Hyundai Shin-Hyung",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    handlingoffroad: 4,
+    speed: 6,
+    accel: 3,
+    body: 10,
+    armor: 6,
+    pilot: 1,
+    sensor: 2,
+    seats: 4,
+    avail: 0,
+    restrict: "",
+    cost: 28500,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  westwind: {
+    name: "Eurocar Westwind 3000",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 6,
+    handlingoffroad: 4,
+    speed: 7,
+    accel: 3,
+    body: 10,
+    armor: 8,
+    pilot: 3,
+    sensor: 5,
+    seats: 2,
+    avail: 13,
+    restrict: "",
+    cost: 110000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  americar: {
+    name: "Ford Americar",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 3,
+    speed: 3,
+    accel: 2,
+    body: 11,
+    armor: 6,
+    pilot: 1,
+    sensor: 2,
+    seats: 4,
+    avail: 0,
+    restrict: "",
+    cost: 16000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  concordat: {
+    name: "Saeder-Krupp-Bentley Concordat",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    handlingoffroad: 4,
+    speed: 5,
+    accel: 2,
+    body: 12,
+    armor: 12,
+    pilot: 2,
+    sensor: 4,
+    seats: 4,
+    avail: 10,
+    restrict: "",
+    cost: 65000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  nightsky: {
+    name: "Mitsubishi Nightsky",
+    category: "ground",
+    type: "car",
+    skill: "pilotgroundcraft",
+    handling: 4,
+    handlingoffroad: 3,
+    speed: 4,
+    accel: 2,
+    body: 15,
+    armor: 15,
+    pilot: 3,
+    sensor: 5,
+    seats: 8,
+    avail: 16,
+    restrict: "",
+    cost: 320000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  gopher: {
+    name: "Toyota Gopher",
+    category: "ground",
+    type: "truck",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    handlingoffroad: 5,
+    speed: 4,
+    accel: 2,
+    body: 14,
+    armor: 10,
+    pilot: 1,
+    sensor: 2,
+    seats: 3,
+    avail: 0,
+    restrict: "",
+    cost: 25000,
+    ref: {
+      book: "SR5",
+      page: "463"
+    }
+  },
+  bulldog: {
+    name: "GMC Bulldog Step-Van",
+    category: "ground",
+    type: "van",
+    skill: "pilotgroundcraft",
+    handling: 3,
+    handlingoffroad: 3,
+    speed: 3,
+    accel: 1,
+    body: 16,
+    armor: 12,
+    pilot: 1,
+    sensor: 2,
+    seats: 6,
+    avail: 0,
+    restrict: "",
+    cost: 35000,
+    ref: {
+      book: "SR5",
+      page: "463,464"
+    }
+  },
+  rover: {
+    name: "Rover Model 2072",
+    category: "ground",
+    type: "van",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    handlingoffroad: 5,
+    speed: 4,
+    accel: 2,
+    body: 15,
+    armor: 12,
+    pilot: 2,
+    sensor: 4,
+    seats: 6,
+    avail: 10,
+    restrict: "",
+    cost: 68000,
+    ref: {
+      book: "SR5",
+      page: "463,464"
+    }
+  },
+  roadmaster: {
+    name: "Ares Roadmaster",
+    category: "ground",
+    type: "truck",
+    skill: "pilotgroundcraft",
+    handling: 3,
+    handlingoffroad: 3,
+    speed: 3,
+    accel: 1,
+    body: 18,
+    armor: 18,
+    pilot: 3,
+    sensor: 3,
+    seats: 8,
+    avail: 8,
+    restrict: "",
+    cost: 52000,
+    ref: {
+      book: "SR5",
+      page: "463,464"
+    }
+  },
+  // watercraft
+  otter: {
+    name: "Samuvani Criscraft Otter",
+    category: "water",
+    type: "boat",
+    skill: "pilotwatercraft",
+    handling: 4,
+    speed: 3,
+    accel: 2,
+    body: 12,
+    armor: 6,
+    pilot: 2,
+    sensor: 2,
+    seats: 8,
+    avail: 0,
+    restrict: "",
+    cost: 21000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  trinity: {
+    name: "Yongkang Gala Trinity",
+    category: "water",
+    type: "boat",
+    skill: "pilotwatercraft",
+    handling: 5,
+    speed: 6,
+    accel: 3,
+    body: 10,
+    armor: 6,
+    pilot: 1,
+    sensor: 1,
+    seats: 3,
+    avail: 8,
+    restrict: "",
+    cost: 37000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  cutlass: {
+    name: "Morgan Cutlass",
+    category: "water",
+    type: "boat",
+    skill: "pilotwatercraft",
+    handling: 5,
+    speed: 4,
+    accel: 2,
+    body: 16,
+    armor: 10,
+    pilot: 3,
+    sensor: 5,
+    seats: 6,
+    avail: 14,
+    restrict: "R",
+    cost: 96000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  lamprey: {
+    name: "Proteus Lamprey",
+    category: "water",
+    type: "submarine",
+    skill: "pilotwatercraft",
+    handling: 3,
+    speed: 2,
+    accel: 1,
+    body: 6,
+    armor: 6,
+    pilot: 1,
+    sensor: 3,
+    seats: 4,
+    avail: 0,
+    restrict: "",
+    cost: 14000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  electronaut: {
+    name: "Vulkan Electronaut",
+    category: "water",
+    type: "submarine",
+    skill: "pilotwatercraft",
+    handling: 3,
+    speed: 3,
+    accel: 1,
+    body: 12,
+    armor: 10,
+    pilot: 4,
+    sensor: 4,
+    seats: 2,
+    avail: 10,
+    restrict: "",
+    cost: 108000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  // aircraft
+  nightwing: {
+    name: "Artemis Industries Nightwing",
+    category: "air",
+    type: "fixed-wing",
+    skill: "pilotaircraft",
+    handling: 6,
+    speed: 3,
+    accel: 1,
+    body: 4,
+    armor: 0,
+    pilot: 1,
+    sensor: 1,
+    seats: 1,
+    avail: 8,
+    restrict: "",
+    cost: 20000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  cessna: {
+    name: "Cessna C750",
+    category: "air",
+    type: "fixed-wing",
+    skill: "pilotaircraft",
+    handling: 3,
+    speed: 5,
+    accel: 3,
+    body: 18,
+    armor: 4,
+    pilot: 2,
+    sensor: 2,
+    seats: 4,
+    avail: 8,
+    restrict: "",
+    cost: 146000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  tundra: {
+    name: "Renault-Fiat Fokker Tundra-9",
+    category: "air",
+    type: "fixed-wing",
+    skill: "pilotaircraft",
+    handling: 3,
+    speed: 4,
+    accel: 3,
+    body: 20,
+    armor: 10,
+    pilot: 3,
+    sensor: 3,
+    seats: 24,
+    avail: 12,
+    restrict: "",
+    cost: 300000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  dragon: {
+    name: "Ares Dragon",
+    category: "air",
+    type: "rotary-wing",
+    skill: "pilotaircraft",
+    handling: 4,
+    speed: 4,
+    accel: 3,
+    body: 22,
+    armor: 8,
+    pilot: 3,
+    sensor: 3,
+    seats: 18,
+    avail: 12,
+    restrict: "",
+    cost: 355000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  hound: {
+    name: "Nissan Hound",
+    category: "air",
+    type: "rotary-wing",
+    skill: "pilotaircraft",
+    handling: 5,
+    speed: 4,
+    accel: 3,
+    body: 16,
+    armor: 16,
+    pilot: 2,
+    sensor: 4,
+    seats: 12,
+    avail: 13,
+    restrict: "R",
+    cost: 425000,
+    ref: {
+      book: "SR5",
+      page: "464,465"
+    }
+  },
+  wasp: {
+    name: "Northrup Wasp",
+    category: "air",
+    type: "rotary-wing",
+    skill: "pilotaircraft",
+    handling: 5,
+    speed: 5,
+    accel: 3,
+    body: 10,
+    armor: 8,
+    pilot: 3,
+    sensor: 3,
+    seats: 1,
+    avail: 12,
+    restrict: "R",
+    cost: 86000,
+    ref: {
+      book: "SR5",
+      page: "465"
+    }
+  },
+  venture: {
+    name: "Ares Venture",
+    category: "air",
+    type: "vtol",
+    skill: "pilotaircraft",
+    handling: 5,
+    speed: 7,
+    accel: 4,
+    body: 16,
+    armor: 14,
+    pilot: 4,
+    sensor: 4,
+    seats: 6,
+    avail: 12,
+    restrict: "F",
+    cost: 400000,
+    ref: {
+      book: "SR5",
+      page: "465"
+    }
+  },
+  banshee: {
+    name: "GMC Banshee",
+    category: "air",
+    type: "vtol",
+    skill: "pilotaircraft",
+    handling: 6,
+    speed: 8,
+    accel: 4,
+    body: 20,
+    armor: 18,
+    pilot: 4,
+    sensor: 6,
+    seats: 12,
+    avail: 24,
+    restrict: "F",
+    cost: 2500000,
+    ref: {
+      book: "SR5",
+      page: "465"
+    }
+  },
+  commuter: {
+    name: "Federated Boeing Commuter",
+    category: "air",
+    type: "vtol",
+    skill: "pilotaircraft",
+    handling: 3,
+    speed: 3,
+    accel: 3,
+    body: 16,
+    armor: 8,
+    pilot: 3,
+    sensor: 3,
+    seats: 30,
+    avail: 10,
+    restrict: "",
+    cost: 350000,
+    ref: {
+      book: "SR5",
+      page: "465"
+    }
+  },
+  // drones
+  shiawasekanmushi: {
+    name: "Shiawase Kanmushi",
+    category: "drone",
+    type: "microdrone",
+    skill: "pilotwalker",
+    handling: 4,
+    speed: 2,
+    accel: 1,
+    body: 0,
+    armor: 0,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 8,
+    restrict: "",
+    cost: 1000,
+    ref: {
+      book: "SR5",
+      page: "465,466"
+    }
+  },
+  sbmicroskimmer: {
+    name: "Sikorsky-Bell Microskimmer",
+    category: "drone",
+    type: "microdrone",
+    skill: "pilotgroundcraft",
+    handling: 3,
+    speed: 3,
+    accel: 1,
+    body: 0,
+    armor: 0,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 6,
+    restrict: "",
+    cost: 1000,
+    ref: {
+      book: "SR5",
+      page: "465,466"
+    }
+  },
+  horizonflyingeye: {
+    name: "Horizon Flying Eye",
+    category: "drone",
+    type: "minidrone",
+    skill: "pilotaircraft",
+    handling: 4,
+    speed: 3,
+    accel: 2,
+    body: 1,
+    armor: 0,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 8,
+    restrict: "",
+    cost: 2000,
+    // built-in flash-pak smoke grenade 500nuyen
+    ref: {
+      book: "SR5",
+      page: "465,466"
+    }
+  },
+  mctflyspy: {
+    name: "MCT Fly-Spy",
+    category: "drone",
+    type: "minidrone",
+    skill: "pilotaircraft",
+    handling: 4,
+    speed: 3,
+    accel: 2,
+    body: 1,
+    armor: 0,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 8,
+    restrict: "",
+    cost: 2000,
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  aztechnologycrawler: {
+    name: "Aztechnology Crawler",
+    category: "drone",
+    type: "small",
+    skill: "pilotwalker",
+    handling: 4,
+    speed: 3,
+    accel: 1,
+    body: 3,
+    armor: 3,
+    pilot: 4,
+    sensor: 3,
+    seats: 0,
+    avail: 4,
+    restrict: "",
+    cost: 4000,
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  lockhedopticx2: {
+    name: "Lockheed Optic-X2",
+    category: "drone",
+    type: "small",
+    skill: "pilotaircraft",
+    handling: 4,
+    speed: 4,
+    accel: 3,
+    body: 2,
+    armor: 2,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 10,
+    restrict: "",
+    cost: 21000,
+    // -3 to perception tests
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  aresduelist: {
+    name: "Ares Duelist",
+    category: "drone",
+    type: "medium",
+    skill: "pilotwalker",
+    handling: 3,
+    speed: 3,
+    accel: 1,
+    body: 4,
+    armor: 4,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 5,
+    restrict: "R",
+    cost: 4500,
+    // targeting (swords) 3 autosoft, comes with swords
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  gmnissandoberman: {
+    name: "GM-Nissan Doberman",
+    category: "drone",
+    type: "medium",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    speed: 3,
+    accel: 1,
+    body: 4,
+    armor: 4,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 4,
+    restrict: "R",
+    cost: 5000,
+    // standard weapon mount
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  mctnissanrotodrone: {
+    name: "MCT-Nissan Roto-Drone",
+    category: "drone",
+    type: "medium",
+    skill: "pilotaircraft",
+    handling: 4,
+    speed: 4,
+    accel: 2,
+    body: 4,
+    armor: 4,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 6,
+    restrict: "",
+    cost: 5000,
+    // body +3 for weapon mounts/customisations
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  cddalmation: {
+    name: "Cyberspace Designs Dalmatian",
+    category: "drone",
+    type: "large",
+    skill: "pilotaircraft",
+    handling: 5,
+    speed: 5,
+    accel: 3,
+    body: 5,
+    armor: 5,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 6,
+    restrict: "R",
+    cost: 10000,
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  steellynx: {
+    name: "Steel Lynx Combat Drone",
+    category: "drone",
+    type: "large",
+    skill: "pilotgroundcraft",
+    handling: 5,
+    speed: 4,
+    accel: 2,
+    body: 6,
+    armor: 12,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 10,
+    restrict: "R",
+    cost: 25000,
+    // heavy weapon mount
+    ref: {
+      book: "SR5",
+      page: "466"
+    }
+  },
+  fbbumblebee: {
+    name: "F-B Bumblebee",
+    category: "drone",
+    type: "medium",
+    skill: "pilotaircraft",
+    handling: 3,
+    speed: 2,
+    accel: 1,
+    body: 4,
+    armor: 14,
+    pilot: 3,
+    sensor: 3,
+    seats: 0,
+    avail: 12,
+    restrict: "F",
+    cost: 24000,
+    // Standard Accessories: Stoner-Ares M202 [Machine Gun, Acc 5, DV 10P, AP –3, FA, RC —, 100(belt), w/ tracer rounds]
+    //                       Stoner-Ares M202 Targeting Autosoft
+    ref: {
+      book: "EF Nothing Personal",
+      page: "23"
+    }
+  }
+};
+
+var vehiclemods = {
+  riggerinterface: {
+    name: "Rigger Interface",
+    avail: 4,
+    restrict: "",
+    cost: 1000
+  },
+  standardmount: {
+    name: "Standard Weapon Mount",
+    avail: 8,
+    restrict: "F",
+    cost: 2500
+  },
+  heavymount: {
+    name: "Heavy Weapon Mount",
+    avail: 14,
+    restrict: "F",
+    cost: 5000
+  },
+  manualoperation: {
+    name: "Manual Operation",
+    avail: 1,
+    restrict: "",
+    cost: 500
+  },
+  clearsight: {
+    name: "Clearsight Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
+    }
+  },
+  electronicwarfare: {
+    name: "Electronic Warfare Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
+    }
+  },
+  evasion: {
+    name: "[Model] Evasion Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
+    }
+  },
+  maneuvering: {
+    name: "[Model] Maneuvering Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
+    }
+  },
+  stealth: {
+    name: "[Model] Stealth Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
+    }
+  },
+  targeting: {
+    name: "[Weapon] Targeting Autosoft",
+    rating: 0,
+    ratingmax: 6,
+    capacity: 0,
+    avail: 0,
+    availx: 2,
+    restrict: "",
+    cost: 0,
+    costx: 500,
+    ref: {
+      book: "SR5 Errata",
+      page: "4"
     }
   }
 };

@@ -56,6 +56,7 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
   <script src="spells.js"></script>
   <script src="chrome.js"></script>
   <script src="adept.js"></script>
+  <script src="vehicles.js"></script>
   <script src="script.js"></script>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -938,14 +939,38 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       <h2>Reagents</h2>
       <table id="reagents" class="table">
         <tr><th>Buy</th><th>Dram</th><th>Sell</th><th>Type</th><th>Avail</th><th>Cost</th></tr>
-      </table>
-      
+      </table>      
     </div>
     <div id="augmentations">
       <h2>Augmentations</h2>
+      <h3>Cyberware</h3>
+      <table id="cyberware" class="table">
+        <tr><th>Buy</th><th>Part</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+        <tr class="cyberware head"><th colspan="6">Headware</th></tr>
+        <tr class="cyberware eye"><th colspan="6">Eyeware</th></tr>
+        <tr class="cyberware ear"><th colspan="6">Earware</th></tr>
+        <tr class="cyberware bodyware"><th colspan="6">Bodyware</th></tr>
+      </table>
       <h3>Cyber Limbs</h3>
       <table id="cyberlimbs" class="table">
         <tr><th>Buy</th><th>Limb</th><th>Type</th><th>Grade</th><th>Location</th><th>+</th><th>Str</th><th>-</th><th>+</th><th>Agi</th><th>-</th><th>Capacity</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+      </table>
+      <h3>Bioware</h3>
+      <table id="bioware" class="table">
+        <tr><th>Buy</th><th>Organ</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+      </table>
+    </div>
+    <div id="vehicles">
+      <h2>Vehicles</h2>
+      <table class="table">
+        <tr><th>Buy</th><th>Vehicle</th><th>Type</th><th>Handling</th><th>Speed</th><th>Accel.</th><th>Body</th><th>Armor</th><th>Pilot</th><th>Sensor</th><th>Seats</th><th>Avail</th><th>Cost</th></tr>
+        <tr class="vehicles ground"><th colspan="12">Groundcraft</th></tr>
+        <tr class="vehicles water"><th colspan="12">Watercraft</th></tr>
+        <tr class="vehicles air"><th colspan="12">Aircraft</th></tr>
+      </table>
+      <h3>Drones</h3>
+      <table id="drones" class="table">
+        <tr><th>Buy</th><th>Vehicle</th><th>Type</th><th>Handling</th><th>Speed</th><th>Accel.</th><th>Body</th><th>Armor</th><th>Pilot</th><th>Sensor</th><th>Seats</th><th>Avail</th><th>Cost</th></tr>
       </table>
     </div>
   </div>

@@ -1,6 +1,11 @@
 function setupAugmentations() {
   for (var aug in augmentations) { //render augmentations
     switch (aug) {
+      case "cyberware":
+        for (var part in augmentations[aug]) {
+          $(".cyberware." + augmentations[aug][part]["slot"]).after("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+        }
+        break;
       case "obvious":
         for (var limb in augmentations[aug]) {
           $("#cyberlimbs").append("<tr class=" + limb + "><td class='buyAug button'><strong>+</strong></td><td class='limb'>" + augmentations[aug][limb]["name"] + "</td><td class='type'>Obvious</td><td class='grade'>Standard</td><td class='location'>Left</td><td class='strUp button'>+</td><td class='str'>3</td><td class='strDown button'>-</td><td class='agiUp button'>+</td><td class='agi'>3</td><td class='agiDown button'>-</td><td class='cap'>" + augmentations[aug][limb]["capmax"] + "</td><td class='avail'>" + augmentations[aug][limb]["avail"] + "</td><td class='ess'>" + augmentations[aug][limb]["essence"] + "</td><td class='price'>" + augmentations[aug][limb]["cost"] + "&yen;</td></tr>");
@@ -22,11 +27,16 @@ function setupAugmentations() {
           }
         }
         break;
+      case "bioware":
+        for (var part in augmentations[aug]) {
+          $("#bioware").append("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+        }
+        break;
     }
   }
 
   $("#cyberlimbs .type").empty().append("<select><option value='obvious'>Obvious</option><option value='synthetic'>Synthetic</option></select>");
-  $("#cyberlimbs .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
+  $("#cyberlimbs .grade, #cyberware .grade, #bioware .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
 }
 
 function customLimb() {
