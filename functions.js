@@ -487,7 +487,7 @@ function pointUpdater(x, y) {
 }
 
 //@TODO - rename parameters
-function renderAttributeStat(w, x, y, z) { //this shows the current level of an attribute and the attribute max
+function renderAttributeStat(w, x, y, z) {
   var augment = y + w;
   $("." + x + " .stats").empty().append($("<span>" + y + "/" + z + "(" + augment + ")" + "</span>"));
 }
@@ -954,156 +954,6 @@ function minusAugmentAtt(x) {
   return x;
 }
 
-function selectMagRes() {
-  if ($(this).hasClass('deact') || $(this).hasClass('selected')) {
-    return;
-  } else {
-    highlightSelected($(this));
-
-    if ($(this).hasClass('mage')) {
-      magres = "mage";
-      awaken("Mag", "Res");
-      mageMysticSetting();
-    }
-    if ($(this).hasClass('mystic')) {
-      magres = "mystic";
-      awaken("Mag", "Res");
-      mageMysticSetting();
-    }
-    if ($(this).hasClass('techno')) {
-      magres = "technomancer";
-      awaken("Res", "Mag");
-      switch ("magres") {
-        case priorityA:
-          attributes.current.mag = 0;
-          powerPoints = 0;
-          attributes.current.res = 6;
-          attributes.minimum.resmin = 6;
-          skills += 10;
-          forms = 5;
-          spells = 0;
-          break;
-        case priorityB:
-          attributes.current.mag = 0;
-          powerPoints = 0;
-          attributes.current.res = 4;
-          attributes.minimum.resmin = 4;
-          skills += 8;
-          forms = 2;
-          spells = 0;
-          break;
-        case priorityC:
-          attributes.current.mag = 0;
-          powerPoints = 0;
-          attributes.current.res = 3;
-          attributes.minimum.resmin = 3;
-          forms = 1;
-          spells = 0;
-          break;
-      }
-    }
-    if ($(this).hasClass('adept')) {
-      magres = "adept";
-      awaken("Mag", "Res");
-      switch ("magres") {
-        case priorityB:
-          attributes.current.mag = 6;
-          powerPoints = 6.0;
-          attributes.minimum.magmin = 6;
-          attributes.current.res = 0;
-          skills += 4;
-          spells = 0;
-          forms = 0;
-          break;
-        case priorityC:
-          attributes.current.mag = 4;
-          powerPoints = 4.0;
-          attributes.minimum.magmin = 4;
-          attributes.current.res = 0;
-          skills += 2;
-          spells = 0;
-          forms = 0;
-          break;
-        case priorityD:
-          attributes.current.mag = 2;
-          powerPoints = 2.0;
-          attributes.minimum.magmin = 2;
-          attributes.current.res = 0;
-          spells = 0;
-          forms = 0;
-          break;
-      }
-    }
-    if ($(this).hasClass('aspect')) {
-      magres = "aspect";
-      awaken("Mag", "Res");
-      switch ("magres") {
-        case priorityB:
-          attributes.current.mag = 5;
-          powerPoints = 0;
-          attributes.minimum.magmin = 5;
-          attributes.current.res = 0;
-          skillgroups += 4;
-          spells = 0;
-          forms = 0;
-          break;
-        case priorityC:
-          attributes.current.mag = 3;
-          powerPoints = 0;
-          attributes.minimum.magmin = 3;
-          attributes.current.res = 0;
-          skillgroups += 2;
-          spells = 0;
-          forms = 0;
-          break;
-        case priorityD:
-          attributes.current.mag = 2;
-          powerPoints = 0;
-          attributes.minimum.magmin = 2;
-          attributes.current.res = 0;
-          spells = 0;
-          forms = 0;
-          break;
-      }
-    }
-
-    fociMaxRating = attributes.current.mag * 2;
-
-  }
-  displayUpdater();
-}
-
-function mageMysticSetting() { //since mystics and mages have the same stuff, they get a function
-  switch ("magres") {
-    case priorityA:
-      attributes.current.mag = 6;
-      powerPoints = 0;
-      attributes.minimum.magmin = 6;
-      attributes.current.res = 0;
-      skills += 10;
-      spells = 10;
-      forms = 0;
-      break;
-    case priorityB:
-      attributes.current.mag = 4;
-      powerPoints = 0;
-      attributes.minimum.magmin = 4;
-      attributes.current.res = 0;
-      skills += 8;
-      spells = 7;
-      forms = 0;
-      break;
-    case priorityC:
-      attributes.current.mag = 3;
-      powerPoints = 0;
-      attributes.minimum.magmin = 3;
-      attributes.current.res = 0;
-      spells = 5;
-      forms = 0;
-      break;
-  }
-}
-
 function awaken(x, y) { //this is suppose to unhide attributes.current.mag or resonance and then hide the other stat
   $("." + x).removeClass("hide");
   $("." + y).addClass("hide");
@@ -1395,41 +1245,6 @@ function minusMod(x, y) {
 //@TODO rename parameters
 function resetMod(x, y) {
   activeSkills[x]["mod"] -= y;
-}
-
-function complexFormActivate() {
-  var form = complexforms[$(this).parent().attr("id")];
-
-  //if the complex form has already been activated, then do this stuff
-  if ($(this).hasClass("active")) {
-    //remove the active class, and change the + to a -
-    deactivate($(this));
-    //the form is turned off
-    form["formact"] = false;
-    //return complex form points to buy more forms
-    forms++;
-  } else { //If the form isn't on, then its off, so do this stuff
-    //do you have complex form points to buy more forms?
-    if (forms > 0) {
-      //Then add the active class and replace the - with a +
-      activate($(this));
-      //turn off complex form
-      form["formact"] = true;
-      //reduce form points
-      forms--;
-    }
-  }
-  displayUpdater();
-
-//@TODO - rename parameter
-  function activate(x) { //this will highlight and add a + to show that the thing is active
-    x.addClass("active").empty().append("<strong>+</strong>");
-  }
-
-//@TODO - rename parameter
-  function deactivate(x) { //this will turn off the highlight and change the + to a - to show its inactive
-    x.removeClass("active").empty().append("<strong>-</strong>");
-  }
 }
 
 function costUpdater(x) {

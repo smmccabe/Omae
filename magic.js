@@ -155,3 +155,153 @@ function spellActivate() { //this is used to turn of add spells and alchemical p
 function spellChange() {
   electronics[$(this).parents("tr").attr("class")]["magicType"] = $(this).val();
 }
+
+function selectMagRes() {
+  if ($(this).hasClass('deact') || $(this).hasClass('selected')) {
+    return;
+  } else {
+    highlightSelected($(this));
+
+    if ($(this).hasClass('mage')) {
+      magres = "mage";
+      awaken("Mag", "Res");
+      mageMysticSetting();
+    }
+    if ($(this).hasClass('mystic')) {
+      magres = "mystic";
+      awaken("Mag", "Res");
+      mageMysticSetting();
+    }
+    if ($(this).hasClass('techno')) {
+      magres = "technomancer";
+      awaken("Res", "Mag");
+      switch ("magres") {
+        case priorityA:
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 6;
+          attributes.minimum.resmin = 6;
+          skills += 10;
+          forms = 5;
+          spells = 0;
+          break;
+        case priorityB:
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 4;
+          attributes.minimum.resmin = 4;
+          skills += 8;
+          forms = 2;
+          spells = 0;
+          break;
+        case priorityC:
+          attributes.current.mag = 0;
+          powerPoints = 0;
+          attributes.current.res = 3;
+          attributes.minimum.resmin = 3;
+          forms = 1;
+          spells = 0;
+          break;
+      }
+    }
+    if ($(this).hasClass('adept')) {
+      magres = "adept";
+      awaken("Mag", "Res");
+      switch ("magres") {
+        case priorityB:
+          attributes.current.mag = 6;
+          powerPoints = 6.0;
+          attributes.minimum.magmin = 6;
+          attributes.current.res = 0;
+          skills += 4;
+          spells = 0;
+          forms = 0;
+          break;
+        case priorityC:
+          attributes.current.mag = 4;
+          powerPoints = 4.0;
+          attributes.minimum.magmin = 4;
+          attributes.current.res = 0;
+          skills += 2;
+          spells = 0;
+          forms = 0;
+          break;
+        case priorityD:
+          attributes.current.mag = 2;
+          powerPoints = 2.0;
+          attributes.minimum.magmin = 2;
+          attributes.current.res = 0;
+          spells = 0;
+          forms = 0;
+          break;
+      }
+    }
+    if ($(this).hasClass('aspect')) {
+      magres = "aspect";
+      awaken("Mag", "Res");
+      switch ("magres") {
+        case priorityB:
+          attributes.current.mag = 5;
+          powerPoints = 0;
+          attributes.minimum.magmin = 5;
+          attributes.current.res = 0;
+          skillgroups += 4;
+          spells = 0;
+          forms = 0;
+          break;
+        case priorityC:
+          attributes.current.mag = 3;
+          powerPoints = 0;
+          attributes.minimum.magmin = 3;
+          attributes.current.res = 0;
+          skillgroups += 2;
+          spells = 0;
+          forms = 0;
+          break;
+        case priorityD:
+          attributes.current.mag = 2;
+          powerPoints = 0;
+          attributes.minimum.magmin = 2;
+          attributes.current.res = 0;
+          spells = 0;
+          forms = 0;
+          break;
+      }
+    }
+
+    fociMaxRating = attributes.current.mag * 2;
+
+  }
+  displayUpdater();
+}
+
+function mageMysticSetting() { //since mystics and mages have the same stuff, they get a function
+  switch ("magres") {
+    case priorityA:
+      attributes.current.mag = 6;
+      powerPoints = 0;
+      attributes.minimum.magmin = 6;
+      attributes.current.res = 0;
+      skills += 10;
+      spells = 10;
+      forms = 0;
+      break;
+    case priorityB:
+      attributes.current.mag = 4;
+      powerPoints = 0;
+      attributes.minimum.magmin = 4;
+      attributes.current.res = 0;
+      skills += 8;
+      spells = 7;
+      forms = 0;
+      break;
+    case priorityC:
+      attributes.current.mag = 3;
+      powerPoints = 0;
+      attributes.minimum.magmin = 3;
+      attributes.current.res = 0;
+      spells = 5;
+      forms = 0;
+      break;
+  }
+}
