@@ -11,7 +11,7 @@ function setupGear() {
       case "unarmedcombat":
       case "exoticmeleeweapon":
         //this one populates the melee weapons
-        $(".meleeweapon." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='reach " + item + "'>" + itemhold["reach"] + "(" + (itemhold["reach"] + reachmod) + ")" + "</td><td class='damage " + item + "'>" + (itemhold["stat"] + itemhold["damage"]) + "(" + (itemhold["stat"] + itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509" + "</td><td>" + itemhold.ref.book + " p" + itemhold.ref.page + "</td></tr>");
+        $(".meleeweapon." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='reach " + item + "'>" + itemhold["reach"] + "(" + (itemhold["reach"] + reachmod) + ")" + "</td><td class='damage " + item + "'>" + (itemhold["stat"] + itemhold["damage"]) + "(" + (itemhold["stat"] + itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509;" + "</td><td>" + itemhold.ref.book + " p" + itemhold.ref.page + "</td></tr>");
         break;
       case "bow":
       case "crossbow":
@@ -21,7 +21,7 @@ function setupGear() {
         break;
       default:
         //firearms
-        $(".firearms." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='damage " + item + "'>" + itemhold["damage"] + "(" + (itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='modes " + item + "'></td><td class='RC " + item + "'>" + itemhold["rc"] + "</td><td class='ammo " + item + " clip'>" + itemhold["ammo"] + " " + itemhold["clip"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509" + "</td></tr>");
+        $(".firearms." + itemhold.category).after("<tr id='" + item + "'><td class='weapact " + item + " button'><strong>+</strong></td><td class='weapname " + item + "'>" + itemhold["name"] + "</td><td class='accuracy " + item + "'>" + itemhold["accuracy"] + "(" + (itemhold["accuracy"] + itemhold["accmod"]) + ")" + "</td><td class='damage " + item + "'>" + itemhold["damage"] + "(" + (itemhold["damage"] + itemhold["dvmod"]) + ")" + itemhold["damtype"] + " " + itemhold["element"] + "</td><td class='ap " + item + "'>" + itemhold["ap"] + "</td><td class='modes " + item + "'></td><td class='RC " + item + "'>" + itemhold["rc"] + "</td><td class='ammo " + item + " clip'>" + itemhold["ammo"] + " " + itemhold["clip"] + "</td><td class='avail " + item + "'>" + itemhold["avail"] + " " + itemhold["restrict"] + "</td><td class='cost " + item + "'>" + itemhold["cost"] + "&#65509;" + "</td></tr>");
         break;
     }
 
@@ -75,7 +75,7 @@ function setupAmmo() {
         explosivesAmmo("rocketammo", ammotype);
         break;
       case "none":
-        $(".standard.ammunition").after("<tr class='" + ammo + "'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>" + ammotype["name"] + "</td><td class='dammod'>" + ammotype["dammod"] + " " + ammotype["typemod"] + " " + ammotype["elemod"] + "</td><td class='apmod'>" + ammotype["apmod"] + "</td><td class='avail'>" + ammotype["avail"] + " " + ammotype["restrict"] + "</td><td class='cost'>" + ammotype["cost"] + "&#65509</td><td class='blast'></td></tr>");
+        $(".standard.ammunition").after("<tr class='" + ammo + "'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>" + ammotype["name"] + "</td><td class='dammod'>" + ammotype["dammod"] + " " + ammotype["typemod"] + " " + ammotype["elemod"] + "</td><td class='apmod'>" + ammotype["apmod"] + "</td><td class='avail'>" + ammotype["avail"] + " " + ammotype["restrict"] + "</td><td class='cost'>" + ammotype["cost"] + "&#65509;</td><td class='blast'></td></tr>");
         break;
     }
 
@@ -85,11 +85,11 @@ function setupAmmo() {
   }
 
   function explosivesAmmo(catalog, type) {
-    $("." + catalog).after("<tr class='ammo'><td class='buygrenades button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>" + type["name"] + "</td><td class='grenadesdammod'>" + type["dammod"] + " " + type["typemod"] + " " + type["elemod"] + "</td><td class='apmod'>" + type["apmod"] + "</td><td class='avail'>" + type["avail"] + " " + type["restrict"] + "</td><td class='cost'>" + type["cost"] + "&#65509</td><td class='blast'>" + type["blast"] + "</td></tr>");
+    $("." + catalog).after("<tr class='ammo'><td class='buygrenades button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellgrenades button'><em>-</em></td><td class='grenadesname'>" + type["name"] + "</td><td class='grenadesdammod'>" + type["dammod"] + " " + type["typemod"] + " " + type["elemod"] + "</td><td class='apmod'>" + type["apmod"] + "</td><td class='avail'>" + type["avail"] + " " + type["restrict"] + "</td><td class='cost'>" + type["cost"] + "&#65509;</td><td class='blast'>" + type["blast"] + "</td></tr>");
   }
 
   function abnormalAmmo(x, y) {
-    $("." + x["class"]).after("<tr class='ammo'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>" + x["name"] + "</td><td class='dammod'>" + x["dammod"] + x["typemod"] + " " + x["elemod"] + "</td><td class='apmod'>" + x["apmod"] + "</td><td class='avail'>" + x["avail"] + " " + x["restrict"] + "</td><td class='cost'>" + x["cost"] + "&#65509</td><td class='blast'></td></tr>");
+    $("." + x["class"]).after("<tr class='ammo'><td class='buyammo button'><strong>+</strong></td><td class='amountofammo'>0</td><td class='sellammo button'><em>-</em></td><td class='ammoname'>" + x["name"] + "</td><td class='dammod'>" + x["dammod"] + x["typemod"] + " " + x["elemod"] + "</td><td class='apmod'>" + x["apmod"] + "</td><td class='avail'>" + x["avail"] + " " + x["restrict"] + "</td><td class='cost'>" + x["cost"] + "&#65509;</td><td class='blast'></td></tr>");
   }
 
   $(".gas .grenadesname").empty().append("<select class='toxicgas'></select>");
@@ -255,7 +255,7 @@ function buyWeapon() {
   inventory[itemNum]["active"] = true;
 
   if ($(this).closest(".meleeweapon").hasClass("meleeweapon") && gotMoney) {
-    $("#" + item).after("<tr id='" + itemNum + "'><td class='sell button'><em>-</em></td><td>" + itemhold["name"] + "</td><td class='inventory " + item + itemNum + "' colspan=5></td><td class='custWeapPrice'>" + itemhold["cost"] + "&#65509</td></tr>");
+    $("#" + item).after("<tr id='" + itemNum + "'><td class='sell button'><em>-</em></td><td>" + itemhold["name"] + "</td><td class='inventory " + item + itemNum + "' colspan=5></td><td class='custWeapPrice'>" + itemhold["cost"] + "&#65509;</td></tr>");
     if (attributes.current.mag > 0) {
       inventory[itemNum]["weaponfoci"] = 0;
       $("<td class='label'>Weapon Focus</td><td class='" + itemNum + " incAtt weaponfoci'>+</td><td class='focirating weaponfoci'>0</td><td class='" + itemNum + " decAtt weaponfoci'>-</td>").appendTo($(".inventory." + item + itemNum));
@@ -719,7 +719,7 @@ function buyingAmmo() {
       };
 
       z = ammunition[gasname];
-      $(".gas").after("<tr class='" + gasname + "'><td class='buygrenades button'>+</td><td class='amountofammo'>0</td><td class='sellgrenades button'>-</td><td class='grenadesname'>" + z["name"] + "</td><td class='grenadesdammod'>" + z["dammod"] + " " + z["typemod"] + " " + z["elemod"] + "</td><td class='apmod'>" + z["apmod"] + "</td><td class='blast'>" + z["blast"] + "</td><td class='avail'>" + z["avail"] + " " + z["restrict"] + "</td><td class='cost'>" + z["cost"] + "&#65509</td></tr>");
+      $(".gas").after("<tr class='" + gasname + "'><td class='buygrenades button'>+</td><td class='amountofammo'>0</td><td class='sellgrenades button'>-</td><td class='grenadesname'>" + z["name"] + "</td><td class='grenadesdammod'>" + z["dammod"] + " " + z["typemod"] + " " + z["elemod"] + "</td><td class='apmod'>" + z["apmod"] + "</td><td class='blast'>" + z["blast"] + "</td><td class='avail'>" + z["avail"] + " " + z["restrict"] + "</td><td class='cost'>" + z["cost"] + "&#65509;</td></tr>");
     }
     return;
   }
