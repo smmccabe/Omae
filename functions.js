@@ -411,7 +411,7 @@ function resetAttributes() {
 }
 
 function nuyenUpdater() {
-  $("#nuyen").empty().append($("<strong>" + nuyen + "&#65509</strong>"));
+  $("#nuyen").empty().append($("<strong>" + nuyen + "&#65509;</strong>"));
 }
 
 function essUpdater() {
@@ -1248,7 +1248,7 @@ function renderSkills() { //this has become for rendering/updating anything that
     $(".weaprating." + item + ".weapratingnum").empty().append(weapons[item]["rating"]);
     $(".ap." + item).empty().append(weapons[item]["ap"]);
     $(".avail." + item).empty().append(weapons[item]["avail"] + " " + weapons[item]["restrict"]);
-    $(".cost." + item).empty().append("<span>" + weapons[item]["cost"] + "&#65509</span>");
+    $(".cost." + item).empty().append("<span>" + weapons[item]["cost"] + "&#65509;</span>");
     augmentedDamage("damtype", "element", "stat", "damage", [item], weapons); //render weapon damage this also changes the ap for weapons with altammo
   }
 
@@ -1265,7 +1265,7 @@ function renderSkills() { //this has become for rendering/updating anything that
       var dp = activeSkills[inventory[itemNum]["skill"]]["skillsum"];
     }
     $("#" + itemNum + " .weaponDP").empty().append("<span>" + (dp) + "</span>"); //this renders the dice pool
-    $("#" + itemNum + " .custWeapPrice").empty().append("<span>" + inventory[itemNum]["cost"] + "&#65509</span>"); //this renders the cost
+    $("#" + itemNum + " .custWeapPrice").empty().append("<span>" + inventory[itemNum]["cost"] + "&#65509;</span>"); //this renders the cost
     $("#" + itemNum + " .acc").empty().append(inventory[itemNum]["accuracy"] + "(" + (inventory[itemNum]["accuracy"] + inventory[itemNum]["accmod"]) + ")"); //this renders accuracy of a gun
     $("#" + itemNum + " .rc").empty().append(inventory[itemNum]["rc"] + Math.ceil((attributes.current.str / 3) + 1) + "(" + (inventory[itemNum]["rc"] + inventory[itemNum]["rcmod"] + Math.ceil((attributes.current.str / 3) + 1)) + ")"); //this renders the recoil comp
     $("#" + itemNum + " .avail").empty().append(inventory[itemNum]["avail"] + " " + inventory[itemNum]["restrict"]); //this renders the avail of a gun

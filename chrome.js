@@ -96,7 +96,7 @@ function customLimb() {
           }
         }
 
-        var cyberMobs = $("." + limbloc + " .cybermods");
+        var cyberMods = $("." + limbloc + " .cybermods");
         cyberMods.append("<table class='weapons'><tbody><tr class='label'><td>CyberWeapon</td><td>Buy</td><td>Ext. Clip</td><td>Laser Sight</td><td>Silencer</td><td>Cap</td><td>Acc</td><td>Dam</td><td>Fire Mod</td><td>RC</td><td>Ammo</td><td>Avail</td><td>Cost</td></tr></tbody></table>");
 
         for (var weapon in augmentations.weapons) {
