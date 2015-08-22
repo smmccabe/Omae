@@ -1,6 +1,11 @@
 function setupAugmentations() {
   for (var aug in augmentations) { //render augmentations
     switch (aug) {
+      case "cyberware":
+        for (var part in augmentations[aug]) {
+          $(".cyberware." + augmentations[aug][part]["slot"]).after("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+        }
+        break;
       case "obvious":
         for (var limb in augmentations[aug]) {
           $("#cyberlimbs").append("<tr class=" + limb + "><td class='buyAug button'><strong>+</strong></td><td class='limb'>" + augmentations[aug][limb]["name"] + "</td><td class='type'>Obvious</td><td class='grade'>Standard</td><td class='location'>Left</td><td class='strUp button'>+</td><td class='str'>3</td><td class='strDown button'>-</td><td class='agiUp button'>+</td><td class='agi'>3</td><td class='agiDown button'>-</td><td class='cap'>" + augmentations[aug][limb]["capmax"] + "</td><td class='avail'>" + augmentations[aug][limb]["avail"] + "</td><td class='ess'>" + augmentations[aug][limb]["essence"] + "</td><td class='price'>" + augmentations[aug][limb]["cost"] + "&yen;</td></tr>");
@@ -22,11 +27,16 @@ function setupAugmentations() {
           }
         }
         break;
+      case "bioware":
+        for (var part in augmentations[aug]) {
+          $("#bioware").append("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+        }
+        break;
     }
   }
 
   $("#cyberlimbs .type").empty().append("<select><option value='obvious'>Obvious</option><option value='synthetic'>Synthetic</option></select>");
-  $("#cyberlimbs .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
+  $("#cyberlimbs .grade, #cyberware .grade, #bioware .grade").empty().append("<select><option value='used'>Used</option><option value='standard' selected>Standard</option><option value='alpha'>Alpha</option><option value='beta'>Beta</option><option value='delta'>Delta</option></select>");
 }
 
 function customLimb() {
@@ -88,16 +98,16 @@ function customLimb() {
             if (augmentations.mods[mod]["allow"][x] == augmentations[limbType][limb]["slot"]) {
               var targetMod = augmentations.mods[mod];
               if (typeof targetMod.rating !== "undefined") {
-                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='modUp button'><strong>+</strong></td><td class='modRating'>0</td><td class='modDown button'><strong>-</strong></td><td class='label'>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td class='label'>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td class='label'>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
+                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='modUp button'><strong>+</strong></td><td class='modRating'>0</td><td class='modDown button'><strong>-</strong></td><td>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
               } else {
-                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='buyMod button' colspan=3><strong>-</strong></td><td class='label'>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td class='label'>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td class='label'>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
+                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='buyMod button' colspan=3><strong>-</strong></td><td>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
               }
             }
           }
         }
 
         var cyberMods = $("." + limbloc + " .cybermods");
-        cyberMods.append("<table class='weapons'><tbody><tr class='label'><td>CyberWeapon</td><td>Buy</td><td>Ext. Clip</td><td>Laser Sight</td><td>Silencer</td><td>Cap</td><td>Acc</td><td>Dam</td><td>Fire Mod</td><td>RC</td><td>Ammo</td><td>Avail</td><td>Cost</td></tr></tbody></table>");
+        cyberMods.append("<table class='weapons'><tbody><tr><td>CyberWeapon</td><td>Buy</td><td>Ext. Clip</td><td>Laser Sight</td><td>Silencer</td><td>Cap</td><td>Acc</td><td>Dam</td><td>Fire Mod</td><td>RC</td><td>Ammo</td><td>Avail</td><td>Cost</td></tr></tbody></table>");
 
         for (var weapon in augmentations.weapons) {
           var weap = augmentations.weapons[weapon];
@@ -110,7 +120,7 @@ function customLimb() {
           }
         }
 
-        cyberMods.append("<table class='cyberstats'><tbody><tr class='label'><td>Capacity</td><td>Str</td><td>Agi</td><td>Armor</td><td>RC</td><td>Avail</td><td>Ess</td></tr><tr class='stats'><td class='cap'>" + cyber.cap + "/" + cyber.capmax + "</td><td class='str'>(" + (cyber.str + cyber.augstr) + ")</td><td class='agi'>(" + (cyber.agi + cyber.augagi) + ")</td><td class='armor'>" + cyber.armor + "</td><td class='rc'>" + (cyber.rc + (Math.ceil(cyber.str / 3)) + 1) + "</td><td>" + cyber.avail + "</td><td>" + cyber.essence + "</td></tr></tbody></table>");
+        cyberMods.append("<table class='cyberstats'><tbody><tr><td>Capacity</td><td>Str</td><td>Agi</td><td>Armor</td><td>RC</td><td>Avail</td><td>Ess</td></tr><tr class='stats'><td class='cap'>" + cyber.cap + "/" + cyber.capmax + "</td><td class='str'>(" + (cyber.str + cyber.augstr) + ")</td><td class='agi'>(" + (cyber.agi + cyber.augagi) + ")</td><td class='armor'>" + cyber.armor + "</td><td class='rc'>" + (cyber.rc + (Math.ceil(cyber.str / 3)) + 1) + "</td><td>" + cyber.avail + "</td><td>" + cyber.essence + "</td></tr></tbody></table>");
 
         cyber["mods"] = {};
 
@@ -219,6 +229,14 @@ function customLimb() {
       $(this).parent().remove();
       displayUpdater();
       break;
+  }
+
+  function activate(x) { //this will highlight and add a + to show that the thing is active
+    x.addClass("active").empty().append("<strong>+</strong>");
+  }
+
+  function deactivate(x) { //this will turn off the highlight and change the + to a - to show its inactive
+    x.removeClass("active").empty().append("<em>-</em>");
   }
 
   function cyberEnhanceUpdater() {

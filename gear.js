@@ -41,10 +41,10 @@ function setupGear() {
     for (var diffAmmo in itemhold["altammo"]) {
       switch (diffAmmo) {
         case "ammo":
-          $("." + diffAmmo + "." + item).after("/" + itemhold["altammo"][diffAmmo]);
+          $("." + diffAmmo + "." + item).append("/" + itemhold["altammo"][diffAmmo]);
           break;
         case "clip":
-          $("." + diffAmmo + "." + item).after(" " + itemhold["altammo"][diffAmmo]);
+          $("." + diffAmmo + "." + item).append(" " + itemhold["altammo"][diffAmmo]);
           break;
       }
     }
@@ -258,7 +258,7 @@ function buyWeapon() {
     $("#" + item).after("<tr id='" + itemNum + "'><td class='sell button'><em>-</em></td><td>" + itemhold["name"] + "</td><td class='inventory " + item + itemNum + "' colspan=5></td><td class='custWeapPrice'>" + itemhold["cost"] + "&#65509;</td></tr>");
     if (attributes.current.mag > 0) {
       inventory[itemNum]["weaponfoci"] = 0;
-      $("<td class='label'>Weapon Focus</td><td class='" + itemNum + " incAtt weaponfoci'>+</td><td class='focirating weaponfoci'>0</td><td class='" + itemNum + " decAtt weaponfoci'>-</td>").appendTo($(".inventory." + item + itemNum));
+      $("<td>Weapon Focus</td><td class='" + itemNum + " incAtt weaponfoci'>+</td><td class='focirating weaponfoci'>0</td><td class='" + itemNum + " decAtt weaponfoci'>-</td>").appendTo($(".inventory." + item + itemNum));
     }
 
     buyingItem(itemhold);
@@ -277,7 +277,7 @@ function buyWeapon() {
   if ($(this).hasClass("shuriken") && gotMoney) { //buying throwing weapons
     inventory[itemNum]["arrow"] = 1;
     $("#shuriken").after("<tr id='" + itemNum + "'><td class='sell button'><em>-</em></td><td class='inventory " + item + itemNum + "' colspan=4></td><td class='custWeapPrice'></td></tr>");
-    $(".inventory." + item + itemNum).append("<td class='label'>Shuriken/Throwing Knives</td><td class='" + itemNum + " incAtt arrow'>+</td><td class='arrowNum arrow'>1</td><td class='" + itemNum + " decAtt arrow'>-</td>");
+    $(".inventory." + item + itemNum).append("<td>Shuriken/Throwing Knives</td><td class='" + itemNum + " incAtt arrow'>+</td><td class='arrowNum arrow'>1</td><td class='" + itemNum + " decAtt arrow'>-</td>");
     buyingItem(itemhold);
   }
 
@@ -289,7 +289,7 @@ function buyWeapon() {
 
     $(".inventory." + item + itemNum).append("<tr class='mounts'></tr>"); //this adds the area for the gun mounts
     var acctarget = ".inventory." + item + itemNum + " .mounts";
-    $(acctarget).append("<tr><td class='label'>Top</td><td class='label'>Barrel</td><td class='label'>Under</td></tr>");
+    $(acctarget).append("<tr><td>Top</td><td>Barrel</td><td>Under</td></tr>");
     $(acctarget).append("<tr><td class='topmount " + itemNum + "'>n/a</td><td class='barrelmount " + itemNum + "'>n/a</td><td class='underbarrel " + itemNum + "'>n/a</td></tr>");
 
     topMount(item, itemNum);
@@ -304,7 +304,7 @@ function buyWeapon() {
 
     var nonmount = ".nonmounts." + itemNum;
     if (itemhold.avail + 2 <= maxAvail || itemhold.mods.internalsmart == "Smartgun") { //adding a internal smartgun increaes avail, this doesn't go over 12
-      $(nonmount).append("<td class='label'>Internal Smartgun</td><td class='smartgun " + itemNum + " button'>+</td>");
+      $(nonmount).append("<td>Internal Smartgun</td><td class='smartgun " + itemNum + " button'>+</td>");
     }
 
     if (itemhold.mods.internalsmart == "Smartgun") { //if the gun already has an internal smartgun system, this prevents people from adding another one
@@ -313,15 +313,15 @@ function buyWeapon() {
 
     var skillcheck = itemhold.skill;
     if (itemhold.category == "assaultrifles" || skillcheck == "longarms" || skillcheck == "heavyweapons") { //add shockpad to some guns
-      $(nonmount).append("<td class='label'>Shock Pad</td><td class='shockpad " + itemNum + " button'>+</td>");
+      $(nonmount).append("<td>Shock Pad</td><td class='shockpad " + itemNum + " button'>+</td>");
     }
 
     if (itemhold.damtype == "Grenade" || itemhold.damtype == "Missile") { //adds airburst link to explosive weapons
-      $(nonmount).append("<td class='label'>Airburst Link</td><td class='airburstlink " + itemNum + " button'>+</td>");
+      $(nonmount).append("<td>Airburst Link</td><td class='airburstlink " + itemNum + " button'>+</td>");
     }
 
     if (itemhold.mods.integral != "n/a") { //adds accessories that are already built in to the smartgun
-      $(nonmount).append("<td class='label'>Integral</td><td class='integral " + itemNum + " active' colspan=2>" + itemhold["mods"]["integral"] + "</td>")
+      $(nonmount).append("<td>Integral</td><td class='integral " + itemNum + " active' colspan=2>" + itemhold["mods"]["integral"] + "</td>")
     }
 
     $(nonmount).after("<table><tr class='options'></tr></table>"); //adds a new table so that the clip and fake licenses don't get all stretched out
@@ -333,8 +333,8 @@ function buyWeapon() {
 
     licenseDP(itemNum, item, itemhold, " .options"); //add license and dicepool
 
-    $(".inventory." + item + itemNum + " .options .labelDP").before("<td class='label'>Acc</td><td class='acc " + itemNum + "'>" + itemhold.accuracy + "(" + (itemhold.accuracy + itemhold.accmod) + ")" + "</td><td class='label'>RC</td><td class='rc " + itemNum + "'>" + itemhold.rc + Math.ceil((attributes.current.str / 3) + 1) + "(" + (itemhold.rc + itemhold.rcmod + Math.ceil((attributes.current.str / 3) + 1)) + ")" + "</td>");
-    $(".inventory." + item + itemNum + " .options").append("<td class='label'>Avail</td><td class='avail " + itemNum + "'>" + itemhold.avail + " " + itemhold.restrict + "</td>");
+    $(".inventory." + item + itemNum + " .options .labelDP").before("<td>Acc</td><td class='acc " + itemNum + "'>" + itemhold.accuracy + "(" + (itemhold.accuracy + itemhold.accmod) + ")" + "</td><td>RC</td><td class='rc " + itemNum + "'>" + itemhold.rc + Math.ceil((attributes.current.str / 3) + 1) + "(" + (itemhold.rc + itemhold.rcmod + Math.ceil((attributes.current.str / 3) + 1)) + ")" + "</td>");
+    $(".inventory." + item + itemNum + " .options").append("<td>Avail</td><td class='avail " + itemNum + "'>" + itemhold.avail + " " + itemhold.restrict + "</td>");
   }
 
   invNum++;
@@ -344,7 +344,7 @@ function buyWeapon() {
 //@TODO - rename parameters
 function addClips(x, y, z) {
   inventory[itemNum]["extraclips"] = 0;
-  $("<td class='label'>" + z + "</td><td class='" + x + " incAtt extraclips'>+</td><td class='numofclips extraclips'>0</td><td class='" + x + " decAtt extraclips'>-</td>").appendTo($(".inventory." + y + x + " .options"));
+  $("<td>" + z + "</td><td class='" + x + " incAtt extraclips'>+</td><td class='numofclips extraclips'>0</td><td class='" + x + " decAtt extraclips'>-</td>").appendTo($(".inventory." + y + x + " .options"));
 }
 
 function holsterAddOn(itemHold, itemNum, item) { //x=itemhold, y=itemNum,z=item
@@ -362,16 +362,16 @@ function holsterAddOn(itemHold, itemNum, item) { //x=itemhold, y=itemNum,z=item
 //@TODO - rename parameters
 function makeHolster(y, z) { //adds the stuff to make the holsters
   $(".inventory." + z + y).append("<tr class='holsters " + y + "'></tr>");
-  $(".holsters." + y).append("<tr class='holster " + y + "'><td class='label'>Holster</td></tr>");
+  $(".holsters." + y).append("<tr class='holster " + y + "'><td>Holster</td></tr>");
 }
 
 //@TODO - rename parameters
 function licenseDP(x, y, z, l) {
   if (z["restrict"] == "Restricted") { //if restricted add the ability to buy a fake license
     inventory[x]["license"] = 0;
-    $("<td class='label'>Fake License</td><td class='" + x + " incAtt license'>+</td><td class='licenserating license'>0</td><td class='" + x + " decAtt license'>-</td>").appendTo($(".inventory." + y + x + l));
+    $("<td>Fake License</td><td class='" + x + " incAtt license'>+</td><td class='licenserating license'>0</td><td class='" + x + " decAtt license'>-</td>").appendTo($(".inventory." + y + x + l));
   }
-  $("<td class='labelDP label'>DP</td><td class='weaponDP'>" + (activeSkills[inventory[x]["skill"]]["rating"] + activeSkills[inventory[x]["skill"]]["stat"] + activeSkills[inventory[x]["skill"]]["mod"]) + "</td>").appendTo($(".inventory." + y + x + l));
+  $("<td class='labelDP'>DP</td><td class='weaponDP'>" + (activeSkills[inventory[x]["skill"]]["rating"] + activeSkills[inventory[x]["skill"]]["stat"] + activeSkills[inventory[x]["skill"]]["mod"]) + "</td>").appendTo($(".inventory." + y + x + l));
 
 }
 
@@ -403,7 +403,7 @@ function addingArrows(columns, target, weapon, weaponNumber, projectile) {
   inventory[weaponNumber]["arrow"] = 0;
   inventory[weaponNumber]["inject"] = 0;
   $(target).after("<tr id='" + weaponNumber + "'><td class='sell button'><em>-</em></td><td class='inventory " + weapon + weaponNumber + "' colspan=" + columns + "></td><td class='custWeapPrice'></td></tr>");
-  $(".inventory." + weapon + weaponNumber).append("<td class='label'>" + projectile + "</td><td class='" + weaponNumber + " incAtt arrow'>+</td><td class='arrowNum arrow'>0</td><td class='" + weaponNumber + " decAtt arrow'>-</td><td class='label'>Injection " + z + "</td><td class='" + weaponNumber + " incAtt injarrow'>+</td><td class='arrowNum injarrow'>0</td><td class='" + weaponNumber + " decAtt injarrow'>-</td>");
+  $(".inventory." + weapon + weaponNumber).append("<td>" + projectile + "</td><td class='" + weaponNumber + " incAtt arrow'>+</td><td class='arrowNum arrow'>0</td><td class='" + weaponNumber + " decAtt arrow'>-</td><td>Injection " + z + "</td><td class='" + weaponNumber + " incAtt injarrow'>+</td><td class='arrowNum injarrow'>0</td><td class='" + weaponNumber + " decAtt injarrow'>-</td>");
 }
 
 function buyingItem(itemhold) {
@@ -808,7 +808,7 @@ function bombsaway() {
 
     inventory[bombname]["kg"] = 1;
     $("." + bomb + ".explosives").append("<tr class='" + bombname + "'><td class='sellbomb button'><em>-<em></td><td class='inventory' colspan=4></td><td class='bombprice'>" + inventory[bombname]["cost"] + "&#65509;</td></tr>");
-    $("." + bombname + " .inventory").append("<td class='label'>Rating</td><td>" + inventory[bombname]["rating"] + "</td><td class='label'>Kilograms</td><td class='kgup button'>+</td><td class='kg'>" + inventory[bombname]["kg"] + "</td><td class='kgdown button'>-</td>");
+    $("." + bombname + " .inventory").append("<td>Rating</td><td>" + inventory[bombname]["rating"] + "</td><td>Kilograms</td><td class='kgup button'>+</td><td class='kg'>" + inventory[bombname]["kg"] + "</td><td class='kgdown button'>-</td>");
 
     invNum++;
     nuyen -= inventory[bombname]["cost"];
@@ -896,7 +896,7 @@ function sponge() {
       inventory[armtype + invNum]["mods"][mods][modstats] = armormods[mods][modstats]; //this adds all the stats for each mod
     }
     if (typeof armormods[mods]["rating"] !== "undefined") { //this is for mods that don't have ratings
-      $("." + armtype + invNum + " .armormods").append("<tr class='" + mods + "'><td class='label'>" + inventory[armtype + invNum]["mods"][mods]["name"] + "</td><td class='armmodup button'>+</td><td class='armmodrating'>0</td><td class='armmoddown button'>-</td><td class='label'>Capacity</td><td class='armorcap'>" + inventory[armtype + invNum]["mods"][mods]["capacity"] + "</td></tr>");
+      $("." + armtype + invNum + " .armormods").append("<tr class='" + mods + "'><td>" + inventory[armtype + invNum]["mods"][mods]["name"] + "</td><td class='armmodup button'>+</td><td class='armmodrating'>0</td><td class='armmoddown button'>-</td><td>Capacity</td><td class='armorcap'>" + inventory[armtype + invNum]["mods"][mods]["capacity"] + "</td></tr>");
     } else if (typeof armor[armtype]["helm"] === "undefined" && mods == "chemicalseal") { //this checks to see if the armor has a helm
       //do nothing
     } else { //this adds all other mods
@@ -904,7 +904,7 @@ function sponge() {
     }
   }
   if (inventory[armtype + invNum]["helm"] == false) { //if the armor supports a helm, add it to the mods
-    $("." + armtype + invNum + " .armormods").append("<tr class='helm'><td class='label'>Helmet</td><td class='buyhelmmod button' colspan=3><strong>+</strong></td></tr>");
+    $("." + armtype + invNum + " .armormods").append("<tr class='helm'><td>Helmet</td><td class='buyhelmmod button' colspan=3><strong>+</strong></td></tr>");
   }
   nuyen -= armor[armtype]["cost"];
   invNum++;
@@ -913,7 +913,7 @@ function sponge() {
   //@TODO - move function
   //@TODO - rename parameters
   function modnorating(x, y) {
-    $("." + x + " .armormods").append("<tr class='" + y + "'><td class='label'>" + inventory[armtype + invNum]["mods"][y]["name"] + "</td><td class='buyarmmod button' colspan=3><strong>+</strong></td><td class='label'>Capacity</td><td>" + inventory[armtype + invNum]["mods"][y]["capacity"] + "</td></tr>");
+    $("." + x + " .armormods").append("<tr class='" + y + "'><td>" + inventory[armtype + invNum]["mods"][y]["name"] + "</td><td class='buyarmmod button' colspan=3><strong>+</strong></td><td>Capacity</td><td>" + inventory[armtype + invNum]["mods"][y]["capacity"] + "</td></tr>");
   }
 }
 
@@ -1141,14 +1141,14 @@ function appleStore() { //this function handles buying electronic devices, and n
   switch (electronics[devicename]["type"]) {
     case "commlink":
       $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='linkmods' colspan=3></td><td class='devicecost'>" + inventory[devicename + invNum]["cost"] + "&yen;</td></tr>");
-      $("." + devicename + invNum + " .linkmods").append("<td class='label'>Sim Mod</td><td class='simmod button'>+</td><td class='label'>Hot Sim</td><td class='hotsim button'>+</td>");
+      $("." + devicename + invNum + " .linkmods").append("<td>Sim Mod</td><td class='simmod button'>+</td><td>Hot Sim</td><td class='hotsim button'>+</td>");
       break;
     case "deck":
       $("." + devicename).after("<tr class='" + devicename + invNum + "'><td class='selldevice button'><em>-</em></td><td class='programs' colspan=5></td><td class='devicecost'>" + inventory[devicename + invNum]["cost"] + "&yen;</td></tr>");
       var localmod = $("." + devicename + invNum + " .programs");
-      localmod.append("<tr class='agent'><td class='label'>Agent</td><td class='agentup button'>+</td><td class='agentrating'>0</td><td class='agentdown button'>-</td></tr>");
+      localmod.append("<tr class='agent'><td>Agent</td><td class='agentup button'>+</td><td class='agentrating'>0</td><td class='agentdown button'>-</td></tr>");
       for (var program in programs) {
-        localmod.append("<tr class='" + program + "'><td class='label'>" + programs[program].name + "</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
+        localmod.append("<tr class='" + program + "'><td>" + programs[program].name + "</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
       }
       break;
     case "rcc":
@@ -1156,7 +1156,7 @@ function appleStore() { //this function handles buying electronic devices, and n
       var localmod = $("." + devicename + invNum + " .programs");
       for (var program in programs) {
         if (programs[program]["rcc"] == true) {
-          localmod.append("<tr class='" + program + "'><td class='label'>" + programs[program].name + "</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
+          localmod.append("<tr class='" + program + "'><td>" + programs[program].name + "</td><td class='buyprogram button' colspan=3><strong>+</strong></td></tr>");
         }
       }
       break;
