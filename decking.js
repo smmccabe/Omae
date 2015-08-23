@@ -32,3 +32,10 @@ function complexFormActivate() {
     x.removeClass("active").empty().append("<strong>-</strong>");
   }
 }
+
+function setupComplexForms() {
+  for (var form in complexforms) {
+    var formhold = complexforms[form];
+    $(".complexforms").after($("<tr id='" + form + "'class='form'><td class='formact " + form + " button'><strong>-</strong></td><td class='formname " + form + "'>" + formhold["name"] + "</td><td class='formtarget " + form + "'>" + formhold["target"] + "</td><td class='formdur " + form + "'>" + formhold["duration"] + "</td><td class='fading " + form + "'>" + formhold["fading"] + "</td></tr>"));
+  }
+}

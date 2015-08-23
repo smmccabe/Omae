@@ -18,6 +18,7 @@ $(function() {
   setupElectronics();
   setupArmor();
   setupVehicles();
+  setupComplexForms();
 
   //runs the attribute display function on start up
   displayUpdater();

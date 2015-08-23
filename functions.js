@@ -1006,11 +1006,6 @@ function setupSkills() {
       $(".drain." + [power]).empty().append($(adeptPowers[power]["level"]));
     }
   }
-
-  for (var form in complexforms) {
-    var formhold = complexforms[form];
-    $(".complexforms.library").append($("<tr id='" + form + "'class='form'><td class='formact " + form + " button'><strong>-</strong></td><td class='formname " + form + "'>" + formhold["name"] + "</td><td class='formtarget " + form + "'>" + formhold["target"] + "</td><td class='formdur " + form + "'>" + formhold["duration"] + "</td><td class='fading " + form + "'>" + formhold["fading"] + "</td></tr>"));
-  }
 }
 
 function addSkillLine(skill) {
