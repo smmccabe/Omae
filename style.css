@@ -1,107 +1,108 @@
 body {
-    background: rgb(29,49,50);
-    font-family: Share Tech Mono, "Verdana", sans-serif;
-    color: rgb(66,231,234);
-    text-align: center;
+  background: rgb(29,49,50);
+  font-family: Share Tech Mono, "Verdana", sans-serif;
+  color: rgb(66,231,234);
+  text-align: center;
 }
 
 .navbar {
-    background: rgb(29,49,50);
-    border-bottom: none;
+  background: rgb(29,49,50);
+  border-bottom: none;
 }
 
 table, tr, td, th{
-    border: solid 1px rgb(66,231,234);
-    border-top: solid 1px rgb(66,231,234);
+  border: solid 1px rgb(66,231,234);
+  border-top: solid 1px rgb(66,231,234);
 }
 
 .navbar .table {
-    margin-bottom: 0;
-    background: rgb(17,76,76);
-    border: solid 1px rgb(29,49,50);
+  margin-bottom: 0;
+  background: rgb(17,76,76);
+  border: solid 1px rgb(29,49,50);
 }
 
 th {
-    text-align: center;
+  background: rgb(17,76,76);
+  text-align: center;
 }
 
 input {
-    background: rgb(17,76,76);
-    color: rgb(187,197,201);
-    font-size: 17px;
-    font-family: Share Tech Mono, "Verdana", sans-serif;
-    border: solid rgb(66,231,234);
-    padding: 5px;
-    text-align: center;
+  background: rgb(17,76,76);
+  color: rgb(187,197,201);
+  font-size: 17px;
+  font-family: Share Tech Mono, "Verdana", sans-serif;
+  border: solid rgb(66,231,234);
+  padding: 5px;
+  text-align: center;
 }
 
 select {
-    background: rgb(17,76,76);
-    color: rgb(187,197,201);
-    font-size: 17px;
-    font-family: Share Tech Mono, "Verdana", sans-serif;
-    border: solid rgb(66,231,234);
-    padding: 5px;
-    text-align: center;
+  background: rgb(17,76,76);
+  color: rgb(187,197,201);
+  font-size: 17px;
+  font-family: Share Tech Mono, "Verdana", sans-serif;
+  border: solid rgb(66,231,234);
+  padding: 5px;
+  text-align: center;
 }
 
 h1 {
-    border: double 15px rgb(66,231,234);
-    padding: 15px;
-    margin: 10px;
+  border: double 15px rgb(66,231,234);
+  padding: 15px;
+  margin: 10px;
 }
 
 .btn-default {
-    color: rgb(66,231,234);
-    border-color: rgb(66,231,234);
-    background-color: rgb(17,76,76);
+  color: rgb(66,231,234);
+  border-color: rgb(66,231,234);
+  background-color: rgb(17,76,76);
 }
 
 .btn-default:hover, .btn-default.active:focus, .btn-default:focus, .btn-default:active:focus {
-    color: rgb(255,166,53);
-    border-color: rgb(255,166,53);
-    background-color: rgb(17,76,76);
+  color: rgb(255,166,53);
+  border-color: rgb(255,166,53);
+  background-color: rgb(17,76,76);
 }
 
 .btn-primary {
-    color: rgb(255,166,53);
-    border-color: rgb(66,231,234);
-    background-color: rgb(17,76,76);
+  color: rgb(255,166,53);
+  border-color: rgb(66,231,234);
+  background-color: rgb(17,76,76);
 }
 
 .btn-primary:hover,.btn-primary.active {
-    color: rgb(255,166,53);
-    border-color: rgb(255,166,53);
-    background-color: rgb(17,76,76);
+  color: rgb(255,166,53);
+  border-color: rgb(255,166,53);
+  background-color: rgb(17,76,76);
 }
 
 strong {
-    color: rgb(255,166,53);
+  color: rgb(255,166,53);
 }
 
 em {
-    color: red;
+  color: red;
 }
 
 #priority td, #metatypechoice, #magreschoice, .incAtt, .decAtt, .knowButton, .button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .selected {
-    color: rgb(255,166,53);
-    border-color: rgb(255,166,53);
+  color: rgb(255,166,53);
+  border-color: rgb(255,166,53);
 }
 
 .deact,.deact:hover{
-    color: rgb(95,107,112);
-    border-color: rgb(95,107,112);
-    cursor: default;
+  color: rgb(95,107,112);
+  border-color: rgb(95,107,112);
+  cursor: default;
 }
 
 .deact strong, .deact em {
-    color: rgb(95,107,112);
+  color: rgb(95,107,112);
 }
 
 .hide {
-    display: none;
+  display: none;
 }
