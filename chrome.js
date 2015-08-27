@@ -231,11 +231,11 @@ function customLimb() {
       break;
   }
 
-  function activate(x) { //this will highlight and add a + to show that the thing is active
+  function activate(x) { //this will highlight and add a - to show the ability to remove
     x.addClass("active").empty().append("<em>-</em>");
   }
 
-  function deactivate(x) { //this will turn off the highlight and change the + to a - to show its inactive
+  function deactivate(x) { //this will turn off the highlight and change the - to a + to show it can be added
     x.removeClass("active").empty().append("<strong>+</strong>");
   }
 
