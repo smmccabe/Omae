@@ -105,6 +105,90 @@ var attributes = {
   maxAvail = 12; //the max availability at chargen
 
 //@TODO - move to separate json file
+var qualities = {
+	// Positive:
+	"Ambidextrous": -4,
+	"Analytical Mind": -5,
+	"Aptitude: [skill]": -14,
+	"Astral Chameleon": -10,
+	"Bilingual": -5,
+	"Blandness": -8,
+	"Catlike": -7,
+	"Codeslinger: [action]": -10,
+	"Double-Jointed": -6,
+	"Exceptional Attribute: [attribute]": -14,
+	"First Impression": -11,
+	"Focused Concentration": { karma: -4, max: 6 },
+	"Gearhead": -11,
+	"Guts": -10,
+	"High Pain Tolerance": -7,
+	"Home Ground [quality]": -10,
+	"Human-Looking": -6,
+	"Indomitable": { karma: -8, max: 3 },
+	"Juryrigger": -10,
+	"Lucky": -12,
+	"Magical Resistance": { karma: -6, max: 4 },
+	"Mentor Spirit": -5,
+	"Natural Athlete": -7,
+	"Natural Hardening": -10,
+	"Natural Immunity [natural substance]": -4,
+	"Natural Immunity [synthetic substance]": -10,
+	"Photographic Memory": -6,
+	"Quick Healer": -3,
+	"Resistance to Pathogens or Toxins": -4,
+	"Resistance to Pathogens and Toxins": -8,
+	"Spirit Affinity": -7,
+	"Toughness": -9,
+	"Will to Live": { karma: -3, max: 3 },
+	// Negative:
+	"Addiction: Mild [activity]": 4,
+	"Addiction: Moderate [activity]": 9,
+	"Addiction: Severe [activity]": 20,
+	"Addiction: Burnout [activity]": 25,
+	"Allergy: Uncommon [substance]": 2,
+	"Allergy: Common [substance]": 7,
+	"Allergy: Mild [substance]": 3,
+	"Allergy: Moderate [substance]": 8,
+	"Allergy: Severe [substance]": 13,
+	"Allergy: Extreme [substance]": 18,
+	"Astral Beacon": 10,
+	"Bad Luck": 12,
+	"Bad Rep": 7,
+	"Code of Honor: [creed]": 15,
+	"Codeblock: [action]": 10,
+	"Combat Paralysis": 12,
+	"Dependent(s): Occasional Nuisance": 3,
+	"Dependent(s): Regular Inconvenience": 6,
+	"Dependent(s): Close Family": 9,
+	"Distinctive Style": 5,
+	"Elf Poser": 6,
+	"Gremlins": { karma: 4, max: 4 },
+	"Incompetent: [skill]": 5,
+	"Insomnia: Moderate": 10,
+	"Insomnia: Severe": 15,
+	"Loss of Confidence": 10,
+	"Low Pain Tolerance": 9,
+	"Ork Poser": 6,
+	"Prejudiced: Common": 5,
+	"Prejudiced: Specific": 3,
+	"Prejudiced: Biased": 0,
+	"Prejudiced: Outspoken": 2,
+	"Prejudiced: Radical": 5,
+	"Scorched": 10,
+	"Sensitive System": 12,
+	"Simsense Vertigo": 5,
+	"National SINner": 5,
+	"Criminal SINner": 10,
+	"Corporate Limited SINner": 15,
+	"Corporate Born SINner": 25,
+	"Social Stress": 8,
+	"Spirit Bane: [type]": 7,
+	"Uncouth": 14,
+	"Uneducated": 8,
+	"Unsteady Hands": 7,
+	"Weak Immune System": 10
+};
+
 activeSkills = { //the list of all the skills in the entire game forever. Catalysis needs to never release any more skills ever after this
   archery: {
     name: "Archery",
@@ -8874,7 +8958,7 @@ var augmentations = {
       name: "Enhancement Agility",
       type: "limb enhancement",
       stat: "agi",
-      allow: ["arm", "leg", "chest", "head"],
+      allow: ["arm", "leg"],
       rating: 0,
       ratingmax: 3,
       capacity: 0,
@@ -8910,7 +8994,7 @@ var augmentations = {
       name: "Enhancement Strength",
       type: "limb enhancement",
       stat: "str",
-      allow: ["arm", "leg", "chest", "head"],
+      allow: ["arm", "leg"],
       rating: 0,
       ratingmax: 3,
       capacity: 0,
@@ -8956,7 +9040,7 @@ var augmentations = {
     cyberholster: {
       name: "Cyber Holster",
       type: "accessory",
-      allow: ["arm", "leg", "chest", "head"],
+      allow: ["arm", "leg", "chest"],
       capacity: 5,
       avail: 8,
       restrict: "R",
@@ -8986,7 +9070,7 @@ var augmentations = {
     largesmugglingcompartment: {
       name: "Large Smuggling Compartment",
       type: "accessory",
-      allow: ["arm", "leg", "chest", "head"],
+      allow: ["arm", "leg", "chest"],
       capacity: 5,
       avail: 6,
       restrict: "",
@@ -8999,12 +9083,13 @@ var augmentations = {
   },
   weapons: {   // can be cyberlimb mods XOR meat-implanted weapons
     holdoutpistol: {
-      name: "Hold-Out Pistol",
+      name: "Cyber Hold-Out Pistol",
       type: "cybergun",
       allow: ["arm", "leg", "chest", "head"],
       clip: false,
       laser: false,
       silencer: false,
+      essence: 0.1,
       capacity: 2,
       avail: 8,
       restrict: "R",
@@ -9038,14 +9123,318 @@ var augmentations = {
         ap: 0
       }
     },
-    // light pistol
-    // machine pistol
-    // heavy pistol
-    // smg
-    // shotgun
-    // microgrenade
-    // hand blade
-    // hand razors
+    lightpistol: {
+      name: "Light Cyber Pistol",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest", "head"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.25,
+      capacity: 4,
+      avail: 10,
+      restrict: "R",
+      cost: 3900,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "pistols",
+        accuracy: 6,
+        accmod: 2,
+        damage: 7,
+        stat: 0,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {
+          SA: "SA"
+        },
+        rc: 0,
+        rcmod: 0,
+        ammo: {
+          mag: 10,
+          clip: 15
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: 0
+      }
+    },
+    machinepistol: {
+      name: "Cyber Machine Pistol",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.5,
+      capacity: 6,
+      avail: 12,
+      restrict: "R",
+      cost: 3500,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "pistols",
+        accuracy: 4,
+        accmod: 2,
+        damage: 6,
+        stat: 0,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {
+          SA: "SA", BF: "BF"
+        },
+        rc: 1,
+        rcmod: 0,
+        ammo: {
+          mag: 18,
+          clip: 32
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: 0
+      }
+    },
+    heavypistol: {
+      name: "Heavy Cyber Pistol",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.5,
+      capacity: 6,
+      avail: 12,
+      restrict: "R",
+      cost: 4300,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "pistols",
+        accuracy: 4,
+        accmod: 2,
+        damage: 7,
+        stat: 0,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {
+          SA: "SA"
+        },
+        rc: 0,
+        rcmod: 0,
+        ammo: {
+          mag: 8,
+          clip: 12
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: -1
+      }
+    },
+    submachinegun: {
+      name: "Cyber Submachine Gun",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 1,
+      capacity: 8,
+      avail: 12,
+      restrict: "R",
+      cost: 4800,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "automatics",
+        accuracy: 4,
+        accmod: 2,
+        damage: 7,
+        stat: 0,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {
+          SA: "SA", BF: "BF"
+        },
+        rc: 2,
+        rcmod: 0,
+        ammo: {
+          mag: 18,
+          clip: 32
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: 0
+      }
+    },
+    shotgun: {
+      name: "Cyber Shotgun",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 1.25,
+      capacity: 10,
+      avail: 12,
+      restrict: "R",
+      cost: 8500,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "longarms",
+        accuracy: 4,
+        accmod: 2,
+        damage: 10,
+        stat: 0,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {
+          SS: "SS"
+        },
+        rc: 0,
+        rcmod: 0,
+        ammo: {
+          mag: 4,
+          clip: 10
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: -1
+      }
+    },
+    microgrenade: {
+      name: "Cyber Microgrenade Launcher",
+      type: "cybergun",
+      allow: ["arm", "leg", "chest"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 1.5,
+      capacity: 15,
+      avail: 20,
+      restrict: "F",
+      cost: 30000,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "?",
+        accuracy: 4,
+        accmod: 2,
+        damage: 0,
+        stat: 0,
+        dvmod: 0,
+        damtype: "",
+        element: "",
+        mode: {
+          SS: "SS"
+        },
+        rc: 0,
+        rcmod: 0,
+        ammo: {
+          mag: 2,
+          clip: 6
+        },
+        clip: {
+          mag: "m",
+          clip: "c"
+        },
+        ap: 0
+      }
+    },
+    handblade: {
+      name: "Hand Blade (Retractable)",
+      type: "cybermelee",
+      allow: ["arm"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.25,
+      capacity: 2,
+      avail: 10,
+      restrict: "F",
+      cost: 2500,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "unarmedcombat",
+        accuracy: 0,
+        accmod: 0,
+        damage: 2,
+        stat: attributes.current.str,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {},
+        rc: 0,
+        rcmod: 0,
+        ammo: {},
+        clip: {},
+        ap: -2
+      }
+    },
+    handrazors: {
+      name: "Hand Razors (Retractable)",
+      type: "cybermelee",
+      allow: ["arm"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.2,
+      capacity: 2,
+      avail: 8,
+      restrict: "F",
+      cost: 1250,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "unarmedcombat",
+        accuracy: 0,
+        accmod: 0,
+        damage: 1,
+        stat: attributes.current.str,
+        dvmod: 0,
+        damtype: "P",
+        element: "",
+        mode: {},
+        rc: 0,
+        rcmod: 0,
+        ammo: {},
+        clip: {},
+        ap: -3
+      }
+    },
     spurs: {
       name: "Spurs (Retractable)",
       type: "cybermelee",
@@ -9053,6 +9442,7 @@ var augmentations = {
       clip: false,
       laser: false,
       silencer: false,
+      essence: 0.3,
       capacity: 3,
       avail: 12,
       restrict: "F",
@@ -9075,45 +9465,398 @@ var augmentations = {
         rcmod: 0,
         ammo: {},
         clip: {},
-        ap: 0
+        ap: -2
+      }
+    },
+    shockhand: {
+      name: "Shock Hand",
+      type: "cybermelee",
+      allow: ["arm"],
+      clip: false,
+      laser: false,
+      silencer: false,
+      essence: 0.25,
+      capacity: 4,
+      avail: 8,
+      restrict: "R",
+      cost: 5000,
+      ref: {
+        book: "SR5",
+        page: "458"
+      },
+      stats: {
+        skill: "unarmedcombat",
+        accuracy: 0,
+        accmod: 0,
+        damage: 9,
+        stat: "",
+        dvmod: 0,
+        damtype: "S",
+        element: "e",
+        mode: {},
+        rc: 0,
+        rcmod: 0,
+        ammo: {},
+        clip: {},
+        ap: -5
       }
     }
-    // shock hand
   },
   bioware: {
-    // adrenaline pump 1-3
-    // bone density aug 1-4
+    adrenalinepump: {
+      name: "Adrenaline Pump",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.75,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 6,
+      restrict: "F",
+      cost: 0,
+      costx: 55000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    bonedensity: {
+      name: "Bone Density Augmentation",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.3,
+      rating: 0,
+      ratingmax: 4,
+      avail: 0,
+      availx: 4,
+      restrict: "",
+      cost: 0,
+      costx: 5000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+      // reach: 0
+      // damage: (STR + (rating - 1))P
+      // ap: 0
+    },
     catseye: {
       name: "Cat's Eye",
       grade: "standard",
       essence: 0.1,
       avail: 4,
+      restrict: "",
       cost: 4000,
       ref: {
         book: "SR5",
         page: "459,460"
       }
-    }
-    // enhanced articultion
-    // muscle aug 1-4
-    // muscle toner 1-4
-    // orthoskin 1-4
-    // pathogenic defense 1-6
-    // platelet factories
-    // skin pocket
-    // suprathyroid gland
-    // symbiotes 1-4
-    // synthacardium 1-3
-    // tailored pheromones 1-3
-    // toxin extractor 1-6
-    // trachael filter 1-6
-    // cerebral booster 1-3
-    // damage compensators 1-12
-    // mnemonic enhancer 1-3
-    // pain editor
-    // reflex recorder [per skill]
-    // sleep regulator
-    // synaptic booster 1-3
+    },
+    enhancedarticulation: {
+      name: "Enhanced Articulation",
+      grade: "standard",
+      essence: 0.3,
+      avail: 12,
+      restrict: "",
+      cost: 24000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    muscleaugmentation: {
+      name: "Muscle Augmentation",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 4,
+      avail: 0,
+      availx: 5,
+      restrict: "R",
+      cost: 0,
+      costx: 31000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    muscletoner: {
+      name: "Muscle Toner",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 4,
+      avail: 0,
+      availx: 5,
+      restrict: "R",
+      cost: 0,
+      costx: 32000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    orthoskin: {
+      name: "Orthoskin",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.25,
+      rating: 0,
+      ratingmax: 4,
+      avail: 0,
+      availx: 4,
+      restrict: "R",
+      cost: 0,
+      costx: 6000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    pathogenicdefense: {
+      name: "Pathogenic Defense",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      avail: 0,
+      availx: 2,
+      restrict: "",
+      cost: 0,
+      costx: 4500,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    plateletfactories: {
+      name: "Platelet factories",
+      grade: "standard",
+      essence: 0.2,
+      avail: 12,
+      restrict: "",
+      cost: 17000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    skinpocket: {
+      name: "Skin pocket",
+      grade: "standard",
+      essence: 0.1,
+      avail: 4,
+      restrict: "",
+      cost: 12000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    suprathyroidgland: {
+      name: "Suprathyroid gland",
+      grade: "standard",
+      essence: 0.7,
+      avail: 20,
+      restrict: "R",
+      cost: 140000,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    symbiotes: {
+      name: "Symbiotes",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 4,
+      avail: 0,
+      availx: 5,
+      restrict: "",
+      cost: 0,
+      costx: 3500,
+      ref: {
+        book: "SR5",
+        page: "459,460"
+      }
+    },
+    synthacardium: {
+      name: "Synthacardium",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 4,
+      restrict: "",
+      cost: 0,
+      costx: 30000,
+      ref: {
+        book: "SR5",
+        page: "460"
+      }
+    },
+    tailoredpheromones: {
+      name: "Tailored Pheromones",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 4,
+      restrict: "R",
+      cost: 0,
+      costx: 31000,
+      ref: {
+        book: "SR5",
+        page: "460"
+      }
+    },
+    toxinextractor: {
+      name: "Toxin Extractor",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 6,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 4800,
+      ref: {
+        book: "SR5",
+        page: "460"
+      }
+    },
+    trachealfilter: {
+      name: "Tracheal Filter",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 6,
+      avail: 0,
+      availx: 3,
+      restrict: "",
+      cost: 0,
+      costx: 4500,
+      ref: {
+        book: "SR5",
+        page: "460"
+      }
+    },
+    cerebralbooster: {
+      name: "Cerebral Booster",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.2,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 6,
+      restrict: "",
+      cost: 0,
+      costx: 31500,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    damagecompensators: {
+      name: "Damage Compensators",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 12,
+      avail: 0,
+      availx: 3,
+      restrict: "F",
+      cost: 0,
+      costx: 2000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    mnemonicenhancer: {
+      name: "Mnemonic Enhancer",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.1,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 5,
+      restrict: "",
+      cost: 0,
+      costx: 9000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    paineditor: {
+      name: "Pain Editor",
+      grade: "standard",
+      essence: 0.3,
+      avail: 18,
+      restrict: "F",
+      cost: 48000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    reflexrecorder: {
+      name: "Reflex Recorder [skill]",
+      grade: "standard",
+      essence: 0.1,
+      avail: 10,
+      restrict: "",
+      cost: 14000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    sleepregulator: {
+      name: "Sleep Regulator",
+      grade: "standard",
+      essence: 0.1,
+      avail: 6,
+      restrict: "",
+      cost: 12000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
+    synapticbooster: {
+      name: "Synaptic Booster",
+      grade: "standard",
+      essence: 0,
+      essencex: 0.5,
+      rating: 0,
+      ratingmax: 3,
+      avail: 0,
+      availx: 6,
+      restrict: "R",
+      cost: 0,
+      costx: 95000,
+      ref: {
+        book: "SR5",
+        page: "460,461"
+      }
+    },
   }
 };
 
@@ -9984,6 +10727,53 @@ var vehicles = {
       page: "466"
     }
   },
+  dustoff: {
+    name: "Aeroquip M.E.D.-1 \"Dustoff\" Medical Evacuation Drone",
+    category: "drone",
+    type: "large",
+    skill: "pilotaircraft",
+    handling: 3,
+    speed: 4,
+    accel: 4,
+    body: 4,
+    armor: 5,
+    pilot: 4,
+    sensor: 3,
+    seats: 1,
+    avail: 10,
+    restrict: "R",
+    cost: 12000,
+    // Similar Models: Crash Cart Airlife, Federated-Boeing Seraphim
+    // Std. Upgrades/Accessories: Armored patient compartment (treat as enhanced rigger cocoon without control interfaces), Improved Takeoff and Landing 2, Rigger Adaptation
+    ref: {
+      book: "SR5: Bullets & Bandages",
+      page: "23"
+    }
+  },
+  caduceus: {
+    name: "Shiawase Caduceus \"Cad\" 7",
+    category: "drone",
+    type: "medium",
+    skill: "pilotwalker",
+    handling: 4,
+    speed: 2,
+    accel: 1,
+    body: 5,
+    armor: 3,
+    pilot: 2,
+    sensor: 1,
+    seats: 0,
+    avail: 12,
+    restrict: "R",
+    cost: 16500,
+    // Similar Models: MCT Kangohei, Ares Corpsman
+    // Std. Upgrades/Accessories: Mechanical arms (x2) with Snake Fingers, Rigger Adaptation, Special Equipment (Medkit 4), Walker
+    // Note: The Caduceus 7 acts as a Rating 4 Autodoc.
+    ref: {
+      book: "SR5: Bullets & Bandages",
+      page: "23"
+    }
+  },
   fbbumblebee: {
     name: "F-B Bumblebee",
     category: "drone",
@@ -10125,3 +10915,24 @@ var vehiclemods = {
     }
   }
 };
+
+var lifestyles = {
+  "Luxury": 100000,
+  "High": 10000,
+  "Middle": 5000,
+  "Low": 2000,
+  "Squatter": 500,
+  "Streets": 0,
+  //Hospitalized (basic care) 500 day
+  //Hospitalized (intensive care) 1000 day
+  options: {
+    "Special Work Area": 1000,
+    //"Extra Secure": 20pct
+    //"Obscure/Difficult to find": 10pct
+    //"Cramped": -10pct
+    //"Dangerous Area": -20pct
+  }
+  // team lifestyle +10pct per person
+};
+// karma -> nuyen/skill point/etc.
+// contacts

@@ -100,7 +100,7 @@ function customLimb() {
               if (typeof targetMod.rating !== "undefined") {
                 $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='modUp button'><strong>+</strong></td><td class='modRating'>0</td><td class='modDown button'><strong>-</strong></td><td>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
               } else {
-                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='buyMod button' colspan=3><strong>-</strong></td><td>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
+                $("." + limbloc + " .cybermods table.mods tbody").append("<tr class='" + mod + "'><td>" + targetMod.name + "</td><td class='buyMod button' colspan=3><strong>+</strong></td><td>Cap</td><td class='cap'>[" + targetMod.capacity + "]</td><td>Avail</td><td class='avail'>" + targetMod.avail + targetMod.restrict + "</td><td>Price</td><td class='price'>" + targetMod.cost * augmentations.grade[cyber.grade]["cost"] + "&yen;</td></tr>");
               }
             }
           }
@@ -232,11 +232,11 @@ function customLimb() {
   }
 
   function activate(x) { //this will highlight and add a + to show that the thing is active
-    x.addClass("active").empty().append("<strong>+</strong>");
+    x.addClass("active").empty().append("<em>-</em>");
   }
 
   function deactivate(x) { //this will turn off the highlight and change the + to a - to show its inactive
-    x.removeClass("active").empty().append("<em>-</em>");
+    x.removeClass("active").empty().append("<strong>+</strong>");
   }
 
   function cyberEnhanceUpdater() {
