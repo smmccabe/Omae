@@ -9753,6 +9753,8 @@ var augmentations = {
         page: "460"
       }
     },
+  },
+  culturedbioware: {
     cerebralbooster: {
       name: "Cerebral Booster",
       grade: "standard",

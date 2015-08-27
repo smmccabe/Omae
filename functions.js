@@ -959,6 +959,27 @@ function awaken(x, y) { //this is suppose to unhide attributes.current.mag or re
   $("." + y).addClass("hide");
 }
 
+function setupQualities() {
+  for (var quality in qualities) {
+    if (typeof qualities[quality] === "object") {
+      $('#qualities > table').append('<tr class="quality ' + quality + '"><td class="buyQuality button"><strong>+</strong></td><td class="ratingUp button"><strong>+</strong></td><td class="commrating">' + 1 + '</td><td class="ratingDown button"><em>-</em></td><td class="qualityname">' + quality + '</td><td class="price"' + (qualities[quality].karma < 0 ? ' style="color: #c00;"' : '') + '>' + qualities[quality].karma + '</td></tr>');
+    }
+    else {
+      $('#qualities > table').append('<tr class="quality ' + quality + '"><td class="buyQuality button"><strong>+</strong></td><td class="ratingUp button deact"><strong>+</strong></td><td class="commrating deact">n/a</td><td class="ratingDown button deact"><em>-</em></td><td class="qualityname">' + quality + '</td><td class="price"' + (qualities[quality] < 0 ? ' style="color: #c00;"' : '') + '>' + qualities[quality] + '</td></tr>');
+    }
+    //console.log(typeof qualities[quality] + ' ' + quality + ' ' + qualities[quality]);
+  }
+}
+
+function setupLifestyles() {
+  for (var lifestyle in lifestyles) {
+    if (typeof lifestyles[lifestyle] === "number") {
+      $('#lifestyle > table').append('<tr class="lifestyle"><td class="buyUp button"><strong>+</strong></td><td class="numrfid">0</td><td class="sellDown button"><em>-</em></td><td>' + lifestyle + '</td><td>' + lifestyles[lifestyle] + '&yen;</td></tr>');
+    }
+  }
+  // TODO: addons
+}
+
 function setupSkills() {
   for (var x in weapons) { //adds exotic melee weapons to the skill list
     if (weapons[x]["category"] == "exoticmeleeweapon") {

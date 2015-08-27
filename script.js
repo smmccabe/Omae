@@ -11,6 +11,7 @@ var clothingavail = 0; //the avail of the clothing
 var clothingarmor = 0; //the armor value of the clothing, only effected by leather
 
 $(function() {
+  setupQualities();
   setupSkills();
   setupGear();
   setupAugmentations();
@@ -18,6 +19,7 @@ $(function() {
   setupElectronics();
   setupArmor();
   setupVehicles();
+  setupLifestyles();
   setupComplexForms();
 
   //runs the attribute display function on start up
