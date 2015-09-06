@@ -3,7 +3,19 @@ function setupAugmentations() {
     switch (aug) {
       case "cyberware":
         for (var part in augmentations[aug]) {
-          $(".cyberware." + augmentations[aug][part]["slot"]).after("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+          var row;
+          if (typeof augmentations[aug][part].ratingmax === "undefined") {
+            row = "<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='ratingUp button'><strong>+</strong></td><td class='commrating'>" + augmentations[aug][part].rating + "</td><td class='ratingDown button'><em>-</em></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>";
+          }
+          else {
+            row = "<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='ratingUp button'><strong>+</strong></td><td class='commrating'>" + 1 + "</td><td class='ratingDown button'><em>-</em></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["availx"] + "</td><td class='ess'>" + (typeof augmentations[aug][part]["essence"] !== "undefined" ? augmentations[aug][part]["essence"] : augmentations[aug][part]["essencex"]) + "</td><td class='price'>" + augmentations[aug][part]["costx"] + "&yen;</td></tr>";
+          }
+          if ($(".cyberware." + augmentations[aug][part]["slot"] + ' ~ .cyberware').length) {
+            $(".cyberware." + augmentations[aug][part]["slot"] + ' ~ .cyberware').first().before(row);
+          }
+          else {
+            $('#cyberware').append(row);
+          }
         }
         break;
       case "obvious":
@@ -28,10 +40,34 @@ function setupAugmentations() {
         }
         break;
       case "bioware":
+      case "culturedbioware":
         for (var part in augmentations[aug]) {
-          $("#bioware").append("<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>");
+          var row;
+          if (typeof augmentations[aug][part].ratingmax === "undefined") {
+            row = "<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='ratingUp button'><strong>+</strong></td><td class='commrating'>" + augmentations[aug][part].rating + "</td><td class='ratingDown button'><em>-</em></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["avail"] + "</td><td class='ess'>" + augmentations[aug][part]["essence"] + "</td><td class='price'>" + augmentations[aug][part]["cost"] + "&yen;</td></tr>";
+          }
+          else {
+            row = "<tr class=" + part + "><td class='buyAug button'><strong>+</strong></td><td class='ratingUp button'><strong>+</strong></td><td class='commrating'>" + 1 + "</td><td class='ratingDown button'><em>-</em></td><td class='part'>" + augmentations[aug][part]["name"] + "</td><td class='grade'>Standard</td><td class='avail'>" + augmentations[aug][part]["availx"] + "</td><td class='ess'>" + (typeof augmentations[aug][part]["essence"] !== "undefined" ? augmentations[aug][part]["essence"] : augmentations[aug][part]["essencex"]) + "</td><td class='price'>" + augmentations[aug][part]["costx"] + "&yen;</td></tr>";
+          }
+          if ($(".bioware" + (aug == "bioware" ? ".basic" : ".cultured") + ' ~ .bioware').length) {
+            $(".bioware" + (aug == "bioware" ? ".basic" : ".cultured") + ' ~ .bioware').first().before(row);
+          }
+          else {
+            $('#bioware').append(row);
+          }
         }
         break;
+    }
+    for (var part in augmentations[aug]) {
+      if (augmentations[aug][part]["avail"] > maxAvail) {
+        $("." + part + " .buyAug").addClass("deact").empty().append("-");
+      }
+      if (typeof augmentations[aug][part].rating === "undefined") {
+        $("." + part + " .commrating").addClass("deact").empty().append("n/a");
+      }
+      if (typeof augmentations[aug][part].availx === "undefined") {
+        $("." + part + " .ratingUp,." + part + " .ratingDown").addClass("deact");
+      }
     }
   }
 

@@ -62,10 +62,16 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+  <![endif]-->
 
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div class="github-fork-ribbon-wrapper right"><div class="github-fork-ribbon"><a href="https://github.com/smmccabe/Omae">Fork me on GitHub</a></div></div>
+
 <nav id="characterPoints" class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -274,14 +280,14 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         <th>Points</th>
       </tr>
       <tr>
-        <td class="incAtt Bod"> + </td>
-        <td class="incAtt Agi"> + </td>
-        <td class="incAtt Rea"> + </td>
-        <td class="incAtt Str"> + </td>
-        <td class="incAtt Wil"> + </td>
-        <td class="incAtt Log"> + </td>
-        <td class="incAtt Int"> + </td>
-        <td class="incAtt Cha"> + </td>
+        <td class="incAtt Bod"> <strong>+</strong> </td>
+        <td class="incAtt Agi"> <strong>+</strong> </td>
+        <td class="incAtt Rea"> <strong>+</strong> </td>
+        <td class="incAtt Str"> <strong>+</strong> </td>
+        <td class="incAtt Wil"> <strong>+</strong> </td>
+        <td class="incAtt Log"> <strong>+</strong> </td>
+        <td class="incAtt Int"> <strong>+</strong> </td>
+        <td class="incAtt Cha"> <strong>+</strong> </td>
         <td>Raise</td>
       </tr>
       <tr>
@@ -314,14 +320,14 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         </td>
       </tr>
       <tr>
-        <td class="decAtt Bod"> - </td>
-        <td class="decAtt Agi"> - </td>
-        <td class="decAtt Rea"> - </td>
-        <td class="decAtt Str"> - </td>
-        <td class="decAtt Wil"> - </td>
-        <td class="decAtt Log"> - </td>
-        <td class="decAtt Int"> - </td>
-        <td class="decAtt Cha"> - </td>
+        <td class="decAtt Bod"> <em>-</em> </td>
+        <td class="decAtt Agi"> <em>-</em> </td>
+        <td class="decAtt Rea"> <em>-</em> </td>
+        <td class="decAtt Str"> <em>-</em> </td>
+        <td class="decAtt Wil"> <em>-</em> </td>
+        <td class="decAtt Log"> <em>-</em> </td>
+        <td class="decAtt Int"> <em>-</em> </td>
+        <td class="decAtt Cha"> <em>-</em> </td>
         <td>Lower</td>
       </tr>
     </table>
@@ -336,9 +342,9 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         <th>Points</th>
       </tr>
       <tr>
-        <td class="incAtt Edg"> + </td>
-        <td class="incAtt Mag hide"> + </td>
-        <td class="incAtt Res hide"> + </td>
+        <td class="incAtt Edg"> <strong>+</strong> </td>
+        <td class="incAtt Mag hide"> <strong>+</strong> </td>
+        <td class="incAtt Res hide"> <strong>+</strong> </td>
         <td>Raise</td>
       </tr>
       <tr>
@@ -356,9 +362,9 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         </td>
       </tr>
       <tr>
-        <td class="decAtt Edg"> - </td>
-        <td class="decAtt Mag hide"> - </td>
-        <td class="decAtt Res hide"> - </td>
+        <td class="decAtt Edg"> <em>-</em> </td>
+        <td class="decAtt Mag hide"> <em>-</em> </td>
+        <td class="decAtt Res hide"> <em>-</em> </td>
         <td>Lower</td>
       </tr>
     </table>
@@ -407,6 +413,12 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
 
         </td>
       </tr>
+    </table>
+  </div>
+  <div id="qualities">
+    <h2>Qualities</h2>
+    <table class="table">
+      <tr id="qualitylabel"><th>Add</th><th>Raise</th><th>Level</th><th>Lower</th><th>Quality</th><th>Karma</th></tr>
     </table>
   </div>
   <div id="skillcontainer">
@@ -943,11 +955,11 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       <h2>Augmentations</h2>
       <h3>Cyberware</h3>
       <table id="cyberware" class="table">
-        <tr><th>Buy</th><th>Part</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
-        <tr class="cyberware head"><th colspan="6">Headware</th></tr>
-        <tr class="cyberware eye"><th colspan="6">Eyeware</th></tr>
-        <tr class="cyberware ear"><th colspan="6">Earware</th></tr>
-        <tr class="cyberware bodyware"><th colspan="6">Bodyware</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Part</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+        <tr class="cyberware head"><th colspan="9">Headware</th></tr>
+        <tr class="cyberware eye"><th colspan="9">Eyeware</th></tr>
+        <tr class="cyberware ear"><th colspan="9">Earware</th></tr>
+        <tr class="cyberware bodyware"><th colspan="9">Bodyware</th></tr>
       </table>
       <h3>Cyber Limbs</h3>
       <table id="cyberlimbs" class="table">
@@ -955,12 +967,14 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
       </table>
       <h3>Bioware</h3>
       <table id="bioware" class="table">
-        <tr><th>Buy</th><th>Organ</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+        <tr><th>Buy</th><th>Raise</th><th>Rating</th><th>Lower</th><th>Organ</th><th>Grade</th><th>Avail</th><th>Ess</th><th>Cost</th></tr>
+        <tr class="bioware basic"><th colspan="9">Basic Bioware</th></tr>
+        <tr class="bioware cultured"><th colspan="9">Cultured Bioware</th></tr>
       </table>
     </div>
     <div id="vehicles">
       <h2>Vehicles</h2>
-      <table class="table">
+      <table id="craft" class="table">
         <tr>
           <th>Buy</th>
           <th>Vehicle</th>
@@ -1005,6 +1019,12 @@ All the people on the Shadowgrid forums for their rule lawyering - http://forums
         </tr>
       </table>
     </div>
+  </div>
+  <div id="lifestyle">
+    <h2>Lifestyles/Safehouses</h2>
+    <table class="table">
+      <tr id="lifestylelabel"><th>Buy</th><th>Month(s)</th><th>Sell</th><th>Lifestyle</th><th>Cost</th></tr>
+    </table>
   </div>
 </div>
 </body>
